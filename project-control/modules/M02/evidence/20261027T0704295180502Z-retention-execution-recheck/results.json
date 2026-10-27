@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-10-27T07:04:39.909046+00:00",
+  "code_fingerprint": "d214558e150ed18ee4eef68c8ff9efafb2eeb4c7a2399f633b03881bc596da87",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "retention-isolated-execution",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\\u667a\u80fd\u95ee\u6570\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_retention.py",
+        "services/api/tests/test_retention_execution.py",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "scope": "native deletion of independent fresh test UUID artifacts only; default runtime not_run; clock/receipt faults also isolated units",
+      "code_fingerprint": "d214558e150ed18ee4eef68c8ff9efafb2eeb4c7a2399f633b03881bc596da87",
+      "log": "project-control/modules/M02/evidence/20261027T0704295180502Z-retention-execution-recheck/tests.txt"
+    }
+  ]
+}

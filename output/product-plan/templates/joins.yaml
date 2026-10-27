@@ -1,0 +1,11 @@
+joins:
+  - join_id: example_join
+    status: draft
+    left_entity: TO_CONFIRM
+    right_entity: TO_CONFIRM
+    keys: []
+    cardinality: TO_CONFIRM
+    temporal_condition: TO_CONFIRM
+    allowed_grain: TO_CONFIRM
+    fanout_control: TO_CONFIRM
+    auto_execution_allowed: false

@@ -1,0 +1,11 @@
+terms:
+  - term_id: active_user
+    canonical_name: 活跃用户
+    aliases: []
+    domain: TO_CONFIRM
+    scope: TO_CONFIRM
+    target_metric_or_entity: TO_CONFIRM
+    ambiguity: 需确认活跃行为及时间窗口
+    priority: TO_CONFIRM
+    effective_period: TO_CONFIRM
+    owner: TO_CONFIRM

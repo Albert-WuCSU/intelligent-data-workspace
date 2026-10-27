@@ -1,0 +1,89 @@
+{
+  "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "scope": "current independent SourceStore API/MCP for local/XLSX/retention and one explicit expiry-metadata compatibility fixture; core accepted UI on default old API; default enablement not_run",
+      "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+      "log": "project-control/modules/M02/evidence/20261027T0841324874169Z-browser-final/browser.txt"
+    },
+    {
+      "id": "warehouse-integrity",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+      "log": "project-control/modules/M02/evidence/20261027T0841324874169Z-browser-final/warehouse-integrity.txt"
+    },
+    {
+      "id": "prd-consistency",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "project-control/prd/validate.py",
+        "--root",
+        ".",
+        "--installed-skill",
+        "D:/Users/luqianwu/.codex/skills/project-pdca"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+      "log": "project-control/modules/M02/evidence/20261027T0841324874169Z-browser-final/prd-consistency.txt"
+    },
+    {
+      "id": "prd-guardrails",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "project-control/prd/test_validate.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+      "log": "project-control/modules/M02/evidence/20261027T0841324874169Z-browser-final/prd-guardrails.txt"
+    },
+    {
+      "id": "progress-guardrails",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "skills/project-pdca/scripts/test_progress.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+      "log": "project-control/modules/M02/evidence/20261027T0841324874169Z-browser-final/progress-guardrails.txt"
+    }
+  ],
+  "reuse": {
+    "core_results": "project-control/modules/M02/evidence/20261027T073609Z/results.json",
+    "retention_results": "project-control/modules/M02/evidence/20261027T0735560324680Z-retention-capability-final/results.json",
+    "changed_sources": [
+      "tests/source-onboarding.spec.mjs"
+    ],
+    "only_changed_source": "browser test fixture; product/backend/frontend/contracts/locks byte-identical,55/261/10/type/build/pip reused with original fingerprints, not rerun"
+  }
+}

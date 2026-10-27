@@ -1,0 +1,2198 @@
+{
+  "schema_version": 1,
+  "revision": 23,
+  "updated_at": "2026-10-27T02:13:49.587351+00:00",
+  "project": {
+    "id": "universal-data-agent",
+    "name": "通用企业智能数据分析平台",
+    "source_refs": [
+      "project-control/PROJECT_BRIEF.md",
+      "output/product-plan/产品策划方案V0.1.md"
+    ],
+    "scope": {
+      "status": "approved_mvp",
+      "recommended_mvp": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08"
+      ],
+      "later_modules": [
+        "M09",
+        "M10",
+        "M11",
+        "M12"
+      ],
+      "approved_stack": [
+        "React/TypeScript/Vite",
+        "Python/FastAPI/Pydantic v2",
+        "PostgreSQL目标控制面（M05）",
+        "Arrow/Parquet资产合同",
+        "S3兼容存储接口",
+        "DuckDB自有合成测试数据面",
+        "Python MCP本机stdio适配"
+      ],
+      "candidates": [
+        "React/TypeScript/Vite",
+        "Python/FastAPI/Pydantic",
+        "PostgreSQL",
+        "Arrow/Parquet",
+        "S3-compatible interface"
+      ],
+      "deployment": "本地开发；目标内网/受控服务器部署另行审批",
+      "execution_provider": "local_duckdb_via_owned_mcp",
+      "approved_mvp": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08"
+      ],
+      "product_form_requirement": "有界面的应用程序或网站，不接受仅CLI或API作为最终产品",
+      "proposed_product_form": "Web工作台优先，桌面包装可后续扩展；待D-M01-PLAN-001确认",
+      "product_form": "Web工作台优先，桌面封装后续按需确认",
+      "ux_principles_ref": "project-control/PRODUCT_UX_PRINCIPLES.md",
+      "data_source": "independently_generated_synthetic",
+      "proposed_execution_provider": "local_duckdb_via_owned_mcp"
+    }
+  },
+  "status": "in_progress",
+  "active_module": "M02",
+  "modules": [
+    {
+      "id": "M01",
+      "name": "工程底座与核心合同",
+      "milestone": "MVP",
+      "depends_on": [],
+      "status": "closed",
+      "phase": "act",
+      "cycle_id": "M01-C01",
+      "maturity": "local_ready",
+      "plan_ref": "project-control/modules/M01/plan.md",
+      "approvals": {
+        "plan": "D-M01-PLAN-001",
+        "delivery": "D-M01-DELIVERY-003"
+      },
+      "implementation_items": [
+        {
+          "id": "M01-I01",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace"
+          ]
+        },
+        {
+          "id": "M01-I02",
+          "status": "done",
+          "paths": [
+            "contracts",
+            "apps/web/src/api.generated.ts"
+          ]
+        },
+        {
+          "id": "M01-I03",
+          "status": "done",
+          "paths": [
+            "apps/web/src/App.tsx",
+            "apps/web/src/styles.css"
+          ]
+        },
+        {
+          "id": "M01-I04",
+          "status": "done",
+          "paths": [
+            "services/api/tests",
+            "apps/web/src/api.test.ts",
+            "tests",
+            "scripts/dev.py",
+            "scripts/check.py",
+            "DEVELOPMENT.md"
+          ]
+        },
+        {
+          "id": "M01-I05",
+          "status": "done",
+          "paths": [
+            "apps/web/src/conversations.ts",
+            "apps/web/src/conversations.test.ts"
+          ],
+          "description": "开发身份下本地文字历史与双主题；非生产历史服务。"
+        },
+        {
+          "id": "M01-I06",
+          "status": "done",
+          "paths": [
+            "apps/web/src/App.tsx",
+            "apps/web/src/styles.css",
+            "tests/workspace.spec.mjs"
+          ],
+          "description": "会话页面、顶部pipeline、输出摘要卡、折叠技术细节及开发抽屉。"
+        }
+      ],
+      "tests": [
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/backend.txt",
+          "required": true,
+          "evidence_id": "M01-C03-CUMULATIVE-007"
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/dependency-check.txt",
+          "required": true,
+          "evidence_id": "M01-C03-CUMULATIVE-007"
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/types.txt",
+          "required": true,
+          "evidence_id": "M01-C03-CUMULATIVE-007"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/build.txt",
+          "required": true,
+          "evidence_id": "M01-C03-CUMULATIVE-007"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/frontend.txt",
+          "required": true,
+          "evidence_id": "M01-C03-CUMULATIVE-007"
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/browser.txt",
+          "required": true,
+          "evidence_id": "M01-C03-CUMULATIVE-007"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "M01-CHECK-FINAL",
+          "kind": "test",
+          "path": "project-control/modules/M01/evidence/20261026T061908Z/results.json",
+          "sha256": "6ff85d2fa1f542751f9af7801626c372d1b5fab45b21245d51fcaf780ccc688c",
+          "stale": true
+        },
+        {
+          "id": "M01-AUDIT-FINAL",
+          "kind": "audit",
+          "path": "project-control/modules/M01/evidence/audit-final.md",
+          "sha256": "04a202ca63606b647e45cdf4ee1c9ae5b3e6532e853509ce6f8a370d8aa8fdad",
+          "stale": true
+        },
+        {
+          "id": "M01-DESKTOP",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/workspace-desktop.png",
+          "sha256": "3fafb55a0ed01a52cb1a0b4fc9f2dfe78536ffbe75582358b3052fe7a3e08942",
+          "stale": true
+        },
+        {
+          "id": "M01-MOBILE",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/workspace-mobile.png",
+          "sha256": "78896cf7d2c6a4e3e62e63d7e18980eee1b353643583631d9a3ccef82c68a18f",
+          "stale": true
+        },
+        {
+          "id": "M01-CHECK-UX002",
+          "kind": "test",
+          "path": "project-control/modules/M01/evidence/20261026T065234Z/results.json",
+          "sha256": "480bd9774862e5b0c9f4f47402337ed946d13fc4ea1bf3a118948deaf5fee24f",
+          "stale": true
+        },
+        {
+          "id": "M01-AUDIT-UX002",
+          "kind": "audit",
+          "path": "project-control/modules/M01/evidence/audit-ux002.md",
+          "sha256": "a78a68f8371e43f7a70ae58197b3ee37ff0c56a750eb57db890d74b80d210f9b",
+          "stale": true
+        },
+        {
+          "id": "M01-UX002-welcome-dark",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/ux-revision-002/welcome-dark.png",
+          "sha256": "b810b89b6e0c48def630ade72528181930ac8c4cbd0d9ad867d21a12ab17bc23",
+          "stale": true
+        },
+        {
+          "id": "M01-UX002-welcome-light",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/ux-revision-002/welcome-light.png",
+          "sha256": "12e7bdcbaf82a0fce2b974803e8f06cb5ee949da7ea27fe5ebdeb72791e77503",
+          "stale": true
+        },
+        {
+          "id": "M01-UX002-conversation-dark",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/ux-revision-002/conversation-dark.png",
+          "sha256": "98becf2c3280f034ab9fed327a2f20ae7b24072431bdc2e6b0584285134a819f",
+          "stale": true
+        },
+        {
+          "id": "M01-UX002-scope-output-light",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/ux-revision-002/scope-output-light.png",
+          "sha256": "5adab813846f936be836087c20d627f885858bcaaf2d15a8a270aee41552e181",
+          "stale": true
+        },
+        {
+          "id": "M01-UX002-mobile-dark",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/ux-revision-002/mobile-dark.png",
+          "sha256": "e5981ac74c8f33fbe381c62157c36251088fd90c2020844a447fafe7cc862c8e",
+          "stale": true
+        },
+        {
+          "id": "M01-UX002-mobile-light",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/ux-revision-002/mobile-light.png",
+          "sha256": "bef63a592fe779ebe42f27316bca305e169c0ede74967cc183b66eba59cead60",
+          "stale": true
+        },
+        {
+          "id": "M01-CHECK-THEME003",
+          "kind": "test",
+          "path": "project-control/modules/M01/evidence/20261026T071751Z/results.json",
+          "sha256": "63ccbafb5d93d021dd15e640c16b8acbfd0f12e707306f27646f5093bd362c5e",
+          "stale": false
+        },
+        {
+          "id": "M01-AUDIT-THEME003",
+          "kind": "audit",
+          "path": "project-control/modules/M01/evidence/audit-theme003.md",
+          "sha256": "8caa837154ebe9bc28bd188379566dc8a4fb25f3bb37b3c99ab2e6d21bbff08d",
+          "stale": false
+        },
+        {
+          "id": "M01-M02-REGRESSION-004",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261026T093843Z/results.json",
+          "sha256": "5ba01c8b7c539659ce4279e97dc10850acbac97594984ba1d31804a822f07f5c",
+          "stale": false
+        },
+        {
+          "id": "M01-M02-PRESERVATION-004",
+          "kind": "audit",
+          "path": "project-control/modules/M02/evidence/20261026T093843Z/m01-preservation-review.md",
+          "sha256": "ca6387443225a475be87adaafac99b8e1c6235a321c911fd99373c6a879945e1",
+          "stale": false
+        },
+        {
+          "id": "M01-C03-CUMULATIVE-007",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261027T021058Z/results.json",
+          "sha256": "6a14fb0d51c34eaa56763ed5a5596d0d6aee85754d9c843a9e882b8f5714ccd0",
+          "stale": false
+        },
+        {
+          "id": "M01-C03-PRESERVATION-007",
+          "kind": "audit",
+          "path": "project-control/modules/M02/evidence/20261027T021058Z/m01-preservation-review.md",
+          "sha256": "c3941aca16b7fecb72a0597171b09044e3aca3282713095c4dbf177e8e533f10",
+          "stale": false
+        }
+      ],
+      "audit": {
+        "verdict": "pass",
+        "reviewer": "self_review",
+        "evidence_id": "M01-C03-PRESERVATION-007"
+      },
+      "risks": [
+        {
+          "id": "httpx-deprecation",
+          "severity": "low",
+          "resolved": false,
+          "description": "当前TestClient对httpx有弃用提示，现有锁定版本通过；升级需回归。"
+        }
+      ],
+      "test_history": [
+        {
+          "id": "backend",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pytest services/api/tests -q",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "dependency-check",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pip check",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "types",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc --noEmit",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "build",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js build",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "frontend",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs run",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "browser",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "real",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js test --config playwright.config.mjs",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "backend",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pytest services/api/tests -q",
+          "exit_code": 0,
+          "code_fingerprint": "81c013067a416e7365c630d45c4d184699f1f615adb2c23f87281fe9c0fcac87",
+          "evidence_id": "M01-CHECK-UX002"
+        },
+        {
+          "id": "dependency-check",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pip check",
+          "exit_code": 0,
+          "code_fingerprint": "81c013067a416e7365c630d45c4d184699f1f615adb2c23f87281fe9c0fcac87",
+          "evidence_id": "M01-CHECK-UX002"
+        },
+        {
+          "id": "types",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc --noEmit",
+          "exit_code": 0,
+          "code_fingerprint": "81c013067a416e7365c630d45c4d184699f1f615adb2c23f87281fe9c0fcac87",
+          "evidence_id": "M01-CHECK-UX002"
+        },
+        {
+          "id": "build",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js build",
+          "exit_code": 0,
+          "code_fingerprint": "81c013067a416e7365c630d45c4d184699f1f615adb2c23f87281fe9c0fcac87",
+          "evidence_id": "M01-CHECK-UX002"
+        },
+        {
+          "id": "frontend",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs run",
+          "exit_code": 0,
+          "code_fingerprint": "81c013067a416e7365c630d45c4d184699f1f615adb2c23f87281fe9c0fcac87",
+          "evidence_id": "M01-CHECK-UX002"
+        },
+        {
+          "id": "browser",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "real",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js test --config playwright.config.mjs",
+          "exit_code": 0,
+          "code_fingerprint": "81c013067a416e7365c630d45c4d184699f1f615adb2c23f87281fe9c0fcac87",
+          "evidence_id": "M01-CHECK-UX002"
+        },
+        {
+          "id": "backend",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pytest services/api/tests -q",
+          "exit_code": 0,
+          "code_fingerprint": "e3a8e90f0af4dff375e29a670dce274dcfc8a3306d44e71a59e05f63f6dd2c4b",
+          "evidence_id": "M01-CHECK-THEME003"
+        },
+        {
+          "id": "dependency-check",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pip check",
+          "exit_code": 0,
+          "code_fingerprint": "e3a8e90f0af4dff375e29a670dce274dcfc8a3306d44e71a59e05f63f6dd2c4b",
+          "evidence_id": "M01-CHECK-THEME003"
+        },
+        {
+          "id": "types",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc --noEmit",
+          "exit_code": 0,
+          "code_fingerprint": "e3a8e90f0af4dff375e29a670dce274dcfc8a3306d44e71a59e05f63f6dd2c4b",
+          "evidence_id": "M01-CHECK-THEME003"
+        },
+        {
+          "id": "build",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js build",
+          "exit_code": 0,
+          "code_fingerprint": "e3a8e90f0af4dff375e29a670dce274dcfc8a3306d44e71a59e05f63f6dd2c4b",
+          "evidence_id": "M01-CHECK-THEME003"
+        },
+        {
+          "id": "frontend",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs run",
+          "exit_code": 0,
+          "code_fingerprint": "e3a8e90f0af4dff375e29a670dce274dcfc8a3306d44e71a59e05f63f6dd2c4b",
+          "evidence_id": "M01-CHECK-THEME003"
+        },
+        {
+          "id": "browser",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js test --config playwright.config.mjs",
+          "exit_code": 0,
+          "code_fingerprint": "e3a8e90f0af4dff375e29a670dce274dcfc8a3306d44e71a59e05f63f6dd2c4b",
+          "evidence_id": "M01-CHECK-THEME003"
+        },
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/backend.txt",
+          "required": true,
+          "evidence_id": "M01-M02-REGRESSION-004"
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/dependency-check.txt",
+          "required": true,
+          "evidence_id": "M01-M02-REGRESSION-004"
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/types.txt",
+          "required": true,
+          "evidence_id": "M01-M02-REGRESSION-004"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/build.txt",
+          "required": true,
+          "evidence_id": "M01-M02-REGRESSION-004"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/frontend.txt",
+          "required": true,
+          "evidence_id": "M01-M02-REGRESSION-004"
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/browser.txt",
+          "required": true,
+          "evidence_id": "M01-M02-REGRESSION-004"
+        }
+      ],
+      "audit_history": [
+        {
+          "verdict": "pass",
+          "reviewer": "self_review",
+          "evidence_id": "M01-AUDIT-THEME003"
+        },
+        {
+          "verdict": "pass",
+          "reviewer": "self_review",
+          "evidence_id": "M01-M02-PRESERVATION-004"
+        }
+      ],
+      "regression_scope": "M01原已验收基线在批准M02扩展下的累计回归，不重新批准M02交付。"
+    },
+    {
+      "id": "M02",
+      "name": "MCP元数据与SQL执行",
+      "milestone": "MVP",
+      "depends_on": [
+        "M01"
+      ],
+      "status": "active",
+      "phase": "do",
+      "cycle_id": "M02-C03",
+      "maturity": "not_verified",
+      "plan_ref": "project-control/modules/M02/plan.md",
+      "approvals": {
+        "plan": "D-M02-CONNECTOR-UX-005",
+        "delivery": null
+      },
+      "implementation_items": [
+        {
+          "id": "M02-I-DATA-SEED",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/demo_data/__init__.py",
+            "services/api/src/data_workspace/demo_data/generate.py",
+            "services/api/tests/test_demo_data.py",
+            "data/demo/synthetic-v1"
+          ],
+          "description": "获批独立合成数据准备；非已建成数据库或MCP。"
+        },
+        {
+          "id": "M02-I-WAREHOUSE",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/warehouse/build.py",
+            "services/api/src/data_workspace/warehouse/catalog.py",
+            "services/api/src/data_workspace/warehouse/verify.py",
+            "data/warehouse/synthetic-v1"
+          ],
+          "description": "真实DuckDB/DDL/五表Parquet与SQL golden复核"
+        },
+        {
+          "id": "M02-I-MCP-BACKEND",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/warehouse",
+            "services/api/tests/test_warehouse.py",
+            "services/api/requirements.warehouse.lock.txt",
+            "WAREHOUSE.md"
+          ],
+          "description": "真实stdio客户端/服务、单表模板、状态/结果与安全负例；未接网页"
+        },
+        {
+          "id": "M02-I-API-WEB",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/connector_routes.py",
+            "services/api/src/data_workspace/config.py",
+            "services/api/src/data_workspace/main.py",
+            "apps/web/src/ConnectorWorkspace.tsx",
+            "apps/web/src/App.tsx",
+            "apps/web/src/conversations.ts",
+            "apps/web/src/api.generated.ts",
+            "services/api/tests/test_connector_api.py",
+            "tests/connector.spec.mjs",
+            "scripts/dev.py",
+            "scripts/check.py",
+            "DEVELOPMENT.md"
+          ],
+          "description": "连接器API/任务授权绑定、管理员及开发入口、实际网页状态与浏览器回归"
+        },
+        {
+          "id": "M02-I-USER-CONFIGURATION",
+          "status": "pending",
+          "paths": [],
+          "description": "显式新增数据源/MCP配置/配置文件导入、真实测试、持久保存及编辑禁用；待新方案批准"
+        },
+        {
+          "id": "M02-I-LOCAL-ONBOARDING",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/source_profiles.py",
+            "services/api/src/data_workspace/source_routes.py",
+            "services/api/src/data_workspace/warehouse/local_file.py",
+            "apps/web/src/DataSourceWorkspace.tsx",
+            "services/api/tests/test_source_profiles.py",
+            "tests/source-onboarding.spec.mjs",
+            "CONNECTORS.md"
+          ],
+          "description": "本地DuckDB/CSV/Parquet文件/受控路径、非秘密JSON配置导入、真实测试保存刷新编辑禁用、列头类型100行且日期保留；非PG/HTTP MCP完成。"
+        }
+      ],
+      "tests": [
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/backend.txt",
+          "required": true,
+          "evidence_id": "M02-C03-LOCAL-ONBOARDING-007"
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/dependency-check.txt",
+          "required": true,
+          "evidence_id": "M02-C03-LOCAL-ONBOARDING-007"
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/types.txt",
+          "required": true,
+          "evidence_id": "M02-C03-LOCAL-ONBOARDING-007"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/build.txt",
+          "required": true,
+          "evidence_id": "M02-C03-LOCAL-ONBOARDING-007"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/frontend.txt",
+          "required": true,
+          "evidence_id": "M02-C03-LOCAL-ONBOARDING-007"
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "157d1cf02528d8f2d893f7ef253870c0fa580fd9856f7232c5f4f1611af5be8b",
+          "log": "project-control/modules/M02/evidence/20261027T021058Z/browser.txt",
+          "required": true,
+          "evidence_id": "M02-C03-LOCAL-ONBOARDING-007"
+        },
+        {
+          "id": "postgresql-onboarding",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "http-mcp-auth-onboarding",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "worker-os-hardlimits-recovery",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "M02-PLAN-DISCOVERY-001",
+          "kind": "review",
+          "path": "project-control/modules/M02/evidence/20261026T073657726299Z-planning-discovery.json",
+          "sha256": "a9bc4dd232647008f41b7752ba5d521c9913cddc6fb78ef4fd7fb8deafe20c48",
+          "stale": false
+        },
+        {
+          "id": "M02-C02-SEED-CHECK-001",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261026T075247783275Z-synthetic-seed/results.json",
+          "sha256": "1fb6dc9ea36f092595c90de83ff1413b18a4e39a67b676cfcad730f02b2cfe1e",
+          "stale": false
+        },
+        {
+          "id": "M02-C02-WAREHOUSE-MCP-CHECK-001",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/results.json",
+          "sha256": "2533192be372752d7d1b6ef713f92c950b4ddcab46b902bc56f70f4ad2a483b6",
+          "stale": true
+        },
+        {
+          "id": "M02-C02-BACKEND-REVIEW-001",
+          "kind": "review",
+          "path": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/slice-review.md",
+          "sha256": "4e126d0d3771a708ad70b39dccd98553d692206b1738be86ab5bb258cb9dfdae",
+          "stale": true
+        },
+        {
+          "id": "M02-API-UI-CHECK-004",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261026T093843Z/results.json",
+          "sha256": "5ba01c8b7c539659ce4279e97dc10850acbac97594984ba1d31804a822f07f5c",
+          "stale": true
+        },
+        {
+          "id": "M02-API-UI-REVIEW-004",
+          "kind": "review",
+          "path": "project-control/modules/M02/evidence/20261026T093843Z/api-ui-slice-review.md",
+          "sha256": "bdc20137eb8a38eae4aea36db32ae8723fc176ff0840e1126849809ec36fe338",
+          "stale": true
+        },
+        {
+          "id": "M02-API-UI-DATA-CHECK-004",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261026T093843Z/warehouse-verification.json",
+          "sha256": "0722f75d67961378840e79a7a518dedfbe27a3360d4e6f5f0e221d62131f1e27",
+          "stale": false
+        },
+        {
+          "id": "M02-C03-ONBOARDING-UX-REVIEW",
+          "kind": "review",
+          "path": "project-control/modules/M02/evidence/20261026T095654921889Z-onboarding-ux-review.md",
+          "sha256": "0d9ce5721e89535c5c70c8868d34a855da25186efd33c5475d435e1c886d38a7",
+          "stale": false
+        },
+        {
+          "id": "M02-C03-NAVIGATION-006",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261026T100601147767Z-no-filter-navigation/results.json",
+          "sha256": "2d4d3355e70d8bba75b9eb1fc4d441e5bdc3e4e1efe377e656d5884343851a6e",
+          "stale": true
+        },
+        {
+          "id": "M02-C03-LOCAL-ONBOARDING-007",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261027T021058Z/results.json",
+          "sha256": "6a14fb0d51c34eaa56763ed5a5596d0d6aee85754d9c843a9e882b8f5714ccd0",
+          "stale": false
+        },
+        {
+          "id": "M02-C03-LOCAL-REVIEW-007",
+          "kind": "review",
+          "path": "project-control/modules/M02/evidence/20261027T021058Z/local-onboarding-review.md",
+          "sha256": "be95fbfaa0516bc153678de616e00b9026699ddfeb538e185bd5ca17a8f12f1f",
+          "stale": false
+        },
+        {
+          "id": "M02-C03-ORIGINAL-DATA-007",
+          "kind": "test",
+          "path": "project-control/modules/M02/evidence/20261027T021058Z/warehouse-check.json",
+          "sha256": "594c13aba01dd2a56eb530ae35dbbff51068bf2b7bd9bfa77d07e97b919b4d45",
+          "stale": false
+        }
+      ],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": [
+        {
+          "id": "M02-R-WORKER",
+          "severity": "high",
+          "resolved": false,
+          "description": "引擎3秒interrupt/128MB/禁外部IO已测试；OS/Python整体强制限额与持久状态恢复仍需验证，未接网页前完成范围边界。"
+        },
+        {
+          "id": "M02-R-IDENTITY",
+          "severity": "high",
+          "resolved": true,
+          "description": "本机固定身份、API任务归属、确认/CSRF/跨主体拒绝、幂等及代际过期已测；正式认证/RLS/CLS仍发布门禁not_run。"
+        },
+        {
+          "id": "M02-R-STACK",
+          "severity": "medium",
+          "resolved": true,
+          "description": "DuckDB1.5.6/MCP1.30.0/SQLGlot30.24.0及依赖锁定，许可证与本机兼容核实，原依赖不变；不是全面供应链审计。"
+        },
+        {
+          "id": "M02-R-DATA-LIMITS",
+          "severity": "medium",
+          "resolved": false,
+          "description": "合成场景仅验证功能，事件不是总体漏斗，不证明真实企业效果；始终标合成与WARN。"
+        },
+        {
+          "id": "M02-R-ONBOARDING-TRUST",
+          "severity": "high",
+          "resolved": false,
+          "description": "新增用户配置地址/文件/秘密引入SSRF、路径/命令执行、持久化泄密与跨源权限风险，需服务端治理及验证。"
+        },
+        {
+          "id": "M02-R-LOCAL-RETENTION",
+          "severity": "medium",
+          "resolved": false,
+          "description": "本地上传副本/测试快照暂未提供TTL或删除UI；用户确认复制并明确保留，仅本机开发，不能公开部署。"
+        }
+      ],
+      "discovery_ref": "project-control/modules/M02/NEXT_STEP.md",
+      "capability_map_ref": null,
+      "cycle_history": [
+        {
+          "cycle_id": "M02-C01",
+          "plan_ref": "project-control/modules/M02/plan-C01-enterprise-candidate.md",
+          "status": "superseded_before_implementation",
+          "reason": "用户同意独立合成测试仓路线，原企业接入方案未获批准。"
+        },
+        {
+          "cycle_id": "M02-C02",
+          "plan_ref": "project-control/modules/M02/plan-C02-owned-warehouse.md",
+          "approvals": {
+            "plan": "D-M02-ENGINE-003",
+            "delivery": null
+          },
+          "status": "superseded_for_connector_onboarding",
+          "reason": "固定链路可运行，但用户不能自行配置来源，产品验收不通过。"
+        }
+      ],
+      "data_source_approval": "D-M02-DATA-SOURCE-002",
+      "dataset_manifest_ref": "data/demo/synthetic-v1/manifest.json",
+      "test_history": [
+        {
+          "id": "synthetic-seed-and-backend",
+          "required": true,
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "log": "project-control/modules/M02/evidence/20261026T075247783275Z-synthetic-seed/command-2.txt",
+          "code_fingerprint": "39a101b6d827f254d2df2c2475a46fc37e23b008a7a40b138f90335354a22a23",
+          "evidence_id": "M02-C02-SEED-CHECK-001"
+        },
+        {
+          "id": "real-own-warehouse",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "real-mcp-metadata-sql",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "isolation-sql-sandbox",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "m01-ui-regression",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "dependencies",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "exit_code": 0,
+          "status": "stale",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+          "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/dependencies.txt",
+          "required": true,
+          "evidence_id": "M02-C02-WAREHOUSE-MCP-CHECK-001"
+        },
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "exit_code": 0,
+          "status": "stale",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+          "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/backend.txt",
+          "required": true,
+          "evidence_id": "M02-C02-WAREHOUSE-MCP-CHECK-001"
+        },
+        {
+          "id": "warehouse",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "data_workspace.warehouse.verify"
+          ],
+          "exit_code": 0,
+          "status": "stale",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+          "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/warehouse.txt",
+          "required": true,
+          "evidence_id": "M02-C02-WAREHOUSE-MCP-CHECK-001"
+        },
+        {
+          "id": "mcp",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "data_workspace.warehouse.demo"
+          ],
+          "exit_code": 0,
+          "status": "stale",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+          "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/mcp.txt",
+          "required": true,
+          "evidence_id": "M02-C02-WAREHOUSE-MCP-CHECK-001"
+        },
+        {
+          "id": "api-web-connector-integration",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "worker-os-hardlimits-recovery",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/backend.txt",
+          "required": true,
+          "evidence_id": "M02-API-UI-CHECK-004"
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/dependency-check.txt",
+          "required": true,
+          "evidence_id": "M02-API-UI-CHECK-004"
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/types.txt",
+          "required": true,
+          "evidence_id": "M02-API-UI-CHECK-004"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/build.txt",
+          "required": true,
+          "evidence_id": "M02-API-UI-CHECK-004"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/frontend.txt",
+          "required": true,
+          "evidence_id": "M02-API-UI-CHECK-004"
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "log": "project-control/modules/M02/evidence/20261026T093843Z/browser.txt",
+          "required": true,
+          "evidence_id": "M02-API-UI-CHECK-004"
+        },
+        {
+          "id": "warehouse-data-integrity",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "data_workspace.warehouse.verify"
+          ],
+          "exit_code": 0,
+          "code_fingerprint": "0d4ed5e88240b5ee7bf905492a31607873b3732014f3d91f61696ffdd93c2fa2",
+          "evidence_id": "M02-API-UI-DATA-CHECK-004"
+        },
+        {
+          "id": "worker-os-hardlimits-recovery",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "profile-config-import-validation",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "unit"
+        },
+        {
+          "id": "new-local-source-from-empty-config",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "postgresql-onboarding",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "http-mcp-config-adapter",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "profile-persistence-edit-disable",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "network-files-secrets-sandbox",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "onboarding-ui-and-m01-regression",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "worker-os-hardlimits-recovery",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "no-filter-backend",
+          "required": true,
+          "status": "stale",
+          "environment": "local",
+          "integration": "real",
+          "command": "services/api/.venv/Scripts/python.exe -m pytest services/api/tests -q",
+          "exit_code": 0,
+          "code_fingerprint": "48928b485e32aa37ccd031a36e696d52c6a3eb3e860d32aa9f07da32f7e6b6f4",
+          "evidence_id": "M02-C03-NAVIGATION-006"
+        },
+        {
+          "id": "navigation-browser",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "new-source-onboarding",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "postgresql-http-mcp",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        },
+        {
+          "id": "worker-os-isolation",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real"
+        }
+      ],
+      "warehouse_manifest_ref": "data/warehouse/synthetic-v1/manifest.json",
+      "onboarding_review": {
+        "verdict": "partial",
+        "reviewer": "self_review",
+        "evidence_id": "M02-C03-LOCAL-REVIEW-007",
+        "scope": "本地真实自助配置闭环通过，完整三类要求仍有PG/HTTP MCP缺项，不模块验收。"
+      }
+    },
+    {
+      "id": "M03",
+      "name": "企业语义知识库",
+      "milestone": "MVP",
+      "depends_on": [
+        "M01",
+        "M02"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M03-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M04",
+      "name": "取数Agent与Harness",
+      "milestone": "MVP",
+      "depends_on": [
+        "M02",
+        "M03"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M04-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M05",
+      "name": "数据资产生命周期与任务",
+      "milestone": "MVP",
+      "depends_on": [
+        "M01",
+        "M04"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M05-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M06",
+      "name": "可视化工作台",
+      "milestone": "MVP",
+      "depends_on": [
+        "M05"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M06-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M07",
+      "name": "证据化分析报告",
+      "milestone": "MVP",
+      "depends_on": [
+        "M05",
+        "M06"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M07-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M08",
+      "name": "MVP集成与交付审计",
+      "milestone": "MVP",
+      "depends_on": [
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M08-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M09",
+      "name": "指标归因",
+      "milestone": "EXPANSION",
+      "depends_on": [
+        "M08"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M09-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M10",
+      "name": "建模工作台",
+      "milestone": "EXPANSION",
+      "depends_on": [
+        "M08"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M10-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M11",
+      "name": "实验分析AB与DID",
+      "milestone": "EXPANSION",
+      "depends_on": [
+        "M08"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M11-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M12",
+      "name": "企业SaaS接入与完整交付",
+      "milestone": "ENTERPRISE",
+      "depends_on": [
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M12-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-ARCH-001",
+      "kind": "scope",
+      "module_id": null,
+      "cycle_id": null,
+      "source": "user",
+      "user_statement": "我需要的最核心的取数agent是可以直接使用mcp调用spark,hive等引擎运行SQL的",
+      "selected_option": "取数主干接入真实元数据及执行平台；标准契约用于取数后的模块交接",
+      "rationale": "用户明确纠正架构，随后确认继续。",
+      "recorded_at": "2026-10-26",
+      "source_type": "conversation"
+    },
+    {
+      "id": "D-SCOPE-001",
+      "kind": "scope",
+      "module_id": null,
+      "cycle_id": null,
+      "source": "user",
+      "user_statement": "采用推荐方案，提前说一下我对最终产品的设想是有个应用程序，或者有个网站",
+      "selected_option": "A 精简MVP M01至M08",
+      "rationale": "用户明确采用上一轮唯一推荐的首期范围。具体M01技术及Web优先仍待新决策确认。",
+      "recorded_at": "2026-10-26T05:49:35.622555+00:00"
+    },
+    {
+      "id": "D-M01-PLAN-001",
+      "kind": "plan",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "确认",
+      "selected_option": "A Web优先 React/TypeScript/Vite + Python/FastAPI，按M01计划实施",
+      "rationale": "确认上一轮明确的Web优先实施方案。",
+      "recorded_at": "2026-10-26T05:52:58.059523+00:00"
+    },
+    {
+      "id": "D-M01-VISUAL-001",
+      "kind": "change",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "网页前端的ai味不要太重，想要科技感强，炫酷一点的",
+      "selected_option": "加强科技感、减少AI式文案与装饰；执行深色专业数据终端方向",
+      "rationale": "用户明确要求调整视觉，具体配色为实现方案，待视觉验收。",
+      "recorded_at": "2026-10-26T06:18:38.290666+00:00"
+    },
+    {
+      "id": "D-M01-UX-002",
+      "kind": "change",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "前端界面可以有1黑1白两种配色自由切换；项目作为ai产品经理岗位应聘作品，建议执行pipeline放最上面，数据契约作为agent输出，历史对话及长对话，更多用户思维",
+      "selected_option": "业务用户会话工作台优先；双主题、历史/追问、pipeline置顶、契约输出卡及开发工具分层",
+      "rationale": "用户直接要求交互修订，真实Agent和服务端历史能力仍按后续模块实现。",
+      "recorded_at": "2026-10-26T06:35:31.158774+00:00"
+    },
+    {
+      "id": "D-M01-THEME-VISIBLE-003",
+      "kind": "change",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "没有看到有黑白主题背景的选项按钮，请补充",
+      "selected_option": "顶部始终可见的黑色/白色主题按钮，选中态高亮",
+      "recorded_at": "2026-10-26T07:17:13.821453+00:00"
+    },
+    {
+      "id": "D-M01-DELIVERY-003",
+      "kind": "delivery",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "OK，记录当前的进度，写好交接文档，然后给我推进项目到下一步的skill。另外，把用户思维相关的约束，更新进项目的skill里",
+      "selected_option": "验收M01本地会话版及显式黑白主题入口，推进M02规划并交接",
+      "rationale": "用户明确OK并要求推进下一步；不是M02实现、真实查询或生产发布批准。",
+      "recorded_at": "2026-10-26T07:29:47.181292+00:00"
+    },
+    {
+      "id": "D-WORKFLOW-UX-UPDATE-001",
+      "kind": "change",
+      "module_id": null,
+      "cycle_id": null,
+      "source": "user",
+      "user_statement": "OK，记录当前的进度，写好交接文档，然后给我推进项目到下一步的skill。另外，把用户思维相关的约束，更新进项目的skill里",
+      "selected_option": "将用户思维门禁写入project-pdca及项目自动恢复约束",
+      "rationale": "用户直接要求Skill更新与交接，维持已有技术和安全范围。",
+      "recorded_at": "2026-10-26T07:29:47.181292+00:00"
+    },
+    {
+      "id": "D-M02-DATA-SOURCE-002",
+      "kind": "change",
+      "module_id": "M02",
+      "cycle_id": "M02-C02",
+      "source": "user",
+      "user_statement": "我完全同意你说的，那你去帮我找数据，去建立数仓吧！",
+      "selected_option": "采用上一条明确推荐的独立合成测试数据方向，准备自有数据源；不抽取公司数据",
+      "rationale": "用户明确同意独立合成建议并授权准备数据/建立自有测试仓；具体新引擎和MCP依赖未展示，不作为其批准。",
+      "recorded_at": "2026-10-26T07:52:51.306760+00:00"
+    },
+    {
+      "id": "D-M02-ENGINE-003",
+      "kind": "plan",
+      "module_id": "M02",
+      "cycle_id": "M02-C02",
+      "source": "user",
+      "user_statement": "采用",
+      "selected_option": "A DuckDB专属分析仓 + 自建Python MCP",
+      "rationale": "对应上一轮唯一推荐和当前待决策；批准本地方案，不包括公司数据或部署。",
+      "recorded_at": "2026-10-26T07:54:35.527151+00:00"
+    },
+    {
+      "id": "D-M02-UX-REWORK-005",
+      "kind": "change",
+      "module_id": "M02",
+      "cycle_id": "M02-C03",
+      "source": "user",
+      "user_statement": "从用户体验角度来看，我以为的连接器是一个接口，我把我自己数仓/数据库/甚至本地数据源相关地址或链接发给它，它能够链接，你目前这个界面我只看到你做了静态前端展示连接了数据库，我没有看到我是应该怎么操作链接上数据库，我的mcp配置按钮，或者配置文件上传按钮没有看到，我不认为这样的设计符合我的要求",
+      "selected_option": "否定仅预配置示例验证页；连接器需让用户配置自己的数据库/本地来源/MCP地址或导入配置",
+      "rationale": "直接记录用户明确要求；新方案支持范围及网络/文件/凭证操作仍待批准，不替用户选择技术实现。",
+      "recorded_at": "2026-10-26T09:56:54.921889+00:00"
+    },
+    {
+      "id": "D-M02-CONNECTOR-UX-005",
+      "kind": "plan",
+      "module_id": "M02",
+      "cycle_id": "M02-C03",
+      "source": "user",
+      "user_statement": "况且你给出时间范围的字段太扯淡了，每张表时间范围字段都不相同，且不一定同一含义，我做的是连接数据源的通用连接器，你怎么会想到用一个含糊的：时间来筛选呢？甚至不是所有表都有时间字段。你按照你的流程修改，同时理解我说的意思",
+      "selected_option": "按上一轮完整连接器流程返工，连接/目录与查询语义分离，取消统一必填时间；先本地闭环再数据库/HTTP MCP切片",
+      "rationale": "用户明确要求按流程修改，并纠正泛化时间假设；完整三类范围不变，实际安装/文件/网络操作按权限处理。",
+      "recorded_at": "2026-10-26T09:59:45.096321+00:00"
+    },
+    {
+      "id": "D-M02-NAVIGATION-006",
+      "kind": "change",
+      "module_id": "M02",
+      "cycle_id": "M02-C03",
+      "source": "user",
+      "user_statement": "我的意思是只需要连上就行，不要有什么筛选，连上可以做成power querry那种，展示表头和前100行的样式",
+      "selected_option": "连接后只做表导航、显示列头/类型和前100行；无筛选器、必填时间或隐式时间条件",
+      "rationale": "用户明确进一步收窄连接器职责；不是批准新增分析/过滤功能。",
+      "recorded_at": "2026-10-26T10:06:01.144010+00:00"
+    },
+    {
+      "id": "D-M02-TIME-CLARIFY-007",
+      "kind": "change",
+      "module_id": "M02",
+      "cycle_id": "M02-C03",
+      "source": "user",
+      "user_statement": "继续，但是值得提醒的是，我要的不是无时间字段的表，我是说你的前端界面不要专门设计一个时间筛选的字段，我这是连接器，我筛选时间从用户角度来说这个功能毫无意义",
+      "selected_option": "保留表中原有日期字段及其类型/数据，只取消连接器前端时间筛选；继续新增配置与100行导航",
+      "rationale": "准确记录澄清，不把无时间列表测试误称数据要求；不改变已批准三类连接方案。",
+      "recorded_at": "2026-10-27T01:59:45.211118+00:00"
+    }
+  ],
+  "pending_decision": null,
+  "next_action": {
+    "kind": "implementation",
+    "description": "继续已批准C03的HTTP MCP真实地址/认证配置与PostgreSQL连接切片（版本/秘密/网络按权限核验），保留新增本地配置/日期列原样100行无筛选；补Worker/恢复及完整模块审计，未通过不closed。",
+    "read_refs": [
+      "CONNECTORS.md",
+      "project-control/modules/M02/plan.md",
+      "project-control/PRODUCT_UX_PRINCIPLES.md",
+      "project-control/modules/M02/evidence/20261027T021058Z/local-onboarding-review.md",
+      "project-control/modules/M02/evidence/20261027T021058Z/results.json"
+    ],
+    "commands": [
+      "services/api/.venv/Scripts/python.exe scripts/check.py --module M02 --browser",
+      "services/api/.venv/Scripts/python.exe -m data_workspace.warehouse.verify"
+    ]
+  },
+  "release_gates": [
+    {
+      "id": "RG-REAL-MCP",
+      "status": "passed",
+      "description": "自有合成测试仓的真实MCP元数据/SQL联通与对账；不代表Spark/Hive或企业平台兼容",
+      "verified_subchecks": {
+        "local_warehouse_sql": "passed",
+        "stdio_mcp_metadata_and_preview": "passed",
+        "evidence_ref": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/results.json"
+      },
+      "environment": "local",
+      "evidence_ref": "project-control/modules/M02/evidence/20261027T021058Z/results.json",
+      "scope": "自有合成例与本地用户来源的真实stdio MCP导航/预览，非远程平台通用兼容"
+    },
+    {
+      "id": "RG-TENANT",
+      "status": "not_run",
+      "description": "跨租户及行列权限、安全和导出检查"
+    },
+    {
+      "id": "RG-MVP-E2E",
+      "status": "not_run",
+      "description": "提问到资产、大屏、报告的真实端到端流程"
+    },
+    {
+      "id": "RG-DEPLOY",
+      "status": "not_run",
+      "description": "目标环境部署、恢复、预算及运维验收"
+    },
+    {
+      "id": "RG-DEMO-PROVENANCE",
+      "status": "not_run",
+      "description": "公开演示前验证合成来源、依赖许可及发布物无真实企业数据/凭证；不删除受限历史溯源来隐藏来源"
+    },
+    {
+      "id": "RG-CONNECTOR-ONBOARDING",
+      "status": "not_run",
+      "description": "从空配置新增自己的数据库/本地文件/MCP，真实测试、授权保存、刷新、编辑重验与禁用完整验收；旧固定SQL链路不替代此门禁。",
+      "subchecks": {
+        "local-file-config-navigation": "passed",
+        "postgresql": "not_run",
+        "http-mcp": "not_run",
+        "evidence_ref": "project-control/modules/M02/evidence/20261027T021058Z/results.json"
+      }
+    }
+  ],
+  "change_impacts": [
+    {
+      "id": "CHANGE-M01-VISUAL-001",
+      "modules": [
+        "M01"
+      ],
+      "reason": "用户调整UI视觉：深色专业终端、克制冷色、清晰网格和工具式文案。API合同及技术栈不变。",
+      "affected_tests": [
+        "types",
+        "build",
+        "frontend",
+        "browser"
+      ],
+      "action": "复跑UI及完整验收；上一轮检查仍为历史证据，不代表新界面已验证。"
+    },
+    {
+      "id": "CHANGE-M01-UX-002",
+      "modules": [
+        "M01",
+        "M04",
+        "M05",
+        "M06",
+        "M07"
+      ],
+      "reason": "业务任务优先的会话化设计与双主题；M01本地历史，M05规划正式授权会话历史；API不变。",
+      "affected_tests": [
+        "types",
+        "build",
+        "frontend",
+        "browser"
+      ],
+      "action": "M01返工并将原UI证据置stale；后续PLAN读取PRODUCT_UX_PRINCIPLES。"
+    },
+    {
+      "id": "CHANGE-M02-OWN-WAREHOUSE-002",
+      "modules": [
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08"
+      ],
+      "reason": "用户同意独立合成数据/专属仓方向；不再自动接企业数据，M01保留。",
+      "affected_tests": [
+        "synthetic-seed-and-backend",
+        "real-own-warehouse",
+        "real-mcp-metadata-sql",
+        "isolation-sql-sandbox",
+        "m01-ui-regression"
+      ],
+      "action": "M02新建C02；种子准备已执行，新引擎待批准；后续业务/资产绑定合成来源版本，企业连接能力不作已验证宣称。"
+    },
+    {
+      "id": "CHANGE-M02-API-UI-004",
+      "modules": [
+        "M01",
+        "M02",
+        "M04",
+        "M05"
+      ],
+      "reason": "按已批准M02计划扩展FastAPI/类型生成及连接器管理员/开发入口；保留M01主题、会话默认路径、原QuerySpec和测试任务语义。",
+      "affected_tests": [
+        "backend",
+        "types",
+        "build",
+        "frontend",
+        "browser",
+        "real-api-mcp"
+      ],
+      "action": "M01验收作为历史基线保留，新改动由M02负责全量回归与self_review；不是重建或重新选择M01。当前新版本证据待运行。"
+    },
+    {
+      "id": "CHANGE-M01-M02-REGRESSION-004",
+      "modules": [
+        "M01",
+        "M02"
+      ],
+      "reason": "延续CHANGE-M02-API-UI-004：本次提交更新已closed M01的累计回归证据和self_review引用，原plan/delivery人工验收不变。",
+      "affected_tests": [
+        "backend",
+        "types",
+        "build",
+        "frontend",
+        "browser"
+      ],
+      "action": "原验收保留历史；真实新版本93/10/11测试及源码稳定核对已通过，仅确认M01基线保持，不批准M02新增模块交付。"
+    },
+    {
+      "id": "CHANGE-M02-CONNECTOR-ONBOARDING-005",
+      "modules": [
+        "M02",
+        "M03",
+        "M04",
+        "M05"
+      ],
+      "reason": "用户明确连接器是可配置接入自己的数据源，不接受固定预配置验证页。",
+      "affected_tests": [
+        "empty-config-onboarding",
+        "config-import",
+        "source-profile-lifecycle",
+        "SSRF-files-secrets",
+        "onboarding-browser",
+        "worker-recovery"
+      ],
+      "action": "M02-C03重新PLAN，C02真实执行/旧回归作为历史证据；M01模块不修改，新UI实现后回归其约束。新增来源合同不能硬标synthetic/TEST。"
+    },
+    {
+      "id": "CHANGE-M02-NO-IMPLICIT-TIME-006",
+      "modules": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05"
+      ],
+      "reason": "用户明确纠正连接器不假设时间字段或统一业务语义；连接阶段仅配置/测试/目录，预览默认无过滤，过滤选择真实字段/类型。",
+      "affected_tests": [
+        "preview-contract",
+        "no-time-table",
+        "different-date-semantics",
+        "config-persistence",
+        "browser"
+      ],
+      "action": "保留原安全断言并迁移去时间假设；M01历史基线不重建，后续累计回归。"
+    },
+    {
+      "id": "CHANGE-M02-NAVIGATION-006",
+      "modules": [
+        "M01",
+        "M02",
+        "M03",
+        "M04"
+      ],
+      "reason": "用户明确连接器仅连接、表导航/表头/前100行，不需任何筛选；移除日期、字段勾选和隐藏WHERE，保留安全限制。",
+      "affected_tests": [
+        "backend",
+        "schema",
+        "types",
+        "browser"
+      ],
+      "action": "95后端及类型通过；浏览器需重启新版API回归，旧M01验收是历史基线，不能代表当前新源码验证。"
+    },
+    {
+      "id": "CHANGE-M02-USER-ONBOARDING-007",
+      "modules": [
+        "M01",
+        "M02",
+        "M04",
+        "M05"
+      ],
+      "reason": "继续C03用户自助新增配置/导入/测试/保存；所有日期列照常展示，但连接器无时间或任何筛选控件。",
+      "affected_tests": [
+        "backend",
+        "generated-contracts",
+        "types",
+        "frontend",
+        "browser"
+      ],
+      "action": "先完成本地数据源真实独立MCP切片与持久配置，远程数据库/MCP不冒充已支持；保留M01已验收交互，复跑累计回归。"
+    },
+    {
+      "id": "CHANGE-M01-LOCAL-REGRESSION-007",
+      "modules": [
+        "M01",
+        "M02"
+      ],
+      "reason": "批准C03本地自助接入扩展后，更新M01保留原人工验收的累计回归证据，非重新批准M02整体。",
+      "affected_tests": [
+        "backend",
+        "frontend",
+        "browser",
+        "types",
+        "build"
+      ],
+      "action": "103/10/14真实回归与sources一致，M01原业务用户约束保持，新的M02完整三类仍未完成。"
+    }
+  ],
+  "blockers": [],
+  "working_state": [
+    "本轮按日期澄清继续：删除的是连接器时间筛选控件，不是日期列；DATE/TIMESTAMP实际列和值原样保留。",
+    "新增用户本地来源配置页、文件选择/受控路径/JSON导入、测试保存刷新、版本编辑/禁用；内置例折叠不冒充用户来源。",
+    "实际API/profile/stdio MCP/只读DuckDB快照导航，最多100行无WHERE；本机用户来源不强标合成/TEST、不猜币种/时区。",
+    "最终后端103、前端10、浏览器14及类型/构建/pip check通过；sources逐项一致，原数仓/Parquet/golden复核通过。",
+    "数据源配置位于data/connections/profiles.sqlite3；文件副本/快照只在本机隔离目录，不在浏览器历史/项目进度；runtime目录加入.gitignore，无Git仓库。",
+    "PG/HTTP MCP地址认证、OS级资源隔离/故障恢复、上传TTL/删除及生产认证仍未完成；M02保持DO、不closed、不进入M03。",
+    "没有公司数据访问、新依赖安装、远程源查询或部署；测试仅本机临时独立生成文件，旧数仓与日期字段未修改。",
+    "最新本机服务由本轮session32190启动并仍运行（只本会话有效）；127.0.0.1:5173/8000。旧本轮启动器已正常Ctrl+C停止，后续先确认拥有者健康再复用。",
+    "修改主API/生成合同/客户端/策略与MCP通用实例、UI/样式/测试/文档；新增profiles/store/routes/local_file/DataSourceWorkspace和CONNECTORS.md，保留唯一测试与截图证据。"
+  ],
+  "session": {
+    "recommend_new_chat": false,
+    "new_chat_reason": "本地接入实质检查点已保存，可继续C03远程MCP/数据库专项；无需用户重复解释日期要求。"
+  },
+  "tooling_delivery": {
+    "skill_name": "project-pdca",
+    "source_ref": "skills/project-pdca/SKILL.md",
+    "audit_ref": "project-control/TOOLING_AUDIT.md",
+    "validation": "passed",
+    "tests_passed": 21,
+    "tests_ref": "tmp/pdca-tests/installed-test-results.txt",
+    "scope": "project_workflow_only",
+    "user_thinking_update": {
+      "status": "validated_and_installed",
+      "reference": "skills/project-pdca/references/product-user-thinking.md",
+      "tests_ref": "tmp/pdca-tests/user-thinking-progress-tests.txt",
+      "file_count": 8
+    }
+  },
+  "open_questions": [
+    {
+      "id": "M02-onboarding-scope",
+      "description": "待确认完整数据库/本地/MCP三类接入或本地首期；不得把需求反馈当作全部远程访问/秘密存储批准。"
+    }
+  ],
+  "decision_history": [
+    {
+      "id": "D-M02-PLAN-001",
+      "blocking": true,
+      "module_id": "M02",
+      "cycle_id": "M02-C01",
+      "question": "是否批准M02推荐方案A（企业元数据MCP+Adhoc受治理适配层、单区域单连接器受控只读切片；不含真实查询/安装/导出/部署授权）？",
+      "recommended": "A",
+      "options": [
+        {
+          "id": "A",
+          "label": "现有企业元数据MCP + Adhoc（推荐）",
+          "tradeoff": "复用治理服务，首期成本较低；须验证产品独立合法配置，仅单人loopback试点，范围与实际访问另行审批"
+        },
+        {
+          "id": "B",
+          "label": "用户指定其他可部署MCP",
+          "tradeoff": "保留提供者合同，跨企业更灵活；需重新确认协议、工具和权限"
+        },
+        {
+          "id": "C",
+          "label": "官方API/驱动的内部治理适配器",
+          "tradeoff": "部署控制较强，但增加认证/驱动/网关维护成本，不绕过平台权限"
+        }
+      ],
+      "affected_modules": [
+        "M02",
+        "M04",
+        "M05"
+      ],
+      "excludes": [
+        "宿主凭证读取/复制",
+        "新增依赖安装",
+        "真实生产SQL或全库枚举",
+        "数据下载/外部通知",
+        "部署"
+      ],
+      "resolution": "superseded_by_user_data_source_change",
+      "replaced_by": "D-M02-ENGINE-003"
+    }
+  ],
+  "verification_history": [
+    {
+      "module_id": "M02",
+      "failed_run_ref": "project-control/modules/M02/evidence/20261026T093111Z/results.json",
+      "reason": "esbuild sandbox directory access denied",
+      "rerun_ref": "project-control/modules/M02/evidence/20261026T093843Z/results.json",
+      "result": "passed"
+    }
+  ]
+}

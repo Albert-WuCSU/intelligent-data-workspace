@@ -1,0 +1,8 @@
+{
+  "previous_results": "project-control/modules/M02/evidence/20261027T073609Z/results.json",
+  "changed_sources": [
+    "tests/source-onboarding.spec.mjs"
+  ],
+  "backend_frontend_contracts_locks": "byte-identical; prior passed55/261/10/type/build/pip checks retained with original fingerprints, NOT represented as rerun",
+  "browser": "rerun all23 with real independent current-code source fixture"
+}

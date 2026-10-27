@@ -1,0 +1,196 @@
+{
+  "$defs": {
+    "FieldSchema": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "string",
+            "integer",
+            "decimal",
+            "boolean",
+            "date",
+            "datetime"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Unit"
+        }
+      },
+      "required": [
+        "name",
+        "type"
+      ],
+      "title": "FieldSchema",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_class": {
+          "enum": [
+            "DIRECT_CERTIFIED",
+            "COMPUTED",
+            "INFERRED",
+            "UPLOADED_DATA"
+          ],
+          "title": "Source Class",
+          "type": "string"
+        },
+        "query_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Query Id"
+        },
+        "domain_pack_version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Domain Pack Version"
+        }
+      },
+      "required": [
+        "source_class"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Quality": {
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "WARN",
+            "FAIL"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "limitations": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Limitations",
+          "type": "array"
+        }
+      },
+      "required": [
+        "status"
+      ],
+      "title": "Quality",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "asset_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Asset Id",
+      "type": "string"
+    },
+    "asset_version": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Asset Version",
+      "type": "string"
+    },
+    "tenant_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Tenant Id",
+      "type": "string"
+    },
+    "data_ref": {
+      "pattern": "^protected://[A-Za-z0-9_./:-]+$",
+      "title": "Data Ref",
+      "type": "string"
+    },
+    "fields": {
+      "items": {
+        "$ref": "#/$defs/FieldSchema"
+      },
+      "minItems": 1,
+      "title": "Fields",
+      "type": "array"
+    },
+    "row_count": {
+      "minimum": 0,
+      "title": "Row Count",
+      "type": "integer"
+    },
+    "grain": {
+      "minLength": 1,
+      "title": "Grain",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "quality": {
+      "$ref": "#/$defs/Quality"
+    },
+    "policy_ref": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Policy Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "asset_id",
+    "asset_version",
+    "tenant_id",
+    "data_ref",
+    "fields",
+    "row_count",
+    "grain",
+    "provenance",
+    "quality",
+    "policy_ref"
+  ],
+  "title": "DatasetAsset",
+  "type": "object"
+}

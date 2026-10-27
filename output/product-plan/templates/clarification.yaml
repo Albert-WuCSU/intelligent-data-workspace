@@ -1,0 +1,10 @@
+slots:
+  - slot_id: time_range
+    required: true
+    default: null
+    prompt: 请确认统计时间范围
+  - slot_id: metric_version
+    required: true
+    default: null
+    prompt: 请确认指标口径
+# 企业批准的默认值需要保存审批及生效版本

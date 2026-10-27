@@ -1,0 +1,32 @@
+{
+  "code_fingerprint": "403e2b2588da0d8be032c378249067dee8557907321116cf1052c61827d15222",
+  "source_files": 85,
+  "new_files": [
+    "services/api/src/data_workspace/worker_entry.py",
+    "services/api/src/data_workspace/worker_runtime.py",
+    "services/api/tests/test_worker_runtime.py",
+    "services/api/tests/worker_probe.py"
+  ],
+  "changed_files": [
+    "apps/web/src/DataSourceWorkspace.tsx",
+    "CONNECTORS.md",
+    "DEVELOPMENT.md",
+    "scripts/remote_browser_fixture.py",
+    "services/api/src/data_workspace/remote_sources.py",
+    "services/api/src/data_workspace/source_profiles.py",
+    "services/api/tests/test_remote_sources.py",
+    "tests/remote-onboarding.spec.mjs"
+  ],
+  "dependency_locks_unchanged": true,
+  "service_health": {
+    "8000": "HTTP200",
+    "5173": "HTTP200"
+  },
+  "process_owner": "luqianwu",
+  "api_pid": 20600,
+  "vite_pid": 7380,
+  "launcher_pid": 9252,
+  "scope": "W1 controlled operations only; stdio/complete worker recovery not_run",
+  "credentials_read_from_host": false,
+  "company_access": false
+}

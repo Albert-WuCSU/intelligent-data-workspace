@@ -1,0 +1,7 @@
+policy_reference: SERVER_MANAGED
+# 语义使用限制不是数据源授权机制的替代
+semantic_rules:
+  inference_as_certified_kpi: deny
+  permission_denied_fallback_same_resource: deny
+  publication: requires_approval
+  export: SERVER_AUTHORIZED

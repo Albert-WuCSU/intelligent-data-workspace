@@ -1,0 +1,37 @@
+{
+  "code_fingerprint": "4a20d19739950cb790991f8f5613a0056c60a8cb6a6468a285e44326dc982fc5",
+  "checks": [
+    {
+      "id": "http-loopback-fixture",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_http_boundary.py::test_real_loopback_http_mcp_handshake_catalog_dates_and_100_rows",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "4a20d19739950cb790991f8f5613a0056c60a8cb6a6468a285e44326dc982fc5",
+      "log": "project-control/modules/M02/evidence/20261027T024230Z/http-loopback-fixture.txt"
+    },
+    {
+      "id": "warehouse-integrity",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "4a20d19739950cb790991f8f5613a0056c60a8cb6a6468a285e44326dc982fc5",
+      "log": "project-control/modules/M02/evidence/20261027T024230Z/warehouse-integrity.txt"
+    }
+  ]
+}

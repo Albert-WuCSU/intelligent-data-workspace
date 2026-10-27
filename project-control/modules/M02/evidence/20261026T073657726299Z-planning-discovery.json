@@ -1,0 +1,51 @@
+{
+  "created_at": "2026-10-26T07:36:57.726299+00:00",
+  "kind": "planning_discovery",
+  "reviewer": "self_review",
+  "command": "services/api/.venv/Scripts/python.exe tmp/pdca-tests/prepare_m02_plan.py",
+  "exit_code": 0,
+  "environment": "local",
+  "scope": "Local M01 fingerprint comparison and M02 capability-description planning only",
+  "m01_source_manifest": "project-control/modules/M01/evidence/20261026T071751Z/sources.json",
+  "files_checked": 40,
+  "mismatches": [],
+  "m01_product_tests": "not_rerun; unchanged 40-file fingerprint manifest; existing accepted evidence retained",
+  "git_exists": false,
+  "python": "3.12.14",
+  "packages": {
+    "fastapi": "0.162.0",
+    "pydantic": "2.14.1",
+    "httpx": "0.28.1",
+    "pytest": "9.1.1"
+  },
+  "mcp_installed": false,
+  "m02_plan_refs": [
+    "project-control/modules/M02/plan.md",
+    "project-control/modules/M02/capability-map.md"
+  ],
+  "plan_sha256": {
+    "project-control/modules/M02/plan.md": "6ade4654bbb18b926700b66d03ce294ac7ba84f9a85132df84b8a15dc53370ab",
+    "project-control/modules/M02/capability-map.md": "74b00d3b90915187ca64d7028388a862c36a4f35be5abf99b0c99c39aaf3d0fa"
+  },
+  "initial_progress_validation": {
+    "revision": 12,
+    "command": "services/api/.venv/Scripts/python.exe D:/Users/luqianwu/.codex/skills/project-pdca/scripts/progress.py validate --root .",
+    "exit_code": 0
+  },
+  "external_calls": [],
+  "secrets_read": false,
+  "product_source_changed": false,
+  "m02_tests": {
+    "unit_contract": "not_run",
+    "real_metadata": "not_run",
+    "real_sql_execution": "not_run",
+    "permission_isolation": "not_run",
+    "ui_path": "not_run"
+  },
+  "findings": [
+    "M01 remains closed and accepted",
+    "M02 remains PLAN and not_verified",
+    "Tool descriptions do not establish connectivity or application credentials",
+    "SDK version/license/transport, target permissions and budget require validation"
+  ]
+}

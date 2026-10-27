@@ -1,0 +1,9 @@
+cases:
+  - case_id: example_001
+    status: draft
+    question: 上周各区域订单转化率是多少
+    expected_query_spec: TO_CONFIRM
+    allowed_route: TO_CONFIRM
+    golden_answer: TO_CONFIRM
+    tolerance: TO_CONFIRM
+    expected_risk_notice: TO_CONFIRM

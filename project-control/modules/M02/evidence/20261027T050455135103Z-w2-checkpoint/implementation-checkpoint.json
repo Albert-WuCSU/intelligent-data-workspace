@@ -1,0 +1,26 @@
+{
+  "scope": "W2 stdio native limits and long-lived owned recovery, not disk task persistence",
+  "implemented": [
+    "governed_stdio Windows Job / gated fixed bootstrap / bounded streams",
+    "single-owning task, explicit verify reconnect, no submission replay",
+    "generation invalidation, expired results and unknown submission tombstones",
+    "frontend old result clearing and state read-only polling"
+  ],
+  "completed_test_commands": [
+    {
+      "command": "services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_connector_api.py services/api/tests/test_warehouse.py -q",
+      "exit_code": 0,
+      "count": 47
+    },
+    {
+      "command": "services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_stdio_recovery.py -q",
+      "exit_code": 0,
+      "count": 8,
+      "note": "before additional cancelled-request test; final full suite must rerun"
+    }
+  ],
+  "full_check": "running, not yet passed",
+  "production_disk_recovery": "not_run",
+  "postgresql_real": "not_run",
+  "new_dependencies": false
+}

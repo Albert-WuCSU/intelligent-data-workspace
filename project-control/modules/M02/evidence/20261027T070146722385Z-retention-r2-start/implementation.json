@@ -1,0 +1,8 @@
+{
+  "revision": 52,
+  "previous_sources": "95 matched",
+  "services": "5173/8000 current owner,200,not restarted",
+  "scope": "internal native pinned per-file deletion, SQLite write freeze, persistent per-UUID journal/idempotent restart, interrupted marker safety, bounded reference pruning",
+  "execution": "isolated tests pending; default runtime not_run",
+  "no_api_or_scheduler": true
+}

@@ -1,0 +1,10 @@
+
+Running 1 test using 1 worker
+
+source-upload-frame {"bytes":4644,"declared":null}
+source-upload-status 200
+  ok 1 tests\source-onboarding.spec.mjs:50:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters (8.5s)
+
+  1 passed (12.4s)
+(node:22628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)

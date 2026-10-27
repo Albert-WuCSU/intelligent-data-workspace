@@ -1,0 +1,26 @@
+test_approved_plan_can_enter_do (__main__.ProgressTests.test_approved_plan_can_enter_do) ... ok
+test_atomic_checkpoint_and_handoff (__main__.ProgressTests.test_atomic_checkpoint_and_handoff) ... ok
+test_closed_module_change_needs_impact (__main__.ProgressTests.test_closed_module_change_needs_impact) ... ok
+test_delivery_and_evidence_allow_next_module (__main__.ProgressTests.test_delivery_and_evidence_allow_next_module) ... ok
+test_delivery_approval_required (__main__.ProgressTests.test_delivery_approval_required) ... ok
+test_dependency_cycle_is_rejected (__main__.ProgressTests.test_dependency_cycle_is_rejected) ... ok
+test_do_requires_user_plan (__main__.ProgressTests.test_do_requires_user_plan) ... ok
+test_existing_decision_cannot_be_rewritten (__main__.ProgressTests.test_existing_decision_cannot_be_rewritten) ... ok
+test_high_risk_blocks_closure (__main__.ProgressTests.test_high_risk_blocks_closure) ... ok
+test_lock_contention_does_not_remove_other_lock (__main__.ProgressTests.test_lock_contention_does_not_remove_other_lock) ... ok
+test_missing_evidence_blocks_closure (__main__.ProgressTests.test_missing_evidence_blocks_closure) ... ok
+test_model_recommendation_is_not_user_decision (__main__.ProgressTests.test_model_recommendation_is_not_user_decision) ... ok
+test_not_run_required_test_blocks_closure (__main__.ProgressTests.test_not_run_required_test_blocks_closure) ... ok
+test_path_traversal_is_rejected (__main__.ProgressTests.test_path_traversal_is_rejected) ... ok
+test_pending_decision_is_resumeable (__main__.ProgressTests.test_pending_decision_is_resumeable) ... ok
+test_real_maturity_cannot_use_mock (__main__.ProgressTests.test_real_maturity_cannot_use_mock) ... ok
+test_revision_conflict_preserves_state (__main__.ProgressTests.test_revision_conflict_preserves_state) ... ok
+test_test_evidence_cannot_change_silently (__main__.ProgressTests.test_test_evidence_cannot_change_silently) ... ok
+test_unaccepted_module_cannot_be_abandoned (__main__.ProgressTests.test_unaccepted_module_cannot_be_abandoned) ... ok
+test_unclosed_dependency_blocks_activation (__main__.ProgressTests.test_unclosed_dependency_blocks_activation) ... ok
+test_valid_initial_state (__main__.ProgressTests.test_valid_initial_state) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.260s
+
+OK

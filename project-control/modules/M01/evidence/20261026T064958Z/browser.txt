@@ -1,0 +1,41 @@
+
+Running 8 tests using 1 worker
+
+(node:13412) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.3s)
+  ok 2 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (740ms)
+  ok 3 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.3s)
+  ok 4 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (762ms)
+  x  5 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (30.0s)
+(node:7132) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 6 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (794ms)
+  ok 7 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.2s)
+  ok 8 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (586ms)
+
+
+  1) tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow ──────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: '开发工具', exact: true })
+
+
+      3 | const EVIDENCE='project-control/modules/M01/evidence/ux-revision-002';
+      4 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+    > 5 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+        |                                                                                        ^
+      6 |
+      7 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+      8 |  const errors=[];page.on('pageerror',e=>errors.push(e.message));await online(page);
+        at openTools (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:5:88)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:90:61
+
+    Error Context: tmp\m01-browser-results\workspace-mobile-themes-hi-5494a--and-tools-have-no-overflow\error-context.md
+
+  1 failed
+    tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow ───────
+  7 passed (41.1s)

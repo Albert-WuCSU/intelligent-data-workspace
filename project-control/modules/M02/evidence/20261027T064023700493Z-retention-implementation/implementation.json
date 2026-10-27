@@ -1,0 +1,19 @@
+{
+  "files": [
+    "services/api/src/data_workspace/retention.py",
+    "services/api/src/data_workspace/source_profiles.py",
+    "services/api/tests/test_retention.py"
+  ],
+  "scope": "new UUID provenance, strict24h test expiry, crash-released Windows lease for full requests, nonsecret test reference receipts, read-only eligibility",
+  "execution": "not_run",
+  "interim_checks": [
+    {
+      "command": "pytest test_source_profiles.py test_upload_preflight_storage.py -q",
+      "result": "26 passed exit0 after authorized rerun; initial sandbox tmp teardown denied"
+    },
+    {
+      "command": "pytest test_retention.py -q",
+      "result": "18 passed 1 failed exit1: fixture lacked required kind; fixture corrected; final rerun pending"
+    }
+  ]
+}

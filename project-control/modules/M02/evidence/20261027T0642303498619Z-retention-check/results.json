@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-10-27T06:42:34.784359+00:00",
+  "code_fingerprint": "67499e4c10f86c6d2f8e46c6b0032001fc3272b4dcd4cc35770a672cdf96ab81",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "retention-foundation",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\\u667a\u80fd\u95ee\u6570\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_retention.py",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "scope": "actual Windows lock/crash + isolated clock/provenance/failure tests; no TTL deletion",
+      "code_fingerprint": "67499e4c10f86c6d2f8e46c6b0032001fc3272b4dcd4cc35770a672cdf96ab81",
+      "log": "project-control/modules/M02/evidence/20261027T0642303498619Z-retention-check/retention-tests.txt"
+    }
+  ]
+}

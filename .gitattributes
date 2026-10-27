@@ -1,0 +1,10 @@
+# Binary artifacts are preserved byte-for-byte; no line-ending normalization.
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.zip binary
+*.duckdb binary
+*.parquet binary
+*.xlsx binary

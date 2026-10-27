@@ -1,0 +1,11 @@
+rules:
+  - rule_id: contract_match
+    severity: fail
+    check: schema_and_units_match
+  - rule_id: freshness
+    severity: warn
+    threshold: TO_CONFIRM
+  - rule_id: known_answer
+    severity: fail
+    tolerance: TO_CONFIRM
+    golden_reference: TO_CONFIRM

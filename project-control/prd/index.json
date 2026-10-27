@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "roadmap_ref": "project-control/ROADMAP.md",
+  "requirements_ref": "project-control/prd/requirements.json",
+  "roadmap_decision_id": "D-ROADMAP-MODEL-014",
+  "modules": [
+    {
+      "id": "M01",
+      "delivery_name": "M01",
+      "prd_ref": "project-control/prd/M01.md",
+      "depends_on": [],
+      "requirement_ids": [
+        "R-U01",
+        "R-U02",
+        "R-U03",
+        "R-U04",
+        "R-U05",
+        "R-U06",
+        "R-U07",
+        "R-U08",
+        "R-U21",
+        "R-U22",
+        "R-P23"
+      ]
+    },
+    {
+      "id": "M02",
+      "delivery_name": "M02",
+      "prd_ref": "project-control/prd/M02.md",
+      "depends_on": [
+        "M01"
+      ],
+      "requirement_ids": [
+        "R-U08",
+        "R-U09",
+        "R-U10",
+        "R-U11",
+        "R-U12",
+        "R-U13",
+        "R-U14",
+        "R-U15",
+        "R-U16",
+        "R-U17",
+        "R-U18",
+        "R-U19",
+        "R-U20",
+        "R-U21",
+        "R-U22",
+        "R-U24",
+        "R-P06",
+        "R-P09",
+        "R-P21"
+      ]
+    },
+    {
+      "id": "M04-A",
+      "delivery_name": "M04-A",
+      "prd_ref": "project-control/prd/M04-A.md",
+      "depends_on": [
+        "M02"
+      ],
+      "requirement_ids": [
+        "R-U10",
+        "R-U16",
+        "R-U22",
+        "R-U23",
+        "R-U24",
+        "R-A01",
+        "R-A02",
+        "R-A03",
+        "R-A04",
+        "R-P21",
+        "R-P22",
+        "R-P25"
+      ]
+    },
+    {
+      "id": "M03",
+      "delivery_name": "M03",
+      "prd_ref": "project-control/prd/M03.md",
+      "depends_on": [
+        "M01",
+        "M02",
+        "M04-A"
+      ],
+      "requirement_ids": [
+        "R-U22",
+        "R-U24",
+        "R-A04",
+        "R-P02",
+        "R-P03",
+        "R-P04",
+        "R-P05",
+        "R-P21"
+      ]
+    },
+    {
+      "id": "M04",
+      "delivery_name": "M04-B",
+      "prd_ref": "project-control/prd/M04-B.md",
+      "depends_on": [
+        "M02",
+        "M03",
+        "M04-A"
+      ],
+      "requirement_ids": [
+        "R-U04",
+        "R-U05",
+        "R-U06",
+        "R-U09",
+        "R-U17",
+        "R-U18",
+        "R-U22",
+        "R-U23",
+        "R-U24",
+        "R-A01",
+        "R-A04",
+        "R-A05",
+        "R-A06",
+        "R-P01",
+        "R-P02",
+        "R-P03",
+        "R-P05",
+        "R-P06",
+        "R-P07",
+        "R-P08",
+        "R-P09",
+        "R-P11",
+        "R-P21",
+        "R-P22"
+      ]
+    },
+    {
+      "id": "M05",
+      "delivery_name": "M05",
+      "prd_ref": "project-control/prd/M05.md",
+      "depends_on": [
+        "M01",
+        "M04"
+      ],
+      "requirement_ids": [
+        "R-U04",
+        "R-U09",
+        "R-U13",
+        "R-U18",
+        "R-U19",
+        "R-U22",
+        "R-A06",
+        "R-P08",
+        "R-P10",
+        "R-P11",
+        "R-P12",
+        "R-P21"
+      ]
+    },
+    {
+      "id": "M06",
+      "delivery_name": "M06",
+      "prd_ref": "project-control/prd/M06.md",
+      "depends_on": [
+        "M05"
+      ],
+      "requirement_ids": [
+        "R-U02",
+        "R-U03",
+        "R-U06",
+        "R-U22",
+        "R-P07",
+        "R-P08",
+        "R-P10",
+        "R-P11",
+        "R-P13"
+      ]
+    },
+    {
+      "id": "M07",
+      "delivery_name": "M07",
+      "prd_ref": "project-control/prd/M07.md",
+      "depends_on": [
+        "M05",
+        "M06"
+      ],
+      "requirement_ids": [
+        "R-U06",
+        "R-U22",
+        "R-P08",
+        "R-P10",
+        "R-P11",
+        "R-P14",
+        "R-P15"
+      ]
+    },
+    {
+      "id": "M08",
+      "delivery_name": "M08",
+      "prd_ref": "project-control/prd/M08.md",
+      "depends_on": [
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07"
+      ],
+      "requirement_ids": [
+        "R-U05",
+        "R-U07",
+        "R-U08",
+        "R-U10",
+        "R-U20",
+        "R-U21",
+        "R-U22",
+        "R-A03",
+        "R-P06",
+        "R-P09",
+        "R-P12",
+        "R-P21",
+        "R-P22",
+        "R-P24",
+        "R-P25"
+      ]
+    },
+    {
+      "id": "M09",
+      "delivery_name": "M09",
+      "prd_ref": "project-control/prd/M09.md",
+      "depends_on": [
+        "M08"
+      ],
+      "requirement_ids": [
+        "R-U22",
+        "R-P01",
+        "R-P07",
+        "R-P08",
+        "R-P10",
+        "R-P11",
+        "R-P15"
+      ]
+    },
+    {
+      "id": "M10",
+      "delivery_name": "M10",
+      "prd_ref": "project-control/prd/M10.md",
+      "depends_on": [
+        "M08"
+      ],
+      "requirement_ids": [
+        "R-U13",
+        "R-U14",
+        "R-U17",
+        "R-U22",
+        "R-P01",
+        "R-P07",
+        "R-P10",
+        "R-P11",
+        "R-P16",
+        "R-P17",
+        "R-P24"
+      ]
+    },
+    {
+      "id": "M11",
+      "delivery_name": "M11",
+      "prd_ref": "project-control/prd/M11.md",
+      "depends_on": [
+        "M08"
+      ],
+      "requirement_ids": [
+        "R-U22",
+        "R-P01",
+        "R-P07",
+        "R-P08",
+        "R-P10",
+        "R-P11",
+        "R-P18",
+        "R-P19",
+        "R-P20"
+      ]
+    },
+    {
+      "id": "M12",
+      "delivery_name": "M12",
+      "prd_ref": "project-control/prd/M12.md",
+      "depends_on": [
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "requirement_ids": [
+        "R-U01",
+        "R-U03",
+        "R-U10",
+        "R-U16",
+        "R-U22",
+        "R-A04",
+        "R-P09",
+        "R-P20",
+        "R-P21",
+        "R-P23",
+        "R-P24",
+        "R-P25"
+      ]
+    }
+  ]
+}

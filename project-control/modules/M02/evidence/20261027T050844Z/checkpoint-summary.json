@@ -1,0 +1,39 @@
+{
+  "code_fingerprint": "fb484d8353abe7c698e505400b7e0ca9adac9ae5dc010f629f9d2568817f686d",
+  "source_files": 90,
+  "new_files": [
+    "services/api/src/data_workspace/warehouse/persistent.py",
+    "services/api/src/data_workspace/warehouse/stdio_entry.py",
+    "services/api/src/data_workspace/warehouse/stdio_transport.py",
+    "services/api/tests/stdio_probe.py",
+    "services/api/tests/test_stdio_recovery.py"
+  ],
+  "changed_files": [
+    "apps/web/src/api.generated.ts",
+    "apps/web/src/App.tsx",
+    "apps/web/src/ConnectorWorkspace.tsx",
+    "CONNECTORS.md",
+    "contracts/openapi.json",
+    "DEVELOPMENT.md",
+    "scripts/remote_browser_fixture.py",
+    "services/api/src/data_workspace/connector_routes.py",
+    "services/api/src/data_workspace/warehouse/client.py",
+    "tests/remote-onboarding.spec.mjs"
+  ],
+  "five_locks_unchanged": true,
+  "scope": "Windows stdio hardlimits and long-lived recovery, NOT disk queue persistence",
+  "api_pid": 27564,
+  "vite_pid": 21940,
+  "launcher_pid": 23752,
+  "stdio_fixed_bootstrap_pid": 26588,
+  "health": "5173/8000 HTTP200",
+  "host_credentials_read": false,
+  "company_access": false,
+  "remaining": [
+    "postgresql real instance",
+    "retention/TTL governance",
+    "API-wide isolation",
+    "non-Windows and production persistence/auth",
+    "M02 audit and user acceptance"
+  ]
+}

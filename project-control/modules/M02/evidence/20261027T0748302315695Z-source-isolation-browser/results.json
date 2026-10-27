@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-10-27T07:49:58.876118+00:00",
+  "code_fingerprint": "6d91fb224bdda6c3ba9d5c4a4c6fe5f204f118e3ba03ac72834e7efccd127ed4",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\\u667a\u80fd\u95ee\u6570\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 1,
+      "status": "failed",
+      "environment": "local",
+      "integration": "real",
+      "scope": "current independent SourceStore API/MCP for local/XLSX/retention and one explicit expiry-metadata compatibility fixture; core accepted UI on default old API; default enablement not_run",
+      "code_fingerprint": "6d91fb224bdda6c3ba9d5c4a4c6fe5f204f118e3ba03ac72834e7efccd127ed4",
+      "log": "project-control/modules/M02/evidence/20261027T0748302315695Z-source-isolation-browser/browser.txt"
+    }
+  ]
+}

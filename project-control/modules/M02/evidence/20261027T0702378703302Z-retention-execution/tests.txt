@@ -1,0 +1,837 @@
+........................FFF........FFFFFF.FFF.F                          [100%]
+================================== FAILURES ===================================
+__ test_actual_native_handle_deletes_only_marked_expired_copy_and_idempotent __
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A4039B20>
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-56/test_actual_native_handle_dele0')
+
+    def test_actual_native_handle_deletes_only_marked_expired_copy_and_idempotent(store,tmp_path):
+        outside=tmp_path/'original.csv';outside.write_bytes(b'original must remain')
+        old=artifact(store);fresh=artifact(store,age=timedelta(hours=1))
+        unknown=store.root/'uploads'/str(uuid4());unknown.mkdir();(unknown/'source.csv').write_bytes(b'unknown history')
+        evidence=tmp_path/'project-control';evidence.mkdir();(evidence/'evidence.json').write_text('{}')
+        before=outside.read_bytes();saved_evidence=hashes(evidence);other=hashes(fresh);legacy=hashes(unknown)
+>       result=cleanup_one(store,AUTH,'uploads',old.name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A4039B20>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+area = 'uploads', id = 'e7d402a3-06e5-459b-aae2-ee0a53b0c1e5'
+
+    def cleanup_one(store,auth,area,id):
+        """Revalidate on every call/restart; never execute a stored preview. Internal only."""
+        store.authorize(auth)
+        if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+        with store.lock,storage_lease(store.root),profiles_guard(store.root):
+            if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+            assert_unreferenced(store,area,id)
+            folder=checked_runtime_path(store.root,store.root/area/id)
+            path=store.root/'cleanup-journal'/(id+'.json')
+            record=None;now=store.clock()
+            try:
+                recovery_temp=None
+                if path.exists():
+                    checked_runtime_path(store.root,path)
+                    if path.stat().st_nlink!=1:raise ValueError('linked journal')
+                    record=validate_journal(store.root,area,id,read_object(path),now)
+                temp=path.with_suffix('.tmp')
+                if temp.exists():
+                    checked_runtime_path(store.root,temp)
+                    if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+                    proposed=validate_journal(store.root,area,id,read_object(temp),now)
+                    if record:
+                        fixed=set(record)-{'state','deleted'}
+                        if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                        order={'PLANNED':0,'DELETING':1,'DONE':2}
+                        if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+                    record=proposed;recovery_temp=temp
+                if record and record['state']=='DONE':
+                    if folder.exists():raise ValueError('completed UUID recreated')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                if not folder.exists():
+                    if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    record['state']='DONE';persist_journal(store.root,record)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                with ExitStack() as stack:
+                    directory=pin_directories(stack,store.root,folder)
+                    children=list(islice(folder.iterdir(),9))
+                    if len(children)>8:raise ValueError('descendant budget')
+                    objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+                    if record is None:
+                        marker,files=validate_artifact(store.root,area,id,objects,now)
+                        record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                                'created_at':marker['created_at'],'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                        persist_journal(store.root,record)
+                    else:
+                        if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                        if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                        if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                        if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                        for name,obj in objects.items():
+                            if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    observe('validated')
+                    assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
+                    record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+                    count=0
+                    # Delete provenance last; outstanding handles pin all bytes and descendants.
+                    for name in sorted(objects,key=lambda n:n==MARKER):
+                        objects[name].dispose();count+=1;observe('file_deleted')
+                        record['deleted'].append(name);persist_journal(store.root,record)
+                    directory.dispose();observe('directory_deleted')
+                record['state']='DONE';persist_journal(store.root,record)
+                return {'state':'DONE','deleted_files':count,'already_done':False}
+            except PublicError:raise
+            except Exception:
+                # No path/content/credential echo. Keep partial work and journal for verified retry.
+>               raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+E               data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+services\api\src\data_workspace\retention_executor.py:200: PublicError
+_ test_interrupted_new_marker_can_reclaim_only_known_unreferenced_children[staging] _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FE3200>
+kind = 'staging'
+
+    @pytest.mark.parametrize('kind',['staging','snapshots'])
+    def test_interrupted_new_marker_can_reclaim_only_known_unreferenced_children(store,kind):
+        id=str(uuid4());folder=store.root/kind/id;folder.mkdir(parents=True)
+        write_marker(store.root,folder,kind='snapshot' if kind=='snapshots' else 'upload',owner=store.owner(AUTH),created_at=(NOW-TTL-timedelta(seconds=1)).isoformat())
+        (folder/('source.duckdb.wal' if kind=='snapshots' else 'source.csv')).write_bytes(b'partial isolated worker bytes')
+>       assert cleanup_one(store,AUTH,kind,id)['state']=='DONE' and not folder.exists()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FE3200>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+area = 'staging', id = '6a0ee2b5-baed-43dd-8243-65ba5b080ace'
+
+    def cleanup_one(store,auth,area,id):
+        """Revalidate on every call/restart; never execute a stored preview. Internal only."""
+        store.authorize(auth)
+        if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+        with store.lock,storage_lease(store.root),profiles_guard(store.root):
+            if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+            assert_unreferenced(store,area,id)
+            folder=checked_runtime_path(store.root,store.root/area/id)
+            path=store.root/'cleanup-journal'/(id+'.json')
+            record=None;now=store.clock()
+            try:
+                recovery_temp=None
+                if path.exists():
+                    checked_runtime_path(store.root,path)
+                    if path.stat().st_nlink!=1:raise ValueError('linked journal')
+                    record=validate_journal(store.root,area,id,read_object(path),now)
+                temp=path.with_suffix('.tmp')
+                if temp.exists():
+                    checked_runtime_path(store.root,temp)
+                    if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+                    proposed=validate_journal(store.root,area,id,read_object(temp),now)
+                    if record:
+                        fixed=set(record)-{'state','deleted'}
+                        if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                        order={'PLANNED':0,'DELETING':1,'DONE':2}
+                        if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+                    record=proposed;recovery_temp=temp
+                if record and record['state']=='DONE':
+                    if folder.exists():raise ValueError('completed UUID recreated')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                if not folder.exists():
+                    if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    record['state']='DONE';persist_journal(store.root,record)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                with ExitStack() as stack:
+                    directory=pin_directories(stack,store.root,folder)
+                    children=list(islice(folder.iterdir(),9))
+                    if len(children)>8:raise ValueError('descendant budget')
+                    objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+                    if record is None:
+                        marker,files=validate_artifact(store.root,area,id,objects,now)
+                        record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                                'created_at':marker['created_at'],'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                        persist_journal(store.root,record)
+                    else:
+                        if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                        if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                        if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                        if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                        for name,obj in objects.items():
+                            if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    observe('validated')
+                    assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
+                    record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+                    count=0
+                    # Delete provenance last; outstanding handles pin all bytes and descendants.
+                    for name in sorted(objects,key=lambda n:n==MARKER):
+                        objects[name].dispose();count+=1;observe('file_deleted')
+                        record['deleted'].append(name);persist_journal(store.root,record)
+                    directory.dispose();observe('directory_deleted')
+                record['state']='DONE';persist_journal(store.root,record)
+                return {'state':'DONE','deleted_files':count,'already_done':False}
+            except PublicError:raise
+            except Exception:
+                # No path/content/credential echo. Keep partial work and journal for verified retry.
+>               raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+E               data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+services\api\src\data_workspace\retention_executor.py:200: PublicError
+_ test_interrupted_new_marker_can_reclaim_only_known_unreferenced_children[snapshots] _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFEDE0>
+kind = 'snapshots'
+
+    @pytest.mark.parametrize('kind',['staging','snapshots'])
+    def test_interrupted_new_marker_can_reclaim_only_known_unreferenced_children(store,kind):
+        id=str(uuid4());folder=store.root/kind/id;folder.mkdir(parents=True)
+        write_marker(store.root,folder,kind='snapshot' if kind=='snapshots' else 'upload',owner=store.owner(AUTH),created_at=(NOW-TTL-timedelta(seconds=1)).isoformat())
+        (folder/('source.duckdb.wal' if kind=='snapshots' else 'source.csv')).write_bytes(b'partial isolated worker bytes')
+>       assert cleanup_one(store,AUTH,kind,id)['state']=='DONE' and not folder.exists()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFEDE0>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+area = 'snapshots', id = '6163842c-077d-4d3c-83cf-dec7088296bd'
+
+    def cleanup_one(store,auth,area,id):
+        """Revalidate on every call/restart; never execute a stored preview. Internal only."""
+        store.authorize(auth)
+        if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+        with store.lock,storage_lease(store.root),profiles_guard(store.root):
+            if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+            assert_unreferenced(store,area,id)
+            folder=checked_runtime_path(store.root,store.root/area/id)
+            path=store.root/'cleanup-journal'/(id+'.json')
+            record=None;now=store.clock()
+            try:
+                recovery_temp=None
+                if path.exists():
+                    checked_runtime_path(store.root,path)
+                    if path.stat().st_nlink!=1:raise ValueError('linked journal')
+                    record=validate_journal(store.root,area,id,read_object(path),now)
+                temp=path.with_suffix('.tmp')
+                if temp.exists():
+                    checked_runtime_path(store.root,temp)
+                    if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+                    proposed=validate_journal(store.root,area,id,read_object(temp),now)
+                    if record:
+                        fixed=set(record)-{'state','deleted'}
+                        if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                        order={'PLANNED':0,'DELETING':1,'DONE':2}
+                        if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+                    record=proposed;recovery_temp=temp
+                if record and record['state']=='DONE':
+                    if folder.exists():raise ValueError('completed UUID recreated')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                if not folder.exists():
+                    if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    record['state']='DONE';persist_journal(store.root,record)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                with ExitStack() as stack:
+                    directory=pin_directories(stack,store.root,folder)
+                    children=list(islice(folder.iterdir(),9))
+                    if len(children)>8:raise ValueError('descendant budget')
+                    objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+                    if record is None:
+                        marker,files=validate_artifact(store.root,area,id,objects,now)
+                        record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                                'created_at':marker['created_at'],'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                        persist_journal(store.root,record)
+                    else:
+                        if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                        if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                        if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                        if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                        for name,obj in objects.items():
+                            if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    observe('validated')
+                    assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
+                    record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+                    count=0
+                    # Delete provenance last; outstanding handles pin all bytes and descendants.
+                    for name in sorted(objects,key=lambda n:n==MARKER):
+                        objects[name].dispose();count+=1;observe('file_deleted')
+                        record['deleted'].append(name);persist_journal(store.root,record)
+                    directory.dispose();observe('directory_deleted')
+                record['state']='DONE';persist_journal(store.root,record)
+                return {'state':'DONE','deleted_files':count,'already_done':False}
+            except PublicError:raise
+            except Exception:
+                # No path/content/credential echo. Keep partial work and journal for verified retry.
+>               raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+E               data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+services\api\src\data_workspace\retention_executor.py:200: PublicError
+______ test_revalidate_reference_after_plan_and_no_reuse_of_old_preview _______
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3F93620>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000289A3F91CD0>
+
+    def test_revalidate_reference_after_plan_and_no_reuse_of_old_preview(store,monkeypatch):
+        folder=artifact(store)
+        def race(stage):
+            if stage=='validated':write_test_reference(store.root,str(uuid4()),owner=store.owner(AUTH),at=NOW.isoformat(),snapshot_id=None,upload_id=folder.name)
+        monkeypatch.setattr('data_workspace.retention_executor.observe',race)
+        before=hashes(folder)
+        with pytest.raises(PublicError) as caught:cleanup_one(store,AUTH,'uploads',folder.name)
+>       assert caught.value.code=='STORAGE_REFERENCED' and hashes(folder)==before
+E       AssertionError: assert ('CLEANUP_STOPPED' == 'STORAGE_REFERENCED'
+E         
+E         - STORAGE_REFERENCED
+E         + CLEANUP_STOPPED)
+
+services\api\tests\test_retention_execution.py:82: AssertionError
+__ test_native_handles_reject_write_replace_and_directory_race_before_delete __
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3F91FD0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000289A3F92CF0>
+
+    def test_native_handles_reject_write_replace_and_directory_race_before_delete(store,monkeypatch):
+        folder=artifact(store);attempts=[]
+        def race(stage):
+            if stage=='validated':
+                for operation in (lambda:(folder/'source.csv').write_bytes(b'other writer'),lambda:folder.rename(folder.with_name(str(uuid4())))):
+                    with pytest.raises(OSError):operation()
+                    attempts.append(True)
+        monkeypatch.setattr('data_workspace.retention_executor.observe',race)
+>       assert cleanup_one(store,AUTH,'uploads',folder.name)['state']=='DONE' and attempts==[True,True]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:93: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3F91FD0>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+area = 'uploads', id = '69213cac-d6b4-4c00-af14-d6094eaa207d'
+
+    def cleanup_one(store,auth,area,id):
+        """Revalidate on every call/restart; never execute a stored preview. Internal only."""
+        store.authorize(auth)
+        if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+        with store.lock,storage_lease(store.root),profiles_guard(store.root):
+            if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+            assert_unreferenced(store,area,id)
+            folder=checked_runtime_path(store.root,store.root/area/id)
+            path=store.root/'cleanup-journal'/(id+'.json')
+            record=None;now=store.clock()
+            try:
+                recovery_temp=None
+                if path.exists():
+                    checked_runtime_path(store.root,path)
+                    if path.stat().st_nlink!=1:raise ValueError('linked journal')
+                    record=validate_journal(store.root,area,id,read_object(path),now)
+                temp=path.with_suffix('.tmp')
+                if temp.exists():
+                    checked_runtime_path(store.root,temp)
+                    if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+                    proposed=validate_journal(store.root,area,id,read_object(temp),now)
+                    if record:
+                        fixed=set(record)-{'state','deleted'}
+                        if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                        order={'PLANNED':0,'DELETING':1,'DONE':2}
+                        if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+                    record=proposed;recovery_temp=temp
+                if record and record['state']=='DONE':
+                    if folder.exists():raise ValueError('completed UUID recreated')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                if not folder.exists():
+                    if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    record['state']='DONE';persist_journal(store.root,record)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                with ExitStack() as stack:
+                    directory=pin_directories(stack,store.root,folder)
+                    children=list(islice(folder.iterdir(),9))
+                    if len(children)>8:raise ValueError('descendant budget')
+                    objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+                    if record is None:
+                        marker,files=validate_artifact(store.root,area,id,objects,now)
+                        record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                                'created_at':marker['created_at'],'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                        persist_journal(store.root,record)
+                    else:
+                        if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                        if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                        if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                        if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                        for name,obj in objects.items():
+                            if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    observe('validated')
+                    assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
+                    record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+                    count=0
+                    # Delete provenance last; outstanding handles pin all bytes and descendants.
+                    for name in sorted(objects,key=lambda n:n==MARKER):
+                        objects[name].dispose();count+=1;observe('file_deleted')
+                        record['deleted'].append(name);persist_journal(store.root,record)
+                    directory.dispose();observe('directory_deleted')
+                record['state']='DONE';persist_journal(store.root,record)
+                return {'state':'DONE','deleted_files':count,'already_done':False}
+            except PublicError:raise
+            except Exception:
+                # No path/content/credential echo. Keep partial work and journal for verified retry.
+>               raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+E               data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+services\api\src\data_workspace\retention_executor.py:200: PublicError
+_ test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[validated] _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3F92630>
+stage = 'validated'
+
+    @pytest.mark.parametrize('stage',['validated','deleting','file_deleted','directory_deleted'])
+    def test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete(store,stage):
+        folder=artifact(store)
+        code='''import os,sys
+    from datetime import datetime
+    from pathlib import Path
+    from data_workspace.source_profiles import SourceStore
+    from data_workspace.contracts import AuthContext
+    import data_workspace.retention_executor as e
+    root,id,stage,now=sys.argv[1:]
+    def crash(point):
+     if point==stage:os._exit(23)
+    e.observe=crash
+    s=SourceStore(Path(root),clock=lambda:datetime.fromisoformat(now))
+    e.cleanup_one(s,AuthContext(mode='development',tenant_id='local-workspace',principal_id='local-developer'),'uploads',id)
+    '''
+        child=subprocess.run([sys.executable,'-c',code,str(store.root),folder.name,stage,NOW.isoformat()],capture_output=True,timeout=15)
+>       assert child.returncode==23,child.stderr.decode(errors='replace')
+E       AssertionError: Traceback (most recent call last):
+
+E           File "<string>", line 12, in <module>
+
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\retention_executor.py", line 200, in cleanup_one
+
+E             raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+
+E         data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+E         
+E       assert 1 == 23
+E        +  where 1 = CompletedProcess(args=['D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe', '-c', "import ...98\xe6\x95\xb0\xe6\x8d\xae\xe4\xb8\x8d\xe5\x9c\xa8\xe5\x9b\x9e\xe6\x94\xb6\xe8\x8c\x83\xe5\x9b\xb4\xe3\x80\x82\')\r\n').returncode
+
+services\api\tests\test_retention_execution.py:113: AssertionError
+_ test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[deleting] _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFF020>
+stage = 'deleting'
+
+    @pytest.mark.parametrize('stage',['validated','deleting','file_deleted','directory_deleted'])
+    def test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete(store,stage):
+        folder=artifact(store)
+        code='''import os,sys
+    from datetime import datetime
+    from pathlib import Path
+    from data_workspace.source_profiles import SourceStore
+    from data_workspace.contracts import AuthContext
+    import data_workspace.retention_executor as e
+    root,id,stage,now=sys.argv[1:]
+    def crash(point):
+     if point==stage:os._exit(23)
+    e.observe=crash
+    s=SourceStore(Path(root),clock=lambda:datetime.fromisoformat(now))
+    e.cleanup_one(s,AuthContext(mode='development',tenant_id='local-workspace',principal_id='local-developer'),'uploads',id)
+    '''
+        child=subprocess.run([sys.executable,'-c',code,str(store.root),folder.name,stage,NOW.isoformat()],capture_output=True,timeout=15)
+>       assert child.returncode==23,child.stderr.decode(errors='replace')
+E       AssertionError: Traceback (most recent call last):
+
+E           File "<string>", line 12, in <module>
+
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\retention_executor.py", line 200, in cleanup_one
+
+E             raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+
+E         data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+E         
+E       assert 1 == 23
+E        +  where 1 = CompletedProcess(args=['D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe', '-c', "import ...98\xe6\x95\xb0\xe6\x8d\xae\xe4\xb8\x8d\xe5\x9c\xa8\xe5\x9b\x9e\xe6\x94\xb6\xe8\x8c\x83\xe5\x9b\xb4\xe3\x80\x82\')\r\n').returncode
+
+services\api\tests\test_retention_execution.py:113: AssertionError
+_ test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[file_deleted] _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFFEC0>
+stage = 'file_deleted'
+
+    @pytest.mark.parametrize('stage',['validated','deleting','file_deleted','directory_deleted'])
+    def test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete(store,stage):
+        folder=artifact(store)
+        code='''import os,sys
+    from datetime import datetime
+    from pathlib import Path
+    from data_workspace.source_profiles import SourceStore
+    from data_workspace.contracts import AuthContext
+    import data_workspace.retention_executor as e
+    root,id,stage,now=sys.argv[1:]
+    def crash(point):
+     if point==stage:os._exit(23)
+    e.observe=crash
+    s=SourceStore(Path(root),clock=lambda:datetime.fromisoformat(now))
+    e.cleanup_one(s,AuthContext(mode='development',tenant_id='local-workspace',principal_id='local-developer'),'uploads',id)
+    '''
+        child=subprocess.run([sys.executable,'-c',code,str(store.root),folder.name,stage,NOW.isoformat()],capture_output=True,timeout=15)
+>       assert child.returncode==23,child.stderr.decode(errors='replace')
+E       AssertionError: Traceback (most recent call last):
+
+E           File "<string>", line 12, in <module>
+
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\retention_executor.py", line 200, in cleanup_one
+
+E             raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+
+E         data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+E         
+E       assert 1 == 23
+E        +  where 1 = CompletedProcess(args=['D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe', '-c', "import ...98\xe6\x95\xb0\xe6\x8d\xae\xe4\xb8\x8d\xe5\x9c\xa8\xe5\x9b\x9e\xe6\x94\xb6\xe8\x8c\x83\xe5\x9b\xb4\xe3\x80\x82\')\r\n').returncode
+
+services\api\tests\test_retention_execution.py:113: AssertionError
+_ test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[directory_deleted] _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFDC10>
+stage = 'directory_deleted'
+
+    @pytest.mark.parametrize('stage',['validated','deleting','file_deleted','directory_deleted'])
+    def test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete(store,stage):
+        folder=artifact(store)
+        code='''import os,sys
+    from datetime import datetime
+    from pathlib import Path
+    from data_workspace.source_profiles import SourceStore
+    from data_workspace.contracts import AuthContext
+    import data_workspace.retention_executor as e
+    root,id,stage,now=sys.argv[1:]
+    def crash(point):
+     if point==stage:os._exit(23)
+    e.observe=crash
+    s=SourceStore(Path(root),clock=lambda:datetime.fromisoformat(now))
+    e.cleanup_one(s,AuthContext(mode='development',tenant_id='local-workspace',principal_id='local-developer'),'uploads',id)
+    '''
+        child=subprocess.run([sys.executable,'-c',code,str(store.root),folder.name,stage,NOW.isoformat()],capture_output=True,timeout=15)
+>       assert child.returncode==23,child.stderr.decode(errors='replace')
+E       AssertionError: Traceback (most recent call last):
+
+E           File "<string>", line 12, in <module>
+
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\retention_executor.py", line 200, in cleanup_one
+
+E             raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+
+E         data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+E         
+E       assert 1 == 23
+E        +  where 1 = CompletedProcess(args=['D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe', '-c', "import ...98\xe6\x95\xb0\xe6\x8d\xae\xe4\xb8\x8d\xe5\x9c\xa8\xe5\x9b\x9e\xe6\x94\xb6\xe8\x8c\x83\xe5\x9b\xb4\xe3\x80\x82\')\r\n').returncode
+
+services\api\tests\test_retention_execution.py:113: AssertionError
+_____ test_complete_uuid_recreated_never_reclaimed_with_old_done_receipt ______
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFDEB0>
+
+    def test_complete_uuid_recreated_never_reclaimed_with_old_done_receipt(store):
+>       folder=artifact(store);cleanup_one(store,AUTH,'uploads',folder.name)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:134: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFDEB0>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+area = 'uploads', id = '71498260-6e7d-4bd4-9ff0-a72b30bba016'
+
+    def cleanup_one(store,auth,area,id):
+        """Revalidate on every call/restart; never execute a stored preview. Internal only."""
+        store.authorize(auth)
+        if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+        with store.lock,storage_lease(store.root),profiles_guard(store.root):
+            if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+            assert_unreferenced(store,area,id)
+            folder=checked_runtime_path(store.root,store.root/area/id)
+            path=store.root/'cleanup-journal'/(id+'.json')
+            record=None;now=store.clock()
+            try:
+                recovery_temp=None
+                if path.exists():
+                    checked_runtime_path(store.root,path)
+                    if path.stat().st_nlink!=1:raise ValueError('linked journal')
+                    record=validate_journal(store.root,area,id,read_object(path),now)
+                temp=path.with_suffix('.tmp')
+                if temp.exists():
+                    checked_runtime_path(store.root,temp)
+                    if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+                    proposed=validate_journal(store.root,area,id,read_object(temp),now)
+                    if record:
+                        fixed=set(record)-{'state','deleted'}
+                        if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                        order={'PLANNED':0,'DELETING':1,'DONE':2}
+                        if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+                    record=proposed;recovery_temp=temp
+                if record and record['state']=='DONE':
+                    if folder.exists():raise ValueError('completed UUID recreated')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                if not folder.exists():
+                    if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    record['state']='DONE';persist_journal(store.root,record)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                with ExitStack() as stack:
+                    directory=pin_directories(stack,store.root,folder)
+                    children=list(islice(folder.iterdir(),9))
+                    if len(children)>8:raise ValueError('descendant budget')
+                    objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+                    if record is None:
+                        marker,files=validate_artifact(store.root,area,id,objects,now)
+                        record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                                'created_at':marker['created_at'],'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                        persist_journal(store.root,record)
+                    else:
+                        if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                        if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                        if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                        if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                        for name,obj in objects.items():
+                            if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    observe('validated')
+                    assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
+                    record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+                    count=0
+                    # Delete provenance last; outstanding handles pin all bytes and descendants.
+                    for name in sorted(objects,key=lambda n:n==MARKER):
+                        objects[name].dispose();count+=1;observe('file_deleted')
+                        record['deleted'].append(name);persist_journal(store.root,record)
+                    directory.dispose();observe('directory_deleted')
+                record['state']='DONE';persist_journal(store.root,record)
+                return {'state':'DONE','deleted_files':count,'already_done':False}
+            except PublicError:raise
+            except Exception:
+                # No path/content/credential echo. Keep partial work and journal for verified retry.
+>               raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+E               data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+services\api\src\data_workspace\retention_executor.py:200: PublicError
+_____ test_valid_atomic_journal_temp_is_reconciled_but_corrupt_temp_stops _____
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A205AAE0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000289A3F36A50>
+
+    def test_valid_atomic_journal_temp_is_reconciled_but_corrupt_temp_stops(store,monkeypatch):
+        folder=artifact(store)
+        original=Path.replace;interrupted=[]
+        def fault(path,target):
+            if path.suffix=='.tmp' and path.parent.name=='cleanup-journal' and not interrupted:
+                interrupted.append(True);raise OSError('isolated atomic replace failure')
+            return original(path,target)
+        with monkeypatch.context() as patch:
+            patch.setattr(Path,'replace',fault)
+            with pytest.raises(PublicError):cleanup_one(store,AUTH,'uploads',folder.name)
+        assert hashes(folder)
+>       assert cleanup_one(SourceStore(store.root,clock=lambda:NOW),AUTH,'uploads',folder.name)['state']=='DONE'
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A37DE330>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+area = 'uploads', id = 'f6c16e2c-0313-4bd9-ba44-f6f38eb4fc4b'
+
+    def cleanup_one(store,auth,area,id):
+        """Revalidate on every call/restart; never execute a stored preview. Internal only."""
+        store.authorize(auth)
+        if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+        with store.lock,storage_lease(store.root),profiles_guard(store.root):
+            if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+            assert_unreferenced(store,area,id)
+            folder=checked_runtime_path(store.root,store.root/area/id)
+            path=store.root/'cleanup-journal'/(id+'.json')
+            record=None;now=store.clock()
+            try:
+                recovery_temp=None
+                if path.exists():
+                    checked_runtime_path(store.root,path)
+                    if path.stat().st_nlink!=1:raise ValueError('linked journal')
+                    record=validate_journal(store.root,area,id,read_object(path),now)
+                temp=path.with_suffix('.tmp')
+                if temp.exists():
+                    checked_runtime_path(store.root,temp)
+                    if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+                    proposed=validate_journal(store.root,area,id,read_object(temp),now)
+                    if record:
+                        fixed=set(record)-{'state','deleted'}
+                        if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                        order={'PLANNED':0,'DELETING':1,'DONE':2}
+                        if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+                    record=proposed;recovery_temp=temp
+                if record and record['state']=='DONE':
+                    if folder.exists():raise ValueError('completed UUID recreated')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                if not folder.exists():
+                    if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    record['state']='DONE';persist_journal(store.root,record)
+                    return {'state':'DONE','deleted_files':0,'already_done':True}
+                with ExitStack() as stack:
+                    directory=pin_directories(stack,store.root,folder)
+                    children=list(islice(folder.iterdir(),9))
+                    if len(children)>8:raise ValueError('descendant budget')
+                    objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+                    if record is None:
+                        marker,files=validate_artifact(store.root,area,id,objects,now)
+                        record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                                'created_at':marker['created_at'],'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                        persist_journal(store.root,record)
+                    else:
+                        if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                        if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                        if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                        if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                        for name,obj in objects.items():
+                            if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+                    if recovery_temp is not None:recovery_temp.replace(path)
+                    observe('validated')
+                    assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
+                    record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+                    count=0
+                    # Delete provenance last; outstanding handles pin all bytes and descendants.
+                    for name in sorted(objects,key=lambda n:n==MARKER):
+                        objects[name].dispose();count+=1;observe('file_deleted')
+                        record['deleted'].append(name);persist_journal(store.root,record)
+                    directory.dispose();observe('directory_deleted')
+                record['state']='DONE';persist_journal(store.root,record)
+                return {'state':'DONE','deleted_files':count,'already_done':False}
+            except PublicError:raise
+            except Exception:
+                # No path/content/credential echo. Keep partial work and journal for verified retry.
+>               raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+E               data_workspace.auth.PublicError: (409, 'CLEANUP_STOPPED', '清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。')
+
+services\api\src\data_workspace\retention_executor.py:200: PublicError
+_ test_expired_reference_maintenance_preserves_active_invalid_future_and_unknown _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3F92AB0>
+
+    def test_expired_reference_maintenance_preserves_active_invalid_future_and_unknown(store):
+        id=str(uuid4())
+        for at in [NOW-TTL-timedelta(seconds=1),NOW-TTL,NOW,NOW+TTL]:
+            write_test_reference(store.root,str(uuid4()),owner=store.owner(AUTH),at=at.isoformat(),snapshot_id=None,upload_id=id)
+        (store.root/'test-references'/'unknown.tmp').write_bytes(b'unknown')
+>       assert prune_expired_references(store,AUTH)=={'removed':1,'retained':2,'unknown':2}
+E       AssertionError: assert {'removed': 0... 'unknown': 5} == {'removed': 1... 'unknown': 2}
+E         
+E         Differing items:
+E         {'removed': 0} != {'removed': 1}
+E         {'retained': 0} != {'retained': 2}
+E         {'unknown': 5} != {'unknown': 2}
+E         Use -v to get more diff
+
+services\api\tests\test_retention_execution.py:163: AssertionError
+____ test_permission_and_absolute_target_validation_before_native_mutation ____
+
+store = <data_workspace.source_profiles.SourceStore object at 0x00000289A3FFE660>
+
+    def test_permission_and_absolute_target_validation_before_native_mutation(store):
+        folder=artifact(store);before=hashes(folder)
+        for area,id in [('project-control',folder.name),('uploads','..'),('uploads',str(store.root))]:
+>           with pytest.raises(PublicError) as caught:cleanup_one(store,AUTH,area,id)
+                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_retention_execution.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\api\src\data_workspace\retention_executor.py:135: in cleanup_one
+    if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
+                                ^^^^^^^^^^^^^^^^
+services\api\src\data_workspace\retention.py:40: in canonical_id
+    return isinstance(value, str) and str(UUID(value)) == value
+                                          ^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <[AttributeError("'UUID' object has no attribute 'int'") raised in repr()] UUID object at 0x289a41fbd50>
+hex = '..', bytes = None, bytes_le = None, fields = None, int = None
+version = None, is_safe = <SafeUUID.unknown: None>
+
+    def __init__(self, hex=None, bytes=None, bytes_le=None, fields=None,
+                       int=None, version=None,
+                       *, is_safe=SafeUUID.unknown):
+        r"""Create a UUID from either a string of 32 hexadecimal digits,
+        a string of 16 bytes as the 'bytes' argument, a string of 16 bytes
+        in little-endian order as the 'bytes_le' argument, a tuple of six
+        integers (32-bit time_low, 16-bit time_mid, 16-bit time_hi_version,
+        8-bit clock_seq_hi_variant, 8-bit clock_seq_low, 48-bit node) as
+        the 'fields' argument, or a single 128-bit integer as the 'int'
+        argument.  When a string of hex digits is given, curly braces,
+        hyphens, and a URN prefix are all optional.  For example, these
+        expressions all yield the same UUID:
+    
+        UUID('{12345678-1234-5678-1234-567812345678}')
+        UUID('12345678123456781234567812345678')
+        UUID('urn:uuid:12345678-1234-5678-1234-567812345678')
+        UUID(bytes='\x12\x34\x56\x78'*4)
+        UUID(bytes_le='\x78\x56\x34\x12\x34\x12\x78\x56' +
+                      '\x12\x34\x56\x78\x12\x34\x56\x78')
+        UUID(fields=(0x12345678, 0x1234, 0x5678, 0x12, 0x34, 0x567812345678))
+        UUID(int=0x12345678123456781234567812345678)
+    
+        Exactly one of 'hex', 'bytes', 'bytes_le', 'fields', or 'int' must
+        be given.  The 'version' argument is optional; if given, the resulting
+        UUID will have its variant and version set according to RFC 4122,
+        overriding the given 'hex', 'bytes', 'bytes_le', 'fields', or 'int'.
+    
+        is_safe is an enum exposed as an attribute on the instance.  It
+        indicates whether the UUID has been generated in a way that is safe
+        for multiprocessing applications, via uuid_generate_time_safe(3).
+        """
+    
+        if [hex, bytes, bytes_le, fields, int].count(None) != 4:
+            raise TypeError('one of the hex, bytes, bytes_le, fields, '
+                            'or int arguments must be given')
+        if hex is not None:
+            hex = hex.replace('urn:', '').replace('uuid:', '')
+            hex = hex.strip('{}').replace('-', '')
+            if len(hex) != 32:
+>               raise ValueError('badly formed hexadecimal UUID string')
+E               ValueError: badly formed hexadecimal UUID string
+
+..\..\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\uuid.py:178: ValueError
+============================== warnings summary ===============================
+services\api\.venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\Users\luqianwu\Desktop\智能问数\services\api\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_retention_execution.py::test_actual_native_handle_deletes_only_marked_expired_copy_and_idempotent
+FAILED services\api\tests\test_retention_execution.py::test_interrupted_new_marker_can_reclaim_only_known_unreferenced_children[staging]
+FAILED services\api\tests\test_retention_execution.py::test_interrupted_new_marker_can_reclaim_only_known_unreferenced_children[snapshots]
+FAILED services\api\tests\test_retention_execution.py::test_revalidate_reference_after_plan_and_no_reuse_of_old_preview
+FAILED services\api\tests\test_retention_execution.py::test_native_handles_reject_write_replace_and_directory_race_before_delete
+FAILED services\api\tests\test_retention_execution.py::test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[validated]
+FAILED services\api\tests\test_retention_execution.py::test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[deleting]
+FAILED services\api\tests\test_retention_execution.py::test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[file_deleted]
+FAILED services\api\tests\test_retention_execution.py::test_actual_process_crash_then_restart_reconciles_same_ids_without_redelete[directory_deleted]
+FAILED services\api\tests\test_retention_execution.py::test_complete_uuid_recreated_never_reclaimed_with_old_done_receipt
+FAILED services\api\tests\test_retention_execution.py::test_valid_atomic_journal_temp_is_reconciled_but_corrupt_temp_stops
+FAILED services\api\tests\test_retention_execution.py::test_expired_reference_maintenance_preserves_active_invalid_future_and_unknown
+FAILED services\api\tests\test_retention_execution.py::test_permission_and_absolute_target_validation_before_native_mutation
+13 failed, 34 passed, 1 warning in 7.90s

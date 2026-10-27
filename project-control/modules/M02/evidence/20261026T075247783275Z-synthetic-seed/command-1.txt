@@ -1,0 +1,1 @@
+{"source": "independently_generated_synthetic", "rows": {"dim_customer": 1000, "dim_product": 100, "fact_order": 3000, "fact_order_item": 6125, "fact_event": 11671}, "bytes": 4987877, "quality": "passed"}

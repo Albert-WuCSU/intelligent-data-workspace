@@ -1,0 +1,84 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "connector_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.:-]+$",
+      "title": "Connector Id",
+      "type": "string"
+    },
+    "configured": {
+      "title": "Configured",
+      "type": "boolean"
+    },
+    "sql_dialect": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sql Dialect"
+    },
+    "metadata": {
+      "default": "unknown",
+      "enum": [
+        "supported",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "Metadata",
+      "type": "string"
+    },
+    "asynchronous": {
+      "default": "unknown",
+      "enum": [
+        "supported",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "Asynchronous",
+      "type": "string"
+    },
+    "cancel": {
+      "default": "unknown",
+      "enum": [
+        "supported",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "Cancel",
+      "type": "string"
+    },
+    "query_cost": {
+      "default": "unknown",
+      "enum": [
+        "supported",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "Query Cost",
+      "type": "string"
+    },
+    "column_acl": {
+      "default": "unknown",
+      "enum": [
+        "supported",
+        "unsupported",
+        "unknown"
+      ],
+      "title": "Column Acl",
+      "type": "string"
+    }
+  },
+  "required": [
+    "connector_id",
+    "configured"
+  ],
+  "title": "ConnectorCapability",
+  "type": "object"
+}

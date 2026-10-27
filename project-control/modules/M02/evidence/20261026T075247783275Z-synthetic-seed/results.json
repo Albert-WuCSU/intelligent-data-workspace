@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-10-26T07:52:51.267965+00:00",
+  "reviewer": "self_review",
+  "scope": "approved synthetic data preparation only; warehouse and MCP not yet initialized",
+  "checks": [
+    {
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.demo_data.generate",
+        "--output",
+        "data/demo/synthetic-v1"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "log": "project-control/modules/M02/evidence/20261026T075247783275Z-synthetic-seed/command-1.txt",
+      "code_fingerprint": "39a101b6d827f254d2df2c2475a46fc37e23b008a7a40b138f90335354a22a23"
+    },
+    {
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "log": "project-control/modules/M02/evidence/20261026T075247783275Z-synthetic-seed/command-2.txt",
+      "code_fingerprint": "39a101b6d827f254d2df2c2475a46fc37e23b008a7a40b138f90335354a22a23"
+    }
+  ],
+  "sources": {
+    "services/api/src/data_workspace/demo_data/__init__.py": "ced6310d79a39212763501ab226736c209ecb5d7c3e5298034a9cee536ce79cc",
+    "services/api/src/data_workspace/demo_data/generate.py": "a5677af97e9360425ef0b3819b546de14fc30ba68972d5ac6c639f9f5aff755b",
+    "services/api/tests/test_demo_data.py": "b8b977bbdb2077012640e31773a8487f97f0f427ae0462e2dbc0fdfe6b01d208"
+  },
+  "code_fingerprint": "39a101b6d827f254d2df2c2475a46fc37e23b008a7a40b138f90335354a22a23",
+  "m01_files_checked": 40,
+  "m01_mismatches": [],
+  "manifest": "data/demo/synthetic-v1/manifest.json",
+  "manifest_sha256": "42cc6d64f68f497d3ff28933f023ac94e229728fe105f98f06488d8377196b60",
+  "candidate_dependencies_present": {
+    "duckdb": false,
+    "pyarrow": false,
+    "mcp": false,
+    "sqlglot": false
+  },
+  "external_calls": [],
+  "company_data_accessed": false,
+  "database_integration": "not_run",
+  "mcp_integration": "not_run",
+  "ui_regression": "not_run; no existing UI/runtime contract files changed"
+}

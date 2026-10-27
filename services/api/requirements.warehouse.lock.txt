@@ -1,0 +1,19 @@
+# Additive warehouse/MCP dependencies; existing environment constrained separately.
+attrs==26.1.0
+cffi==2.1.1
+cryptography==50.0.2
+duckdb==1.5.6
+httpx-sse==0.4.3
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+mcp==1.30.0
+pycparser==3.12
+pydantic-settings==2.16.1
+PyJWT==2.15.1
+python-dotenv==1.2.4
+python-multipart==0.0.32
+pywin32==312
+referencing==0.37.0
+rpds-py==2026.9.1
+sqlglot==30.24.0
+sse-starlette==3.6.0

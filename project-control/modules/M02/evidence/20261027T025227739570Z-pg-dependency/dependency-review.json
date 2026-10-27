@@ -1,0 +1,19 @@
+{
+  "approved_decision": "D-M02-REMOTE-SECURITY-009 A",
+  "packages": {
+    "psycopg": "3.3.6",
+    "psycopg-binary": "3.3.6"
+  },
+  "python": "3.12.14 AMD64",
+  "license": "LGPL-3.0-only",
+  "libpq_license_source": "https://raw.githubusercontent.com/postgres/postgres/master/COPYRIGHT",
+  "openssl_license_source": "https://raw.githubusercontent.com/openssl/openssl/master/LICENSE.txt",
+  "wheel_hashes": "matched pypi-metadata.json",
+  "install_command": "services/api/.venv/Scripts/python.exe -m pip --isolated install --no-index --no-deps --require-hashes --find-links project-control/modules/M02/evidence/20261027T025227739570Z-pg-dependency -r services/api/requirements.postgres.lock.txt",
+  "install_exit_code": 0,
+  "pip_check_exit_code": 0,
+  "import_verified": "psycopg3.3.6 binary/libpq180004",
+  "postgres_instance_integration": "not_run",
+  "scope": "local project venv; no database service or global runtime installed",
+  "license_limits": "Upstream license texts checked, not a complete redistribution/legal audit. Public packaging remains release gate."
+}

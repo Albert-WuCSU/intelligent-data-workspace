@@ -1,0 +1,37 @@
+{
+  "code_fingerprint": "403e2b2588da0d8be032c378249067dee8557907321116cf1052c61827d15222",
+  "checks": [
+    {
+      "id": "worker-native-and-recovery",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_worker_runtime.py",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "403e2b2588da0d8be032c378249067dee8557907321116cf1052c61827d15222",
+      "log": "project-control/modules/M02/evidence/20261027T044756181340Z-worker-extra/worker-native-and-recovery.txt"
+    },
+    {
+      "id": "warehouse-integrity",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "403e2b2588da0d8be032c378249067dee8557907321116cf1052c61827d15222",
+      "log": "project-control/modules/M02/evidence/20261027T044756181340Z-worker-extra/warehouse-integrity.txt"
+    }
+  ]
+}

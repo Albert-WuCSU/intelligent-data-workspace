@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-27T02:37:48.481477+00:00",
+  "progress_validation": "passed revision 25",
+  "source_files_verified": 72,
+  "mismatches": [],
+  "health": {
+    "5173": "HTTP 200",
+    "8000 /health/live": "HTTP 200"
+  },
+  "processes": [
+    {
+      "port": 5173,
+      "pid": 10824,
+      "owner": "CN1/luqianwu",
+      "command": "project apps/web/node_modules/vite/bin/vite.js loopback"
+    },
+    {
+      "port": 8000,
+      "pid": 7932,
+      "owner": "CN1/luqianwu",
+      "command": "data_workspace.main via project venv"
+    }
+  ],
+  "launcher_pid": 11716,
+  "launcher": "scripts/dev.py",
+  "actions": "read-only; reused existing services; no kill/restart; no previous session assumption",
+  "latest_tests": "108 backend / 10 frontend / 15 browser passed in original evidence, not yet rerun this turn",
+  "new_dependencies_installed": false,
+  "company_access": false,
+  "host_credentials_read": false
+}

@@ -1,0 +1,12 @@
+pack_id: tenant_example
+version: 0.1.0
+status: draft
+tenant_binding: SERVER_MANAGED
+owner: TO_CONFIRM
+effective_from: TO_CONFIRM
+dependencies: []
+release_checks:
+  schema_validation: pending
+  business_approval: pending
+  connector_validation: pending
+  known_answer_reconciliation: pending

@@ -1,0 +1,22 @@
+
+Running 15 tests using 1 worker
+
+(node:24484) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (1.8s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.1s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (767ms)
+  ok  4 tests\source-onboarding.spec.mjs:4:1 › user adds a source, saves, reconnects after reload and browses dates with no date filter (5.2s)
+  ok  5 tests\source-onboarding.spec.mjs:16:1 › nonsecret configuration import fills form but does not auto-connect; errors preserve input (552ms)
+  ok  6 tests\source-onboarding.spec.mjs:21:1 › mobile source navigation controls preserve visible themes without a time-filter input (514ms)
+  ok  7 tests\source-onboarding.spec.mjs:26:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters (6.9s)
+  ok  8 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.1s)
+  ok  9 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (708ms)
+  ok 10 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.2s)
+  ok 11 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (667ms)
+  ok 12 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (833ms)
+  ok 13 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (493ms)
+  ok 14 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.2s)
+  ok 15 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (588ms)
+
+  15 passed (27.0s)

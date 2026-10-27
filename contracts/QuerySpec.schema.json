@@ -1,0 +1,232 @@
+{
+  "$defs": {
+    "Filter": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Field",
+          "type": "string"
+        },
+        "operator": {
+          "enum": [
+            "eq",
+            "in",
+            "gte",
+            "lte"
+          ],
+          "title": "Operator",
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              }
+            ]
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Values",
+          "type": "array"
+        }
+      },
+      "required": [
+        "field",
+        "operator",
+        "values"
+      ],
+      "title": "Filter",
+      "type": "object"
+    },
+    "MetricRef": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "version"
+      ],
+      "title": "MetricRef",
+      "type": "object"
+    },
+    "MetricTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "metric",
+          "title": "Kind",
+          "type": "string"
+        },
+        "metric_refs": {
+          "items": {
+            "$ref": "#/$defs/MetricRef"
+          },
+          "maxItems": 20,
+          "minItems": 1,
+          "title": "Metric Refs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "metric_refs"
+      ],
+      "title": "MetricTarget",
+      "type": "object"
+    },
+    "TableTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "table",
+          "title": "Kind",
+          "type": "string"
+        },
+        "datasource_id": {
+          "maxLength": 160,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.:-]+$",
+          "title": "Datasource Id",
+          "type": "string"
+        },
+        "full_table_name": {
+          "maxLength": 400,
+          "minLength": 3,
+          "pattern": "^[A-Za-z0-9_]+(?:\\.[A-Za-z0-9_]+)+$",
+          "title": "Full Table Name",
+          "type": "string"
+        },
+        "columns": {
+          "items": {
+            "maxLength": 160,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.:-]+$",
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Columns",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "datasource_id",
+        "full_table_name",
+        "columns"
+      ],
+      "title": "TableTarget",
+      "type": "object"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "format": "date",
+          "title": "Start",
+          "type": "string"
+        },
+        "end_exclusive": {
+          "format": "date",
+          "title": "End Exclusive",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end_exclusive"
+      ],
+      "title": "TimeRange",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "target": {
+      "discriminator": {
+        "mapping": {
+          "metric": "#/$defs/MetricTarget",
+          "table": "#/$defs/TableTarget"
+        },
+        "propertyName": "kind"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/MetricTarget"
+        },
+        {
+          "$ref": "#/$defs/TableTarget"
+        }
+      ],
+      "title": "Target"
+    },
+    "time_range": {
+      "$ref": "#/$defs/TimeRange"
+    },
+    "timezone": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Timezone",
+      "type": "string"
+    },
+    "dimensions": {
+      "items": {
+        "maxLength": 160,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9_.:-]+$",
+        "type": "string"
+      },
+      "maxItems": 30,
+      "title": "Dimensions",
+      "type": "array"
+    },
+    "filters": {
+      "items": {
+        "$ref": "#/$defs/Filter"
+      },
+      "maxItems": 50,
+      "title": "Filters",
+      "type": "array"
+    }
+  },
+  "required": [
+    "target",
+    "time_range",
+    "timezone"
+  ],
+  "title": "QuerySpec",
+  "type": "object"
+}

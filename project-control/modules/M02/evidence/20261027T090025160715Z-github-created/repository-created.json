@@ -1,0 +1,13 @@
+{
+  "repository": "Albert-WuCSU/intelligent-data-workspace",
+  "url": "https://github.com/Albert-WuCSU/intelligent-data-workspace",
+  "private": true,
+  "viewer_permission": "ADMIN",
+  "create_command": "gh repo create Albert-WuCSU/intelligent-data-workspace --private --description <project description>",
+  "create_exit_code": 0,
+  "verification": "gh repo view --json nameWithOwner,isPrivate,url,viewerPermission exit0",
+  "staged_content_audit": "1002 files, staged blobs equal workspace, no forbidden runtime/config/credential paths; common patterns only explicit unit URL sentinel",
+  "readme_links": "passed",
+  "line_ending_check": "original Windows CRLF preserved; binary diff clarified with attributes; preexisting documentation whitespace not rewritten",
+  "push": "not_run"
+}

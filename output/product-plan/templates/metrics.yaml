@@ -1,0 +1,23 @@
+metrics:
+  - metric_id: order_conversion_rate
+    name: 订单转化率
+    version: 0.1.0
+    status: draft
+    domain: TO_CONFIRM
+    numerator: TO_CONFIRM
+    denominator: TO_CONFIRM
+    formula: numerator / denominator
+    zero_denominator: null
+    unit: ratio
+    base_grain: TO_CONFIRM
+    distinct_keys: []
+    dimensions: []
+    aggregation: non_additive
+    time_field: TO_CONFIRM
+    timezone: Asia/Shanghai
+    filters: []
+    late_arrival_policy: TO_CONFIRM
+    engine_binding: TO_CONFIRM
+    owner: TO_CONFIRM
+    approver: TO_CONFIRM
+    source_reference: TO_CONFIRM

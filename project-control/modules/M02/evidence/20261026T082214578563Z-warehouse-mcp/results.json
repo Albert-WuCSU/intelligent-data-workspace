@@ -1,0 +1,118 @@
+{
+  "created_at": "2026-10-26T08:22:25.478230+00:00",
+  "scope": "owned synthetic warehouse and real stdio MCP backend vertical slice; no Web/FastAPI wiring yet",
+  "checks": [
+    {
+      "id": "dependencies",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+      "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/dependencies.txt"
+    },
+    {
+      "id": "backend",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+      "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/backend.txt"
+    },
+    {
+      "id": "warehouse",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+      "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/warehouse.txt"
+    },
+    {
+      "id": "mcp",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.demo"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+      "log": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/mcp.txt"
+    }
+  ],
+  "sources": {
+    "services/api/src/data_workspace/warehouse/build.py": "cd3fe26cc954d9b6017026004bc638954203898326e4d35407d9609a87c79280",
+    "services/api/src/data_workspace/warehouse/catalog.py": "4fed766a99a35afea814fcdef587869a3853a0451aa584a81a101dc4238cf53e",
+    "services/api/src/data_workspace/warehouse/client.py": "ead1a600d4c88b4b56a7e21ae052d72c4c20b91819b8f52c53d683c7186580c0",
+    "services/api/src/data_workspace/warehouse/demo.py": "fb28ca4aba51c11c0ea115c67cbf223ceb17b36fa01823cbbe0b56b4f6719b9b",
+    "services/api/src/data_workspace/warehouse/engine.py": "dfa67cd6321ed7210e42bd66177d1723528e5ad41b2e2654ca832e821dd07b63",
+    "services/api/src/data_workspace/warehouse/execution.py": "f78172a2e3b44a423fe618c88deb579e2b25141d63c9222e020ab7aec5b8565b",
+    "services/api/src/data_workspace/warehouse/mcp_server.py": "4a24eb305c852097bd731d4476f365a6c41b03785cea447b8235584cc4b64820",
+    "services/api/src/data_workspace/warehouse/policy.py": "6b7f3d624f7a1224e65ce534895f62489bf818e36064904831e7dac551294625",
+    "services/api/src/data_workspace/warehouse/verify.py": "413fb9ba675d4482cec951c1d91eb7911d9d9dec212f161d4afc59484c4fe249",
+    "services/api/src/data_workspace/warehouse/__init__.py": "c9c97315f1596ac867dc24fc96a8340f67a55e0c01e4072b49259e92f4a288f0",
+    "services/api/tests/test_warehouse.py": "7d14774f9a840ce332cfd5392e300300fa8ec86c56b4baf14229e3ee9743bc0c",
+    "services/api/requirements.warehouse.lock.txt": "33b5db9e3ce6ad4bf56e9da440ad5f2817090c7bffc1355bb32b73742e3d38ac",
+    "WAREHOUSE.md": "cbd25a8f52332a1042ac413f2a3b3f40bb0afea1f3cdbb954de06387feed48d2"
+  },
+  "code_fingerprint": "fb3e9477ac54931b2e36cee013566fff620794c25ad86bb61ae3554532e49268",
+  "m01_files_checked": 40,
+  "m01_mismatches": [],
+  "warehouse_manifest": "data/warehouse/synthetic-v1/manifest.json",
+  "warehouse_manifest_sha256": "cb08b826b0ea6e9ff7bb0be577b188d846e82346c10f860c02dfc8f093ef65dd",
+  "initialization_command": [
+    "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+    "-m",
+    "data_workspace.warehouse.build"
+  ],
+  "initialization_exit_code": 0,
+  "initialization_note": "actual earlier build command completed, five typed tables and Parquet created, default build will now refuse overwrite",
+  "dependencies_inventory": "project-control/modules/M02/evidence/20261026T082214578563Z-warehouse-mcp/dependencies.json",
+  "company_data_accessed": false,
+  "original_dependency_versions_changed": false,
+  "external_access_scope": "approved Python package index downloads only, not business data",
+  "test_history": [
+    {
+      "command": "python -m pytest services/api/tests/test_warehouse.py -q",
+      "exit_code": 1,
+      "result": "29 passed, 1 failed",
+      "root_cause": "FastMCP plain dict return annotation did not emit structuredContent; client correctly rejected response",
+      "fix": "explicit dict[str, Any] and structured_output=True; same strict client assertion retained; 32 specialist and 80 total tests subsequently passed"
+    },
+    {
+      "command": "pip index versions (sandbox)",
+      "exit_code": 1,
+      "reason": "network WinError10013; rerun with approval succeeded"
+    }
+  ],
+  "limitations": [
+    "MCP/warehouse backend only; FastAPI and Web remain not connected",
+    "no production authentication or RLS/CLS certification",
+    "no cancel tool, downloads, durable tasks or restart recovery",
+    "engine deadline verified using a real interruption test; OS/Python-process hard limits and worker recovery not verified",
+    "bounded templates only; no arbitrary SQL, aggregate or join exposed to MCP",
+    "frontend/browser tests not rerun this slice; unchanged M01 40-file fingerprints retained"
+  ]
+}

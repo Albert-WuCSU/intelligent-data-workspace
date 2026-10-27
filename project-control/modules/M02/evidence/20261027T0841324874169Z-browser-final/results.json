@@ -1,0 +1,25 @@
+{
+  "created_at": "2026-10-27T08:42:36.935397+00:00",
+  "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\\u667a\u80fd\u95ee\u6570\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "scope": "current independent SourceStore API/MCP for local/XLSX/retention and one explicit expiry-metadata compatibility fixture; core accepted UI on default old API; default enablement not_run",
+      "code_fingerprint": "c0e6b495bcd7c1d17e8d5606a975fe8d5d61bb4ab1c237a9f1fe1e5bf171cfaa",
+      "log": "project-control/modules/M02/evidence/20261027T0841324874169Z-browser-final/browser.txt"
+    }
+  ]
+}

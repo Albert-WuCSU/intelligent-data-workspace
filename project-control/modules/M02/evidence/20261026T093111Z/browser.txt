@@ -1,0 +1,18 @@
+
+Running 11 tests using 1 worker
+
+(node:3240) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (1.8s)
+  ok  2 tests\connector.spec.mjs:14:1 › date rejection, empty results and mobile theme/layout (1.4s)
+  ok  3 tests\connector.spec.mjs:20:1 › unconfigured source and recoverable permission failure do not claim success (657ms)
+  ok  4 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.0s)
+  ok  5 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (720ms)
+  ok  6 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.2s)
+  ok  7 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (675ms)
+  ok  8 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (845ms)
+  ok  9 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (535ms)
+  ok 10 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok 11 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (590ms)
+
+  11 passed (14.4s)

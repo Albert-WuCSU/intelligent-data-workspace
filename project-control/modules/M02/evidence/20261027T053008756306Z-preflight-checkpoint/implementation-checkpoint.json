@@ -1,0 +1,20 @@
+{
+  "scope": "isolated upload preflight and read-only inventory; retention deletion not selected",
+  "actual_checks": [
+    {
+      "command": "services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_upload_preflight_storage.py -q",
+      "exit_code": 0,
+      "count": 18
+    },
+    {
+      "command": "services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_upload_preflight_storage.py services/api/tests/test_excel_import.py services/api/tests/test_source_profiles.py -q",
+      "exit_code": 0,
+      "count": 29,
+      "note": "before admission/API tests added; final full suite must rerun"
+    }
+  ],
+  "full_regression": "running, not yet passed",
+  "cleanup_execution": "not_run",
+  "historical_data_deleted": false,
+  "new_dependencies": false
+}

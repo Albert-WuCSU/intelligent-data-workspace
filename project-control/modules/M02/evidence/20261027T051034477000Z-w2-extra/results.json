@@ -1,0 +1,37 @@
+{
+  "code_fingerprint": "fb484d8353abe7c698e505400b7e0ca9adac9ae5dc010f629f9d2568817f686d",
+  "checks": [
+    {
+      "id": "stdio-native-long-lived-recovery",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_stdio_recovery.py",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "fb484d8353abe7c698e505400b7e0ca9adac9ae5dc010f629f9d2568817f686d",
+      "log": "project-control/modules/M02/evidence/20261027T051034477000Z-w2-extra/stdio-native-long-lived-recovery.txt"
+    },
+    {
+      "id": "warehouse-integrity",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "fb484d8353abe7c698e505400b7e0ca9adac9ae5dc010f629f9d2568817f686d",
+      "log": "project-control/modules/M02/evidence/20261027T051034477000Z-w2-extra/warehouse-integrity.txt"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+entities:
+  - entity_id: customer
+    name: 客户
+    key: TO_CONFIRM
+    grain: TO_CONFIRM
+    hierarchy: []
+    type_values: []
+    multiple_membership: TO_CONFIRM
+    organization_boundary: TO_CONFIRM
+    slowly_changing_rule: TO_CONFIRM
+    owner: TO_CONFIRM

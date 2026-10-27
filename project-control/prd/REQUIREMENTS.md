@@ -1,0 +1,76 @@
+> 2026-10-27：D-M02-RETENTION-013 A已由用户采用，清理执行仍not_run；下方历史待选记录以最新progress决策为准。
+
+# 需求追踪表｜用户反馈、原产品规划与验收证据
+
+版本V1.0 · 2026-10-27。覆盖现有聊天、已登记决策、项目用户原则、交接及V0.1策划，不声称可访问项目外未保存历史。
+
+## 来源与优先级
+- 当前人类决定：`project-control/progress.json`中的append-only decisions；实施事实只取当前测试证据，不取旧聊天完成声明。
+- 原产品方案：`output/product-plan/产品策划方案V0.1.md`是规划来源；候选技术/时程/90%等不作为已测或全部实现批准。
+- 用户原则与交接：`project-control/PRODUCT_UX_PRINCIPLES.md`、`HANDOFF_DETAILS.md`。最新“连接器无筛选且保留日期”覆盖历史统一时间/可选筛选提议；筛选属于M04业务问题或M06看板，不属于M02导航。
+- 本轮D-ROADMAP-MODEL-014批准PRD与顺序：M02→M04-A→M03→M04-B。原M04 ID保留为M04-B；LangGraph为编排方向，具体依赖/许可证/安装/外发/收费另核验。
+- D-M02-RETENTION-013尚未回答；不从路线调整或“继续推进”推断清理A/B选择。
+
+## 用户需求及后续架构需求
+| ID | 需求 | 归属模块 | 来源与批准边界 | 当前证据边界 |
+| --- | --- | --- | --- | --- |
+| R-U01 | 真实Web产品：用户要求最终为网站/应用，不接受仅CLI/API；当前Web优先，桌面包装后续按需。 | M01, M12 | D-SCOPE-001+D-M01-PLAN-001 / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U02 | 专业视觉：科技感、专业数据工作台，减少泛AI装饰和虚夸文案，不复制截图业务数据。 | M01, M06 | D-M01-VISUAL-001 / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U03 | 黑白双主题：顶部始终可见黑色/白色文字选项、选中态，刷新保持，手机可用，不隐藏为难发现图标。 | M01, M06, M12 | D-M01-UX-002+D-M01-THEME-VISIBLE-003 / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U04 | 会话与历史：业务默认左侧历史/中间连续长对话/底部追问；新建切换删除与多轮保留。开发localStorage仅文字，不是生产认证/跨设备历史。 | M01, M04-B(M04), M05 | D-M01-UX-002 / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U05 | 真实顶部状态：pipeline置顶，只表达真实事件，未接入/失败/部分/恢复明确，不用动画模拟找表或SQL成功。 | M01, M04-B(M04), M08 | D-M01-UX-002+PRODUCT_UX_PRINCIPLES.md / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U06 | 证据渐进披露：Agent输出结果/口径/附件/来源质量/下一步优先，SQL/Schema/日志折叠在专业工具；业务不填JSON。 | M01, M04-B(M04), M06, M07 | D-M01-UX-002 / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U07 | 产品经理作品：按角色、任务、可理解证据与可行动失败设计；保存真实取舍，不编造访谈、市场指标、业务收益。 | M01, M08 | PRODUCT_UX_PRINCIPLES.md / user_statement | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U08 | 状态化推进：每模块PLAN/DO/CHECK/ACT、关键选择询问、真实测试审计与用户验收、检查点和新窗口交接；不重建已验收M01。 | M01, M02, M08 | D-WORKFLOW-UX-UPDATE-001+AGENTS.md / user_decision | M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。 |
+| R-U09 | 真实数仓主干：取数Agent通过治理MCP/适配层获取授权真实元数据并运行SQL，目标可为Spark/Hive；数据资产是下游交接，不替代数仓连接。 | M02, M04-B(M04), M05 | D-ARCH-001 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U10 | 独立合成测试：本机测试仓与样例独立生成，合成结果不能冒充经营；不访问公司平台/复制宿主凭证，外部目标和生产另批。 | M02, M04-A, M08, M12 | D-M02-DATA-SOURCE-002+D-M02-ENGINE-003+AGENTS.md / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U11 | 自助数据接入：新增数据源/配置MCP/非秘密连接文件导入，用户填地址或上传文件，实际测试再保存、刷新复用、编辑重测与启停；内置仓只是可选例。 | M02 | D-M02-UX-REWORK-005+D-M02-CONNECTOR-UX-005 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U12 | 仅表导航：连接器像Power Query：原表头/类型和前100行，无时间或其他筛选、不猜日期含义、不删日期字段；自然顺序不称最早/最新。 | M02 | D-M02-NAVIGATION-006+D-M02-TIME-CLARIFY-007 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U13 | 本地文件范围：DuckDB/UTF8 CSV/Parquet/.xlsx上传或后端受控路径；快照隔离、原文件不修改，路径与格式限额服务端落实。 | M02, M05, M10 | M02 plan.md+CONNECTORS.md+D-M02-XLSX-008 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U14 | Excel兼容：只读多可见sheet/中文标题/第一行表头/原日期/100行；公式宏外链不执行，旧xls/复杂报表不承诺，失败提示副本粘贴为值等。 | M02, M10 | D-M02-XLSX-008 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U15 | PG及HTTP接入：完整接入包含PG与受支持Streamable HTTP MCP；协议/工具/方言/权限逐项核验，未知不称兼容，真实PG目前not_run。 | M02 | D-M02-CONNECTOR-UX-005 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U16 | A专用秘密引用：只保存项目专用secret_ref与后端目标账号资源绑定，网页/JSON/日志不接明文秘密，前端/Worker不继承宿主凭证；不是生产密钥柜。 | M02, M04-A, M12 | D-M02-REMOTE-SECURITY-009 / user_decision | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U17 | 受限Worker与恢复：上传预检/解析/SQL及工具调用资源受限，故障回收自己拥有Job、不盲杀服务，原数据保留，隔离不可用拒绝而不无限回退。 | M02, M04-B(M04), M10 | 2026-10-27用户继续Worker/stdIO要求+M02 plan.md / user_statement | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U18 | 不明任务不重提：长驻MCP故障旋转代际、旧结果失效，显式验证重建；丢回执/取消请求保留未知任务和幂等，不自动重复执行。 | M02, M04-B(M04), M05 | HANDOFF_DETAILS.md+M02 plan.md / user_statement | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U19 | 清理只读及待选：预检失败仅清本次新暂存，盘点不删历史；长期24h自动回收或手动确认未选，保存/禁用/原件/未知历史/证据保护。 | M02, M05 | D-M02-RETENTION-013（pending，不是批准） / pending_choice | 只读盘点/失败新暂存已测，D-M02-RETENTION-013未回答、长期清理执行not_run。 |
+| R-U20 | 服务归属：先查5173/8000健康/拥有者/父链，不继承旧exec session，未知/PID变化拒绝操作；只停自己拥有且获批服务。 | M02, M08 | AGENTS.md+2026-10-27用户续接说明 / user_statement | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U21 | 真实证据门禁：实际命令/退出码/指纹/环境；mock不冒充真实，未验证not_run；M02未验收不closed，不因进度推进虚报生产。 | M01, M02, M08 | AGENTS.md+project-pdca / user_statement | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
+| R-U22 | 模块PRD与追踪：项目目录每模块有PRD，已提出需求可追踪到来源、实现、验收或not_run；未来模块不虚构完成。 | M01, M02, M04-A, M03, M04-B(M04), M05, M06, M07, M08, M09, M10, M11, M12 | 2026-10-27本轮用户PRD要求 / user_statement | 本轮文档实现；文档审计不是产品功能测试。 |
+| R-U23 | 大模型是核心能力：用户能配置自己的模型API，由真实调用驱动理解/生成；不能只做好数据连接而长期没有模型接入。 | M04-A, M04-B(M04) | 2026-10-27用户模型API反馈 / user_statement | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-U24 | 新优先级：M02收尾→M04-A模型API→M03语义库→M04-B LangGraph受控问数，同步PRD/Skill/规划；已批准方向，不越过当前验收。 | M02, M04-A, M03, M04-B(M04) | D-ROADMAP-MODEL-014（本轮登记） / user_decision | 本轮明确批准路线/编排方向；模型服务和LangGraph代码均未实现/未安装。 |
+| R-A01 | 模型服务分层：设置→模型服务和数据源连接器分开；管理员配置，业务选授权模型；ModelProvider薄适配优先，不为单API调用引入全套框架。 | M04-A, M04-B(M04) | 本轮采纳前一轮模型接入建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-A02 | 模型能力与协议：供应商/base URL/模型名称/凭证引用/能力/限额配置，实测认证及最小生成/流式/结构化/工具支持分别声明。API兼容标签不等于全支持。 | M04-A | 本轮采纳前一轮模型接入建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-A03 | 模型费用与失败：真实token用量/可核验费率；无费率显示未知，限制预算/最大输出/重试。401/403/429/超时/中断/部分输出有下一步，不假成功。 | M04-A, M08 | 本轮采纳前一轮模型接入建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-A04 | 模型数据外发：连接数据源不自动批准把表行/Schema/知识/日志发给LLM；单独确认供应商/域/地域/处理条款/最小上下文，私有部署不自动保证驻留。 | M04-A, M03, M04-B(M04), M12 | 产品方案14.2+本轮架构方向 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-A05 | LangGraph编排：M04-B优先LangGraph控制图，混合确定性检查和受限模型节点；M04-A薄适配不强依赖LangChain。具体版本/许可/安装待PLAN核验。 | M04-B(M04) | D-ROADMAP-MODEL-014（本轮登记） / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-A06 | 框架非安全边界：LangGraph检查点不保证查询恰好一次，复用幂等/回执/代际；不默认接外部LangSmith/追踪付费平台，不因框架让Agent无限工具。 | M04-B(M04), M05 | 本轮采纳前一轮架构建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P01 | 任务分类：取数/指标分析/体验洞察/建模/实验/普通对话；低置信多意图先选择，VOC独立授权，依赖操作串行。 | M04-B(M04), M09, M10, M11 | 产品方案6.1/6.8 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P02 | L1至L4治理：认证指标优先L1、审核模板L2、授权范围探索L3、明确目标L4；不机械全路试探，权限拒绝不换路线绕过。 | M03, M04-B(M04) | 产品方案6.2/6.7 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P03 | 关键口径澄清：指标版本/分子分母/粒度/实际时间字段/时区/币种/状态/基准集中澄清，只问缺关键项；已批准默认披露，不统一给所有表日期槽。 | M03, M04-B(M04) | 产品方案6.3+用户日期澄清 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P04 | 结构化语义包：Domain Pack包含manifest/metrics/glossary/entities/mappings/joins/clarification/templates/policies/quality-rules/examples/docs；导入校验/冲突/审批/版本回滚。 | M03 | 产品方案7 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P05 | 文档与执行知识区分：RAG仅解释/补充，不把未审文档变认证指标/权限；表映射绑定连接版本、关联基数/粒度，配置不带密码。 | M03, M04-B(M04) | 产品方案7/14.2 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P06 | SQL前后质检：所有平台SQL静态只读/白名单/方言/参数/权限/关联预算，LIMIT不等于扫描预算；结果类型单位/空值/唯一/膨胀/守恒/新鲜度/金标准检查。 | M02, M04-B(M04), M08 | 产品方案6.4 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P07 | Python质量：派生图表/归因/建模/实验代码均固定输入版本、依赖种子与输出Schema，资源网络隔离；模型自评不替代程序检查。 | M04-B(M04), M06, M09, M10, M11 | 产品方案6.5 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P08 | 来源质量分离：DIRECT_CERTIFIED/COMPUTED/INFERRED与PASS/WARN/FAIL独立；绿色不表示因果或绝对正确，推断不当已确认KPI进入正式看板。 | M04-B(M04), M05, M06, M07, M09, M11 | 产品方案6.6 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P09 | 能力声明：metadata/execution可分服务，source显式映射；ACL/方言/成本/取消/下载/分区能力unknown/unsupported不默认为true，按真实认证矩阵公布。 | M02, M04-B(M04), M08, M12 | 产品方案8 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P10 | 标准资产：不可变asset_id/version、hash、schema/row_count/grain/units/timezone/metric_contracts/provenance/quality/policy/retention；预览不当完整资产。 | M05, M06, M07, M09, M10, M11 | 产品方案9 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P11 | 派生和补数：派生资产input_asset_versions及操作参数代码血缘，权限取交集；下游通过DataRequirement回主干，允许已授权上传独立输入。 | M04-B(M04), M05, M06, M07, M09, M10, M11 | 产品方案5.3/9.3/9.4 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P12 | 正式任务和会话：鉴权持久任务/服务端历史、状态事件/幂等、权限撤销后缓存与导出失效；阶段性partial/expired明确，真正取消需上游回收回执。 | M05, M08 | 产品方案5.4/9.4+PRODUCT_UX_PRINCIPLES.md / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P13 | 可视化：KPI/趋势/条形/构成/明细与模板，ChartSpec/DashboardSpec布局/联动/钻取/筛选/刷新/版本/导出；根据真实资产语义选图，不执行任意生成HTMLJS。 | M06 | 产品方案10.1 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P14 | 报告证据：ReportSpec及claim_id固定数字/图表/资产版本，证据→结构→撰写→数字校验→用户审阅→发布，输出网页及首选一种导出格式另选；外发确认。 | M07 | 产品方案10.2 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P15 | 归因：同口径可比窗口/人群/单位，结构/漏斗/乘积/比例分解，贡献+交互/残差守恒及小样本警告，不称因果；Shapley仅方法需要时。 | M09, M07 | 产品方案11 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P16 | 建模IDE：资产/上传工作区、小型Notebook代码Markdown/运行停止/环境/Agent生成修复/图文件版本，Python优先；不复制VSCode全功能。 | M10 | 产品方案12 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P17 | 建模评估：固定快照/代码/环境/参数/种子/指标资源，训练验证测试切分/时间切分/泄漏不平衡检查/可用基线，离线登记不自动生产推断。 | M10 | 产品方案12.2 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P18 | AB分析：实验方案主要/护栏指标/MDE功效/随机单位窗口，SRM/曝光一致性/ITT/效应CI/多重或序贯方案；污染及SRM阻断正式结论，CUPED有条件。 | M11 | 产品方案13.1 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P19 | DID分析：有效对照/处理前覆盖/平行趋势证据/预期溢出组成，错位处理适配而非机械TWFE；局限与敏感性，无条件只描述。 | M11 | 产品方案13.2 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P20 | 在线分流排除：历史AB分析不等于在线实验；桶/互斥/曝光SDK/安全停止需独立接入需求与审批。 | M11, M12 | 产品方案13.3 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P21 | 权限驻留：服务端身份/RBAC/ABAC/行列ACL/导出分别鉴权，子Agent权限不高于发起者；文档和注释不可信，防注入不靠Prompt。 | M02, M03, M04-A, M04-B(M04), M05, M08, M12 | 产品方案14 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P22 | 评测：版本化真实金标准含正常/澄清/拒绝/空/超时/复用，报告正确率完整分母、延迟成本，90%/p95等旧建议待测不当成果。 | M04-A, M04-B(M04), M08 | 产品方案17 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P23 | 企业嵌入：iframe/React或WebComponent SDK/API，SSO短会话/服务器租户映射/来源postMessage，品牌/语言时区币种上下文配置安全底线不可关。 | M12, M01 | 产品方案16 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P24 | 部署与插件：模块化单体/独立Worker先行，不提前微服务/Temporal/K8s；ModuleManifest插件允许输入工具/资源网络、签名审查不覆盖权限。 | M08, M10, M12 | 产品方案15 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-P25 | 运营成本假设：经用户确认可复用任务为指标候选；模型/扫描/沙箱/存储/传输/重试计费边界、配额和拒绝；商业定价/团队时程是待验证假设。 | M04-A, M08, M12 | 产品方案18/19 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+
+## 验收映射
+- 每个模块PRD包含需求ID→功能→ACxx行为；当前M02源码与证据映射保持原plan及evidence，不以本表覆盖。
+- 后续模块先基于PRD写PLAN并冻结合同；没有真实环境用mock隔离测试，同时保留真实not_run。
+- 更新需求时保留ID及来源，追踪审批/变更影响；已验收模块不得因新增PRD被宣称重新完成或取消原验收。

@@ -1,0 +1,48 @@
+
+Running 8 tests using 1 worker
+
+(node:28324) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.3s)
+  ok 2 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (721ms)
+  ok 3 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.2s)
+  ok 4 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (685ms)
+  x  5 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (5.3s)
+(node:25192) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 6 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (742ms)
+  ok 7 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.2s)
+  ok 8 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (595ms)
+
+
+  1) tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow ──────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator:  getByText('API 已连接', { exact: true })
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeVisible" getByText('API 已连接', { exact: true }) with timeout 5000ms
+      - waiting for getByText('API 已连接', { exact: true })
+        13 × locator resolved to <span>API 已连接</span>
+           - unexpected value "hidden"
+
+
+      2 | const URL='http://127.0.0.1:5173';
+      3 | const EVIDENCE='project-control/modules/M01/evidence/ux-revision-002';
+    > 4 | async function online(page){await page.goto(URL);await expect(page.getByText('API 已连接',{exact:true})).toBeVisible();}
+        |                                                                                                       ^
+      5 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+      6 |
+      7 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:4:103)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:84:53
+
+    Error Context: tmp\m01-browser-results\workspace-mobile-themes-hi-5494a--and-tools-have-no-overflow\error-context.md
+
+  1 failed
+    tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow ───────
+  7 passed (16.0s)

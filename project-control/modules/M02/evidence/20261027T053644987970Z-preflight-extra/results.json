@@ -1,0 +1,37 @@
+{
+  "code_fingerprint": "ece6f0bdc3bd8beb7ea54a6b9b197e3befa6488a3f18b44b69b80815d8650e80",
+  "checks": [
+    {
+      "id": "preflight-and-readonly-storage",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_upload_preflight_storage.py",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "ece6f0bdc3bd8beb7ea54a6b9b197e3befa6488a3f18b44b69b80815d8650e80",
+      "log": "project-control/modules/M02/evidence/20261027T053644987970Z-preflight-extra/preflight-and-readonly-storage.txt"
+    },
+    {
+      "id": "warehouse-integrity",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "ece6f0bdc3bd8beb7ea54a6b9b197e3befa6488a3f18b44b69b80815d8650e80",
+      "log": "project-control/modules/M02/evidence/20261027T053644987970Z-preflight-extra/warehouse-integrity.txt"
+    }
+  ]
+}

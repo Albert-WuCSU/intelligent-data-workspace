@@ -1,0 +1,59 @@
+
+Running 18 tests using 1 worker
+
+(node:16188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (2.0s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.2s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (869ms)
+  ok  4 tests\remote-onboarding.spec.mjs:18:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (6.9s)
+  ok  5 tests\remote-onboarding.spec.mjs:33:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (969ms)
+  x   6 tests\remote-onboarding.spec.mjs:42:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (10.0s)
+(node:4316) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  7 tests\source-onboarding.spec.mjs:4:1 › user adds a source, saves, reconnects after reload and browses dates with no date filter (5.6s)
+  ok  8 tests\source-onboarding.spec.mjs:16:1 › nonsecret configuration import fills form but does not auto-connect; errors preserve input (638ms)
+  ok  9 tests\source-onboarding.spec.mjs:21:1 › mobile source navigation controls preserve visible themes without a time-filter input (592ms)
+  ok 10 tests\source-onboarding.spec.mjs:26:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters (6.9s)
+  ok 11 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.1s)
+  ok 12 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (745ms)
+  ok 13 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.2s)
+  ok 14 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (718ms)
+  ok 15 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (827ms)
+  ok 16 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (495ms)
+  ok 17 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok 18 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (701ms)
+
+
+  1) tests\remote-onboarding.spec.mjs:42:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect 
+
+    Error: expect(locator).not.toContainText(expected) failed
+
+    Locator: getByRole('article').filter({ has: getByRole('heading', { name: '恢复测试-1793076155766', exact: true }) })
+    Expected substring: not "上次读取失败"
+    Received string: "恢复测试-1793076155766HTTP MCP · http://127.0.0.1:56802/mcp · 上次读取失败，请重新连接最近真实测试：2026/10/27 12:42:37 · 版本 1连接并浏览配置禁用"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "not toContainText" getByRole('article').filter({ has: getByRole('heading', { name: '恢复测试-1793076155766', exact: true }) }) with timeout 5000ms
+      - waiting for getByRole('article').filter({ has: getByRole('heading', { name: '恢复测试-1793076155766', exact: true }) })
+        14 × locator resolved to <article class="result-card source-item">…</article>
+           - unexpected value "恢复测试-1793076155766HTTP MCP · http://127.0.0.1:56802/mcp · 上次读取失败，请重新连接最近真实测试：2026/10/27 12:42:37 · 版本 1连接并浏览配置禁用"
+
+
+      50 |   await card.getByRole('button',{name:'连接并浏览'}).click();await expect(page.getByRole('alert')).toContainText('CREDENTIAL_NOT_CONFIGURED');await expect(card).toContainText('上次读取失败，请重新连接');await expect(page.getByRole('region',{name:'数据表导航'})).toHaveCount(0);
+      51 |   await control(true);await expect(page.getByRole('region',{name:'数据表导航'})).toHaveCount(0);await card.getByRole('button',{name:'连接并浏览'}).click();await page.getByRole('region',{name:'数据表导航'}).getByRole('button',{name:'main.data'}).click();await expect(page.getByLabel('数据源前100行').getByRole('table')).toContainText('2025-01-01T12:00:00');
+    > 52 |   await expect(card).not.toContainText('上次读取失败');await page.screenshot({path:`${EVIDENCE}/worker-manual-recovery.png`,fullPage:true});await card.getByRole('button',{name:'禁用',exact:true}).click();
+         |                          ^
+      53 |  }finally{await control(true);}
+      54 | });
+      55 |
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:52:26
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-cre-931a0-s-only-after-manual-connect\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-cre-931a0-s-only-after-manual-connect\error-context.md
+
+  1 failed
+    tests\remote-onboarding.spec.mjs:42:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect 
+  17 passed (49.0s)

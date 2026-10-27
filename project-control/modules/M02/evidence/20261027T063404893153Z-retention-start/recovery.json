@@ -1,0 +1,22 @@
+{
+  "revision": 48,
+  "validation": "passed",
+  "source_manifest": "20261027T053552Z/sources.json",
+  "93_original_sources": "matched",
+  "ports": {
+    "5173": {
+      "pid": 2204,
+      "owner": "current_user",
+      "http": 200
+    },
+    "8000": {
+      "pid": 12504,
+      "owner": "current_user",
+      "http": 200,
+      "health_path": "/health/live"
+    }
+  },
+  "process_mutations": "none",
+  "retention_execution": "not_run",
+  "scope": "provenance, expiry, cross-process leases, readonly eligibility; deletion remains disabled"
+}

@@ -1,0 +1,35 @@
+# Dependencies and build outputs
+node_modules/
+dist/
+.venv/
+.pnpm-store/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+*.pyc
+
+# Credentials and local tool configuration (never upload)
+.env
+.env.*
+!.env.example
+.codex/
+.agents/
+.aws/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime data, user uploads and disposable test workspaces
+/data/connections/
+/tmp/
+*.log
+playwright-report/
+test-results/
+
+# Downloaded dependency artifacts; license/hash review evidence stays tracked
+*.whl
+
+# Ephemeral workflow drafts/locks; committed progress and checkpoints stay tracked
+/project-control/progress.draft.json
+/project-control/checkpoint.lock

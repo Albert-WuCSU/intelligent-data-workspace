@@ -1,0 +1,24 @@
+{
+  "code_fingerprint": "f6be3099846b40a9a6318e75ad331af01508dcacbef1e76efe0e9c4fad62289a",
+  "checks": [
+    {
+      "id": "xlsx-frame-probe",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\\u667a\u80fd\u95ee\u6570\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "tests/source-onboarding.spec.mjs",
+        "--grep",
+        "xlsx workbook",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "exit_code": 1,
+      "status": "failed",
+      "integration": "real",
+      "environment": "local",
+      "code_fingerprint": "f6be3099846b40a9a6318e75ad331af01508dcacbef1e76efe0e9c4fad62289a",
+      "log": "project-control/modules/M02/evidence/20261027T0836588969612Z-xlsx-frame-probe/browser.txt"
+    }
+  ]
+}

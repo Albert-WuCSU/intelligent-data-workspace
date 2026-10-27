@@ -1,0 +1,61 @@
+{
+  "checked_at": "2026-10-27T05:42:20.890476+00:00",
+  "code_fingerprint": "ece6f0bdc3bd8beb7ea54a6b9b197e3befa6488a3f18b44b69b80815d8650e80",
+  "source_files": 93,
+  "new_files": [
+    "services/api/src/data_workspace/storage_inventory.py",
+    "services/api/src/data_workspace/upload_preflight.py",
+    "services/api/tests/test_upload_preflight_storage.py"
+  ],
+  "changed_files": [
+    "apps/web/src/api.generated.ts",
+    "apps/web/src/api.ts",
+    "apps/web/src/DataSourceWorkspace.tsx",
+    "CONNECTORS.md",
+    "contracts/openapi.json",
+    "DEVELOPMENT.md",
+    "services/api/src/data_workspace/main.py",
+    "services/api/src/data_workspace/source_profiles.py",
+    "services/api/src/data_workspace/source_routes.py",
+    "services/api/src/data_workspace/worker_entry.py",
+    "services/api/src/data_workspace/worker_runtime.py",
+    "tests/remote-onboarding.spec.mjs"
+  ],
+  "five_locks_unchanged": true,
+  "inventory": {
+    "scan_state": "COMPLETE",
+    "uploads": {
+      "folders": 24,
+      "bytes": 108794,
+      "referenced_folders": 4,
+      "review_only_folders": 0,
+      "unknown_folders": 20
+    },
+    "snapshots": {
+      "folders": 24,
+      "bytes": 15774899,
+      "referenced_folders": 24,
+      "review_only_folders": 0,
+      "unknown_folders": 0
+    },
+    "staging": {
+      "folders": 0,
+      "bytes": 0,
+      "referenced_folders": 0,
+      "review_only_folders": 0,
+      "unknown_folders": 0
+    },
+    "saved_profiles": 24,
+    "unsaved_tests": 0,
+    "automatic_cleanup": false,
+    "note": "仅只读盘点，不执行删除。未引用不等于可安全删除，禁用连接仍保留数据；历史归属不明副本需要人工核查。"
+  },
+  "scope": "read-only current development server; maintenance counts, not business statistics; no deletion",
+  "api_pid": 12504,
+  "vite_pid": 2204,
+  "launcher_pid": 3152,
+  "health": "5173/8000 HTTP200",
+  "company_access": false,
+  "host_credentials_read": false,
+  "retention_execution": "not_run"
+}

@@ -1,0 +1,28 @@
+{
+  "reviewer": "self_review",
+  "repository": "Albert-WuCSU/intelligent-data-workspace",
+  "visibility_default": "private (no public publication requested)",
+  "authentication": "verified GitHub account matches requested owner; no credentials copied",
+  "README": "created; linked capability/status/setup/real evidence/limitations",
+  "git": "new main initialized, no original Git repository or history overwritten",
+  "candidate_snapshot": {
+    "files": 1000,
+    "MiB": 50.48,
+    "largestMiB": 5.26
+  },
+  "excluded": [
+    "dependencies",
+    "local tool configuration",
+    "secret files",
+    "data/connections user uploads/profiles/snapshots",
+    "tmp",
+    "downloaded wheels",
+    "ephemeral progress draft/locks"
+  ],
+  "scan": "common token/private-key/JWT/credential literal patterns; only explicit test sentinels; not comprehensive DLP",
+  "README_local_links": "all resolved",
+  "product_src_changes": "none; no service restarts/cleanup/installation/model/data access/deployment",
+  "remote_create": "not_run",
+  "push": "not_run",
+  "module_state": "M01 accepted/M02-C03 DO unchanged"
+}

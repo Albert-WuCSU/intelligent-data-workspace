@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "dataset_version": "synthetic-v1",
+  "source": "independently_generated_synthetic",
+  "synthetic": true,
+  "external_sources": [],
+  "sql_dialect": "duckdb",
+  "duckdb_version": "1.5.6",
+  "timezone": "UTC",
+  "currency": "TEST",
+  "seed_manifest_sha256": "42cc6d64f68f497d3ff28933f023ac94e229728fe105f98f06488d8377196b60",
+  "database_sha256": "9164678a73661f03e03645c9d26792b882153f2f7f98cca36f4ba1b661a88d0c",
+  "table_counts": {
+    "dim_customer": 1000,
+    "dim_product": 100,
+    "fact_order": 3000,
+    "fact_order_item": 6125,
+    "fact_event": 11671
+  },
+  "parquet": {
+    "dim_customer": {
+      "path": "parquet/dim_customer.parquet",
+      "sha256": "d06fbc206167941b6625d3ee111e9c8121dbaeef8c38581298a6ffcbe36adcaf",
+      "row_count": 1000
+    },
+    "dim_product": {
+      "path": "parquet/dim_product.parquet",
+      "sha256": "0f9d8cba5a810b599c9fec093f6aa26c7a54bbdf21ec88fd73469b17f0bcc321",
+      "row_count": 100
+    },
+    "fact_order": {
+      "path": "parquet/fact_order.parquet",
+      "sha256": "9fb272672ca2ded55b054eb1aca15def8a78b5e0068ce97ff0c5308b605c4f6f",
+      "row_count": 3000
+    },
+    "fact_order_item": {
+      "path": "parquet/fact_order_item.parquet",
+      "sha256": "87c86e7a22a9688ea05c80c51429c58a21fd8d1dd7ea9db3ba1c1f94f43fe679",
+      "row_count": 6125
+    },
+    "fact_event": {
+      "path": "parquet/fact_event.parquet",
+      "sha256": "52e5070940cc0196298e1f4b9fcaeb4bc77cad744c58a3e1b2bfcda5e69fcf7c",
+      "row_count": 11671
+    }
+  },
+  "golden_sql_checks": {
+    "status": "passed",
+    "actual": {
+      "order_count": 3000,
+      "paid_order_count": 2671,
+      "paid_amount_cents": 243410971
+    }
+  },
+  "partitioning": "date columns; one Parquet snapshot per table, not physically date-partitioned",
+  "limitations": [
+    "Designed synthetic distributions are not estimates of any enterprise",
+    "Events are order-session scenarios, not an unbiased population conversion funnel",
+    "90 days are simulated test dates, not a company partition sample",
+    "Modeling and experimental modules require additional purpose-built data and checks"
+  ]
+}

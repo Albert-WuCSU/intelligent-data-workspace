@@ -1,0 +1,76 @@
+{
+  "kind": "documentation-workflow",
+  "code_fingerprint": "84fbf763c1bbf43bff374b6151cfb656609e337178ce366bd7ca76ac04e411fd",
+  "checks": [
+    {
+      "id": "prd-consistency",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "project-control/prd/validate.py",
+        "--root",
+        ".",
+        "--installed-skill",
+        "D:/Users/luqianwu/.codex/skills/project-pdca"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "log": "project-control/modules/M02/evidence/20261027T062156667356Z-prd-roadmap/prd-consistency-final.txt",
+      "scope": "documentation/workflow only; product integration not_run this turn",
+      "code_fingerprint": "84fbf763c1bbf43bff374b6151cfb656609e337178ce366bd7ca76ac04e411fd"
+    },
+    {
+      "id": "prd-guardrails",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "project-control/prd/test_validate.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "log": "project-control/modules/M02/evidence/20261027T062156667356Z-prd-roadmap/prd-guardrails-final.txt",
+      "scope": "documentation/workflow only; product integration not_run this turn",
+      "code_fingerprint": "84fbf763c1bbf43bff374b6151cfb656609e337178ce366bd7ca76ac04e411fd"
+    },
+    {
+      "id": "progress-guardrails",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "skills/project-pdca/scripts/test_progress.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "log": "project-control/modules/M02/evidence/20261027T062156667356Z-prd-roadmap/progress-guardrails-final.txt",
+      "scope": "documentation/workflow only; product integration not_run this turn",
+      "code_fingerprint": "84fbf763c1bbf43bff374b6151cfb656609e337178ce366bd7ca76ac04e411fd"
+    },
+    {
+      "id": "progress-valid",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "skills/project-pdca/scripts/progress.py",
+        "validate",
+        "--root",
+        "."
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "log": "project-control/modules/M02/evidence/20261027T062156667356Z-prd-roadmap/progress-valid-final.txt",
+      "scope": "documentation/workflow only; product integration not_run this turn",
+      "code_fingerprint": "84fbf763c1bbf43bff374b6151cfb656609e337178ce366bd7ca76ac04e411fd"
+    }
+  ],
+  "official_skill_validator": "not_run:missing PyYAML, no deps installed; narrow frontmatter/ref/sync checks passed",
+  "scope": "Roadmap/PRD audit, NOT model/Agent/product new integration",
+  "product_test_reuse": "93 unchanged product files match last206/10/20 sources; full product regression not rerun"
+}

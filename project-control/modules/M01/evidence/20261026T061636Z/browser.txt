@@ -1,0 +1,11 @@
+
+Running 4 tests using 1 worker
+
+(node:4176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\workspace.spec.mjs:3:1 › real API contract validation, task registration and safe navigation (2.1s)
+  ok 2 tests\workspace.spec.mjs:39:1 › small-screen navigation has no horizontal overflow (445ms)
+  ok 3 tests\workspace.spec.mjs:46:1 › unavailable API shows failure and disables submission (620ms)
+  ok 4 tests\workspace.spec.mjs:54:1 › loading state is visible before API responds (1.2s)
+
+  4 passed (5.6s)

@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "id": "authenticated-http-api-real",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_remote_sources.py::test_real_authenticated_http_import_test_save_reload_preview_disable_and_no_secret_leak",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "integration": "real",
+      "environment": "local",
+      "log": "project-control/modules/M02/evidence/20261027T031952342756Z-remote-extra/authenticated-http-api-real.txt",
+      "code_fingerprint": "0db4585f76421ca6da4d8ccbefef99d5b1b403514cd1777176b0f9886e309baf"
+    },
+    {
+      "id": "warehouse-integrity",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "data_workspace.warehouse.verify"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "integration": "real",
+      "environment": "local",
+      "log": "project-control/modules/M02/evidence/20261027T031952342756Z-remote-extra/warehouse-integrity.txt",
+      "code_fingerprint": "0db4585f76421ca6da4d8ccbefef99d5b1b403514cd1777176b0f9886e309baf"
+    }
+  ],
+  "code_fingerprint": "0db4585f76421ca6da4d8ccbefef99d5b1b403514cd1777176b0f9886e309baf"
+}

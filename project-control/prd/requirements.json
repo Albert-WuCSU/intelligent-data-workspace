@@ -1,0 +1,1046 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-10-27",
+  "coverage_basis": "当前聊天、人类决策ledger、PRODUCT_UX_PRINCIPLES、现存产品方案和交接；不能声称恢复了项目外不可访问聊天。",
+  "requirements": [
+    {
+      "id": "R-U01",
+      "title": "真实Web产品",
+      "requirement": "用户要求最终为网站/应用，不接受仅CLI/API；当前Web优先，桌面包装后续按需。",
+      "modules": [
+        "M01",
+        "M12"
+      ],
+      "source": "D-SCOPE-001+D-M01-PLAN-001",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-SCOPE-001",
+        "D-M01-PLAN-001"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U02",
+      "title": "专业视觉",
+      "requirement": "科技感、专业数据工作台，减少泛AI装饰和虚夸文案，不复制截图业务数据。",
+      "modules": [
+        "M01",
+        "M06"
+      ],
+      "source": "D-M01-VISUAL-001",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M01-VISUAL-001"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U03",
+      "title": "黑白双主题",
+      "requirement": "顶部始终可见黑色/白色文字选项、选中态，刷新保持，手机可用，不隐藏为难发现图标。",
+      "modules": [
+        "M01",
+        "M06",
+        "M12"
+      ],
+      "source": "D-M01-UX-002+D-M01-THEME-VISIBLE-003",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M01-UX-002",
+        "D-M01-THEME-VISIBLE-003"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U04",
+      "title": "会话与历史",
+      "requirement": "业务默认左侧历史/中间连续长对话/底部追问；新建切换删除与多轮保留。开发localStorage仅文字，不是生产认证/跨设备历史。",
+      "modules": [
+        "M01",
+        "M04",
+        "M05"
+      ],
+      "source": "D-M01-UX-002",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M01-UX-002"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U05",
+      "title": "真实顶部状态",
+      "requirement": "pipeline置顶，只表达真实事件，未接入/失败/部分/恢复明确，不用动画模拟找表或SQL成功。",
+      "modules": [
+        "M01",
+        "M04",
+        "M08"
+      ],
+      "source": "D-M01-UX-002+PRODUCT_UX_PRINCIPLES.md",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M01-UX-002"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U06",
+      "title": "证据渐进披露",
+      "requirement": "Agent输出结果/口径/附件/来源质量/下一步优先，SQL/Schema/日志折叠在专业工具；业务不填JSON。",
+      "modules": [
+        "M01",
+        "M04",
+        "M06",
+        "M07"
+      ],
+      "source": "D-M01-UX-002",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M01-UX-002"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U07",
+      "title": "产品经理作品",
+      "requirement": "按角色、任务、可理解证据与可行动失败设计；保存真实取舍，不编造访谈、市场指标、业务收益。",
+      "modules": [
+        "M01",
+        "M08"
+      ],
+      "source": "PRODUCT_UX_PRINCIPLES.md",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U08",
+      "title": "状态化推进",
+      "requirement": "每模块PLAN/DO/CHECK/ACT、关键选择询问、真实测试审计与用户验收、检查点和新窗口交接；不重建已验收M01。",
+      "modules": [
+        "M01",
+        "M02",
+        "M08"
+      ],
+      "source": "D-WORKFLOW-UX-UPDATE-001+AGENTS.md",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-WORKFLOW-UX-UPDATE-001",
+        "D-M01-DELIVERY-003"
+      ],
+      "current_evidence_boundary": "M01本地已验收及累计回归；模型/生产历史部分仍按后续模块not_run。"
+    },
+    {
+      "id": "R-U09",
+      "title": "真实数仓主干",
+      "requirement": "取数Agent通过治理MCP/适配层获取授权真实元数据并运行SQL，目标可为Spark/Hive；数据资产是下游交接，不替代数仓连接。",
+      "modules": [
+        "M02",
+        "M04",
+        "M05"
+      ],
+      "source": "D-ARCH-001",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-ARCH-001"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U10",
+      "title": "独立合成测试",
+      "requirement": "本机测试仓与样例独立生成，合成结果不能冒充经营；不访问公司平台/复制宿主凭证，外部目标和生产另批。",
+      "modules": [
+        "M02",
+        "M04-A",
+        "M08",
+        "M12"
+      ],
+      "source": "D-M02-DATA-SOURCE-002+D-M02-ENGINE-003+AGENTS.md",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-DATA-SOURCE-002",
+        "D-M02-ENGINE-003"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U11",
+      "title": "自助数据接入",
+      "requirement": "新增数据源/配置MCP/非秘密连接文件导入，用户填地址或上传文件，实际测试再保存、刷新复用、编辑重测与启停；内置仓只是可选例。",
+      "modules": [
+        "M02"
+      ],
+      "source": "D-M02-UX-REWORK-005+D-M02-CONNECTOR-UX-005",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-UX-REWORK-005",
+        "D-M02-CONNECTOR-UX-005"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U12",
+      "title": "仅表导航",
+      "requirement": "连接器像Power Query：原表头/类型和前100行，无时间或其他筛选、不猜日期含义、不删日期字段；自然顺序不称最早/最新。",
+      "modules": [
+        "M02"
+      ],
+      "source": "D-M02-NAVIGATION-006+D-M02-TIME-CLARIFY-007",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-NAVIGATION-006",
+        "D-M02-TIME-CLARIFY-007"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U13",
+      "title": "本地文件范围",
+      "requirement": "DuckDB/UTF8 CSV/Parquet/.xlsx上传或后端受控路径；快照隔离、原文件不修改，路径与格式限额服务端落实。",
+      "modules": [
+        "M02",
+        "M05",
+        "M10"
+      ],
+      "source": "M02 plan.md+CONNECTORS.md+D-M02-XLSX-008",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-XLSX-008"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U14",
+      "title": "Excel兼容",
+      "requirement": "只读多可见sheet/中文标题/第一行表头/原日期/100行；公式宏外链不执行，旧xls/复杂报表不承诺，失败提示副本粘贴为值等。",
+      "modules": [
+        "M02",
+        "M10"
+      ],
+      "source": "D-M02-XLSX-008",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-XLSX-008"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U15",
+      "title": "PG及HTTP接入",
+      "requirement": "完整接入包含PG与受支持Streamable HTTP MCP；协议/工具/方言/权限逐项核验，未知不称兼容，真实PG目前not_run。",
+      "modules": [
+        "M02"
+      ],
+      "source": "D-M02-CONNECTOR-UX-005",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-CONNECTOR-UX-005"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U16",
+      "title": "A专用秘密引用",
+      "requirement": "只保存项目专用secret_ref与后端目标账号资源绑定，网页/JSON/日志不接明文秘密，前端/Worker不继承宿主凭证；不是生产密钥柜。",
+      "modules": [
+        "M02",
+        "M04-A",
+        "M12"
+      ],
+      "source": "D-M02-REMOTE-SECURITY-009",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json"
+      ],
+      "decision_ids": [
+        "D-M02-REMOTE-SECURITY-009"
+      ],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U17",
+      "title": "受限Worker与恢复",
+      "requirement": "上传预检/解析/SQL及工具调用资源受限，故障回收自己拥有Job、不盲杀服务，原数据保留，隔离不可用拒绝而不无限回退。",
+      "modules": [
+        "M02",
+        "M04",
+        "M10"
+      ],
+      "source": "2026-10-27用户继续Worker/stdIO要求+M02 plan.md",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U18",
+      "title": "不明任务不重提",
+      "requirement": "长驻MCP故障旋转代际、旧结果失效，显式验证重建；丢回执/取消请求保留未知任务和幂等，不自动重复执行。",
+      "modules": [
+        "M02",
+        "M04",
+        "M05"
+      ],
+      "source": "HANDOFF_DETAILS.md+M02 plan.md",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U19",
+      "title": "清理只读及待选",
+      "requirement": "预检失败仅清本次新暂存；A已批准：24h且归属可核实/无保存连接或有效测试及活动请求引用临时副本才回收，保存/禁用/原件/未知历史/证据保护。",
+      "modules": [
+        "M02",
+        "M05"
+      ],
+      "source": "D-M02-RETENTION-013（A已批准，执行not_run）",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/modules/M02/CLEANUP_STRATEGY.md"
+      ],
+      "decision_ids": [
+        "D-M02-RETENTION-013"
+      ],
+      "current_evidence_boundary": "预检和只读盘点已测，A策略已批准；长期TTL执行/引用竞态及跨重启验证not_run。"
+    },
+    {
+      "id": "R-U20",
+      "title": "服务归属",
+      "requirement": "先查5173/8000健康/拥有者/父链，不继承旧exec session，未知/PID变化拒绝操作；只停自己拥有且获批服务。",
+      "modules": [
+        "M02",
+        "M08"
+      ],
+      "source": "AGENTS.md+2026-10-27用户续接说明",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U21",
+      "title": "真实证据门禁",
+      "requirement": "实际命令/退出码/指纹/环境；mock不冒充真实，未验证not_run；M02未验收不closed，不因进度推进虚报生产。",
+      "modules": [
+        "M01",
+        "M02",
+        "M08"
+      ],
+      "source": "AGENTS.md+project-pdca",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。"
+    },
+    {
+      "id": "R-U22",
+      "title": "模块PRD与追踪",
+      "requirement": "项目目录每模块有PRD，已提出需求可追踪到来源、实现、验收或not_run；未来模块不虚构完成。",
+      "modules": [
+        "M01",
+        "M02",
+        "M04-A",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08",
+        "M09",
+        "M10",
+        "M11",
+        "M12"
+      ],
+      "source": "2026-10-27本轮用户PRD要求",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "本轮文档实现；文档审计不是产品功能测试。"
+    },
+    {
+      "id": "R-U23",
+      "title": "大模型是核心能力",
+      "requirement": "用户能配置自己的模型API，由真实调用驱动理解/生成；不能只做好数据连接而长期没有模型接入。",
+      "modules": [
+        "M04-A",
+        "M04"
+      ],
+      "source": "2026-10-27用户模型API反馈",
+      "origin": "user_statement",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-U24",
+      "title": "新优先级",
+      "requirement": "M02收尾→M04-A模型API→M03语义库→M04-B LangGraph受控问数，同步PRD/Skill/规划；已批准方向，不越过当前验收。",
+      "modules": [
+        "M02",
+        "M04-A",
+        "M03",
+        "M04"
+      ],
+      "source": "D-ROADMAP-MODEL-014（本轮登记）",
+      "origin": "user_decision",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/progress.json",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [
+        "D-ROADMAP-MODEL-014"
+      ],
+      "current_evidence_boundary": "本轮明确批准路线/编排方向；模型服务和LangGraph代码均未实现/未安装。"
+    },
+    {
+      "id": "R-A01",
+      "title": "模型服务分层",
+      "requirement": "设置→模型服务和数据源连接器分开；管理员配置，业务选授权模型；ModelProvider薄适配优先，不为单API调用引入全套框架。",
+      "modules": [
+        "M04-A",
+        "M04"
+      ],
+      "source": "本轮采纳前一轮模型接入建议",
+      "origin": "approved_direction",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-A02",
+      "title": "模型能力与协议",
+      "requirement": "供应商/base URL/模型名称/凭证引用/能力/限额配置，实测认证及最小生成/流式/结构化/工具支持分别声明。API兼容标签不等于全支持。",
+      "modules": [
+        "M04-A"
+      ],
+      "source": "本轮采纳前一轮模型接入建议",
+      "origin": "approved_direction",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-A03",
+      "title": "模型费用与失败",
+      "requirement": "真实token用量/可核验费率；无费率显示未知，限制预算/最大输出/重试。401/403/429/超时/中断/部分输出有下一步，不假成功。",
+      "modules": [
+        "M04-A",
+        "M08"
+      ],
+      "source": "本轮采纳前一轮模型接入建议",
+      "origin": "approved_direction",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-A04",
+      "title": "模型数据外发",
+      "requirement": "连接数据源不自动批准把表行/Schema/知识/日志发给LLM；单独确认供应商/域/地域/处理条款/最小上下文，私有部署不自动保证驻留。",
+      "modules": [
+        "M04-A",
+        "M03",
+        "M04",
+        "M12"
+      ],
+      "source": "产品方案14.2+本轮架构方向",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-A05",
+      "title": "LangGraph编排",
+      "requirement": "M04-B优先LangGraph控制图，混合确定性检查和受限模型节点；M04-A薄适配不强依赖LangChain。具体版本/许可/安装待PLAN核验。",
+      "modules": [
+        "M04"
+      ],
+      "source": "D-ROADMAP-MODEL-014（本轮登记）",
+      "origin": "approved_direction",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [
+        "D-ROADMAP-MODEL-014"
+      ],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-A06",
+      "title": "框架非安全边界",
+      "requirement": "LangGraph检查点不保证查询恰好一次，复用幂等/回执/代际；不默认接外部LangSmith/追踪付费平台，不因框架让Agent无限工具。",
+      "modules": [
+        "M04",
+        "M05"
+      ],
+      "source": "本轮采纳前一轮架构建议",
+      "origin": "approved_direction",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "project-control/PRODUCT_UX_PRINCIPLES.md",
+        "project-control/prd/USER_REQUESTS.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P01",
+      "title": "任务分类",
+      "requirement": "取数/指标分析/体验洞察/建模/实验/普通对话；低置信多意图先选择，VOC独立授权，依赖操作串行。",
+      "modules": [
+        "M04",
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "source": "产品方案6.1/6.8",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P02",
+      "title": "L1至L4治理",
+      "requirement": "认证指标优先L1、审核模板L2、授权范围探索L3、明确目标L4；不机械全路试探，权限拒绝不换路线绕过。",
+      "modules": [
+        "M03",
+        "M04"
+      ],
+      "source": "产品方案6.2/6.7",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P03",
+      "title": "关键口径澄清",
+      "requirement": "指标版本/分子分母/粒度/实际时间字段/时区/币种/状态/基准集中澄清，只问缺关键项；已批准默认披露，不统一给所有表日期槽。",
+      "modules": [
+        "M03",
+        "M04"
+      ],
+      "source": "产品方案6.3+用户日期澄清",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P04",
+      "title": "结构化语义包",
+      "requirement": "Domain Pack包含manifest/metrics/glossary/entities/mappings/joins/clarification/templates/policies/quality-rules/examples/docs；导入校验/冲突/审批/版本回滚。",
+      "modules": [
+        "M03"
+      ],
+      "source": "产品方案7",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P05",
+      "title": "文档与执行知识区分",
+      "requirement": "RAG仅解释/补充，不把未审文档变认证指标/权限；表映射绑定连接版本、关联基数/粒度，配置不带密码。",
+      "modules": [
+        "M03",
+        "M04"
+      ],
+      "source": "产品方案7/14.2",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P06",
+      "title": "SQL前后质检",
+      "requirement": "所有平台SQL静态只读/白名单/方言/参数/权限/关联预算，LIMIT不等于扫描预算；结果类型单位/空值/唯一/膨胀/守恒/新鲜度/金标准检查。",
+      "modules": [
+        "M02",
+        "M04",
+        "M08"
+      ],
+      "source": "产品方案6.4",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P07",
+      "title": "Python质量",
+      "requirement": "派生图表/归因/建模/实验代码均固定输入版本、依赖种子与输出Schema，资源网络隔离；模型自评不替代程序检查。",
+      "modules": [
+        "M04",
+        "M06",
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "source": "产品方案6.5",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P08",
+      "title": "来源质量分离",
+      "requirement": "DIRECT_CERTIFIED/COMPUTED/INFERRED与PASS/WARN/FAIL独立；绿色不表示因果或绝对正确，推断不当已确认KPI进入正式看板。",
+      "modules": [
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M09",
+        "M11"
+      ],
+      "source": "产品方案6.6",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P09",
+      "title": "能力声明",
+      "requirement": "metadata/execution可分服务，source显式映射；ACL/方言/成本/取消/下载/分区能力unknown/unsupported不默认为true，按真实认证矩阵公布。",
+      "modules": [
+        "M02",
+        "M04",
+        "M08",
+        "M12"
+      ],
+      "source": "产品方案8",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P10",
+      "title": "标准资产",
+      "requirement": "不可变asset_id/version、hash、schema/row_count/grain/units/timezone/metric_contracts/provenance/quality/policy/retention；预览不当完整资产。",
+      "modules": [
+        "M05",
+        "M06",
+        "M07",
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "source": "产品方案9",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P11",
+      "title": "派生和补数",
+      "requirement": "派生资产input_asset_versions及操作参数代码血缘，权限取交集；下游通过DataRequirement回主干，允许已授权上传独立输入。",
+      "modules": [
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "source": "产品方案5.3/9.3/9.4",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P12",
+      "title": "正式任务和会话",
+      "requirement": "鉴权持久任务/服务端历史、状态事件/幂等、权限撤销后缓存与导出失效；阶段性partial/expired明确，真正取消需上游回收回执。",
+      "modules": [
+        "M05",
+        "M08"
+      ],
+      "source": "产品方案5.4/9.4+PRODUCT_UX_PRINCIPLES.md",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P13",
+      "title": "可视化",
+      "requirement": "KPI/趋势/条形/构成/明细与模板，ChartSpec/DashboardSpec布局/联动/钻取/筛选/刷新/版本/导出；根据真实资产语义选图，不执行任意生成HTMLJS。",
+      "modules": [
+        "M06"
+      ],
+      "source": "产品方案10.1",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P14",
+      "title": "报告证据",
+      "requirement": "ReportSpec及claim_id固定数字/图表/资产版本，证据→结构→撰写→数字校验→用户审阅→发布，输出网页及首选一种导出格式另选；外发确认。",
+      "modules": [
+        "M07"
+      ],
+      "source": "产品方案10.2",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P15",
+      "title": "归因",
+      "requirement": "同口径可比窗口/人群/单位，结构/漏斗/乘积/比例分解，贡献+交互/残差守恒及小样本警告，不称因果；Shapley仅方法需要时。",
+      "modules": [
+        "M09",
+        "M07"
+      ],
+      "source": "产品方案11",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P16",
+      "title": "建模IDE",
+      "requirement": "资产/上传工作区、小型Notebook代码Markdown/运行停止/环境/Agent生成修复/图文件版本，Python优先；不复制VSCode全功能。",
+      "modules": [
+        "M10"
+      ],
+      "source": "产品方案12",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P17",
+      "title": "建模评估",
+      "requirement": "固定快照/代码/环境/参数/种子/指标资源，训练验证测试切分/时间切分/泄漏不平衡检查/可用基线，离线登记不自动生产推断。",
+      "modules": [
+        "M10"
+      ],
+      "source": "产品方案12.2",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P18",
+      "title": "AB分析",
+      "requirement": "实验方案主要/护栏指标/MDE功效/随机单位窗口，SRM/曝光一致性/ITT/效应CI/多重或序贯方案；污染及SRM阻断正式结论，CUPED有条件。",
+      "modules": [
+        "M11"
+      ],
+      "source": "产品方案13.1",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P19",
+      "title": "DID分析",
+      "requirement": "有效对照/处理前覆盖/平行趋势证据/预期溢出组成，错位处理适配而非机械TWFE；局限与敏感性，无条件只描述。",
+      "modules": [
+        "M11"
+      ],
+      "source": "产品方案13.2",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P20",
+      "title": "在线分流排除",
+      "requirement": "历史AB分析不等于在线实验；桶/互斥/曝光SDK/安全停止需独立接入需求与审批。",
+      "modules": [
+        "M11",
+        "M12"
+      ],
+      "source": "产品方案13.3",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P21",
+      "title": "权限驻留",
+      "requirement": "服务端身份/RBAC/ABAC/行列ACL/导出分别鉴权，子Agent权限不高于发起者；文档和注释不可信，防注入不靠Prompt。",
+      "modules": [
+        "M02",
+        "M03",
+        "M04-A",
+        "M04",
+        "M05",
+        "M08",
+        "M12"
+      ],
+      "source": "产品方案14",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P22",
+      "title": "评测",
+      "requirement": "版本化真实金标准含正常/澄清/拒绝/空/超时/复用，报告正确率完整分母、延迟成本，90%/p95等旧建议待测不当成果。",
+      "modules": [
+        "M04-A",
+        "M04",
+        "M08"
+      ],
+      "source": "产品方案17",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P23",
+      "title": "企业嵌入",
+      "requirement": "iframe/React或WebComponent SDK/API，SSO短会话/服务器租户映射/来源postMessage，品牌/语言时区币种上下文配置安全底线不可关。",
+      "modules": [
+        "M12",
+        "M01"
+      ],
+      "source": "产品方案16",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P24",
+      "title": "部署与插件",
+      "requirement": "模块化单体/独立Worker先行，不提前微服务/Temporal/K8s；ModuleManifest插件允许输入工具/资源网络、签名审查不覆盖权限。",
+      "modules": [
+        "M08",
+        "M10",
+        "M12"
+      ],
+      "source": "产品方案15",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-P25",
+      "title": "运营成本假设",
+      "requirement": "经用户确认可复用任务为指标候选；模型/扫描/沙箱/存储/传输/重试计费边界、配额和拒绝；商业定价/团队时程是待验证假设。",
+      "modules": [
+        "M04-A",
+        "M08",
+        "M12"
+      ],
+      "source": "产品方案18/19",
+      "origin": "product_plan",
+      "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
+      "source_refs": [
+        "output/product-plan/产品策划方案V0.1.md"
+      ],
+      "decision_ids": [],
+      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    }
+  ],
+  "sources": {
+    "human_decisions": "project-control/progress.json",
+    "user_principles": "project-control/PRODUCT_UX_PRINCIPLES.md",
+    "handoff": "project-control/HANDOFF_DETAILS.md",
+    "original_plan": "output/product-plan/产品策划方案V0.1.md",
+    "m02_plan": "project-control/modules/M02/plan.md",
+    "pending_retention": "project-control/modules/M02/CLEANUP_STRATEGY.md"
+  }
+}

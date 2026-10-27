@@ -1,0 +1,12 @@
+tables:
+  - datasource_id: TO_CONFIRM
+    full_table_name: TO_CONFIRM
+    entity_id: customer
+    business_purpose: TO_CONFIRM
+    row_grain: TO_CONFIRM
+    primary_keys: []
+    partition_fields: []
+    allowed_fields: []
+    freshness_rule: TO_CONFIRM
+    sensitivity: TO_CONFIRM
+    owner: TO_CONFIRM

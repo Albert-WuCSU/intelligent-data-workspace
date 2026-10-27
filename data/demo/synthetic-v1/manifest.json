@@ -1,0 +1,118 @@
+{
+  "schema_version": "1.0",
+  "source": "independently_generated_synthetic",
+  "external_sources": [],
+  "synthetic": true,
+  "parameters": {
+    "seed": 20261026,
+    "customers": 1000,
+    "products": 100,
+    "orders": 3000,
+    "days": 90
+  },
+  "timezone": "UTC",
+  "currency": "TEST",
+  "tables": {
+    "dim_customer": {
+      "path": "dim_customer.jsonl",
+      "row_count": 1000,
+      "sha256": "5ccf685c561d5b57aa14343da6d7c0804663b92d02a46d8144d1ae58554fb642",
+      "bytes": 145498,
+      "fields": [
+        "customer_id",
+        "region_group",
+        "segment",
+        "registered_date",
+        "snapshot_date"
+      ]
+    },
+    "dim_product": {
+      "path": "dim_product.jsonl",
+      "row_count": 100,
+      "sha256": "d7b3057deb3b5af93f1fbc97c1f1dcd9bcd0abe2870b35a02f7507aa835b148c",
+      "bytes": 13273,
+      "fields": [
+        "product_id",
+        "category",
+        "unit_price_cents",
+        "currency",
+        "snapshot_date"
+      ]
+    },
+    "fact_order": {
+      "path": "fact_order.jsonl",
+      "row_count": 3000,
+      "sha256": "6eac1bb666f347de5140b0ce63116f510a98d4e6a82be46c5194463ead0c3375",
+      "bytes": 908684,
+      "fields": [
+        "order_id",
+        "customer_id",
+        "ordered_at",
+        "paid_at",
+        "status",
+        "channel",
+        "gross_amount_cents",
+        "discount_cents",
+        "paid_amount_cents",
+        "currency",
+        "partition_date"
+      ]
+    },
+    "fact_order_item": {
+      "path": "fact_order_item.jsonl",
+      "row_count": 6125,
+      "sha256": "1bb64b26604457d9071cd5623c018bc6b5d03aece6641fd2ba8e4150ca4fa4e9",
+      "bytes": 1192495,
+      "fields": [
+        "order_item_id",
+        "order_id",
+        "product_id",
+        "quantity",
+        "unit_price_cents",
+        "line_amount_cents",
+        "partition_date"
+      ]
+    },
+    "fact_event": {
+      "path": "fact_event.jsonl",
+      "row_count": 11671,
+      "sha256": "f2d181b6f77958c1223aec4baaf95d556edc20e10132231225daf3c6bd168cb8",
+      "bytes": 2727927,
+      "fields": [
+        "event_id",
+        "customer_id",
+        "session_id",
+        "order_id",
+        "event_type",
+        "event_at",
+        "channel",
+        "partition_date"
+      ]
+    }
+  },
+  "quality": {
+    "status": "passed",
+    "checks": [
+      "synthetic_primary_keys",
+      "referential_integrity",
+      "integer_money_conservation",
+      "payment_consistency",
+      "date_partitions",
+      "event_consistency"
+    ],
+    "scope": "generator invariants only; not privacy certification or real business validation"
+  },
+  "golden_checks": {
+    "order_count": 3000,
+    "paid_order_count": 2671,
+    "paid_amount_cents": 243410971,
+    "currency": "TEST",
+    "note": "synthetic expected SQL results, not real business figures"
+  },
+  "limitations": [
+    "Designed synthetic distributions are not estimates of any enterprise",
+    "Events are order-session scenarios, not an unbiased population conversion funnel",
+    "90 days are simulated test dates, not a company partition sample",
+    "Modeling and experimental modules require additional purpose-built data and checks"
+  ]
+}

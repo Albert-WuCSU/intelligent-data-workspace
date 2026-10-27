@@ -1,0 +1,41 @@
+
+Running 8 tests using 1 worker
+
+(node:28500) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (4.0s)
+  ok 2 tests\workspace.spec.mjs:46:1 › black and white themes persist through reload (693ms)
+  ok 3 tests\workspace.spec.mjs:55:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.2s)
+  ok 4 tests\workspace.spec.mjs:70:1 › API validation snapshots are not persisted as authentic results on reload (730ms)
+  x  5 tests\workspace.spec.mjs:77:1 › mobile themes, history access and tools have no overflow (570ms)
+(node:4672) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 6 tests\workspace.spec.mjs:88:1 › unavailable API shows failure and disables input (774ms)
+  ok 7 tests\workspace.spec.mjs:94:1 › loading state is visible before API responds (1.2s)
+  ok 8 tests\workspace.spec.mjs:99:1 › stored text is escaped rather than executed as HTML (642ms)
+
+
+  1) tests\workspace.spec.mjs:77:1 › mobile themes, history access and tools have no overflow ──────
+
+    Error: locator.click: Error: strict mode violation: getByRole('button', { name: '切换浅色主题' }) resolved to 2 elements:
+        1) <button title="切换浅色主题" aria-label="切换浅色主题" class="theme-button">…</button> aka getByRole('button', { name: '切换浅色主题', description: '切换浅色主题' })
+        2) <button aria-label="切换浅色主题" class="theme-button header-theme">…</button> aka getByRole('main').getByRole('button', { name: '切换浅色主题' })
+
+    Call log:
+      - waiting for getByRole('button', { name: '切换浅色主题' })
+
+
+      80 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+      81 |  await page.screenshot({path:`${EVIDENCE}/mobile-dark.png`,fullPage:true});
+    > 82 |  await page.getByRole('button',{name:'切换浅色主题'}).click();await page.screenshot({path:`${EVIDENCE}/mobile-light.png`,fullPage:true});
+         |                                                 ^
+      83 |  await page.getByRole('button',{name:'打开侧栏'}).click();await expect(page.locator('.history-select').filter({hasText:'手机端测试'})).toBeVisible();
+      84 |  await page.getByRole('button',{name:'关闭侧栏'}).click();await openTools(page);
+      85 |  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.getByRole('button',{name:'关闭开发工具'}).click();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:82:49
+
+    Error Context: tmp\m01-browser-results\workspace-mobile-themes-hi-5494a--and-tools-have-no-overflow\error-context.md
+
+  1 failed
+    tests\workspace.spec.mjs:77:1 › mobile themes, history access and tools have no overflow ───────
+  7 passed (12.3s)

@@ -1,0 +1,31 @@
+
+Running 1 test using 1 worker
+
+source-upload-frame {"bytes":246,"declared":null}
+source-upload-status 422
+  x  1 tests\source-onboarding.spec.mjs:49:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters (30.1s)
+
+
+  1) tests\source-onboarding.spec.mjs:49:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: page.waitForResponse: Test timeout of 30000ms exceeded.
+
+      54 |  await page.getByRole('checkbox',{name:'我有权使用此文件',exact:false}).check();
+      55 |  // Await the bounded real HTTP operation before the unchanged 5s DOM assertion.
+    > 56 |  const completed=page.waitForResponse(r=>r.url().includes('/api/v1/source-profiles/test')&&r.request().method()==='POST',{timeout:30000});
+         |                       ^
+      57 |  await page.getByRole('button',{name:'测试连接',exact:true}).click();
+      58 |  const receipt=await completed;expect(receipt.status()).toBe(200);expect((await receipt.json()).tables).toHaveLength(2);
+      59 |  await expect(page.getByRole('status')).toContainText('2 张表');await page.getByRole('button',{name:'保存连接'}).click();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:56:23
+
+    Error Context: tmp\m01-browser-results\source-onboarding-xlsx-wor-0d462-olumns-without-time-filters\error-context.md
+
+    Error Context: tmp\m01-browser-results\source-onboarding-xlsx-wor-0d462-olumns-without-time-filters\error-context.md
+
+  1 failed
+    tests\source-onboarding.spec.mjs:49:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters 
+(node:4996) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)

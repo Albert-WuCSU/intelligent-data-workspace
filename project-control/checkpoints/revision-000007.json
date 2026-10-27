@@ -1,0 +1,662 @@
+{
+  "schema_version": 1,
+  "revision": 7,
+  "updated_at": "2026-10-26T06:21:18.732818+00:00",
+  "project": {
+    "id": "universal-data-agent",
+    "name": "通用企业智能数据分析平台",
+    "source_refs": [
+      "project-control/PROJECT_BRIEF.md",
+      "output/product-plan/产品策划方案V0.1.md"
+    ],
+    "scope": {
+      "status": "approved_mvp",
+      "recommended_mvp": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08"
+      ],
+      "later_modules": [
+        "M09",
+        "M10",
+        "M11",
+        "M12"
+      ],
+      "approved_stack": [
+        "React/TypeScript/Vite",
+        "Python/FastAPI/Pydantic v2",
+        "PostgreSQL目标控制面（M05）",
+        "Arrow/Parquet资产合同",
+        "S3兼容存储接口"
+      ],
+      "candidates": [
+        "React/TypeScript/Vite",
+        "Python/FastAPI/Pydantic",
+        "PostgreSQL",
+        "Arrow/Parquet",
+        "S3-compatible interface"
+      ],
+      "deployment": "本地开发；目标内网/受控服务器部署另行审批",
+      "execution_provider": "not_confirmed",
+      "approved_mvp": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07",
+        "M08"
+      ],
+      "product_form_requirement": "有界面的应用程序或网站，不接受仅CLI或API作为最终产品",
+      "proposed_product_form": "Web工作台优先，桌面包装可后续扩展；待D-M01-PLAN-001确认",
+      "product_form": "Web工作台优先，桌面封装后续按需确认"
+    }
+  },
+  "status": "awaiting_decision",
+  "active_module": "M01",
+  "modules": [
+    {
+      "id": "M01",
+      "name": "工程底座与核心合同",
+      "milestone": "MVP",
+      "depends_on": [],
+      "status": "active",
+      "phase": "act",
+      "cycle_id": "M01-C01",
+      "maturity": "local_ready",
+      "plan_ref": "project-control/modules/M01/plan.md",
+      "approvals": {
+        "plan": "D-M01-PLAN-001",
+        "delivery": null
+      },
+      "implementation_items": [
+        {
+          "id": "M01-I01",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace"
+          ]
+        },
+        {
+          "id": "M01-I02",
+          "status": "done",
+          "paths": [
+            "contracts",
+            "apps/web/src/api.generated.ts"
+          ]
+        },
+        {
+          "id": "M01-I03",
+          "status": "done",
+          "paths": [
+            "apps/web/src/App.tsx",
+            "apps/web/src/styles.css"
+          ]
+        },
+        {
+          "id": "M01-I04",
+          "status": "done",
+          "paths": [
+            "services/api/tests",
+            "apps/web/src/api.test.ts",
+            "tests",
+            "scripts/dev.py",
+            "scripts/check.py",
+            "DEVELOPMENT.md"
+          ]
+        }
+      ],
+      "tests": [
+        {
+          "id": "backend",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pytest services/api/tests -q",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "dependency-check",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe -m pip check",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "types",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc --noEmit",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "build",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js build",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "frontend",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs run",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        },
+        {
+          "id": "browser",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "command": "C:\\Program Files\\nodejs\\node.EXE D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js test --config playwright.config.mjs",
+          "exit_code": 0,
+          "code_fingerprint": "83f7125088841e76dcb47ec2ae029276034018159812ffa3451bbb21683007eb",
+          "evidence_id": "M01-CHECK-FINAL"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "M01-CHECK-FINAL",
+          "kind": "test",
+          "path": "project-control/modules/M01/evidence/20261026T061908Z/results.json",
+          "sha256": "6ff85d2fa1f542751f9af7801626c372d1b5fab45b21245d51fcaf780ccc688c",
+          "stale": false
+        },
+        {
+          "id": "M01-AUDIT-FINAL",
+          "kind": "audit",
+          "path": "project-control/modules/M01/evidence/audit-final.md",
+          "sha256": "04a202ca63606b647e45cdf4ee1c9ae5b3e6532e853509ce6f8a370d8aa8fdad",
+          "stale": false
+        },
+        {
+          "id": "M01-DESKTOP",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/workspace-desktop.png",
+          "sha256": "3fafb55a0ed01a52cb1a0b4fc9f2dfe78536ffbe75582358b3052fe7a3e08942",
+          "stale": false
+        },
+        {
+          "id": "M01-MOBILE",
+          "kind": "demo",
+          "path": "project-control/modules/M01/evidence/workspace-mobile.png",
+          "sha256": "78896cf7d2c6a4e3e62e63d7e18980eee1b353643583631d9a3ccef82c68a18f",
+          "stale": false
+        }
+      ],
+      "audit": {
+        "verdict": "pass",
+        "reviewer": "self_review",
+        "evidence_id": "M01-AUDIT-FINAL"
+      },
+      "risks": [
+        {
+          "id": "httpx-deprecation",
+          "severity": "low",
+          "resolved": false,
+          "description": "当前TestClient对httpx有弃用提示，现有锁定版本通过；升级需回归。"
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "name": "MCP元数据与SQL执行",
+      "milestone": "MVP",
+      "depends_on": [
+        "M01"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M02-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M03",
+      "name": "企业语义知识库",
+      "milestone": "MVP",
+      "depends_on": [
+        "M01",
+        "M02"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M03-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M04",
+      "name": "取数Agent与Harness",
+      "milestone": "MVP",
+      "depends_on": [
+        "M02",
+        "M03"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M04-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M05",
+      "name": "数据资产生命周期与任务",
+      "milestone": "MVP",
+      "depends_on": [
+        "M01",
+        "M04"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M05-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M06",
+      "name": "可视化工作台",
+      "milestone": "MVP",
+      "depends_on": [
+        "M05"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M06-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M07",
+      "name": "证据化分析报告",
+      "milestone": "MVP",
+      "depends_on": [
+        "M05",
+        "M06"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M07-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M08",
+      "name": "MVP集成与交付审计",
+      "milestone": "MVP",
+      "depends_on": [
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06",
+        "M07"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M08-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M09",
+      "name": "指标归因",
+      "milestone": "EXPANSION",
+      "depends_on": [
+        "M08"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M09-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M10",
+      "name": "建模工作台",
+      "milestone": "EXPANSION",
+      "depends_on": [
+        "M08"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M10-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M11",
+      "name": "实验分析AB与DID",
+      "milestone": "EXPANSION",
+      "depends_on": [
+        "M08"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M11-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    },
+    {
+      "id": "M12",
+      "name": "企业SaaS接入与完整交付",
+      "milestone": "ENTERPRISE",
+      "depends_on": [
+        "M09",
+        "M10",
+        "M11"
+      ],
+      "status": "pending",
+      "phase": "plan",
+      "cycle_id": "M12-C01",
+      "maturity": "not_verified",
+      "plan_ref": null,
+      "approvals": {
+        "plan": null,
+        "delivery": null
+      },
+      "implementation_items": [],
+      "tests": [],
+      "evidence": [],
+      "audit": {
+        "verdict": "not_run",
+        "reviewer": null,
+        "evidence_id": null
+      },
+      "risks": []
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-ARCH-001",
+      "kind": "scope",
+      "module_id": null,
+      "cycle_id": null,
+      "source": "user",
+      "user_statement": "我需要的最核心的取数agent是可以直接使用mcp调用spark,hive等引擎运行SQL的",
+      "selected_option": "取数主干接入真实元数据及执行平台；标准契约用于取数后的模块交接",
+      "rationale": "用户明确纠正架构，随后确认继续。",
+      "recorded_at": "2026-10-26",
+      "source_type": "conversation"
+    },
+    {
+      "id": "D-SCOPE-001",
+      "kind": "scope",
+      "module_id": null,
+      "cycle_id": null,
+      "source": "user",
+      "user_statement": "采用推荐方案，提前说一下我对最终产品的设想是有个应用程序，或者有个网站",
+      "selected_option": "A 精简MVP M01至M08",
+      "rationale": "用户明确采用上一轮唯一推荐的首期范围。具体M01技术及Web优先仍待新决策确认。",
+      "recorded_at": "2026-10-26T05:49:35.622555+00:00"
+    },
+    {
+      "id": "D-M01-PLAN-001",
+      "kind": "plan",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "确认",
+      "selected_option": "A Web优先 React/TypeScript/Vite + Python/FastAPI，按M01计划实施",
+      "rationale": "确认上一轮明确的Web优先实施方案。",
+      "recorded_at": "2026-10-26T05:52:58.059523+00:00"
+    },
+    {
+      "id": "D-M01-VISUAL-001",
+      "kind": "change",
+      "module_id": "M01",
+      "cycle_id": "M01-C01",
+      "source": "user",
+      "user_statement": "网页前端的ai味不要太重，想要科技感强，炫酷一点的",
+      "selected_option": "加强科技感、减少AI式文案与装饰；执行深色专业数据终端方向",
+      "rationale": "用户明确要求调整视觉，具体配色为实现方案，待视觉验收。",
+      "recorded_at": "2026-10-26T06:18:38.290666+00:00"
+    }
+  ],
+  "pending_decision": {
+    "id": "D-M01-DELIVERY-001",
+    "blocking": true,
+    "question": "是否验收M01本地网页及API底座，并进入M02真实MCP连接规划？",
+    "recommended": "A",
+    "affects": [
+      "M01",
+      "M02"
+    ],
+    "options": [
+      {
+        "id": "A",
+        "label": "验收M01",
+        "tradeoff": "接受本地底座及当前视觉，开始M02连接规划；不等于生产上线。"
+      },
+      {
+        "id": "B",
+        "label": "继续调整",
+        "tradeoff": "说明需修改的交互或视觉，本模块返工后重新验证。"
+      }
+    ]
+  },
+  "next_action": {
+    "kind": "user_decision",
+    "decision_id": "D-M01-DELIVERY-001",
+    "description": "请用户预览并验收M01；确认后追加delivery批准，关闭M01，进入M02 PLAN核对真实连接路径。",
+    "read_refs": [
+      "project-control/modules/M01/evidence/audit-final.md",
+      "DEVELOPMENT.md"
+    ],
+    "commands": []
+  },
+  "release_gates": [
+    {
+      "id": "RG-REAL-MCP",
+      "status": "not_run",
+      "description": "真实MCP元数据及Spark/Hive或客户SQL平台联通与对账"
+    },
+    {
+      "id": "RG-TENANT",
+      "status": "not_run",
+      "description": "跨租户及行列权限、安全和导出检查"
+    },
+    {
+      "id": "RG-MVP-E2E",
+      "status": "not_run",
+      "description": "提问到资产、大屏、报告的真实端到端流程"
+    },
+    {
+      "id": "RG-DEPLOY",
+      "status": "not_run",
+      "description": "目标环境部署、恢复、预算及运维验收"
+    }
+  ],
+  "change_impacts": [
+    {
+      "id": "CHANGE-M01-VISUAL-001",
+      "modules": [
+        "M01"
+      ],
+      "reason": "用户调整UI视觉：深色专业终端、克制冷色、清晰网格和工具式文案。API合同及技术栈不变。",
+      "affected_tests": [
+        "types",
+        "build",
+        "frontend",
+        "browser"
+      ],
+      "action": "复跑UI及完整验收；上一轮检查仍为历史证据，不代表新界面已验证。"
+    }
+  ],
+  "blockers": [],
+  "working_state": [
+    "M01本地实现和self_review审计通过，后端38/前端3/浏览器4测试通过，待用户验收。",
+    "用户要求低AI味、科技感已改深色专业数据终端，桌面及手机截图已检查。",
+    "本机预览服务运行中（exec session29102）：127.0.0.1:5173及8000，由scripts/dev.py启动；只loopback。",
+    "没有真实MCP/SQL、LLM、生产认证或持久数据；任务FAILED表示未执行，M02尚未开始。"
+  ],
+  "session": {
+    "recommend_new_chat": true,
+    "new_chat_reason": "M01到达交付验收边界；验收后切换M02真实连接专业模块，适合在同一项目新对话读取档案续接，也可继续本对话。"
+  },
+  "tooling_delivery": {
+    "skill_name": "project-pdca",
+    "source_ref": "skills/project-pdca/SKILL.md",
+    "audit_ref": "project-control/TOOLING_AUDIT.md",
+    "validation": "passed",
+    "tests_passed": 21,
+    "tests_ref": "tmp/pdca-tests/installed-test-results.txt",
+    "scope": "project_workflow_only"
+  }
+}

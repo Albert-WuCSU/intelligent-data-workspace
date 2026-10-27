@@ -1,0 +1,6 @@
+interface:
+  display_name: "项目滚动推进"
+  short_description: "按模块规划实现测试审计并保存进度 在关键决策节点征询意见并支持新对话续接"
+  default_prompt: "使用 $project-pdca 读取项目进度，在已确认范围内继续推进，并在关键决策处征询我的意见。"
+policy:
+  allow_implicit_invocation: true
