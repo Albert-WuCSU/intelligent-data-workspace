@@ -1,0 +1,21 @@
+{
+  "reviewer": "self_review",
+  "repository": "Albert-WuCSU/intelligent-data-workspace",
+  "url": "https://github.com/Albert-WuCSU/intelligent-data-workspace",
+  "visibility": "private",
+  "branch": "main",
+  "first_source_commit": "2422460f046054a0985251e77af702e8852cbffa",
+  "remote_first_sha_verified": true,
+  "README_git_blob": "71aff8f98eb6748768ea3493650ae78b5f5ff28a",
+  "remote_README_blob_verified": true,
+  "tracked_files": 1005,
+  "initial_git_status": "clean main...origin/main",
+  "create": "passed exit0",
+  "initial_commit": "passed exit0",
+  "initial_push": "passed exit0",
+  "GitHub_read_verification": "passed repo view, commit SHA, README metadata",
+  "excluded": "secret/local tool config, dependencies, data/connections runtime user data, tmp, wheels, workflow draft/locks",
+  "code_and_latest_test_source_manifest": "99 product/source files matched previous saved evidence; no product edits/tests rerun this repository task",
+  "default_cleanup_PG_deployment": "not_run/unmodified",
+  "followup": "checkpoint sync receipt will be committed/pushed separately; no self-referential final commit SHA in progress"
+}

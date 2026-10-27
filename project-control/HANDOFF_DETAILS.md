@@ -242,3 +242,8 @@ Excel失败根因是路径文件在Chrome拦截只提供246字节multipart骨架
 ## GitHub私有仓库已创建
 
 Albert-WuCSU/intelligent-data-workspace创建退出0，repo view确认private/ADMIN。README、安全ignore和逐字节暂存核对完成，没有真实密钥（测试哨兵不当凭证）。本仓库使用GitHub noreply作者，仅local配置；未改全局credential，commit/push待运行。原CRLF和二进制保留不影响原证据hash；文档旧空白未为commit批量修。M02仍DO/自动启用PG真实not_run，不是部署。
+
+
+## GitHub首次同步成功（2026-10-27）
+
+私有https://github.com/Albert-WuCSU/intelligent-data-workspace，main首源码提交2422460f046054a0985251e77af702e8852cbffa；创建/commit/push退出0，repo view/远端提交SHA和README blob均实际核对一致。README补能力/边界/运行/证据/路线/截图；1005文件首次提交，Git仅local noreply作者和origin，临时/helper按命令使用既有CLI身份不复制令牌。用户上传/保存运行数据、依赖/tmp/本地工具配置/wheels/draft不上传且不删。99产品源码与旧source manifest一致，未重跑产品或部署，M02仍DO、默认周期和PG真实not_run。最终此交接和回执记录另作commit/push，不将上传当模块验收。
