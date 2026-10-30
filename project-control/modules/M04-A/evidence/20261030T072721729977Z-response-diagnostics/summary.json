@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-30T07:33:09.006083+00:00",
+  "reviewer": "self_review",
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "results_ref": "project-control/modules/M04-A/evidence/20261030T072722Z/results.json",
+  "source_count": 120,
+  "fingerprint": "58edbc28c3ee292782bdc7039e9f43e5f14eb9b379bd3b233023290236c96b28",
+  "counts": {
+    "backend": 409,
+    "model_specific": 122,
+    "frontend": 16,
+    "browser": 32
+  },
+  "real_latest_result": "MODEL_RESPONSE_INVALID failed, precisecauseunknown",
+  "actualcost": "unknown,1.50USD isestimatedreserve",
+  "assistant_gateway_calls": 0,
+  "diagnostic_real_test": "pendinguserexplicitrequestafterupdating",
+  "secretaccess": "none"
+}

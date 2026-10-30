@@ -1,0 +1,21 @@
+{
+  "reviewer": "self_review",
+  "scope": "bounded MVP critical-path readiness, not final module audit",
+  "validated_revision": 69,
+  "source_manifest": "project-control/modules/M02/evidence/20261028T024336Z/sources.json",
+  "source_files_103": "all matched",
+  "reused_checks": "saved281 backend/10 frontend/24 browser only, not rerun this turn",
+  "actual_available": "authenticated local source API/MCP metadata and bounded preview, controlled Worker and A retention",
+  "missing": "actual model endpoint/configuration, natural-language query planning, single-table aggregation, minimal approved semantics, LangGraph integration",
+  "environment": "existing httpx available; LangGraph/OpenAI/YAML modules absent; nothing installed or externally queried",
+  "remaining_gates": [
+    "postgresql-onboarding not_run",
+    "worker-os-hardlimits-recovery aggregate audit not_run",
+    "M02 delivery not_accepted",
+    "model endpoint/egress/budget not_approved"
+  ],
+  "proposed_scope_ref": "project-control/MVP_FAST_TRACK.md",
+  "provider_access": "not_run",
+  "data_egress": "none",
+  "services": "5173/8000 health200, no restart or owner mutation"
+}

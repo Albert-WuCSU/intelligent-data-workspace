@@ -25,44 +25,65 @@ async function openSources(page){
   await route.fulfill({response});
  });
  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('region',{name:'数据源连接管理'})).toBeVisible();await expect(page.getByRole('button',{name:'新增数据源'})).toBeEnabled();}
-test('user adds a source, saves, reconnects after reload and browses dates with no date filter',async({page})=>{
- const name=`日期数据源-${Date.now()}`;
+async function openChat(page){
+ await page.route('**/api/v1/source-profiles**',async route=>{
+  const request=route.request(),url=new URL(request.url()),bytes=request.postDataBuffer(),headers={...request.headers()};
+  if(bytes)headers['content-length']=String(bytes.length);
+  const response=await route.fetch({url:fixture.api_url+url.pathname+url.search,postData:bytes??undefined,headers});await route.fulfill({response});
+ });
+ await page.goto('http://127.0.0.1:5173/#query');await expect(page.getByLabel('业务问题')).toBeEnabled();
+}
+async function addFile(page,name,buffer){
+ await page.getByLabel('聊天数据文件').setInputFiles({name,mimeType:name.endsWith('.xlsx')?'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':'text/csv',buffer});
+ await expect(page.getByRole('button',{name:'导入到本会话'})).toBeDisabled();
+ await page.getByRole('checkbox',{name:'我有权使用文件并同意上述本机导入'}).check();
+ const done=page.waitForResponse(r=>r.url().includes('/source-profiles/test')&&r.request().method()==='POST',{timeout:30000});
+ await page.getByRole('button',{name:'导入到本会话'}).click();const response=await done;expect(response.status()).toBe(200);
+ const card=page.getByRole('region',{name:`会话附件 ${name}`,exact:true});await expect(card).toBeVisible();return card;
+}
+test('chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection',async({page})=>{
+ await openChat(page);const before=await page.request.get(fixture.api_url+'/api/v1/source-profiles');const count=(await before.json()).profiles.length;
  const csv='code,created_at,shipped_on,amount\n'+Array.from({length:120},(_,i)=>`c${i},2025-01-01 12:00:00,2025-01-02,${i}\n`).join('');
- const errors=[];page.on('pageerror',e=>errors.push(e.message));await openSources(page);
- await expect(page.locator('input[type=date]')).toHaveCount(0);
- await page.getByRole('button',{name:'新增数据源'}).click();await page.getByLabel('连接名称').fill(name);await page.getByLabel('选择数据文件').setInputFiles({name:'dates.csv',mimeType:'text/csv',buffer:Buffer.from(csv)});await page.getByRole('checkbox',{name:'我有权使用此文件',exact:false}).check();
- await expect(page.getByRole('button',{name:'保存连接'})).toBeDisabled();await page.getByRole('button',{name:'测试连接',exact:true}).click();await expect(page.getByRole('status')).toContainText('真实 MCP 连接测试通过');await page.getByRole('button',{name:'保存连接'}).click();
- await page.reload();const card=page.getByRole('article').filter({has:page.getByRole('heading',{name,exact:true})});await card.getByRole('button',{name:'连接并浏览'}).click();await page.getByRole('region',{name:'数据表导航'}).getByRole('button',{name:'main.data'}).click();
- const table=page.getByLabel('数据源前100行').getByRole('table');await expect(table.getByRole('row')).toHaveCount(101);await expect(table).toContainText('created_at');await expect(table).toContainText('shipped_on');await expect(table).toContainText('2025-01-01T12:00:00');await expect(table).toContainText('TIMESTAMP');await expect(page.locator('input[type=date]')).toHaveCount(0);
- await page.screenshot({path:`${EVIDENCE}/source-navigation-dark.png`,fullPage:true});await page.getByRole('button',{name:'白色主题'}).click();await page.screenshot({path:`${EVIDENCE}/source-navigation-light.png`,fullPage:true});
- await card.getByRole('button',{name:'禁用',exact:true}).click();await expect(card.getByRole('button',{name:'连接并浏览'})).toBeDisabled();await expect(page.getByRole('region',{name:'数据表导航'})).toHaveCount(0);expect(errors).toEqual([]);
+ const card=await addFile(page,'chat-dates.csv',Buffer.from(csv));
+ await expect(card).toContainText('未保存为连接');await card.getByRole('button',{name:'预览 main.data'}).click();
+ const table=card.getByRole('table');await expect(table.getByRole('row')).toHaveCount(101);await expect(table).toContainText('created_at');await expect(table).toContainText('shipped_on');await expect(table).toContainText('TIMESTAMP');await expect(table).toContainText('2025-01-01T12:00:00');
+ expect((await (await page.request.get(fixture.api_url+'/api/v1/source-profiles')).json()).profiles.length).toBe(count);
+ await expect(page.getByLabel('选择问数数据源')).toHaveCount(0);await expect(page.locator('input[type=date]')).toHaveCount(0);
+ await page.getByRole('button',{name:'白色主题'}).click();await page.screenshot({path:`${EVIDENCE}/chat-csv-light.png`,fullPage:true});
+ const persisted=await page.evaluate(()=>JSON.stringify({...localStorage}));expect(persisted).not.toContain('chat-dates.csv');expect(persisted).not.toContain('2025-01-01T12:00:00');
+ await page.reload();await expect(page.getByRole('region',{name:'会话附件 chat-dates.csv',exact:true})).toHaveCount(0);
 });
-test('nonsecret configuration import fills form but does not auto-connect; errors preserve input',async({page})=>{
- await openSources(page);const config={schema_version:'1.0',profile:{kind:'local_file',name:'导入的连接',path:'data/does-not-exist.csv',usage_authorized:true}};
- await page.getByLabel('连接配置文件').setInputFiles({name:'connection.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(config))});await expect(page.getByLabel('连接名称')).toHaveValue('导入的连接');await expect(page.getByRole('button',{name:'保存连接'})).toBeDisabled();await page.getByRole('checkbox',{name:'我有权使用此文件',exact:false}).check();await page.getByRole('button',{name:'测试连接',exact:true}).click();await expect(page.getByRole('alert')).toContainText('INVALID_SOURCE');await expect(page.getByLabel('连接名称')).toHaveValue('导入的连接');await expect(page.getByRole('button',{name:'保存连接'})).toBeDisabled();
+test('connector only offers remote configuration and preserves failed imports without secrets',async({page})=>{
+ await openSources(page);await page.getByRole('button',{name:'新增数据源',exact:true}).click();
+ await expect(page.getByLabel('数据源类型').getByRole('option',{name:/本地文件/})).toHaveCount(0);await expect(page.getByLabel('选择数据文件')).toHaveCount(0);
+ const config={schema_version:'1.0',profile:{kind:'postgresql',name:'导入数据库',host:'127.0.0.1',port:5432,database:'demo',username:'readonly',sslmode:'disable',secret_ref:'DEMO_PG',usage_authorized:true}};
+ await page.getByLabel('连接配置文件').setInputFiles({name:'remote.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(config))});await expect(page.getByLabel('连接名称')).toHaveValue('导入数据库');await expect(page.getByRole('button',{name:'保存连接'})).toBeDisabled();
+ await page.getByRole('checkbox',{name:'我有权连接此数据源',exact:false}).check();await page.getByRole('button',{name:'测试连接',exact:true}).click();await expect(page.getByRole('alert')).toContainText('TARGET_NOT_APPROVED');await expect(page.getByLabel('数据库名称')).toHaveValue('demo');
  await page.getByLabel('连接配置文件').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify({...config,command:'powershell',password:'sentinel-never-reflect'}))});await expect(page.getByRole('alert')).toContainText('INVALID_CONFIG');await expect(page.getByRole('alert')).not.toContainText('sentinel-never-reflect');
 });
-test('mobile source navigation controls preserve visible themes without a time-filter input',async({page})=>{
- await page.setViewportSize({width:390,height:844});await openSources(page);await page.getByRole('button',{name:'新增数据源'}).click();await page.getByRole('button',{name:'白色主题'}).click();await expect(page.getByRole('button',{name:'白色主题'})).toHaveAttribute('aria-pressed','true');await expect(page.locator('input[type=date]')).toHaveCount(0);expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`${EVIDENCE}/source-config-mobile.png`,fullPage:true});
+test('mobile chat upload confirmation and right context do not overflow; visible themes remain',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await openChat(page);
+ await page.getByLabel('聊天数据文件').setInputFiles({name:'mobile.csv',mimeType:'text/csv',buffer:Buffer.from('id,label\n1,Alpha\n')});
+ await expect(page.getByRole('region',{name:'附件导入确认'})).toContainText('不向模型发送数据行');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.getByRole('button',{name:'白色主题'}).click();await expect(page.getByRole('button',{name:'白色主题'})).toHaveAttribute('aria-pressed','true');await page.screenshot({path:`${EVIDENCE}/chat-files-mobile.png`,fullPage:true});await page.getByRole('button',{name:'取消添加'}).click();
 });
-
-
-test('xlsx workbook upload, real multisheet navigation and date columns without time filters',async({page})=>{
- await openSources(page);await page.getByRole('button',{name:'新增数据源'}).click();
- const name=`Excel工作簿-${Date.now()}`;await page.getByLabel('连接名称').fill(name);
- await expect(page.getByLabel('选择数据文件')).toHaveAttribute('accept',/\.xlsx/);
- await page.getByLabel('选择数据文件').setInputFiles({name:'xlsx-fixture.xlsx',mimeType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',buffer:fs.readFileSync(process.env.WORKSPACE_XLSX_FIXTURE)});
- await page.getByRole('checkbox',{name:'我有权使用此文件',exact:false}).check();
- // Await the bounded real HTTP operation before the unchanged 5s DOM assertion.
- const uploaded=page.waitForResponse(r=>r.url().includes('/api/v1/source-profiles/upload')&&r.request().method()==='POST',{timeout:30000});
- await page.getByRole('button',{name:'测试连接',exact:true}).click();
- const uploadReceipt=await uploaded;expect(uploadReceipt.status()).toBe(200);
- const receipt=await page.waitForResponse(r=>r.url().includes('/api/v1/source-profiles/test')&&r.request().method()==='POST',{timeout:30000});expect(receipt.status()).toBe(200);expect((await receipt.json()).tables).toHaveLength(2);
- await expect(page.getByRole('status')).toContainText('2 张表');await page.getByRole('button',{name:'保存连接'}).click();
- const card=page.getByRole('article').filter({has:page.getByRole('heading',{name,exact:true})});await card.getByRole('button',{name:'连接并浏览'}).click();
- await page.getByRole('region',{name:'数据表导航'}).getByRole('button',{name:'workbook.订单表'}).click();
- const table=page.getByLabel('数据源前100行').getByRole('table');await expect(table.getByRole('row')).toHaveCount(101);await expect(table).toContainText('created_at');await expect(table).toContainText('发货日期');await expect(table).toContainText('2025-01-01T12:00:00');await expect(page.locator('input[type=date]')).toHaveCount(0);
- await page.screenshot({path:`${EVIDENCE}/xlsx-navigation.png`,fullPage:true});
- await page.getByRole('region',{name:'数据表导航'}).getByRole('button',{name:'workbook.字典表'}).click();await expect(table).toContainText('Alpha');await expect(table.getByRole('row')).toHaveCount(2);
- await card.getByRole('button',{name:'禁用',exact:true}).click();
+test('chat xlsx real multi-sheet navigation preserves original headers and dates with no filters',async({page})=>{
+ await openChat(page);const card=await addFile(page,'chat-workbook.xlsx',fs.readFileSync(process.env.WORKSPACE_XLSX_FIXTURE));
+ await expect(card).toContainText('2 张表');await card.getByRole('button',{name:'预览 workbook.订单表'}).click();
+ let table=card.getByRole('table');await expect(table.getByRole('row')).toHaveCount(101);await expect(table).toContainText('created_at');await expect(table).toContainText('发货日期');await expect(table).toContainText('2025-01-01T12:00:00');await expect(page.locator('input[type=date]')).toHaveCount(0);
+ await card.getByRole('button',{name:'预览 workbook.字典表'}).click();await expect(card.getByRole('table')).toContainText('Alpha');await expect(card.getByRole('table').getByRole('row')).toHaveCount(2);await page.screenshot({path:`${EVIDENCE}/chat-xlsx-dark.png`,fullPage:true});
+});
+test('multiple conversation attachments and right multiple sources remain separate from real JOIN support',async({page})=>{
+ const sourceIds=[];
+ for(const name of ['remote-one','remote-two']){
+  const response=await page.request.post(fixture.api_url+'/api/v1/source-profiles/test',{headers:{'X-Workspace-Request':'1'},data:{kind:'http_mcp',name,url:fixture.mcp_url,auth_mode:'bearer',secret_ref:fixture.secret_ref,usage_authorized:true}});expect(response.status()).toBe(200);
+  const saved=await page.request.post(fixture.api_url+'/api/v1/source-profiles/save',{headers:{'X-Workspace-Request':'1'},data:{test_id:(await response.json()).test_id}});expect(saved.status()).toBe(200);sourceIds.push((await saved.json()).id);
+ }
+ await openChat(page);const panel=page.getByRole('complementary',{name:'会话摘要'});
+ await panel.getByRole('checkbox',{name:'包含来源 remote-one',exact:true}).check();await panel.getByRole('checkbox',{name:'包含来源 remote-two',exact:true}).check();
+ await expect(panel.getByRole('checkbox',{name:'包含来源 remote-one',exact:true})).toBeChecked();await expect(panel.getByRole('checkbox',{name:'包含来源 remote-two',exact:true})).toBeChecked();
+ await addFile(page,'orders.csv',Buffer.from('id,amount\n1,10\n'));await addFile(page,'items.csv',Buffer.from('id,label\n1,fixture\n'));
+ await expect(panel).toContainText('orders.csv');await expect(panel).toContainText('items.csv');await expect(panel).toContainText('跨源JOIN尚待受控实现');
+ await page.getByRole('button',{name:'新建会话'}).click();await expect(panel.getByRole('checkbox',{name:'包含来源 remote-one',exact:true})).not.toBeChecked();await expect(panel).not.toContainText('orders.csv');
 });

@@ -1,0 +1,2 @@
+安全诊断仅证明特定合同断言失败，不自动认定上游不支持模型。model_mismatch不输出实际model名称（可能包含秘密/专有字符串），若需映射必须明确网关别名证据；incomplete_output/max_tokens也不自动增加预算或忽略stop_reason。unsupported_content可能thinking/tool，需要输出类型证据，不把thinking作为用户文本。旧真实响应未保存，因此新代码无法回溯旧响应，也不会为收集诊断偷偷再发POST。
+测试专用fixture的输出和错误值不视为公司网关实际返回；由用户更新后一次显式实际请求才能确认，旧结果failed保留。仅附加分类，所有原输出/模型/用量/秘密拒绝不弱化。

@@ -1,0 +1,42 @@
+{
+  "reviewer": "self_review",
+  "runtime_actual": {
+    "pid_api": 32652,
+    "parent_api": 2912,
+    "pid_vite": 25284,
+    "parent_vite": 21672,
+    "created_local": "2026-10-29 15:22:13",
+    "owner": "CN1/luqianwu",
+    "key_configured_boolean": true,
+    "protocol": "openai_responses",
+    "model": "gpt-6.1-sol[1M]",
+    "actual_status": "budget_unverified",
+    "key_value": "not read/received/printed",
+    "actions": "no stop/restart/envinspectionofkeyprocess"
+  },
+  "implementation": [
+    "EstimatedBudget fixed25centsreservation/60requests/15USDestimatedtarget/20USDplanningceiling, persistentSQLite/pinning/transactions/noreset/refund API",
+    "model_tests fixedprompt/version+runtimegeneration/UUID receipts memoryidempotency/noauto retry",
+    "provider finish persists only UUID/usage/outcome, no prompt/Key/output; unknownkeepsreservation",
+    "model-key launcher estimateflag accepted userD053; statusmode/no actualfeeguarantee",
+    "UI acceptedestimatedcost checkbox and usertriggered test, outputmarked modelnotSQL, preserves same requestid"
+  ],
+  "actual_tests": "95 passed combined79protocol+16budget cases before additionalbrowserfixture/UIchanges; final fullregressionpending",
+  "fees": "softestimateapproved no supplierhardlimitrequired; actual gateway notcalled",
+  "next_runtime": "user-ownedkeyprocess oldcode; user mustCtrlCthenstartnewcmd/reinputlocallyaftertestpass",
+  "files": [
+    "services/api/src/data_workspace/model_budget.py",
+    "services/api/src/data_workspace/model_provider.py",
+    "services/api/src/data_workspace/model_routes.py",
+    "services/api/src/data_workspace/main.py",
+    "services/api/tests/test_model_budget.py",
+    "scripts/dev.py",
+    "scripts/remote_browser_fixture.py",
+    "apps/web/src/ModelServiceReadiness.tsx",
+    "apps/web/src/api.ts",
+    "contracts/openapi.json",
+    "apps/web/src/api.generated.ts",
+    "tests/remote-onboarding.spec.mjs",
+    ".gitignore"
+  ]
+}

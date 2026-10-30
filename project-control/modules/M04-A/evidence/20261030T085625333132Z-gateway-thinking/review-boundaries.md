@@ -1,0 +1,3 @@
+实测诊断明确内容失败，不是modelalias拒绝，匹配bool只是词面相等。旧safe诊断未保留thinking键名/值，因此不能断言signature缺失是实际唯一根因。设计修复基于网关非文本内容不应该被当签名原生消息重放这一事实：对已观察gatewayalias分支，丢弃整个思考元数据，任何字段不读取/展示/保存，最终只校验text；由response字节和块数上限防资源滥用。
+这不是放宽最终输出/权限，不接受新model或工具，不取消end_turn、128output或usage/secret检查；非gateway映射现有native形状规则保留。测试覆盖thinking无签名/换字段/无内容/redactedobject都被忽略，但仅thinking没有text仍拒绝，tool/invalidtext/keyecho仍拒绝。
+当前真实请求仅用户授权GET已存在safe回执，无网关POST、Key/env读取或服务重启。用户更新后下一真实结果若仍拒绝，继续基于新safe诊断定位；不能保证这次一定成功或把fixtureOK称实际网关验证。

@@ -3,7 +3,7 @@
 The OS byte-range lease serializes cooperating SourceStore instances/processes.
 It is not a filesystem security boundary against arbitrary external writers.
 """
-from contextlib import contextmanager
+from contextlib import contextmanager,closing
 from functools import wraps
 import inspect
 from itertools import islice
@@ -42,7 +42,8 @@ def canonical_id(value):
 
 
 @contextmanager
-def storage_lease(root):
+def storage_lease(root, *, _name='.retention.lock'):
+    if _name not in {'.retention.lock','.retention-leader.lock'}:raise ValueError('invalid internal lease')
     """Non-blocking lease; OS releases it on close/crash, never delete lock files."""
     if os.name != 'nt':
         raise PublicError(503, 'STORAGE_LOCK_UNAVAILABLE', '当前系统缺少已验证的存储引用锁；没有执行清理。')
@@ -53,7 +54,7 @@ def storage_lease(root):
         root = Path(root)
         checked_runtime_path(root, root)
         root.mkdir(parents=True, exist_ok=True)
-        path = checked_runtime_path(root, root / '.retention.lock')
+        path = checked_runtime_path(root, root / _name)
         stream = path.open('a+b')
         if path.stat().st_nlink != 1:
             raise OSError('linked lock')
@@ -220,10 +221,15 @@ def write_test_reference(root, id, *, owner, at, snapshot_id, upload_id):
     temp.replace(path)
 
 
-def retention_references(store):
+def retention_references(store, *, _metadata=None):
     """Caller owns storage lease; validate ALL persisted references, fail closed."""
     import sqlite3
     from .storage_inventory import read_object
+    def metadata(path):
+        if _metadata is not None:
+            _metadata[0]+=path.stat().st_size
+            if _metadata[0]>8*1024*1024:raise PublicError(409,'STORAGE_SCAN_INCOMPLETE','周期引用元数据核查超限，保留副本。')
+        return read_object(path)
     now = store.clock()
     snapshots, uploads = set(), set()
     legacy = False
@@ -231,7 +237,7 @@ def retention_references(store):
     if dbpath.exists():
         try:
             checked_runtime_path(store.root, dbpath)
-            with sqlite3.connect(dbpath.as_uri() + '?mode=ro', uri=True, timeout=1) as db:
+            with closing(sqlite3.connect(dbpath.as_uri() + '?mode=ro', uri=True, timeout=1)) as db:
                 db.execute('BEGIN')
                 rows = db.execute('SELECT database_path FROM profiles LIMIT 51').fetchall()
                 if len(rows) > 50: raise ValueError('profile budget')
@@ -242,7 +248,7 @@ def retention_references(store):
                         raise ValueError('invalid saved reference')
                     snapshots.add(path.parent.name)
                     try:
-                        manifest = read_object(checked_runtime_path(store.root, path.with_suffix('.manifest.json')))
+                        manifest = metadata(checked_runtime_path(store.root, path.with_suffix('.manifest.json')))
                         if 'upload_file_id' not in manifest: raise ValueError('legacy manifest')
                         upload = manifest['upload_file_id']
                         if upload is not None:
@@ -268,7 +274,7 @@ def retention_references(store):
                 checked_runtime_path(store.root, path)
                 if path.suffix != '.json' or not canonical_id(path.stem) or path.stat().st_nlink != 1:
                     raise ValueError('unknown reference')
-                ref = read_object(path)
+                ref = metadata(path)
                 if (set(ref) != {'schema','id','root_key','owner','at','snapshot_id','upload_id'}
                         or ref['schema'] != SCHEMA or ref['id'] != path.stem
                         or ref['root_key'] != root_key(store.root) or ref['owner'] != OWNER):

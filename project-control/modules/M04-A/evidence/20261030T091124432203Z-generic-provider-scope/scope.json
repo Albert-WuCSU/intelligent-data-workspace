@@ -1,0 +1,21 @@
+{
+  "reviewer": "self_review",
+  "user_request": "notcompanyAIPlanonly;personalBYOK/customprovider",
+  "product_flow": "protocol preset/customendpoint/model/key -> safe configuration -> explicittest -> enable; no vendor subscription billed by app",
+  "supported_protocol_plan": [
+    "OpenAI Responses",
+    "OpenAI-compatible Chat Completions",
+    "Anthropic Messages"
+  ],
+  "honest_boundary": "protocolcompatibility verifiedindividually; any vendor proprietaryprotocol not promised",
+  "security_plan": [
+    "publiccustomendpoints HTTPS and SSRF DNS/IP/redirect/credentialURL guards",
+    "privategateway only explicit separatelygovernedexistingAIPlanbinding; no arbitrarylocalhost/privateaccess",
+    "browserpasswordmemory -> backendsessionmemory not logs/storage/history/files",
+    "configuration/key/model changes invalidate tests; no automatictest/cost/fallback",
+    "supplier/modelpricingunknown do not apply historicalAIPlanestimate universally; explicit per-profile estimates/requestlimits and shared budget preserved"
+  ],
+  "implementation_status": "scope/design recorded; fixedAIPlancode remains until scopedimplementation; no genericAPI capability claim",
+  "credential_access": "none",
+  "external_calls": "none"
+}

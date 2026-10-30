@@ -1,0 +1,19 @@
+{
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "reviewer": "self_review",
+  "results_ref": "project-control/modules/M04-A/evidence/20261030T082912Z/results.json",
+  "counts": {
+    "backend": 423,
+    "model_specific": 136,
+    "frontend": 16,
+    "browser": 32
+  },
+  "source_count": 121,
+  "fingerprint": "ecf1237b1b9b82224263c78bacf5ad504b58289fb69b6aebc9f501aeb230c234",
+  "actual_model_mapping": "still_unknown/rejected",
+  "real_new_request": "not_run",
+  "assistant_gatewaycalls": 0,
+  "read_only_route": "implemented_verifiedlocal",
+  "reasoning": "validblocksdiscarded_onlytextreturned"
+}

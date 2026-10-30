@@ -1,0 +1,69 @@
+{
+  "created_at": "2026-10-28T06:39:34.224025+00:00",
+  "source_stable": true,
+  "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
+  "checks": [
+    {
+      "id": "types",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
+      "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/types.txt"
+    },
+    {
+      "id": "frontend",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+        "run"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
+      "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/frontend.txt"
+    },
+    {
+      "id": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "build"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
+      "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/build.txt"
+    },
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
+      "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/browser.txt"
+    }
+  ]
+}

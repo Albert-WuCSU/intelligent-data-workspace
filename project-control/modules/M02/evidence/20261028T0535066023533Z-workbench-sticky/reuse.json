@@ -1,0 +1,6 @@
+{
+  "previous_checks": "project-control/modules/M02/evidence/20261028T0336352790712Z-workbench-final/results.json",
+  "changed_source": "styles.css only: sticky right-panel close header to remain visible when model info scrolls into view",
+  "reused": "previous15 frontend/types checks, all backend281 unaffected original fingerprints; connector pages not covered by .workbench-panel styles",
+  "rerun": "build and all10 workspace browser tests incl history/mobile/context; not claimed reexecution of other16 browser fixtures"
+}

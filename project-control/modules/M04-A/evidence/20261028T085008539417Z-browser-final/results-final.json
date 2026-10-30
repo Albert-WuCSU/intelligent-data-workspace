@@ -1,0 +1,33 @@
+{
+  "created_at": "2026-10-28T08:51:33.597699+00:00",
+  "code_fingerprint": "682e9f0e6681b3418fda854c3e8d1d6e18d8c005415d9560116735dd291ab373",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "browser",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "682e9f0e6681b3418fda854c3e8d1d6e18d8c005415d9560116735dd291ab373",
+      "log": "project-control/modules/M04-A/evidence/20261028T085008539417Z-browser-final/browser.txt"
+    }
+  ],
+  "reuse": {
+    "backend_results": "project-control/modules/M04-A/evidence/20261028T084306Z/results.json",
+    "actual_backend_count": 322,
+    "actual_frontend_count": 16,
+    "changes_after_backend": [
+      "tests/remote-onboarding.spec.mjs"
+    ],
+    "scope": "Only newbrowser locator exact whitespace changes; product/backend/contracts/locks unchanged, backend at originalfingerprint not rerun"
+  }
+}

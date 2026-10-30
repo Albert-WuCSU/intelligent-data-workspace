@@ -1,0 +1,11 @@
+import json,subprocess,sys,os
+from pathlib import Path
+from datetime import datetime,timezone
+root=Path.cwd();target=Path(sys.argv[1]);sys.path.insert(0,str(root/'scripts'));from check import sources
+from dev import node_path
+manifest,fp=sources();previous=Path('project-control/modules/M02/evidence/20261028T0336352790712Z-workbench-final');old=json.loads((previous/'sources.json').read_text(encoding='utf-8'));changes=[n for n,h in manifest.items() if old.get(n)!=h];assert changes==['apps/web/src/styles.css'],changes
+(target/'sources.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8');(target/'reuse.json').write_text(json.dumps({'previous_checks':(previous/'results.json').as_posix(),'changed_source':'styles.css only: sticky right-panel close header to remain visible when model info scrolls into view','reused':'previous15 frontend/types checks, all backend281 unaffected original fingerprints; connector pages not covered by .workbench-panel styles','rerun':'build and all10 workspace browser tests incl history/mobile/context; not claimed reexecution of other16 browser fixtures'},indent=2),encoding='utf-8')
+node=node_path();web=root/'apps/web';env={**os.environ,'WORKSPACE_BROWSER_EVIDENCE':str(target/'browser'),'PYTHONUTF8':'1'};results=[]
+for id,command,cwd in [('build',[node,str(web/'node_modules/vite/bin/vite.js'),'build'],web),('browser-workspace',[node,str(web/'node_modules/@playwright/test/cli.js'),'test','tests/workspace.spec.mjs','--config','playwright.config.mjs'],root)]:
+ q=subprocess.run(command,cwd=cwd,env=env,capture_output=True,text=True,encoding='utf-8',errors='replace');log=target/(id+'.txt');log.write_text(q.stdout+q.stderr,encoding='utf-8');print(id,q.returncode,q.stdout+q.stderr,flush=True);results.append({'id':id,'command':command,'cwd':cwd.relative_to(root).as_posix(),'exit_code':q.returncode,'status':'passed' if q.returncode==0 else 'failed','environment':'local','integration':'real' if id=='browser-workspace' else 'unit','code_fingerprint':fp,'log':log.as_posix()})
+stable=sources()[1]==fp;(target/'results.json').write_text(json.dumps({'created_at':datetime.now(timezone.utc).isoformat(),'code_fingerprint':fp,'source_stable':stable,'checks':results},ensure_ascii=False,indent=2),encoding='utf-8');sys.exit(0 if stable and all(c['exit_code']==0 for c in results) else 1)

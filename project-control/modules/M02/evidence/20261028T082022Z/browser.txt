@@ -1,0 +1,85 @@
+
+Running 27 tests using 1 worker
+
+(node:23828) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (2.6s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.5s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (1.1s)
+  ok  4 tests\remote-onboarding.spec.mjs:20:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (9.6s)
+  ok  5 tests\remote-onboarding.spec.mjs:35:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (1.1s)
+  ok  6 tests\remote-onboarding.spec.mjs:44:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (5.8s)
+  ok  7 tests\remote-onboarding.spec.mjs:58:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds (4.8s)
+  ok  8 tests\remote-onboarding.spec.mjs:73:1 › storage inventory is read-only, protects disabled saved data and has no delete action (830ms)
+  x   9 tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup (1.2s)
+(node:1540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 10 tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest (6.5s)
+  ok 11 tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support (2.6s)
+  x  12 tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected (15.1s)
+(node:16472) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 13 tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection (6.5s)
+  ok 14 tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets (918ms)
+  ok 15 tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain (716ms)
+  ok 16 tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters (7.7s)
+  ok 17 tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support (10.4s)
+  ok 18 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.9s)
+  ok 19 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (988ms)
+  ok 20 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.7s)
+  ok 21 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (1.0s)
+  ok 22 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (986ms)
+  ok 23 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (890ms)
+  ok 24 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok 25 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (885ms)
+  ok 26 tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest (1.3s)
+  ok 27 tests\workspace.spec.mjs:130:1 › mobile context summary is opt-in and source/model controls do not overflow (733ms)
+
+
+  1) tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: 200
+    Received: 409
+
+      82 |  await open(page);
+      83 |  const result=await page.request.post(fixture.api_url+'/fixture-only/retention-example',{headers:{'X-Workspace-Request':'1'}});
+    > 84 |  expect(result.status()).toBe(200);expect((await result.json()).state).toBe('DONE');
+         |                          ^
+      85 |  await page.getByRole('button',{name:'存储与清理',exact:true}).click();
+      86 |  const panel=page.getByRole('region',{name:'存储与清理盘点'});
+      87 |  await expect(panel).toContainText('自动回收尚未启用');await expect(panel).toContainText('已完成 1 个目录');await expect(panel).toContainText('最近记录已完成');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:84:26
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-iso-9164d--enabling-automatic-cleanup\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-iso-9164d--enabling-automatic-cleanup\error-context.md
+
+  2) tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "SUCCEEDED"
+    Received: "SKIPPED_BUSY"
+
+    Call Log:
+    - Timeout 15000ms exceeded while waiting on the predicate
+
+      121 | test('real default-cadence automatic worker cycle reports success while disabled saved data stays protected',async({page})=>{
+      122 |  for(const pattern of ['**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.automatic_api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 123 |  await expect.poll(async()=>{const value=await page.request.get(fixture.automatic_api_url+'/api/v1/source-profiles/retention');return (await value.json()).cycle_state;},{timeout:15000}).toBe('SUCCEEDED');
+          |                                                                                                                                                                                           ^
+      124 |  await page.goto('http://127.0.0.1:5173/#connectors');await page.getByRole('button',{name:'存储与清理',exact:true}).click();
+      125 |  const panel=page.getByRole('region',{name:'存储与清理盘点'});await expect(panel).toContainText('自动回收已启用');await expect(panel).toContainText('最近自动周期：SUCCEEDED');await expect(panel).toContainText('间隔 600 秒');await expect(panel).toContainText('本周期回收 1 个目录');
+      126 |  const status=await page.request.get(fixture.automatic_api_url+'/api/v1/source-profiles/storage');const value=await status.json();expect(value.saved_profiles).toBe(1);expect(value.uploads.referenced_folders).toBe(1);expect(value.snapshots.referenced_folders).toBe(1);expect(value.retention.completed_cleanup_folders).toBe(1);
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:123:187
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-def-1e291--saved-data-stays-protected\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-def-1e291--saved-data-stays-protected\error-context.md
+
+  2 failed
+    tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup 
+    tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected 
+  25 passed (2.0m)

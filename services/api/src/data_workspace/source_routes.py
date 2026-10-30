@@ -4,9 +4,10 @@ from fastapi import APIRouter,Depends,Request,UploadFile,File
 from pydantic import ValidationError
 from .auth import identity,PublicError
 from .contracts import AuthContext
-from .source_profiles import (SourceStore,ProfileDraft,SourceDraft,Profile,ProfileList,TestedDraft,SaveProfile,ToggleProfile,ConfigImport,FileReceipt,NavigationPreview,MAX_BYTES)
+from .source_profiles import (SourceStore,ProfileDraft,SourceDraft,Profile,ProfileList,TestedDraft,SaveProfile,ToggleProfile,ConfigImport,FileReceipt,NavigationPreview,DraftPreview,MAX_BYTES)
 
 from .storage_inventory import StorageSummary,storage_summary
+from .retention_status import RetentionStatus
 
 router=APIRouter(prefix='/api/v1/source-profiles')
 
@@ -18,6 +19,12 @@ def profiles(request:Request,auth:AuthContext=Depends(identity)):
 async def storage(request:Request,auth:AuthContext=Depends(identity)):
     import anyio
     return await anyio.to_thread.run_sync(lambda:storage_summary(request.app.state.sources,auth))
+
+@router.get('/retention',response_model=RetentionStatus)
+async def retention_view(request:Request,auth:AuthContext=Depends(identity)):
+    from .retention_status import retention_status
+    import anyio
+    return await anyio.to_thread.run_sync(lambda:retention_status(request.app.state.sources,auth))
 
 @router.post('/upload',response_model=FileReceipt)
 async def upload(request:Request,file:UploadFile=File(...),auth:AuthContext=Depends(identity)):
@@ -58,3 +65,8 @@ async def source_tables(id:str,request:Request,auth:AuthContext=Depends(identity
 @router.get('/{id}/tables/{table}/preview',response_model=NavigationPreview)
 async def preview_table(id:str,table:str,request:Request,auth:AuthContext=Depends(identity)):
     return await request.app.state.sources.preview(auth,id,table)
+
+
+@router.get('/drafts/{id}/tables/{table}/preview',response_model=DraftPreview)
+async def attachment_preview(id:str,table:str,request:Request,auth:AuthContext=Depends(identity)):
+    return await request.app.state.sources.draft_preview(auth,id,table)

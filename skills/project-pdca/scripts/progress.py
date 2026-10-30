@@ -46,6 +46,40 @@ def require(condition, message):
         raise ValueError(message)
 
 
+def finite_deferrals(state, module, decisions):
+    """Explicit user-approved local deferral; never changes required/not_run or risk facts."""
+    scope = module.get('delivery_scope')
+    if not scope:
+        return set(), set()
+    require(scope.get('kind') == 'finite_local' and module['maturity'] == 'local_ready', 'Deferral only supports finite local_ready delivery')
+    approval = decisions.get(scope.get('decision_id'), {})
+    require(approval.get('kind') in {'scope', 'change'} and approval.get('module_id') == module['id']
+            and approval.get('cycle_id') == module['cycle_id'], 'Deferral needs matching user scope approval')
+    gates = {g['id']: g for g in state.get('release_gates', [])}
+    tests = {t['id']: t for t in module.get('tests', [])}
+    risks = {r.get('id'): r for r in module.get('risks', [])}
+    result = []
+    for field, source, key in (('deferred_tests', tests, 'test_id'), ('deferred_risks', risks, 'risk_id')):
+        entries = scope.get(field, [])
+        require(isinstance(entries, list), 'Deferral entries must be lists')
+        ids = [e.get(key) for e in entries]
+        require(len(ids) == len(set(ids)), 'Duplicate deferred item')
+        for entry in entries:
+            item = source.get(entry.get(key))
+            gate = gates.get(entry.get('release_gate_id'), {})
+            require(item is not None, 'Unknown deferred item')
+            require(bool(entry.get('owner')) and bool(entry.get('condition')), 'Deferral needs owner and recheck condition')
+            require(gate.get('status') == 'not_run' and gate.get('decision_id') == scope['decision_id']
+                    and bool(gate.get('owner')) and bool(gate.get('condition')), 'Deferral needs unresolved approved release gate')
+            if field == 'deferred_tests':
+                require(item.get('required') is True and item.get('status') == 'not_run'
+                        and item.get('integration') == 'real', 'Only required not_run real tests can be deferred')
+            else:
+                require(item.get('severity') != 'critical' and item.get('resolved') is False, 'Critical/resolved risk cannot be deferred')
+        result.append(set(ids))
+    return tuple(result)
+
+
 def validate(s, root):
     require(s.get('schema_version') == 1, 'Unsupported schema_version; migrate explicitly')
     require(type(s.get('revision')) is int and s['revision'] >= 0, 'Invalid revision')
@@ -83,17 +117,21 @@ def validate(s, root):
             require(m.get('plan_ref') and within(root, m['plan_ref']).is_file(), f'{m["id"]}: approved plan file missing')
         if m['status'] in {'active', 'closed'}:
             require(all(index[x]['status'] == 'closed' for x in m.get('depends_on', [])), f'{m["id"]}: unmet dependency')
+        deferred_tests, deferred_risks = finite_deferrals(s, m, dindex)
         if m['status'] == 'closed':
             did = approvals.get('delivery')
             require(did in dindex and dindex[did]['kind'] == 'delivery' and dindex[did].get('module_id') == m['id']
                     and dindex[did].get('cycle_id') == m['cycle_id'], f'{m["id"]}: missing delivery approval')
             require(m.get('audit', {}).get('verdict') == 'pass', f'{m["id"]}: audit not passed')
+            if deferred_tests or deferred_risks:
+                require(m['audit'].get('scope') == 'finite_local' and m['audit'].get('decision_id') == m['delivery_scope']['decision_id'], 'Finite delivery needs matching scoped audit')
             required = [t for t in m.get('tests', []) if t.get('required')]
-            require(bool(required) and all(t.get('status') == 'passed' for t in required), f'{m["id"]}: required tests incomplete')
+            require(bool(required) and any(t.get('status') == 'passed' for t in required)
+                    and all(t.get('status') == 'passed' or t['id'] in deferred_tests for t in required), f'{m["id"]}: required tests incomplete')
             ev = {e['id']: e for e in m.get('evidence', []) if not e.get('stale')}
             require(m['audit'].get('evidence_id') in ev, f'{m["id"]}: audit evidence missing')
-            require(all(t.get('evidence_id') in ev for t in required), f'{m["id"]}: test evidence missing')
-            require(not any(r.get('severity') in {'critical', 'high'} and not r.get('resolved') for r in m.get('risks', [])), f'{m["id"]}: blocking risks')
+            require(all(t.get('evidence_id') in ev for t in required if t['id'] not in deferred_tests), f'{m["id"]}: test evidence missing')
+            require(not any(r.get('severity') in {'critical', 'high'} and not r.get('resolved') and r.get('id') not in deferred_risks for r in m.get('risks', [])), f'{m["id"]}: blocking risks')
         if m['maturity'] in {'staging_verified', 'production_verified'}:
             require(any(t.get('status') == 'passed' and t.get('environment') == m['maturity'].split('_')[0]
                         and t.get('integration') == 'real' for t in m.get('tests', [])), f'{m["id"]}: real environment evidence missing')
@@ -131,6 +169,7 @@ def validate(s, root):
         require(within(root, ref).is_file(), f'Missing next-action reference: {ref}')
     if s['status'] == 'complete':
         require(all(m['status'] == 'closed' for m in modules), 'Incomplete modules')
+        require(not any(m.get('delivery_scope', {}).get('deferred_tests') or m.get('delivery_scope', {}).get('deferred_risks') for m in modules), 'Deferred verification must be reconciled before complete')
         require(s.get('release_gates') and all(g['status'] == 'passed' for g in s['release_gates']), 'Release gates incomplete')
     return s
 

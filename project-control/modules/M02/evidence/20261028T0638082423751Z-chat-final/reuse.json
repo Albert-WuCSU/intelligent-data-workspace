@@ -1,0 +1,8 @@
+{
+  "unchanged_backend": "project-control/modules/M02/evidence/20261028T062915Z/results.json",
+  "changes": [
+    "apps/web/src/DataSourceWorkspace.tsx",
+    "tests/remote-onboarding.spec.mjs"
+  ],
+  "reuse": "actual287backend/pip results remain at original fingerprint; all source/tests/contracts/locks byte-identical. Frontend/full27 browser rerun after restore expiry behavior/legacy foldedcard locator, no backend claim of rerun"
+}

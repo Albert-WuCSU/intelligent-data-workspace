@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-29T07:40:51.559624+00:00",
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "reviewer": "self_review",
+  "backend_ref": "project-control/modules/M04-A/evidence/20261029T073000Z/results.json",
+  "final_ui_ref": "project-control/modules/M04-A/evidence/20261029T073603754925Z-budget-ui-final/results-final.json",
+  "counts": {
+    "backend": 382,
+    "model_and_budget_specific": 95,
+    "frontend": 16,
+    "browser": 30
+  },
+  "source_count": 118,
+  "fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33",
+  "actual_user_key": "configured_boolean_confirmed_no_key_read",
+  "real_gateway": "not_run",
+  "runtime": "userkeyprocess oldcode intentionallynotstopped; userreloadrequired",
+  "budget": "estimatedsoftnotactual/hardguarantee",
+  "process_budget_check": "4realchildprocesses+freshrecovery passed",
+  "SQL_JOIN": "not_run"
+}

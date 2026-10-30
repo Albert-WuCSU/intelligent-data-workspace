@@ -70,6 +70,11 @@ class FileReceipt(Contract):
     source_label: str
     note: str = '文件已复制到本机后端隔离目录；不是原地修改。请测试连接后保存。'
 
+class DraftPreview(Contract):
+    test_id: str
+    table_id: str
+    preview: dict
+
 class NavigationPreview(Contract):
     profile_id: str
     table_id: str
@@ -81,6 +86,7 @@ class SourceStore:
         self.allowed_root=Path(allowed_root or ROOT/'data').resolve()
         self.remote_policy=remote_policy or RemoteAccessPolicy()
         self.clock=clock or utc_now
+        self.retention_runner=None
         self.lock=RLock();self.tests={};self.active=False;self.needs_retest=set();self.uploads_in_flight=set()
 
     def authorize(self,auth):
@@ -420,5 +426,35 @@ class SourceStore:
         except Exception:
             with self.lock:self.needs_retest.add(id)
             raise
+        finally:
+            with self.lock:self.active=False
+
+
+    @storage_operation
+    async def draft_preview(self,auth,id,table):
+        """Real preview of an unsaved local attachment. No profile creation or external egress."""
+        from .warehouse.client import OwnedMCPClient
+        with self.lock:
+            self.expire_tests()
+            tested=self.tests.get(id)
+            if not tested or tested['owner']!=self.owner(auth):
+                raise PublicError(409,'TEST_EXPIRED','附件上下文已失效，请重新导入；原文件保留。')
+            if not isinstance(tested['draft'],ProfileDraft) or table not in {t['id'] for t in tested['tables']}:
+                raise PublicError(403,'ATTACHMENT_TABLE_DENIED','只能读取本附件实际目录内的表。')
+            if self.active:raise PublicError(409,'SOURCE_BUSY','正在读取，请稍后重试。')
+            self.active=True;database=tested['database']
+        try:
+            try:
+                async with OwnedMCPClient(auth,database=database).connected() as client:
+                    receipt=await client.call('submit_query',{'request':{'table':table,'limit':100},'idempotency_key':'attachment-preview'})
+                    if receipt.get('ok') is False or receipt['task']['status']!='SUCCEEDED':raise ValueError('preview denied')
+                    result=await client.call('get_query_result',{'task_id':receipt['task']['task_id']})
+                    if result.get('ok') is False:raise ValueError('result denied')
+            except Exception:
+                raise PublicError(422,'ATTACHMENT_PREVIEW_FAILED','附件预览未完成，请检查文件后重新导入；不修改原文件。') from None
+            with self.lock:
+                self.expire_tests()
+                if id not in self.tests:raise PublicError(409,'TEST_EXPIRED','读取期间附件过期，结果已丢弃，请重新导入。')
+            return DraftPreview(test_id=id,table_id=table,preview=result['result'])
         finally:
             with self.lock:self.active=False

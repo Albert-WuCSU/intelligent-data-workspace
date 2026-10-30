@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-30T08:47:13.259133+00:00",
+  "reviewer": "self_review",
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "results_ref": "project-control/modules/M04-A/evidence/20261030T084123Z/results.json",
+  "counts": {
+    "backend": 437,
+    "model_specific": 150,
+    "frontend": 16,
+    "browser": 33
+  },
+  "source_count": 122,
+  "fingerprint": "4995510b628837aac799b1b396190d57779540cc771d9549edbda9d4d1be17c1",
+  "observed_request": "deepseek-v4.1-flash",
+  "observed_response": "deepseek-v4-1-flash-261017",
+  "actual_corrected_model_test": "not_run",
+  "assistant_new_model_calls": 0
+}

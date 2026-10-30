@@ -15,6 +15,9 @@ _dll=os.add_dll_directory(str(site/'pywin32_system32'))
 
 
 def execute(operation,payload):
+    if operation=='retention_cycle':
+        from data_workspace.retention_cycle import worker_cycle
+        return worker_cycle(payload)
     if operation=='upload_preflight':
         from data_workspace.upload_preflight import inspect_upload
         return inspect_upload(payload)

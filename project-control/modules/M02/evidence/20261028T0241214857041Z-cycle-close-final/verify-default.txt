@@ -1,0 +1,1 @@
+{"passed": true, "original_runtime_files_preserved": 99, "saved_profiles": 29, "enabled": true, "cycle_state": "SUCCEEDED", "interval_seconds": 600, "reclaimed": 0, "scope": "default current-code first cycle and preservation; not PG/production/natural24h"}

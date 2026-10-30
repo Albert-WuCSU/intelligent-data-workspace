@@ -1,0 +1,10 @@
+{
+  "candidate_files": 2053,
+  "total_bytes": 129483589,
+  "high_confidence_secret_findings": [],
+  "forbidden_runtime_or_tool_paths": [],
+  "oversized_github_files": [],
+  "scope": "prestagecandidates only; no credentials outsidecandidatefiles examined; patterns not fullDLP guarantee",
+  "test_keys": "fixture-only literal sentinels not livecredentials",
+  "status": "passed"
+}

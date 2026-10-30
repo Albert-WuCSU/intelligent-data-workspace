@@ -1,0 +1,19 @@
+{
+  "created_at": "2026-10-30T09:02:19.339990+00:00",
+  "reviewer": "self_review",
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "results_ref": "project-control/modules/M04-A/evidence/20261030T085625Z/results.json",
+  "counts": {
+    "backend": 444,
+    "model_specific": 157,
+    "frontend": 16,
+    "browser": 33
+  },
+  "source_count": 122,
+  "fingerprint": "14083744756773d5d3d3b83368a7bdc7c176e1dc178f2edddad919becb970bb9",
+  "actual_problem": "unsupported_content after exactaliasaccepted",
+  "fix": "discard onlyobservedgatewayopaque reasoning, finaltextstrict",
+  "actual_corrected_gateway_test": "not_run",
+  "assistant_new_model_calls": 0
+}

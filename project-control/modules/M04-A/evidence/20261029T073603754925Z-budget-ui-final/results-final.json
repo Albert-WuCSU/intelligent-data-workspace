@@ -1,0 +1,77 @@
+{
+  "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "types",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33",
+      "log": "project-control/modules/M04-A/evidence/20261029T073603754925Z-budget-ui-final/types.txt"
+    },
+    {
+      "id": "frontend",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+        "run"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33",
+      "log": "project-control/modules/M04-A/evidence/20261029T073603754925Z-budget-ui-final/frontend.txt"
+    },
+    {
+      "id": "build",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "build"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33",
+      "log": "project-control/modules/M04-A/evidence/20261029T073603754925Z-budget-ui-final/build.txt"
+    },
+    {
+      "id": "browser",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33",
+      "log": "project-control/modules/M04-A/evidence/20261029T073603754925Z-budget-ui-final/browser.txt"
+    }
+  ],
+  "reuse": {
+    "backend": "project-control/modules/M04-A/evidence/20261029T073000Z/results.json",
+    "actual_backend_count": 382,
+    "changes_after_backend": [
+      "DEVELOPMENT.md",
+      "apps/web/src/WorkbenchPanel.tsx"
+    ],
+    "scope": "backend/tests/contracts/locks remain byteidentical; only oldUIhardfeeclaim correction anddocumentation, frontend/all30browser rerun; no new backend rerun claim"
+  }
+}

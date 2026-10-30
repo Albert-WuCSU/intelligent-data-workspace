@@ -1,0 +1,14 @@
+{
+  "unchanged_backend_results": "project-control/modules/M02/evidence/20261028T024336Z/results.json",
+  "reuse_reason": "all backend source/tests/contracts and locks byte-identical; UI changes rerun full frontend/browser;281 backend not rerun or relabeled with new fingerprint",
+  "changed_sources": [
+    "apps/web/src/App.tsx",
+    "apps/web/src/ModelSelector.tsx",
+    "apps/web/src/styles.css",
+    "apps/web/src/workbench.test.ts",
+    "apps/web/src/workbench.ts",
+    "apps/web/src/WorkbenchPanel.tsx",
+    "tests/workspace.spec.mjs"
+  ],
+  "model_requests": "not_run; no credentials copied or external providers called"
+}

@@ -65,7 +65,7 @@ test('history supports multi-turn, new conversations, switching, reload and deli
  await page.getByRole('button',{name:'新建会话'}).click();await page.getByLabel('业务问题').fill('第二段分析');await page.getByRole('button',{name:'发送问题'}).click();
  await page.locator('.history-select').filter({hasText:'第一段分析'}).click();await expect(page.locator('.user-message')).toHaveCount(2);
  await page.reload();await expect(page.getByText('API 已连接',{exact:true})).toBeVisible();
- await page.locator('.history-select').filter({hasText:'第一段分析'}).click();await expect(page.getByText('第一段的追问',{exact:true})).toBeVisible();
+ await page.locator('.history-select').filter({hasText:'第一段分析'}).click();await expect(page.locator('.user-message').getByText('第一段的追问',{exact:true})).toBeVisible();
  await page.locator('.history-select').filter({hasText:'第二段分析'}).click();await expect(page.locator('.user-message')).toHaveCount(1);
  await page.getByRole('button',{name:'删除会话 第二段分析'}).click();await page.getByRole('button',{name:'取消',exact:true}).click();await expect(page.locator('.history-item')).toHaveCount(2);
  await page.getByRole('button',{name:'删除会话 第二段分析'}).click();await page.getByRole('button',{name:'确认删除'}).click();await expect(page.locator('.history-item')).toHaveCount(1);
@@ -107,4 +107,34 @@ test('stored text is escaped rather than executed as HTML',async({page})=>{
  await page.getByLabel('业务问题').fill(text);await page.getByRole('button',{name:'发送问题'}).click();
  await expect(page.locator('.user-message p')).toHaveText(text);expect(await page.evaluate(()=>window.pwned)).toBeUndefined();
  await page.reload();await expect(page.getByText('API 已连接',{exact:true})).toBeVisible();await page.locator('.history-select').click();expect(await page.evaluate(()=>window.pwned)).toBeUndefined();expect(errors).toEqual([]);
+});
+
+
+test('reference-style context panel shows only real state and model entry remains honest',async({page})=>{
+ await online(page);
+ const panel=page.getByRole('complementary',{name:'会话摘要'});
+ await expect(panel).toBeVisible();await expect(panel).toContainText('等待提问');await expect(page.getByLabel('切换模型')).toBeDisabled();
+ await expect(page.getByLabel('选择问数数据源')).toHaveCount(0);await expect(panel.getByRole('region',{name:'多来源上下文'})).toBeVisible();
+ await page.getByRole('button',{name:'模型服务',exact:true}).click();
+ await expect(page.getByRole('region',{name:'模型接入说明',exact:true})).toContainText('15美元');await expect(panel).toContainText('尚无已验证、已授权的模型');
+ await page.getByLabel('业务问题').fill('请统计订单数量');await page.getByRole('button',{name:'发送问题'}).click();
+ await expect(panel).toContainText('自然语言请求未执行');await expect(panel).toContainText('暂无查询来源回执');await expect(panel).toContainText('未生成可下载文件');
+ await expect(page.getByRole('region',{name:'执行进度'})).toContainText('未执行');
+ await page.getByRole('button',{name:'关闭模型接入说明'}).click();await page.getByRole('button',{name:'白色主题'}).click();
+ await page.screenshot({path:`${EVIDENCE}/workbench-context-light.png`,fullPage:true});
+ await page.getByRole('button',{name:'黑色主题'}).click();await page.screenshot({path:`${EVIDENCE}/workbench-context-dark.png`,fullPage:true});
+ await page.getByRole('button',{name:'收起会话摘要'}).click();await expect(panel).toHaveCount(0);
+ await page.getByRole('button',{name:'会话摘要',exact:true}).click();await expect(panel).toBeVisible();
+});
+
+test('mobile context summary is opt-in and source/model controls do not overflow',async({page})=>{
+ await page.setViewportSize({width:390,height:844});await online(page);
+ await expect(page.getByRole('complementary',{name:'会话摘要'})).toHaveCount(0);
+ await expect(page.getByLabel('切换模型')).toBeDisabled();
+ await page.getByRole('button',{name:'模型服务',exact:true}).click();
+ const panel=page.getByRole('complementary',{name:'会话摘要'});await expect(panel).toBeVisible();await expect(panel).toContainText('待接入');
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await page.screenshot({path:`${EVIDENCE}/workbench-context-mobile.png`,fullPage:true});
+ await page.getByRole('button',{name:'收起会话摘要'}).click();await expect(panel).toHaveCount(0);await expect(page.getByLabel('业务问题')).toBeEnabled();
+ await page.getByRole('button',{name:'白色主题'}).click();await expect(page.getByRole('button',{name:'白色主题'})).toHaveAttribute('aria-pressed','true');
 });

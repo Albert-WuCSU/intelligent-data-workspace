@@ -1,0 +1,22 @@
+{
+  "reviewer": "self_review",
+  "user_request": "explicit reconfiguration to Claude Code style and model choice from supplied screenshot",
+  "nonsecret_platform_reference": "http://aicoding.console.ctripcorp.com/admin/personal/ada-config",
+  "selected_candidate": {
+    "protocol": "anthropic_messages",
+    "endpoint": "http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages",
+    "authentication": "bearer",
+    "model": "claude-haiku-4-5"
+  },
+  "rationale": "same earliernonsecretClaude ANTHROPIC_AUTH_TOKEN-style convention; not proof suppliedcredentialvalid/endpointmapping",
+  "implemented": [
+    "new start-workspace-claude.cmd explicit --model-preset claude-code",
+    "complete protocol/auth/model binding overrides mismatched nonsecret inheritedconfig",
+    "authmode part of configversion, standardMessagesxapikey remainsdefault fororiginalusers",
+    "safe 401/403 HTTPstatus inreceipt without remoteerrorbody/key",
+    "originalResponseslauncher retained no automaticfallback"
+  ],
+  "secrets": "no hosttoken/config/authfile copied or consolekey page fetched; userinputs productdedicatedkey locally",
+  "network": "no real gateway call, no retry of access denied",
+  "remaining": "newcandidateauth/modelnotverified; final regressionpending"
+}

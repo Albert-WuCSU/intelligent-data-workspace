@@ -1,0 +1,37 @@
+{
+  "reviewer": "self_review",
+  "source": "user supplied Anthropic SDK example, apiKey placeholder only",
+  "observed_base_url": "http://ada-cli-golang.ctripcorp.com",
+  "sdk_contract_candidate": {
+    "endpoint": "http://ada-cli-golang.ctripcorp.com/v1/messages",
+    "authentication": "x_api_key",
+    "model": "deepseek-v4.1-flash"
+  },
+  "changes": "explicit user-provided contract replaces earlier guessed coding-plan/Bearer preset; root network exception exact /v1/messages with Messages+xapikey only",
+  "tests": {
+    "command": [
+      "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "services/api/tests/test_claude_preset.py",
+      "services/api/tests/test_model_provider.py",
+      "services/api/tests/test_responses_provider.py",
+      "services/api/tests/test_model_budget.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "count": 108,
+    "fingerprint": "72c990a7562cf94695465465a24930bafe005a6f0baafdec4a457ab0ff6f5aef",
+    "files": {
+      "scripts/dev.py": "a6b4feba08e3b394ca056f8ccc17009e8b39a10c0ae01adc1477b6eefa76504d",
+      "services/api/src/data_workspace/model_provider.py": "12f6da23c4a0130ee5bee973c83904fdde52d6492a103a9a7c20f8909cd07f48",
+      "services/api/tests/test_claude_preset.py": "4626fe4d7dba96329b8988b927ee11bba0f982da91c443dd44b772c859b3b0aa"
+    }
+  },
+  "unverified": [
+    "actual gateway root auth/model",
+    "fullbackend/browser regression not rerun for this bounded correction"
+  ],
+  "safety": "no realKeyread/hostauthcopy/gatewayPOST/service restart; budget same ledger not reset",
+  "prior_403": "user reported realDeepSeekMessageBearerHTTP403; keptfailed, cause not proven"
+}

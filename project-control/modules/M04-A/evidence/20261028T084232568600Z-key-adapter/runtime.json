@@ -1,0 +1,23 @@
+{
+  "owner_read_check": "actually run Get-NetTCPConnection + Win32_Process GetOwner this turn",
+  "loopback": {
+    "8000": {
+      "pid": 9208,
+      "parent": 1772,
+      "owner": "CN1/luqianwu",
+      "created_local": "2026-10-28 14:27:21"
+    },
+    "5173": {
+      "pid": 22240,
+      "parent": 13472,
+      "owner": "CN1/luqianwu",
+      "created_local": "2026-10-28 14:27:21"
+    }
+  },
+  "health_live": 200,
+  "web": 200,
+  "actions": "no stop/restart; no inherited old exec",
+  "default_API": "old code; new model route checked only on independent current-code test API",
+  "user_key_input": "not_run; user-only local hidden console, no live key obtained",
+  "real_gateway": "not_run; no fee permit implemented"
+}

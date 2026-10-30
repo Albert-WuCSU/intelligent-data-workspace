@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-10-28T02:20:15.413267+00:00",
+  "code_fingerprint": "4caecf0c28b37bc4ae855335b6a3d38c18f6e78ade4baae28491c420aa6f29ba",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "retention-cycle-and-recovery",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\\u667a\u80fd\u95ee\u6570\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_retention_cycle.py",
+        "services/api/tests/test_retention_execution.py",
+        "services/api/tests/test_retention.py",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "4caecf0c28b37bc4ae855335b6a3d38c18f6e78ade4baae28491c420aa6f29ba",
+      "scope": "native deletion/cycle/Job only independent new temporary fixtures; metadata/clock faults isolated; default data not run",
+      "log": "project-control/modules/M02/evidence/20261028T0219500115329Z-cycle-recheck/tests.txt"
+    }
+  ]
+}

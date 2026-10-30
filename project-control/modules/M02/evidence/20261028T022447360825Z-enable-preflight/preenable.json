@@ -1,0 +1,54 @@
+{
+  "readonly_inventory": {
+    "scan_state": "COMPLETE",
+    "uploads": {
+      "folders": 30,
+      "bytes": 137132,
+      "referenced_folders": 9,
+      "review_only_folders": 0,
+      "unknown_folders": 21
+    },
+    "snapshots": {
+      "folders": 30,
+      "bytes": 19784498,
+      "referenced_folders": 29,
+      "review_only_folders": 1,
+      "unknown_folders": 0
+    },
+    "staging": {
+      "folders": 0,
+      "bytes": 0,
+      "referenced_folders": 0,
+      "review_only_folders": 0,
+      "unknown_folders": 0
+    },
+    "saved_profiles": 29,
+    "unsaved_tests": 0,
+    "automatic_cleanup": false,
+    "retention": {
+      "policy": "A_24H",
+      "automatic_cleanup": false,
+      "interval_seconds": null,
+      "next_run_at": null,
+      "cycle_state": "NOT_RUN",
+      "cycle_at": null,
+      "cycle_counts": null,
+      "cycle_error_code": null,
+      "scan_state": "NOT_SCANNED",
+      "candidate_folders": null,
+      "protected_folders": null,
+      "completed_cleanup_folders": 0,
+      "pending_cleanup_folders": 0,
+      "unverified_receipts": 0,
+      "last_state": "NOT_RUN",
+      "last_run_at": null,
+      "error_code": null,
+      "note": "A方案已批准：测试草稿有效24小时。自动回收尚未启用；候选计数不是删除计划，原文件、已保存/禁用及归属不明副本保留。"
+    },
+    "note": "仅只读盘点，不执行删除。未引用不等于可安全删除，禁用连接仍保留数据；历史归属不明副本需要人工核查。"
+  },
+  "new_retention_marker_count": 0,
+  "service_ports": "no listeners verified at turn start; must recheck immediately before launch",
+  "enablement": "not_run",
+  "note": "read-only maintenance counts, not business data; no deletion; unknown/legacy always protected"
+}

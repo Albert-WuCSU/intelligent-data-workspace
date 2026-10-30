@@ -1,0 +1,23 @@
+{
+  "reviewer": "self_review",
+  "source_url": "http://127.0.0.1:5173/api/v1/model-service/tests/32a14cea-568b-4410-944a-cd21188201a0/diagnostics",
+  "actual_GET": {
+    "http": 200,
+    "reason": "unsupported_content",
+    "returned_model_identifier": "deepseek-v4-1-flash-261017",
+    "model_matches": false,
+    "stop_reason": "end_turn",
+    "content_types": [
+      "thinking",
+      "text"
+    ],
+    "input_tokens": 49,
+    "output_tokens": 17
+  },
+  "interpretation": "exactmodelbinding passed; failure contentbranch. Rawthinkingfields not retained, signatureabsence unproven; signedClaudeNativeenvelope requirement unnecessary for discarded gatewaymetadata",
+  "change": "only exactobservedgatewayalias allows opaque thinking/redactedthinking to be discarded without interpreting fields; no thoughtoutput/persistence/replay. text remains string/nonempty/size/usage/budget/secretchecked; tools and unknownmodels reject",
+  "diagnostic": "newmodel_binding enum distinguishes lexicalmatch from explicitacceptedalias",
+  "tests": "157modelspecificpassed (150old+7gateway reasoning cases); fullpending",
+  "actions": "GETonly actual userreceipt; no Keyread, no realPOST/retry/service stop",
+  "runtime": "user stillold code; update/reinput explicitly neededafterverification"
+}

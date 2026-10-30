@@ -1,0 +1,11 @@
+{
+  "actual_index_files": 2099,
+  "bytes_total": 133504648,
+  "high_confidence_secrets": [],
+  "forbidden_runtime_tool_paths": [],
+  "embedded_symlinks": [],
+  "oversized_files": [],
+  "staged_vs_disk_byte_mismatches": [],
+  "status": "passed",
+  "scope": "actualblobscan+bytecomparison, nooutofindexcredentials read; regexnotfullDLPguarantee; binaryscreenshots onlyselftestalreadyreviewed"
+}

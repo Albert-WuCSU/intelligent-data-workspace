@@ -1,7 +1,8 @@
-import type { QuerySpec, Task, PreviewReceipt, QueryPreview } from './api';
+import type { QuerySpec, Task, PreviewReceipt, QueryPreview, TestedDraft } from './api';
 export type Theme = 'dark' | 'light';
 export type Message = {id:string; createdAt:string} & (
   {kind:'user'; text:string} |
+  {kind:'attachment'; filename:string; receipt:TestedDraft} |
   {kind:'unavailable'; text:string} |
   {kind:'validation'; spec:QuerySpec; note:string} |
   {kind:'task'; task:Task} |

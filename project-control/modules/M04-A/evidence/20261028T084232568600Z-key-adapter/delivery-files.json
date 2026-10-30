@@ -1,0 +1,19 @@
+{
+  "DEVELOPMENT.md": "d7e9146af1b2f44b3657cf0ce842a4c061dcfd1e88177a30cd96542b21839eb1",
+  "MODEL_SERVICE.md": "d941656c5fe9a46b6f3b70173fa556eb614e42de5ab2af34ce2bb55d353498e2",
+  "apps/web/src/ModelServiceReadiness.tsx": "faa95195789e870cf8fb5c53c69d264e90804952e9f111beb3d4c45cb9e7782e",
+  "apps/web/src/WorkbenchPanel.tsx": "866c7f35b7ad4475cc6ff20ea2a108e16e341816defbb19a5488d3e13a201648",
+  "apps/web/src/api.generated.ts": "694a75764b696f32b19ec332bba4bfe44d31f25e85ee170bf742b1fa84fa67a0",
+  "apps/web/src/api.ts": "83ec12007e7b1192bd430b068f011c8dc8d241b6dc28d3c04697c232819d6740",
+  "contracts/openapi.json": "79af8ae74bd546854479686455acd9a252cdff1cf66285d8853ed774f1f3d9e9",
+  "project-control/modules/M04-A/plan.md": "6b662a851bf99280ac0dbf786f6f79b1a5530656a4ec0bb900f228cd04d406da",
+  "scripts/check.py": "24bbf35e00e4ddac201cc8f08272ee34e456beb2f05cf9fa973f0f60ee849782",
+  "scripts/dev.py": "0794f881c31ab8c887e390413ab0c385374d208386b3d587a7dac60e5216a746",
+  "scripts/model_key_input.py": "a7cc2efe13a7a304b36f92f0a0709de64375f2c0f75dec35c28a757434e8440d",
+  "services/api/src/data_workspace/main.py": "0b355d96355d9922f8f1206e312fa5916856c57d808fa0b4a186dbe1524a9ce3",
+  "services/api/src/data_workspace/model_provider.py": "f68c97080a0ecc2e53600a1fe28343aca8bb0c3269a370bb939e08a9f4a451e6",
+  "services/api/src/data_workspace/model_routes.py": "58b99b0cb15e9b8541d93e9bda6f919653d33399f5a19c2d460ea85b1f33c16d",
+  "services/api/tests/test_model_provider.py": "6a961b803616bdf4528b435b940b8f5f87c9a0bbb02c6faf461b1538f132732d",
+  "start-workspace-model.cmd": "60dc3ca92e218dd412e92cadb667da55bb8a17280e2d795e1a26b02102133042",
+  "tests/remote-onboarding.spec.mjs": "e579d4bd939b6fdf0325efba4a1da335a91f6c69cec76b0a9d1fa73c839d52bf"
+}

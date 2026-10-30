@@ -1,0 +1,10 @@
+{
+  "services/api/src/data_workspace/model_provider.py": "877089fa43c2f81bdc64215129fc39f8a4733427a2980297d3c2fce4581bf9ae",
+  "services/api/src/data_workspace/model_routes.py": "2cb8e3065df06f0e05705ec78359a514ab5c313e191050c46da52f1f46de8665",
+  "services/api/tests/test_model_diagnostics.py": "f3d3f5235c54d59aea57113b774bd5cd33f05cc09bc51069b9201aa866c6715f",
+  "apps/web/src/ModelServiceReadiness.tsx": "19fdb2e3d7fab5e81b16204d84c70d7903007c07e0137dd2a58c02bb6d5dff6a",
+  "scripts/remote_browser_fixture.py": "2ad1af697d01f00f1c89624a41a106fc7f80415593229b28a047576fe865088d",
+  "tests/remote-onboarding.spec.mjs": "b8a2aa998fd69576c72c1703a49247bed814efa223dd2c919669b839280059d6",
+  "contracts/openapi.json": "87fc2c4a403e0287c4f2f80e3524fdc7222a73cd32b33c13c0b735e6600786d6",
+  "apps/web/src/api.generated.ts": "df085d6408a6aaf9c246be83496efd999d505ac422f67bafe9796831aa76f181"
+}

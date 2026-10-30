@@ -1,0 +1,35 @@
+{
+  "reviewer": "self_review",
+  "source": "user supplied screenshots, not authoritative tariff",
+  "observed_gpt61": {
+    "cost_usd": "59.37",
+    "requests": 993,
+    "total_m_tokens": "212.75",
+    "input_m": "9.83",
+    "output_k": "923.33",
+    "cache_read_m": "202.00",
+    "cache_percent": "95.36"
+  },
+  "arithmetic": {
+    "mean_usd_per_request": "0.0597885196374622356",
+    "description": "historical aggregate mean, not new request unit price; mostly cached traffic"
+  },
+  "approved_estimation_policy": {
+    "target_usd": "15",
+    "planning_ceiling_usd": "20",
+    "mode": "estimated_soft_budget_not_supplier_hardlimit",
+    "initial_reserved_estimate_usd_per_bounded_request": "0.25",
+    "maximum_requests": 60,
+    "estimated_plan_total_usd": "15",
+    "question_max_chars": 2000,
+    "output_max_tokens": 128,
+    "retries": 0,
+    "reasoning_and_cache": "do not reuse95percentcacheassumption; outputcapincludesreasoningtokensResponses",
+    "purpose": "small fixed non-sensitive model smoke tests then limitedMVP trials; no fullhistory/rows/images",
+    "cost_label": "estimated; reserve is bookkeeping heuristic not mathematical cost upperbound",
+    "unknown_result": "keepestimatedreservation,noautomaticretry",
+    "actual_observation": "useactualreceiptcostwhenprovided; tokenusagewithouttariffstillestimated; stoponreportedactual>=20 or estimated>=15 or60requests; uservisible before furthercalls"
+  },
+  "remaining_real_test_gate": "user locally inputs dedicatedKey and explicitly triggers a bounded test; nohosttokencopy; no supplierproofrequired under this useraccepted approximatepolicy",
+  "implementation": "policy recorded, estimatedledger/realtestendpointnotyetcoded"
+}

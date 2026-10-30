@@ -52,3 +52,10 @@ export type PostgresDraft = components['schemas']['PostgresDraft'];
 export type ConnectionDraft = ProfileDraft | HTTPMCPDraft | PostgresDraft;
 
 export type StorageSummary = components['schemas']['StorageSummary'];
+
+export type RetentionStatus = components['schemas']['RetentionStatus'];
+
+export type DraftPreview = components['schemas']['DraftPreview'];
+
+export type ModelServiceStatus = components['schemas']['ModelReadiness'];
+export type ModelTestReceipt = components['schemas']['ModelTestReceipt'];

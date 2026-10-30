@@ -1,0 +1,17 @@
+{
+  "reviewer": "self_review",
+  "type": "documentation checkpoint only",
+  "restored_revision": 79,
+  "progress_validation": "passed",
+  "source_ref": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/sources.json",
+  "source_files": 109,
+  "source_hash_mismatches": 0,
+  "latest_product_evidence": "287 backend /16 frontend /27 browser, actual saved evidence reused, not rerun for handoff",
+  "current_module": "M02-C03 DO; no delivery or closure implied",
+  "user_approval": "proceed with model adapter and local safe key entry design, then user supplies application credential locally; do not ask for key in chat",
+  "key_entry": "not implemented; no key has been obtained or tested",
+  "model_generation_and_join": "not_run",
+  "gateway_permission": "already confirmed;15USD cap, necessary questions/field metadata only; no row/history/image egress",
+  "service_status": "previous recorded loopback services; not rechecked or restarted during documentation-only turn",
+  "github": "local outstanding changes; not committed/pushed this turn"
+}

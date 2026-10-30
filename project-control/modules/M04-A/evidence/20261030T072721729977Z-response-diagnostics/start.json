@@ -1,0 +1,24 @@
+{
+  "reviewer": "self_review",
+  "actual_failure": "user reports MODEL_RESPONSE_INVALID, precise parse reason unavailable fromoldcode; latestMessagesparseronlyrunsafterHTTP200, not generationproof",
+  "actual_readonly_status": {
+    "protocol": "anthropic_messages",
+    "authentication": "bearer",
+    "model": "deepseek-v4.1-flash",
+    "generation_verified": false,
+    "credential_configured": true,
+    "estimated_reserved_usd": "1.50",
+    "reserved_requests": 6
+  },
+  "diagnostics_implementation": [
+    "fixed failure reason category",
+    "model_matches boolean, no upstreammodel string",
+    "fixed stopreason enum and contenttypeallowlist",
+    "boundedvalidusage integers only",
+    "no body/thinking/Key/headers logged or copied",
+    "existing strictmodel/complete/text/outputbudgetconditions retained"
+  ],
+  "tests": "122model/diagnostic/budgetspecificpassed; typesfirstoptionalcontenttype compile issue corrected, finalfullpending",
+  "assistant_calls": "readonlylocalstatus only, no realPOST/retry/Keyinspect/restart",
+  "next": "usercontrolled update restart needed fornewdiagnostics then1explicitrequest; no inferenceuntilsafeobservedreason"
+}

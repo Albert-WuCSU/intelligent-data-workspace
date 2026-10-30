@@ -1,0 +1,130 @@
+
+Running 27 tests using 1 worker
+
+(node:5024) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (3.0s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.3s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (989ms)
+  ok  4 tests\remote-onboarding.spec.mjs:20:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (8.5s)
+  ok  5 tests\remote-onboarding.spec.mjs:35:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (1.0s)
+  ok  6 tests\remote-onboarding.spec.mjs:44:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (5.3s)
+  ok  7 tests\remote-onboarding.spec.mjs:58:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds (4.9s)
+  ok  8 tests\remote-onboarding.spec.mjs:73:1 › storage inventory is read-only, protects disabled saved data and has no delete action (827ms)
+  ok  9 tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup (1.8s)
+  x  10 tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest (7.6s)
+(node:27656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  x  11 tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support (6.0s)
+(node:21908) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  x  12 tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected (10.5s)
+(node:3372) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 13 tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection (6.6s)
+  ok 14 tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets (866ms)
+  ok 15 tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain (642ms)
+  ok 16 tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters (7.0s)
+  ok 17 tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support (9.0s)
+  ok 18 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.5s)
+  ok 19 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (948ms)
+  ok 20 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.6s)
+  ok 21 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (909ms)
+  ok 22 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (970ms)
+  ok 23 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (656ms)
+  ok 24 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok 25 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (788ms)
+  ok 26 tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest (1.1s)
+  ok 27 tests\workspace.spec.mjs:130:1 › mobile context summary is opt-in and source/model controls do not overflow (735ms)
+
+
+  1) tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('button', { name: '保存连接', exact: true })
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByRole('button', { name: '保存连接', exact: true }) with timeout 5000ms
+      - waiting for getByRole('button', { name: '保存连接', exact: true })
+        14 × locator resolved to <button class="primary">保存连接</button>
+           - unexpected value "enabled"
+
+
+       97 |  await expect(page.getByRole('status')).toContainText('草稿有效 24 小时');
+       98 |  const result=await page.request.post(fixture.api_url+'/fixture-only/retention-expire-tests',{headers:{'X-Workspace-Request':'1'}});expect(result.status()).toBe(200);
+    >  99 |  await page.getByRole('button',{name:'保存连接',exact:true}).click();await expect(page.getByRole('alert')).toContainText('TEST_EXPIRED');await expect(page.getByRole('button',{name:'保存连接',exact:true})).toBeDisabled();
+          |                                                                                                                                                                                                      ^
+      100 |  await expect(page.getByLabel('连接名称')).toHaveValue('过期演示');await expect(page.getByLabel('MCP 服务地址')).toHaveValue(fixture.mcp_url);
+      101 |  await page.getByRole('button',{name:'测试连接',exact:true}).click();await expect(page.getByRole('status')).toContainText('草稿有效 24 小时');await expect(page.getByRole('button',{name:'保存连接',exact:true})).toBeEnabled();
+      102 |  await page.getByRole('button',{name:'黑色主题'}).click();await expect(page.getByRole('button',{name:'黑色主题'})).toHaveAttribute('aria-pressed','true');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:99:198
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-expired--5911b--explicitly-requires-retest\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-expired--5911b--explicitly-requires-retest\error-context.md
+
+  2) tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('status')
+    Expected substring: "当前运行 API 未报告草稿过期能力"
+    Received string:    "真实 MCP 连接测试通过：1 张表。当前尚未保存；当前API未报告草稿过期能力。"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('status') with timeout 5000ms
+      - waiting for getByRole('status')
+        8 × locator resolved to <div role="status" class="test-success">…</div>
+          - unexpected value "真实 MCP 连接测试通过：1 张表。当前尚未保存；当前API未报告草稿过期能力。"
+
+
+      115 |  await page.getByRole('button',{name:'配置 MCP',exact:true}).click();await page.getByLabel('连接名称').fill('旧API能力边界');await page.getByLabel('MCP 服务地址').fill(fixture.mcp_url);await page.getByLabel('后台凭证引用').fill(fixture.secret_ref);
+      116 |  await page.getByRole('checkbox',{name:'我有权连接此数据源',exact:false}).check();await page.getByRole('button',{name:'测试连接',exact:true}).click();
+    > 117 |  await expect(page.getByRole('status')).toContainText('当前运行 API 未报告草稿过期能力');await expect(page.getByRole('status')).not.toContainText('草稿有效 24 小时');
+          |                                         ^
+      118 | });
+      119 |
+      120 |
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:117:41
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-legacy-A-ebdf5-ed-as-active-expiry-support\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-legacy-A-ebdf5-ed-as-active-expiry-support\error-context.md
+
+  3) tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('article').filter({ hasText: 'protected isolated source' })
+    Expected substring: "已禁用"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toContainText" getByRole('article').filter({ hasText: 'protected isolated source' }) with timeout 5000ms
+      - waiting for getByRole('article').filter({ hasText: 'protected isolated source' })
+
+
+      125 |  const panel=page.getByRole('region',{name:'存储与清理盘点'});await expect(panel).toContainText('自动回收已启用');await expect(panel).toContainText('最近自动周期：SUCCEEDED');await expect(panel).toContainText('间隔 600 秒');await expect(panel).toContainText('本周期回收 1 个目录');
+      126 |  const status=await page.request.get(fixture.automatic_api_url+'/api/v1/source-profiles/storage');const value=await status.json();expect(value.saved_profiles).toBe(1);expect(value.uploads.referenced_folders).toBe(1);expect(value.snapshots.referenced_folders).toBe(1);expect(value.retention.completed_cleanup_folders).toBe(1);
+    > 127 |  await expect(panel.getByRole('button',{name:/删除|立即清理/})).toHaveCount(0);await expect(page.getByRole('article').filter({hasText:'protected isolated source'})).toContainText('已禁用');
+          |                                                                                                                                                                ^
+      128 |  await page.getByRole('button',{name:'白色主题'}).click();await page.screenshot({path:`${EVIDENCE}/automatic-retention-light.png`,fullPage:true});
+      129 | });
+      130 |
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:127:160
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-def-1e291--saved-data-stays-protected\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-def-1e291--saved-data-stays-protected\error-context.md
+
+  3 failed
+    tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest 
+    tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support 
+    tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected 
+  24 passed (2.0m)

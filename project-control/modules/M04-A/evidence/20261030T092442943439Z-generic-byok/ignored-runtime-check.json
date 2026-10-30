@@ -1,0 +1,11 @@
+{
+  "command": "git check-ignore namedruntime/modelledger/sourceprofiles/toolconfig/tmp paths",
+  "exit_code": 0,
+  "ignored_paths": [
+    "data/model-runtime/estimated-budget.sqlite3",
+    "data/connections/profiles.sqlite3",
+    ".codex/config.toml",
+    "tmp/test-key.txt"
+  ],
+  "scope": "paths only, no contentread"
+}

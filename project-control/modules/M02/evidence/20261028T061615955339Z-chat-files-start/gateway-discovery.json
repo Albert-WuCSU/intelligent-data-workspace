@@ -1,0 +1,20 @@
+{
+  "target": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+  "reads": [
+    {
+      "path": "/",
+      "status": 404
+    },
+    {
+      "path": "/openapi.json",
+      "status": 404
+    }
+  ],
+  "authorization_header": false,
+  "model_generation": "not_run",
+  "project_specific_credential_configured": false,
+  "provider_documentation": "not_discovered",
+  "cost_rate_or_hard_limit": "not_verified",
+  "no_host_tokens_copied": true,
+  "scope": "non-sensitive metadata reads only; approval logged, no chat/schema/rows sent"
+}

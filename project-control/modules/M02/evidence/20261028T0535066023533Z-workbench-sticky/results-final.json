@@ -1,0 +1,92 @@
+{
+  "created_at": "2026-10-28T05:35:23.283935+00:00",
+  "code_fingerprint": "7dd8169da92429ce3eebb615fe07612fb4de50164409119b35cf6f27865ba336",
+  "source_stable": true,
+  "checks": [
+    {
+      "id": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "build"
+      ],
+      "cwd": "apps/web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "7dd8169da92429ce3eebb615fe07612fb4de50164409119b35cf6f27865ba336",
+      "log": "project-control/modules/M02/evidence/20261028T0535066023533Z-workbench-sticky/build.txt"
+    },
+    {
+      "id": "browser-workspace",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "tests/workspace.spec.mjs",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "7dd8169da92429ce3eebb615fe07612fb4de50164409119b35cf6f27865ba336",
+      "log": "project-control/modules/M02/evidence/20261028T0535066023533Z-workbench-sticky/browser-workspace.txt"
+    },
+    {
+      "id": "prd-consistency",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "project-control/prd/validate.py",
+        "--root",
+        ".",
+        "--installed-skill",
+        "D:/Users/luqianwu/.codex/skills/project-pdca"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "7dd8169da92429ce3eebb615fe07612fb4de50164409119b35cf6f27865ba336",
+      "log": "project-control/modules/M02/evidence/20261028T0535066023533Z-workbench-sticky/prd-consistency.txt"
+    },
+    {
+      "id": "prd-guardrails",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "project-control/prd/test_validate.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "7dd8169da92429ce3eebb615fe07612fb4de50164409119b35cf6f27865ba336",
+      "log": "project-control/modules/M02/evidence/20261028T0535066023533Z-workbench-sticky/prd-guardrails.txt"
+    },
+    {
+      "id": "progress-guardrails",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "skills/project-pdca/scripts/test_progress.py"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "7dd8169da92429ce3eebb615fe07612fb4de50164409119b35cf6f27865ba336",
+      "log": "project-control/modules/M02/evidence/20261028T0535066023533Z-workbench-sticky/progress-guardrails.txt"
+    }
+  ],
+  "reuse": {
+    "full_frontend_and26_browser": "project-control/modules/M02/evidence/20261028T0336352790712Z-workbench-final/results.json",
+    "only_later_change": "apps/web/src/styles.css sticky close header; build+all10workspace rerun",
+    "unchanged_backend": "project-control/modules/M02/evidence/20261028T024336Z/results.json",
+    "original281_backend_reused": "all backend source/tests/contracts/locks byte-identical; no fake new fingerprint/backend rerun"
+  }
+}

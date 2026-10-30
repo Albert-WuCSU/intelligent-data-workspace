@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-30T09:39:52.099306+00:00",
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "reviewer": "self_review",
+  "results_ref": "project-control/modules/M04-A/evidence/20261030T093324Z/results.json",
+  "counts": {
+    "backend": 471,
+    "model_specific": 184,
+    "frontend": 16,
+    "browser": 34
+  },
+  "source_count": 126,
+  "fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
+  "personal_supplier_real_integration": "not_run",
+  "new_web_key_user_path": "local_fixture_verified; realusernotrun",
+  "AIPlan_prior_minimal_text": "passed",
+  "secretpersist": "none memoryonly",
+  "github": "pending safetyreview/commitpush"
+}

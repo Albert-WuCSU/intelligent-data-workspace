@@ -1,0 +1,36 @@
+{
+  "reviewer": "self_review",
+  "scope": "explicit Responses candidate adapter increment",
+  "implemented": [
+    "ResponsesProvider with shared governed transport and budget denial",
+    "Bearer dedicated key + model/input/max_output_tokens128/storefalse/streamfalse",
+    "completed output text parsing, reasoning ignored, partial/tool/refusal/model mismatch reject",
+    "env factory routes explicit openai_responses only, no fallback",
+    "static reviewed nonsecret defaults in --model-key launcher, explicit project environment overrides, no hostfile reading",
+    "UI discloses candidate protocol/model unverified"
+  ],
+  "tests": {
+    "command": "services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_model_provider.py services/api/tests/test_responses_provider.py -q",
+    "exit_code": 0,
+    "count": 79,
+    "scope": "36 originalMessages +43Responses including2actualHTTPloopback, fakekeys only"
+  },
+  "not_run": [
+    "gateway actualauth/model/path",
+    "production budgetpermit/realfee",
+    "user hidden realkey",
+    "defaultAPI reload",
+    "stream/SQL/JOIN"
+  ],
+  "files": [
+    "services/api/src/data_workspace/model_provider.py",
+    "services/api/src/data_workspace/responses_provider.py",
+    "services/api/tests/test_responses_provider.py",
+    "scripts/dev.py",
+    "scripts/remote_browser_fixture.py",
+    "apps/web/src/ModelServiceReadiness.tsx",
+    "tests/remote-onboarding.spec.mjs",
+    "MODEL_SERVICE.md"
+  ],
+  "full_regression": "pending"
+}

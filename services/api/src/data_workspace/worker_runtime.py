@@ -14,7 +14,7 @@ import time
 
 ROOT = Path(__file__).resolve().parents[4]
 ENTRY = Path(__file__).with_name('worker_entry.py')
-OPERATIONS = frozenset({'snapshot', 'http_navigation', 'postgres_navigation', 'upload_preflight'})
+OPERATIONS = frozenset({'snapshot', 'http_navigation', 'postgres_navigation', 'upload_preflight', 'retention_cycle'})
 SLOTS = BoundedSemaphore(2)
 
 class WorkerFailure(RuntimeError):
@@ -81,13 +81,13 @@ def worker_environment():
     return result
 
 
-def run_worker(operation, payload, *, limits=None):
+def run_worker(operation, payload, *, limits=None, cancel_event=None):
     if operation not in OPERATIONS:
         raise WorkerFailure('WORKER_OPERATION_DENIED')
-    return _run_entry(operation,payload,limits or WorkerLimits())
+    return _run_entry(operation,payload,limits or WorkerLimits(),cancel_event=cancel_event)
 
 
-def _run_entry(operation,payload,limits, *, entry=ENTRY):
+def _run_entry(operation,payload,limits, *, entry=ENTRY,cancel_event=None):
     # entry is internal-only for isolated failure test fixtures, never a product API field.
     try:
         encoded=json.dumps({'operation':operation,'payload':payload},ensure_ascii=False,allow_nan=False).encode('utf-8')
@@ -102,6 +102,7 @@ def _run_entry(operation,payload,limits, *, entry=ENTRY):
             if not failures:failures.append(code)
         finished.set()
     try:
+        if cancel_event is not None and cancel_event.is_set():raise WorkerFailure('WORKER_CANCELLED')
         job=WindowsJob(limits)
         # Base Python -S avoids venv launcher child races and site/custom startup code.
         # Fixed bootstrap explicitly supplies the approved project site-packages after the gate.
@@ -128,6 +129,7 @@ def _run_entry(operation,payload,limits, *, entry=ENTRY):
         reader.start();writer.start()
         deadline=time.monotonic()+limits.wall_seconds
         while process.poll() is None or not finished.is_set():
+            if cancel_event is not None and cancel_event.is_set():raise WorkerFailure('WORKER_CANCELLED')
             if failures:raise WorkerFailure(failures[0])
             accounting=job.job.QueryInformationJobObject(job.handle,job.job.JobObjectBasicAccountingInformation)
             if accounting['TotalUserTime']+accounting['TotalKernelTime'] >= limits.cpu_seconds*10000000:

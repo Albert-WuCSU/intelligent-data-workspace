@@ -1,0 +1,22 @@
+{
+  "reviewer": "self_review",
+  "actual_readonly_receipt": {
+    "request_id": "d94d4bec-d45d-4519-a3c5-530f6ab5a686",
+    "status": "failed_or_unknown",
+    "reason": "model_mismatch",
+    "returned_identifier": "deepseek-v4-1-flash-261017",
+    "stop_reason": "end_turn",
+    "content_types": [
+      "thinking",
+      "text"
+    ],
+    "input_tokens": 49,
+    "output_tokens": 16
+  },
+  "source_url": "http://127.0.0.1:5173/api/v1/model-service/tests/d94d4bec-d45d-4519-a3c5-530f6ab5a686/diagnostics",
+  "retrieval": "HTTP200 GET actual thisturn, no newmodelcall/cost",
+  "implementation": "exactstaticmappingonlyfullcodingplan/v1/messages+Messages+Bearer+requestdeepseek-v4.1-flash to returneddeepseek-v4-1-flash-261017; configversionincludesmapping; receiptbothrequested/returned IDs + bindingmode",
+  "safety": "not general prefix/normalization, othermodels/versions reject, standardthinkingdiscard onlytext output; no actualKey or retry",
+  "specifictests": "150passed beforefullregression",
+  "actual_corrected_test": "not_run yet; existingfailurereceipt not rewritten success"
+}

@@ -130,8 +130,8 @@ def validate_journal(root,area,id,record,now):
     return record
 
 
-def assert_unreferenced(store,area,id):
-    snapshots,uploads,legacy=retention_references(store)
+def assert_unreferenced(store,area,id,*,_metadata=None):
+    snapshots,uploads,legacy=retention_references(store,_metadata=_metadata)
     if (area=='snapshots' and id in snapshots) or (area in {'uploads','staging'} and (id in uploads or legacy)):
         raise PublicError(409,'STORAGE_REFERENCED','副本已被保存连接或有效测试引用；没有继续清理。')
 
@@ -141,96 +141,109 @@ def cleanup_one(store,auth,area,id):
     store.authorize(auth)
     if area not in AREAS or not canonical_id(id):raise PublicError(422,'CLEANUP_TARGET_INVALID','清理目标不在受控临时副本范围。')
     with store.lock,storage_lease(store.root),profiles_guard(store.root):
-        if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
-        assert_unreferenced(store,area,id)
-        path=store.root/'cleanup-journal'/(id+'.json')
-        record=None;now=store.clock()
-        try:
-            folder=checked_runtime_path(store.root,store.root/area/id)
-            recovery_temp=None
-            if path.exists():
-                checked_runtime_path(store.root,path)
-                if path.stat().st_nlink!=1:raise ValueError('linked journal')
-                record=validate_journal(store.root,area,id,read_object(path),now)
-            temp=path.with_suffix('.tmp')
-            if temp.exists():
-                checked_runtime_path(store.root,temp)
-                if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
-                proposed=validate_journal(store.root,area,id,read_object(temp),now)
-                if record:
-                    fixed=set(record)-{'state','deleted'}
-                    if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
-                    order={'PLANNED':0,'DELETING':1,'DONE':2}
-                    if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
-                record=proposed;recovery_temp=temp
-            if record and record['state']=='DONE':
-                if folder.exists():raise ValueError('completed UUID recreated')
-                if recovery_temp is not None:recovery_temp.replace(path)
-                return {'state':'DONE','deleted_files':0,'already_done':True}
-            if not folder.exists():
-                if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
-                if recovery_temp is not None:recovery_temp.replace(path)
-                record['state']='DONE';persist_journal(store.root,record)
-                return {'state':'DONE','deleted_files':0,'already_done':True}
-            with ExitStack() as stack:
-                directory=pin_directories(stack,store.root,folder)
-                children=list(islice(folder.iterdir(),9))
-                if len(children)>8:raise ValueError('descendant budget')
-                objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
-                if record is None:
-                    marker,files=validate_artifact(store.root,area,id,objects,now)
-                    record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
-                            'created_at':marker['created_at'],'started_at':now.isoformat(),'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
-                    persist_journal(store.root,record)
-                else:
-                    if directory.identity!=record['directory']:raise ValueError('directory replaced')
-                    if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
-                    if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
-                    if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
-                    for name,obj in objects.items():
-                        if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
-                if recovery_temp is not None:recovery_temp.replace(path)
-                observe('validated')
-                assert_unreferenced(store,area,id)  # test seam/race must not allow a stale plan
-                record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
-                count=0
-                # Delete provenance last; outstanding handles pin all bytes and descendants.
-                for name in sorted(objects,key=lambda n:n==MARKER):
-                    objects[name].dispose();count+=1;observe('file_deleted')
-                    record['deleted'].append(name);persist_journal(store.root,record)
-                directory.dispose();observe('directory_deleted')
-            record['state']='DONE';persist_journal(store.root,record)
-            return {'state':'DONE','deleted_files':count,'already_done':False}
-        except PublicError:raise
-        except Exception:
-            # No path/content/credential echo. Keep partial work and journal for verified retry.
-            raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
+        return cleanup_one_locked(store,auth,area,id)
 
+
+def cleanup_one_locked(store,auth,area,id,*,_budget=None,_metadata=None):
+    """Internal: caller owns runtime lease and profile write guard for whole cycle."""
+    if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；没有执行清理。')
+    assert_unreferenced(store,area,id,_metadata=_metadata)
+    path=store.root/'cleanup-journal'/(id+'.json')
+    record=None;now=store.clock()
+    try:
+        folder=checked_runtime_path(store.root,store.root/area/id)
+        recovery_temp=None
+        if path.exists():
+            checked_runtime_path(store.root,path)
+            if path.stat().st_nlink!=1:raise ValueError('linked journal')
+            record=validate_journal(store.root,area,id,read_object(path),now)
+        temp=path.with_suffix('.tmp')
+        if temp.exists():
+            checked_runtime_path(store.root,temp)
+            if temp.stat().st_nlink!=1:raise ValueError('linked journal temp')
+            proposed=validate_journal(store.root,area,id,read_object(temp),now)
+            if record:
+                fixed=set(record)-{'state','deleted'}
+                if any(record[k]!=proposed[k] for k in fixed):raise ValueError('conflicting journal temp')
+                order={'PLANNED':0,'DELETING':1,'DONE':2}
+                if order[proposed['state']]<order[record['state']] or not set(record['deleted']).issubset(proposed['deleted']):raise ValueError('journal regressed')
+            record=proposed;recovery_temp=temp
+        if record and record['state']=='DONE':
+            if folder.exists():raise ValueError('completed UUID recreated')
+            if recovery_temp is not None:recovery_temp.replace(path)
+            return {'state':'DONE','deleted_files':0,'already_done':True}
+        if not folder.exists():
+            if not record or record['state']!='DELETING':raise ValueError('no verifiable pending operation')
+            if recovery_temp is not None:recovery_temp.replace(path)
+            record['state']='DONE';persist_journal(store.root,record)
+            return {'state':'DONE','deleted_files':0,'already_done':True}
+        with ExitStack() as stack:
+            directory=pin_directories(stack,store.root,folder)
+            children=list(islice(folder.iterdir(),9))
+            if len(children)>8:raise ValueError('descendant budget')
+            objects={child.name:stack.enter_context(PinnedObject(store.root,child,delete=True)) for child in children}
+            if _budget is not None:
+                _budget[0]+=sum(obj.size for obj in objects.values())
+                if _budget[0]>MAX_HASH_BYTES:raise PublicError(409,'CYCLE_BUDGET','周期核验字节超限，保留剩余对象。')
+            if record is None:
+                marker,files=validate_artifact(store.root,area,id,objects,now)
+                record={'schema':JOURNAL_SCHEMA,'root_key':root_key(store.root),'owner':OWNER,'area':area,'id':id,
+                        'created_at':marker['created_at'],'started_at':now.isoformat(),'directory':directory.identity,'files':files,'state':'PLANNED','deleted':[]}
+                persist_journal(store.root,record)
+            else:
+                if directory.identity!=record['directory']:raise ValueError('directory replaced')
+                if not set(objects).issubset(record['files']):raise ValueError('unexpected descendants')
+                if record['state']=='PLANNED' and set(objects)!=set(record['files']):raise ValueError('planned object missing')
+                if set(objects)&set(record['deleted']):raise ValueError('deleted object recreated')
+                for name,obj in objects.items():
+                    if obj.record()!=record['files'][name]:raise ValueError('pinned object changed')
+            if recovery_temp is not None:recovery_temp.replace(path)
+            observe('validated')
+            assert_unreferenced(store,area,id,_metadata=_metadata)  # test seam/race must not allow a stale plan
+            record['state']='DELETING';persist_journal(store.root,record);observe('deleting')
+            count=0
+            # Delete provenance last; outstanding handles pin all bytes and descendants.
+            for name in sorted(objects,key=lambda n:n==MARKER):
+                objects[name].dispose();count+=1;observe('file_deleted')
+                record['deleted'].append(name);persist_journal(store.root,record)
+            directory.dispose();observe('directory_deleted')
+        record['state']='DONE';persist_journal(store.root,record)
+        return {'state':'DONE','deleted_files':count,'already_done':False}
+    except PublicError:raise
+    except Exception:
+        # No path/content/credential echo. Keep partial work and journal for verified retry.
+        raise PublicError(409,'CLEANUP_STOPPED','清理安全核查或写入未完成，已停止；请核查后重试，原文件与已保存数据不在回收范围。') from None
 
 def prune_expired_references(store,auth):
     """Bounded maintenance only for valid server-owned expired test references."""
     store.authorize(auth)
     with store.lock,storage_lease(store.root),profiles_guard(store.root):
-        if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；未维护测试引用。')
-        parent=store.root/'test-references'
-        if not parent.exists():return {'removed':0,'retained':0,'unknown':0}
-        checked_runtime_path(store.root,parent)
-        children=list(islice(parent.iterdir(),MAX_FOLDERS+1))
-        if len(children)>MAX_FOLDERS:raise PublicError(409,'STORAGE_SCAN_INCOMPLETE','测试引用超限，请由管理员核查；没有清理引用。')
-        result={'removed':0,'retained':0,'unknown':0};now=store.clock()
-        for path in children:
-            try:
-                if path.suffix!='.json' or not canonical_id(path.stem):raise ValueError('unknown reference file')
-                with ExitStack() as stack:
-                    pin_directories(stack,store.root,parent)
-                    obj=stack.enter_context(PinnedObject(store.root,path,delete=True))
-                    ref=json.loads(obj.read(65536).decode('utf-8'))
-                    if (set(ref)!={'schema','id','root_key','owner','at','snapshot_id','upload_id'} or ref['schema']!=SCHEMA
-                            or ref['id']!=path.stem or ref['root_key']!=root_key(store.root) or ref['owner']!=OWNER):raise ValueError('invalid reference')
-                    if any(v is not None and not canonical_id(v) for v in (ref['snapshot_id'],ref['upload_id'])):raise ValueError('unknown reference link')
-                    created=timestamp(ref['at'])
-                    if created>now:raise ValueError('future reference')
-                    if now-created<=TTL:result['retained']+=1
-                    else:obj.dispose();result['removed']+=1
-            except Exception:result['unknown']+=1
-        return result
+        return prune_references_locked(store,auth)
+
+
+def prune_references_locked(store,auth,max_removed=64):
+    """Internal bounded reference maintenance; caller owns both guards."""
+    if store.active or store.uploads_in_flight:raise PublicError(409,'STORAGE_BUSY','正在处理来源；未维护测试引用。')
+    parent=store.root/'test-references'
+    if not parent.exists():return {'removed':0,'retained':0,'unknown':0}
+    checked_runtime_path(store.root,parent)
+    children=list(islice(parent.iterdir(),MAX_FOLDERS+1))
+    if len(children)>MAX_FOLDERS:raise PublicError(409,'STORAGE_SCAN_INCOMPLETE','测试引用超限，请由管理员核查；没有清理引用。')
+    result={'removed':0,'retained':0,'unknown':0};now=store.clock()
+    for path in children:
+        try:
+            if path.suffix!='.json' or not canonical_id(path.stem):raise ValueError('unknown reference file')
+            with ExitStack() as stack:
+                pin_directories(stack,store.root,parent)
+                obj=stack.enter_context(PinnedObject(store.root,path,delete=True))
+                ref=json.loads(obj.read(65536).decode('utf-8'))
+                if (set(ref)!={'schema','id','root_key','owner','at','snapshot_id','upload_id'} or ref['schema']!=SCHEMA
+                        or ref['id']!=path.stem or ref['root_key']!=root_key(store.root) or ref['owner']!=OWNER):raise ValueError('invalid reference')
+                if any(v is not None and not canonical_id(v) for v in (ref['snapshot_id'],ref['upload_id'])):raise ValueError('unknown reference link')
+                created=timestamp(ref['at'])
+                if created>now:raise ValueError('future reference')
+                if now-created<=TTL:result['retained']+=1
+                elif result['removed']<max_removed:obj.dispose();result['removed']+=1
+                else:result['retained']+=1
+        except Exception:result['unknown']+=1
+    return result

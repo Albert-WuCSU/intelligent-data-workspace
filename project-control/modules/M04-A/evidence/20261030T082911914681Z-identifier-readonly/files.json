@@ -1,0 +1,10 @@
+{
+  "services/api/src/data_workspace/model_provider.py": "13357502c98653df72feba8b0b41f1bdaef16b163738b0e645a1e0e6930cdcfb",
+  "services/api/src/data_workspace/model_routes.py": "bf70ecb5b2e13d493e928d85b5e901a44be34d145ea2108fb0930ea093a4658e",
+  "services/api/tests/test_model_identifier_diagnostics.py": "301b51923391b25715da0ac0a11effed0a2857a6427f4a89c4c71c78e23dedbf",
+  "services/api/tests/test_model_diagnostics.py": "15e241378a779b4b533492d2fb8e3fd068b3bbef8d5d2c191347e2d46c199968",
+  "apps/web/src/ModelServiceReadiness.tsx": "04dd186152f4883bf456bfe880b8e348fba358e6044446ce317d7d92bdd90bd2",
+  "tests/remote-onboarding.spec.mjs": "eb88b5957bd555e1804287adf5f7f47965691a3b15d5fb179df92a1667f57b67",
+  "contracts/openapi.json": "5ac84162b42c3ec27ee182df1194b8b402c7e2405c0e0b9ea36d66636c6208d8",
+  "apps/web/src/api.generated.ts": "a59c6a2b2913990289ca5f414bc3b4138126244fc5c028999880f02e2b1363ff"
+}

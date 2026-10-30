@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-27",
+  "updated_on": "2026-10-28",
   "coverage_basis": "当前聊天、人类决策ledger、PRODUCT_UX_PRINCIPLES、现存产品方案和交接；不能声称恢复了项目外不可访问聊天。",
   "requirements": [
     {
@@ -1033,6 +1033,111 @@
       ],
       "decision_ids": [],
       "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+    },
+    {
+      "id": "R-U25",
+      "title": "输入区模型选择",
+      "requirement": "用户明确要求工作台直接切换模型；仅选已配置/已授权/实测可用model，修改使后续计划失效，当前无模型要显示待接入而不冒充可用。",
+      "modules": [
+        "M01",
+        "M04-A",
+        "M04"
+      ],
+      "source": "D-MODEL-REFERENCE-BUDGET-035+用户参考图",
+      "origin": "user_request",
+      "approval_boundary": "明确UI/非秘密参考/15USD预算要求；具体模型协议/专用凭证/费用硬限额/公司HTTP及外发/PG延期/模块delivery仍需确认。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/MODEL_PROVIDER_NOTES.md"
+      ],
+      "decision_ids": [
+        "D-MODEL-REFERENCE-BUDGET-035"
+      ],
+      "current_evidence_boundary": "当前模型未接入/not_run，UI入口/真实摘要当前专项验证；参考图不是数仓证据或模型可用清单。"
+    },
+    {
+      "id": "R-U26",
+      "title": "15美元测试预算与非秘密供应商参考",
+      "requirement": "MVP测试模型调用总额不超过15USD；可参考本机ClaudeCode非秘密配置，不能复制宿主token或推导内网应用/外发授权。费率/用量未知不显示虚假余额，需专用限额或可靠预留计费。",
+      "modules": [
+        "M04-A",
+        "M08"
+      ],
+      "source": "D-MODEL-REFERENCE-BUDGET-035+用户参考图",
+      "origin": "user_request",
+      "approval_boundary": "明确UI/非秘密参考/15USD预算要求；具体模型协议/专用凭证/费用硬限额/公司HTTP及外发/PG延期/模块delivery仍需确认。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/MODEL_PROVIDER_NOTES.md"
+      ],
+      "decision_ids": [
+        "D-MODEL-REFERENCE-BUDGET-035"
+      ],
+      "current_evidence_boundary": "当前模型未接入/not_run，UI入口/真实摘要当前专项验证；参考图不是数仓证据或模型可用清单。"
+    },
+    {
+      "id": "R-U27",
+      "title": "轻量三列会话与真实摘要",
+      "requirement": "用户参考图明确左历史/中对话/右任务及来源文件摘要、底部输入模型选择；黑白主题/历史/pipeline保持，摘要只由真实回执投影，不复制截图中的公司数据或生成成功结论。",
+      "modules": [
+        "M01",
+        "M04",
+        "M05"
+      ],
+      "source": "D-MODEL-REFERENCE-BUDGET-035+用户参考图",
+      "origin": "user_request",
+      "approval_boundary": "明确UI/非秘密参考/15USD预算要求；具体模型协议/专用凭证/费用硬限额/公司HTTP及外发/PG延期/模块delivery仍需确认。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/MODEL_PROVIDER_NOTES.md"
+      ],
+      "decision_ids": [
+        "D-MODEL-REFERENCE-BUDGET-035"
+      ],
+      "current_evidence_boundary": "当前模型未接入/not_run，UI入口/真实摘要当前专项验证；参考图不是数仓证据或模型可用清单。"
+    },
+    {
+      "id": "R-U28",
+      "title": "聊天本地文件而非连接器重复入口",
+      "requirement": "直接在聊天添加本地数据文件，安全预检/临时目录/100行真实预览复用后台导入层，connector只新建数据库/MCP；不删除旧配置或原件、不自动保存临时附件、不向模型发送行。",
+      "modules": [
+        "M01",
+        "M02",
+        "M04"
+      ],
+      "source": "D-MVP-FAST-034用户澄清",
+      "origin": "user_request",
+      "approval_boundary": "只记录明确位置/多来源/JOIN要求及网关窄外发，凭证不得继承，具体真实关联和跨源执行仍需实现验收。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [
+        "D-MVP-FAST-034"
+      ],
+      "current_evidence_boundary": "聊天临时附件/多来源实施中，真实模型生成与JOINnot_run，不把界面当执行证据。"
+    },
+    {
+      "id": "R-U29",
+      "title": "右侧多来源与真实多表JOIN",
+      "requirement": "来源候选范围放右侧可多选，取消输入单来源。实际JOIN须表关系/键/粒度/权限/预算和结果校验；同库多表与跨源融合区分，UI多选不等于已执行JOIN。",
+      "modules": [
+        "M01",
+        "M02",
+        "M03",
+        "M04"
+      ],
+      "source": "D-MVP-FAST-034用户澄清",
+      "origin": "user_request",
+      "approval_boundary": "只记录明确位置/多来源/JOIN要求及网关窄外发，凭证不得继承，具体真实关联和跨源执行仍需实现验收。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [
+        "D-MVP-FAST-034"
+      ],
+      "current_evidence_boundary": "聊天临时附件/多来源实施中，真实模型生成与JOINnot_run，不把界面当执行证据。"
     }
   ],
   "sources": {

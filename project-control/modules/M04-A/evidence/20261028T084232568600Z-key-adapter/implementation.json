@@ -1,0 +1,42 @@
+{
+  "scope": "M04-A-C01 first backend/hidden key/status slice, self_review work in progress",
+  "implemented": [
+    "model_provider.py bounded Messages candidate protocol, allowlisted host/path, key secret repr, no proxies/redirects/auto retry, 15s wall/128output/64KBresponse, budget denies real paid call",
+    "model_service status identity/no browser key input/no paid endpoint",
+    "getpass nonTTY and GetPassWarning deny/no echo fallback; dedicated backend key not inherited from host",
+    "start-workspace-model.cmd, scripts/dev.py --model-key frontend/worker key isolation",
+    "readiness UI and generated Pydantic types"
+  ],
+  "actual_tests": [
+    "31isolated provider tests passed before additional4tests/hardening; not current final pass claim",
+    "types check passed before final hardening",
+    "first launcher replacement syntax error fixed; oversized pytest default parameter ID caused Windows setup errors; explicit IDs retain exact65537byte data and original assertions"
+  ],
+  "unverified": [
+    "real user hidden key input not exercised by assistant",
+    "gateway protocol/model/auth/fees not verified",
+    "budget permit production implementation absent; paid requests fail closed",
+    "defaultAPI old process not restarted, UI404 graceful newAPI requirement",
+    "model catalog/persistence/stream/querySQL/JOIN not implemented"
+  ],
+  "secret_access": "none; no host key lookup, only unit sentinel",
+  "network": "no gateway request; isolated MockTransport only",
+  "service_actions": "none",
+  "files": [
+    "services/api/src/data_workspace/model_provider.py",
+    "services/api/src/data_workspace/model_routes.py",
+    "services/api/src/data_workspace/main.py",
+    "scripts/model_key_input.py",
+    "scripts/dev.py",
+    "scripts/check.py",
+    "start-workspace-model.cmd",
+    "MODEL_SERVICE.md",
+    "apps/web/src/ModelServiceReadiness.tsx",
+    "apps/web/src/WorkbenchPanel.tsx",
+    "apps/web/src/api.ts",
+    "apps/web/src/api.generated.ts",
+    "contracts/openapi.json",
+    "tests/remote-onboarding.spec.mjs",
+    "services/api/tests/test_model_provider.py"
+  ]
+}

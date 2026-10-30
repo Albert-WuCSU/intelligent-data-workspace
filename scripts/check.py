@@ -25,7 +25,7 @@ def sources():
 if __name__=='__main__':
     sys.stdout.reconfigure(encoding='utf-8',errors='replace')
     sys.stderr.reconfigure(encoding='utf-8',errors='replace')
-    parser=argparse.ArgumentParser();parser.add_argument('--browser',action='store_true');parser.add_argument('--module',choices=['M01','M02'],default='M01');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--browser',action='store_true');parser.add_argument('--module',choices=['M01','M02','M04-A'],default='M01');args=parser.parse_args()
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     target=ROOT/f'project-control/modules/{args.module}/evidence'/stamp
     target.mkdir(parents=True,exist_ok=False)

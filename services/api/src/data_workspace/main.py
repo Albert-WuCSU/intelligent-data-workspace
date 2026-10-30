@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 from uuid import uuid4
 import logging
+from contextlib import asynccontextmanager
 from threading import BoundedSemaphore
 from pathlib import Path
 
@@ -14,6 +15,8 @@ from .auth import identity, DevelopmentIdentityProvider, PublicError
 from .config import Settings
 from .contracts import (AuthContext, QuerySpec, Task, TaskStatus, ErrorEnvelope, SessionResponse,
                         CapabilitiesResponse, ModuleCapability, ValidationResponse, DatasetAsset, ConnectorCapability)
+from .model_provider import MessagesProvider, ModelConfiguration
+from .model_routes import router as model_router, ModelTests
 from .repository import MemoryTaskRepository
 from .source_profiles import SourceStore
 from .remote_access import RemoteAccessPolicy
@@ -27,11 +30,28 @@ CONTRACTS = {m.__name__: m for m in (QuerySpec, Task, DatasetAsset, ConnectorCap
 
 def create_app(settings: Settings | None = None):
     cfg = settings or Settings.from_env()
-    app = FastAPI(title="Data Workspace API", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None, lifespan=connector_lifespan)
+    @asynccontextmanager
+    async def lifespan(app):
+        from .retention_runner import RetentionRunner
+        runner=RetentionRunner(app.state.sources) if cfg.retention_cleanup else None
+        app.state.sources.retention_runner=runner
+        try:
+            async with connector_lifespan(app):
+                if runner:await runner.start()
+                try:yield
+                finally:
+                    if runner:await runner.stop()
+        finally:
+            if runner:await runner.stop()
+    app = FastAPI(title="Data Workspace API", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
     app.state.settings = cfg
     app.state.connector = ConnectorManager(cfg.owned_warehouse)
     app.include_router(connector_router)
     app.include_router(source_router)
+    app.include_router(model_router)
+    app.state.model_tests=ModelTests()
+    app.state.model_configuration_lock=__import__("asyncio").Lock()
+    app.state.model_provider=MessagesProvider.from_env() if cfg.mode == "development" and cfg.dev_identity else MessagesProvider(ModelConfiguration(), "")
     app.state.sources=SourceStore(remote_policy=RemoteAccessPolicy.from_env())
     app.state.identity_provider = DevelopmentIdentityProvider()
     app.state.repository = MemoryTaskRepository()
@@ -60,9 +80,12 @@ def create_app(settings: Settings | None = None):
                 if not request.app.state.upload_admission.acquire(blocking=False):
                     return error(request,429,'UPLOAD_BUSY','上传已达本机并发上限，请等待当前上传结束后重试；未接收本次文件。')
                 admitted=True
-            if request.url.path in {"/api/v1/source-profiles/upload", "/api/v1/source-profiles/import-config", "/api/v1/source-profiles/test"}:
-                # Bound the multipart body before its parser may spool to disk.
-                limit = 21 * 1024 * 1024 if request.url.path.endswith("/upload") else 64 * 1024 if request.url.path.endswith("/test") else 128 * 1024
+            if request.url.path in {"/api/v1/source-profiles/upload", "/api/v1/source-profiles/import-config", "/api/v1/source-profiles/test", "/api/v1/model-service/test", "/api/v1/model-service/connection", "/api/v1/model-service/connection/clear"}:
+                if request.url.path.startswith('/api/v1/model-service/connection'):
+                    try:identity(request)
+                    except PublicError as exc:return error(request,exc.status,exc.code,exc.message)
+                # Bound the multipart/secret body before its parser may spool to disk.
+                limit = 8192 if request.url.path.startswith('/api/v1/model-service/connection') else 21 * 1024 * 1024 if request.url.path.endswith("/upload") else 64 * 1024 if request.url.path.endswith("/test") else 128 * 1024
                 try:
                     declared = int(request.headers.get("content-length", "0"))
                 except ValueError:

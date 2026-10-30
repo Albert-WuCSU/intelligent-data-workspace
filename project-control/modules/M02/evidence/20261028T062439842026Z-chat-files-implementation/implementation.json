@@ -1,0 +1,9 @@
+{
+  "scope": "chat temporary attachment actual upload/preflight/MCP catalog and unsaved100row preview; per-thread right multi-source scope; new connector UI remote only, legacy APIs/data preserved",
+  "backend_probe": "6 tests actual assertions finished sandboxtmp teardown denied; authorized originalrerun pending",
+  "type_check": "passed after fixing unknownkey and unit receipt note, no generatedtypes hand edits",
+  "M02": "DO/notverified; PG-production defer approved not passed",
+  "model": "gateway metadata404, no app credential; generation not_run",
+  "no_user_data_deleted": true,
+  "JOIN": "not implemented; UI explicitly says so"
+}

@@ -1,0 +1,10 @@
+{
+  "revision": 62,
+  "sources": "99 matched",
+  "git": "clean main tracking origin/main",
+  "ports": "5173/8000 no listeners verified; no processes stopped",
+  "scope": "A approved bounded automatic cycle in existing governed worker, durable count/category status, lifespan stop/restart, independent tests before default enablement",
+  "default_execution": "not_run",
+  "PG_real": "not_run",
+  "dependencies": "reuse only"
+}

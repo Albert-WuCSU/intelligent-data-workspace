@@ -1,0 +1,22 @@
+{
+  "created_at": "2026-10-29T03:02:25.963067+00:00",
+  "reviewer": "self_review",
+  "verdict": "local_slice_pass",
+  "module_verdict": "partial/not_verified",
+  "full_regression_ref": "project-control/modules/M04-A/evidence/20261029T025600Z/results.json",
+  "sources": 116,
+  "fingerprint": "c63f830cda58f38542a9a25070b62c428d7b2a23da9f300f667d2e2a68e2eeff",
+  "counts": {
+    "backend": 366,
+    "messages_isolated": 36,
+    "responses_isolated": 43,
+    "actual_http_loopback": 2,
+    "frontend": 16,
+    "browser": 29
+  },
+  "realgateway": "not_run",
+  "hidden_user_key": "not_run",
+  "budget": "production permit notimplemented/failclosed",
+  "default_runtime": "newcode loaded/noKey verifiedviaactualhealth/status",
+  "SQL_JOIN": "not_run"
+}

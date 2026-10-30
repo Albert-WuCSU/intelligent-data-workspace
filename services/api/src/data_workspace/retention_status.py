@@ -11,6 +11,12 @@ from .upload_preflight import checked_runtime_path
 class RetentionStatus(Contract):
     policy: Literal['A_24H']='A_24H'
     automatic_cleanup: bool=False
+    interval_seconds: int | None=None
+    next_run_at: str | None=None
+    cycle_state: Literal['NOT_RUN','RUNNING','SUCCEEDED','PARTIAL','SKIPPED_BUSY','FAILED','STOPPED','INTERRUPTED']='NOT_RUN'
+    cycle_at: str | None=None
+    cycle_counts: dict[str,int] | None=None
+    cycle_error_code: str | None=None
     scan_state: Literal['COMPLETE','BLOCKED','NOT_SCANNED']='NOT_SCANNED'
     candidate_folders: int | None=None
     protected_folders: int | None=None
@@ -26,9 +32,30 @@ class RetentionStatus(Contract):
 def retention_status(store,auth):
     from .storage_inventory import read_object
     store.authorize(auth)
-    # Old/empty roots are not migrated or modified merely by viewing inventory.
-    if not (store.root/'.retention.lock').is_file():return RetentionStatus()
     value=RetentionStatus()
+    runner=getattr(store,'retention_runner',None)
+    if runner:
+        snapshot=runner.snapshot()
+        value.automatic_cleanup=snapshot['enabled'];value.interval_seconds=snapshot['interval_seconds']
+        value.next_run_at=snapshot['next_run_at']
+        last=snapshot['last']
+        if last:
+            value.cycle_state=last['state'];value.cycle_at=last['at'];value.cycle_counts=last['counts'];value.cycle_error_code=last['error_code']
+        if value.automatic_cleanup:
+            value.note='A方案已启用：草稿24小时后失效；只回收已核实、超过24小时且无引用的临时副本。此页面只读，不执行清理；原文件/保存及禁用/归属不明副本保留。'
+        if snapshot['running']:
+            value.scan_state='BLOCKED';value.error_code='STORAGE_BUSY'
+            return value
+    elif store.root.exists():
+        from .retention_runner import read_cycle
+        try:
+            last=read_cycle(store.root)
+            if last:
+                value.cycle_state='INTERRUPTED' if last['state']=='RUNNING' else last['state']
+                value.cycle_at=last['at'];value.cycle_counts=last['counts'];value.cycle_error_code=last['error_code']
+        except (ValueError,OSError,TypeError):value.cycle_state='FAILED';value.cycle_error_code='CYCLE_RECEIPT_INVALID'
+    # Old/empty roots are not migrated or modified merely by viewing inventory.
+    if not (store.root/'.retention.lock').is_file():return value
     try:
         preview=retention_preview(store,auth)
         value.scan_state='COMPLETE'
@@ -36,6 +63,7 @@ def retention_status(store,auth):
         value.protected_folders=sum(a['protected'] for a in preview['areas'].values())
     except PublicError as error:
         value.scan_state='BLOCKED';value.error_code=error.code
+        if error.code in {'STORAGE_BUSY','STORAGE_LOCK_UNAVAILABLE'}:return value
     with store.lock,storage_lease(store.root):
         parent=store.root/'cleanup-journal'
         if not parent.exists():return value

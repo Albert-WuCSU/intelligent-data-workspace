@@ -1,0 +1,33 @@
+{
+  "source": "allowlisted nonsecret fields from local Codex config.toml; not a complete config copy",
+  "observed_at": "2026-10-28T09:22:57.020973+00:00",
+  "configuration": [
+    {
+      "path": "D:\\Users\\luqianwu\\.codex\\config.toml",
+      "model": "gpt-6.1-sol[1M]",
+      "model_provider": "ctrip",
+      "profile": null,
+      "providers": {
+        "ctrip": {
+          "name": "ctrip",
+          "wire_api": "responses",
+          "requires_openai_auth": true,
+          "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan/v1",
+          "auth_configured": true
+        }
+      },
+      "profiles": {}
+    }
+  ],
+  "official_reference": "https://developers.openai.com/codex/config-reference/",
+  "interpretation": {
+    "protocol": "OpenAI Responses (wire_api=responses)",
+    "candidate_http_endpoint": "http://ada-cli-golang.ctripcorp.com/coding-plan/v1/responses",
+    "endpoint_verification": "not_run; base_url+protocol inference, not validated gateway documentation",
+    "model_from_config": "gpt-6.1-sol[1M]",
+    "runtime_override_and_gateway_model_mapping": "unknown; configuration is not proof of current runtime route or product authorization",
+    "authentication": "configured in host; no key/header/auth command/value copied; project needs dedicated local key",
+    "price_or_project_hard_limit": "not present in copied allowlist; unknown",
+    "product_impact": "Current product Messages adapter is not interchangeable with Responses; add explicit Responses adapter and isolated tests before real invocation"
+  }
+}

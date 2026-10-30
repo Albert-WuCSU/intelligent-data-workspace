@@ -33,3 +33,6 @@ test-results/
 # Ephemeral workflow drafts/locks; committed progress and checkpoints stay tracked
 /project-control/progress.draft.json
 /project-control/checkpoint.lock
+
+# Nonsecret local model budget/receipts; never reset to evade campaign limits
+/data/model-runtime/

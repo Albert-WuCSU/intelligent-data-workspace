@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-10-29T08:50:46.034434+00:00",
+  "verdict": "local_slice_pass",
+  "reviewer": "self_review",
+  "module_verdict": "partial/not_verified",
+  "backend_ref": "project-control/modules/M04-A/evidence/20261029T084030Z/results.json",
+  "final_ui_ref": "project-control/modules/M04-A/evidence/20261029T084715252947Z-claude-ui-final/results-final.json",
+  "source_count": 119,
+  "fingerprint": "93fcb36fed4c09266eb68d66869b6b6f5dff0d80fe9141ff42d245e5fa550391",
+  "tests": {
+    "backend": 390,
+    "model_specific": 103,
+    "frontend": 16,
+    "browser": 31
+  },
+  "selected_candidate": {
+    "protocol": "anthropic_messages",
+    "authentication": "bearer",
+    "model": "claude-haiku-4-5"
+  },
+  "actual_new_gateway_test": "not_run",
+  "previousResponses_gateway_test": "failed/access_denied",
+  "real_project_estimated_reservations_unchanged": "0.50USD/2",
+  "key_access": "none",
+  "startup": "user-owned process not stopped; user newcmd+hiddeninput required"
+}

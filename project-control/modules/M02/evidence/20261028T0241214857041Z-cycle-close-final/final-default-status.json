@@ -1,0 +1,35 @@
+{
+  "status": {
+    "policy": "A_24H",
+    "automatic_cleanup": true,
+    "interval_seconds": 600,
+    "next_run_at": "2026-10-28T02:53:16.334905+00:00",
+    "cycle_state": "SUCCEEDED",
+    "cycle_at": "2026-10-28T02:43:16.312261+00:00",
+    "cycle_counts": {
+      "recovered": 0,
+      "unknown": 1,
+      "protected": 59,
+      "reclaimed": 0,
+      "fresh": 0,
+      "scanned": 60,
+      "references_removed": 0,
+      "deferred": 0
+    },
+    "cycle_error_code": null,
+    "scan_state": "COMPLETE",
+    "candidate_folders": 0,
+    "protected_folders": 59,
+    "completed_cleanup_folders": 0,
+    "pending_cleanup_folders": 0,
+    "unverified_receipts": 0,
+    "last_state": "NOT_RUN",
+    "last_run_at": null,
+    "error_code": null,
+    "note": "A方案已启用：草稿24小时后失效；只回收已核实、超过24小时且无引用的临时副本。此页面只读，不执行清理；原文件/保存及禁用/归属不明副本保留。"
+  },
+  "preexisting_files_checked": 99,
+  "preexisting_changed": 0,
+  "expected_saved_profiles": 29,
+  "scope": "default fixed API cycle enabled; native preservation; no business claims or natural24h validation"
+}

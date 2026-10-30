@@ -1,0 +1,2 @@
+绑定依据是用户提供的只读产品回执，实际GET200获取model/version元数据，而不是后台凭证/响应原文。观察到一个requestalias与versionID，只能允许该exacttuple，不能由一个成功200决定所有版本都同价/同能力/同权限。切换endpoint/auth/model不会沿用此alias；版本fingerprint含该允许返回ID，旧计划失效，原失败请求仍不自动重发。
+测试中特意覆盖未知日期、缺日期、claude前缀、不同API地址或认证拒绝映射；completion/outputbudget/tool/secrettext限制仍保留。新回执返回实际版本ID与请求名，不隐藏modelrouting差异。Agent没有调用真实Key或读取思考正文，只读过用户授权diag。

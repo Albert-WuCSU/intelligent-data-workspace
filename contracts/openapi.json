@@ -232,6 +232,24 @@
         }
       }
     },
+    "/api/v1/source-profiles/retention": {
+      "get": {
+        "summary": "Retention View",
+        "operationId": "retention_view_api_v1_source_profiles_retention_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RetentionStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/source-profiles/upload": {
       "post": {
         "summary": "Upload",
@@ -523,6 +541,240 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/NavigationPreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/source-profiles/drafts/{id}/tables/{table}/preview": {
+      "get": {
+        "summary": "Attachment Preview",
+        "operationId": "attachment_preview_api_v1_source_profiles_drafts__id__tables__table__preview_get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          },
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Table"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftPreview"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/status": {
+      "get": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Status",
+        "operationId": "status_api_v1_model_service_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelReadiness"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/test": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Test",
+        "operationId": "test_api_v1_model_service_test_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelTestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelTestReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/tests/{request_id}/diagnostics": {
+      "get": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Read Diagnostics",
+        "operationId": "read_diagnostics_api_v1_model_service_tests__request_id__diagnostics_get",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelTestDiagnostics"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/connection": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Save Connection",
+        "operationId": "save_connection_api_v1_model_service_connection_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelConnectionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelConnectionAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/connection/clear": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Clear Connection",
+        "operationId": "clear_connection_api_v1_model_service_connection_clear_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelClearRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelConnectionAck"
                 }
               }
             }
@@ -1043,6 +1295,31 @@
         ],
         "title": "ConnectorSummary"
       },
+      "DraftPreview": {
+        "properties": {
+          "test_id": {
+            "type": "string",
+            "title": "Test Id"
+          },
+          "table_id": {
+            "type": "string",
+            "title": "Table Id"
+          },
+          "preview": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Preview"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "test_id",
+          "table_id",
+          "preview"
+        ],
+        "title": "DraftPreview"
+      },
       "ErrorEnvelope": {
         "properties": {
           "code": {
@@ -1066,6 +1343,59 @@
           "trace_id"
         ],
         "title": "ErrorEnvelope"
+      },
+      "EstimatedBudgetSummary": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "title": "Mode",
+            "default": "estimated_soft_budget"
+          },
+          "estimated_reserved_usd": {
+            "type": "string",
+            "title": "Estimated Reserved Usd"
+          },
+          "estimated_remaining_usd": {
+            "type": "string",
+            "title": "Estimated Remaining Usd"
+          },
+          "target_usd": {
+            "type": "string",
+            "title": "Target Usd",
+            "default": "15"
+          },
+          "planning_ceiling_usd": {
+            "type": "string",
+            "title": "Planning Ceiling Usd",
+            "default": "20"
+          },
+          "per_request_estimate_usd": {
+            "type": "string",
+            "title": "Per Request Estimate Usd",
+            "default": "0.25"
+          },
+          "reserved_requests": {
+            "type": "integer",
+            "title": "Reserved Requests"
+          },
+          "max_requests": {
+            "type": "integer",
+            "title": "Max Requests",
+            "default": 60
+          },
+          "hard_cost_guarantee": {
+            "type": "boolean",
+            "title": "Hard Cost Guarantee",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "estimated_reserved_usd",
+          "estimated_remaining_usd",
+          "reserved_requests"
+        ],
+        "title": "EstimatedBudgetSummary"
       },
       "FileReceipt": {
         "properties": {
@@ -1265,6 +1595,660 @@
           "metric_refs"
         ],
         "title": "MetricTarget"
+      },
+      "ModelClearRequest": {
+        "properties": {
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_generation"
+        ],
+        "title": "ModelClearRequest"
+      },
+      "ModelConnectionAck": {
+        "properties": {
+          "configured": {
+            "type": "boolean",
+            "title": "Configured"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "storage": {
+            "type": "string",
+            "const": "backend_session_memory",
+            "title": "Storage",
+            "default": "backend_session_memory"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note"
+          }
+        },
+        "type": "object",
+        "required": [
+          "configured",
+          "execution_generation",
+          "config_version",
+          "note"
+        ],
+        "title": "ModelConnectionAck"
+      },
+      "ModelConnectionRequest": {
+        "properties": {
+          "preset": {
+            "type": "string",
+            "enum": [
+              "ai_plan",
+              "custom"
+            ],
+            "title": "Preset"
+          },
+          "protocol": {
+            "type": "string",
+            "enum": [
+              "openai_responses",
+              "openai_chat_completions",
+              "anthropic_messages"
+            ],
+            "title": "Protocol"
+          },
+          "endpoint": {
+            "type": "string",
+            "maxLength": 512,
+            "title": "Endpoint"
+          },
+          "model_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Model Id"
+          },
+          "authentication": {
+            "type": "string",
+            "enum": [
+              "bearer",
+              "x_api_key",
+              "protocol_default"
+            ],
+            "title": "Authentication",
+            "default": "protocol_default"
+          },
+          "api_key": {
+            "type": "string",
+            "format": "password",
+            "title": "Api Key",
+            "writeOnly": true
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "accept_fixed_test_egress": {
+            "type": "boolean",
+            "const": true,
+            "title": "Accept Fixed Test Egress"
+          },
+          "accept_estimated_cost": {
+            "type": "boolean",
+            "const": true,
+            "title": "Accept Estimated Cost"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "preset",
+          "protocol",
+          "endpoint",
+          "model_id",
+          "api_key",
+          "execution_generation",
+          "accept_fixed_test_egress",
+          "accept_estimated_cost"
+        ],
+        "title": "ModelConnectionRequest"
+      },
+      "ModelGeneration": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "returned_model_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Returned Model Id"
+          },
+          "model_binding": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "observed_gateway_alias"
+            ],
+            "title": "Model Binding",
+            "default": "exact"
+          },
+          "input_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Tokens"
+          },
+          "output_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Tokens"
+          },
+          "cost_status": {
+            "type": "string",
+            "const": "unknown",
+            "title": "Cost Status",
+            "default": "unknown"
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "const": false,
+            "title": "Sql Executed",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "text",
+          "model_id",
+          "config_version"
+        ],
+        "title": "ModelGeneration"
+      },
+      "ModelReadiness": {
+        "properties": {
+          "state": {
+            "type": "string",
+            "enum": [
+              "unconfigured",
+              "credential_missing",
+              "configuration_missing",
+              "budget_unverified",
+              "ready_for_test"
+            ],
+            "title": "State"
+          },
+          "credential_configured": {
+            "type": "boolean",
+            "title": "Credential Configured"
+          },
+          "protocol": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Protocol"
+          },
+          "model_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Id"
+          },
+          "authentication": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authentication"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "budget_limit_usd": {
+            "type": "integer",
+            "const": 15,
+            "title": "Budget Limit Usd",
+            "default": 15
+          },
+          "cost_status": {
+            "type": "string",
+            "const": "unknown",
+            "title": "Cost Status",
+            "default": "unknown"
+          },
+          "budget_mode": {
+            "type": "string",
+            "title": "Budget Mode",
+            "default": "unconfigured"
+          },
+          "test_available": {
+            "type": "boolean",
+            "title": "Test Available",
+            "default": false
+          },
+          "generation_verified": {
+            "type": "boolean",
+            "title": "Generation Verified",
+            "default": false
+          },
+          "stream_verified": {
+            "type": "boolean",
+            "title": "Stream Verified",
+            "default": false
+          },
+          "models": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Models"
+          },
+          "next_action": {
+            "type": "string",
+            "title": "Next Action"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "connection_management": {
+            "type": "boolean",
+            "title": "Connection Management",
+            "default": true
+          },
+          "budget": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/EstimatedBudgetSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "state",
+          "credential_configured",
+          "config_version",
+          "next_action",
+          "execution_generation"
+        ],
+        "title": "ModelReadiness"
+      },
+      "ModelResponseDiagnostics": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "enum": [
+              "invalid_json",
+              "envelope_mismatch",
+              "model_mismatch",
+              "incomplete_output",
+              "content_shape",
+              "unsupported_content",
+              "empty_or_oversized_text",
+              "usage_invalid",
+              "output_budget_exceeded",
+              "secret_echo",
+              "unsupported_encoding",
+              "unknown"
+            ],
+            "title": "Reason"
+          },
+          "model_matches": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Matches"
+          },
+          "model_binding": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "observed_gateway_alias",
+              "unmatched"
+            ],
+            "title": "Model Binding",
+            "default": "unmatched"
+          },
+          "returned_model": {
+            "type": "string",
+            "enum": [
+              "deepseek-v4.1-flash",
+              "claude-deepseek-v4.1-flash",
+              "deepseek-v4.1-flash-thinking",
+              "other_or_unreported"
+            ],
+            "title": "Returned Model",
+            "default": "other_or_unreported"
+          },
+          "returned_model_identifier": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Returned Model Identifier"
+          },
+          "identifier_status": {
+            "type": "string",
+            "enum": [
+              "safe_identifier",
+              "withheld_or_missing"
+            ],
+            "title": "Identifier Status",
+            "default": "withheld_or_missing"
+          },
+          "stop_reason": {
+            "type": "string",
+            "enum": [
+              "end_turn",
+              "stop_sequence",
+              "max_tokens",
+              "tool_use",
+              "other",
+              "missing"
+            ],
+            "title": "Stop Reason",
+            "default": "missing"
+          },
+          "content_types": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "text",
+                "thinking",
+                "redacted_thinking",
+                "tool_use",
+                "other"
+              ]
+            },
+            "type": "array",
+            "title": "Content Types"
+          },
+          "input_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Input Tokens"
+          },
+          "output_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Output Tokens"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "ModelResponseDiagnostics"
+      },
+      "ModelTestDiagnostics": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "succeeded",
+              "failed_or_unknown",
+              "running"
+            ],
+            "title": "Status"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "upstream_status": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  401,
+                  403
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upstream Status"
+          },
+          "diagnostics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelResponseDiagnostics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "const": false,
+            "title": "Sql Executed",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_id",
+          "status"
+        ],
+        "title": "ModelTestDiagnostics"
+      },
+      "ModelTestReceipt": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "succeeded",
+              "failed_or_unknown",
+              "running"
+            ],
+            "title": "Status"
+          },
+          "kind": {
+            "type": "string",
+            "const": "model_connection_test",
+            "title": "Kind",
+            "default": "model_connection_test"
+          },
+          "generation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelGeneration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "upstream_status": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  401,
+                  403
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upstream Status"
+          },
+          "diagnostics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelResponseDiagnostics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "per_request_estimate_usd": {
+            "type": "string",
+            "title": "Per Request Estimate Usd",
+            "default": "0.25"
+          },
+          "cost_mode": {
+            "type": "string",
+            "const": "estimated_not_actual",
+            "title": "Cost Mode",
+            "default": "estimated_not_actual"
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "const": false,
+            "title": "Sql Executed",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_id",
+          "execution_generation",
+          "config_version",
+          "status"
+        ],
+        "title": "ModelTestReceipt"
+      },
+      "ModelTestRequest": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "accept_estimated_cost": {
+            "type": "boolean",
+            "const": true,
+            "title": "Accept Estimated Cost"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "execution_generation",
+          "config_version",
+          "accept_estimated_cost"
+        ],
+        "title": "ModelTestRequest"
       },
       "ModuleCapability": {
         "properties": {
@@ -1911,6 +2895,79 @@
             "type": "boolean",
             "title": "Automatic Cleanup",
             "default": false
+          },
+          "interval_seconds": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interval Seconds"
+          },
+          "next_run_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Run At"
+          },
+          "cycle_state": {
+            "type": "string",
+            "enum": [
+              "NOT_RUN",
+              "RUNNING",
+              "SUCCEEDED",
+              "PARTIAL",
+              "SKIPPED_BUSY",
+              "FAILED",
+              "STOPPED",
+              "INTERRUPTED"
+            ],
+            "title": "Cycle State",
+            "default": "NOT_RUN"
+          },
+          "cycle_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cycle At"
+          },
+          "cycle_counts": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cycle Counts"
+          },
+          "cycle_error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cycle Error Code"
           },
           "scan_state": {
             "type": "string",

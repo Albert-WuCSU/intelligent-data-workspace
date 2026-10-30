@@ -1,0 +1,21 @@
+{
+  "reviewer": "self_review",
+  "actual_success": {
+    "request_id": "7fd36577-4b1d-46ef-a0a1-a67b8cc57172",
+    "readonly_GET_http": 200,
+    "status": "succeeded",
+    "sql_executed": false,
+    "protocol": "anthropic_messages",
+    "model": "deepseek-v4.1-flash",
+    "authentication": "bearer",
+    "generation_verified": true,
+    "stream_verified": false,
+    "estimated_reserved": "2.75",
+    "reserved_requests": 11
+  },
+  "actual_lookup": "only safetyGETreceipt and status, noKey/generationbodyread/modelcall",
+  "user_new_request": "webpasswordfield+sessionkeyinput for quickmodelonboarding",
+  "approvedscope": "dedicatedAIPlanpreset, Key sent once via loopback body to backendmemory only; no frontendstorage/logs/history/files; save config != actualtest; no autochargedcall",
+  "limit": "loopbackdevelopmentfixedidentityonly; cannot claimproductionauth orTLSsecretstore; httpinternalgatewayalreadyapproved",
+  "next": "boundedsecretPOST+clear endpoint/nonsecretack, busyguards/generationreset/no budgetreset/UItest existingroute"
+}

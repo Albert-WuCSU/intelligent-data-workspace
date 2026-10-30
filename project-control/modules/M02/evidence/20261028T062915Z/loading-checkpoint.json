@@ -1,0 +1,13 @@
+{
+  "backend": "287 passed exit0",
+  "frontend": "16 passed exit0",
+  "types_build_pip": "passed exit0",
+  "browser": "running, not yetpassed",
+  "default_api_pid": 9208,
+  "default_web_pid": 22240,
+  "owner": "current user",
+  "launcher_session": "6506 current turn only; future turns recheck",
+  "old_service_stop": "validatedAPI18968/creation/parentchain, original launcher released both ports; no unknown tree kill or files deleted",
+  "gateway": "app call approved, unauth metadata404, no app-specific credential/model protocol or rate; generationnot_run",
+  "scope": "chat files/unsaved draft preview; right multi-source; JOINnot_run"
+}

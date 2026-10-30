@@ -1,0 +1,23 @@
+{
+  "reviewer": "self_review",
+  "model": "deepseek-v4.1-flash",
+  "protocol": "anthropic_messages",
+  "authentication": "bearer",
+  "launcher": "start-workspace-claude.cmd",
+  "tests": {
+    "command": [
+      "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "services/api/tests/test_claude_preset.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "passed": 8,
+    "code_fingerprint": "37f1299c38b050d8165bf513165493965048f10d26359a47209d1c09a73d116c"
+  },
+  "scope": "onlypresetdefaultandmatchingtestfixtureschanged; provider/API/auth/ledger/UIunchanged; no full390rerunclaim",
+  "gateway": "not_run for newmodel; no automaticcalls",
+  "runtime": "not restarted; user must newlauncherhiddeninput to apply; no Key access",
+  "budget": "unchangedsharedledger; no reset"
+}

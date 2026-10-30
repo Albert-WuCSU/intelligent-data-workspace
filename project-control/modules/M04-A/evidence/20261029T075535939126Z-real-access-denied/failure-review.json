@@ -1,0 +1,23 @@
+{
+  "reviewer": "self_review",
+  "user_evidence": "user supplied screenshot of model test receipt MODEL_ACCESS_DENIED",
+  "actual_readonly_status": "GET http://127.0.0.1:8000/api/v1/model-service/status exit0 HTTP200",
+  "observed": {
+    "credential_configured": true,
+    "protocol": "openai_responses",
+    "model": "gpt-6.1-sol[1M]",
+    "generation_verified": false,
+    "estimated_reserved_usd": "0.50",
+    "reserved_requests": 2,
+    "execution_generation": "293ddd40-85a2-4449-bf7b-460003f65c3c"
+  },
+  "result": "real user-triggered gateway test failed auth/access; code merges401and403 exactstatusunknown",
+  "cost": "0.50 is estimated reserved amount not measured invoice, screenshot historic spend not project spend",
+  "hypotheses_not_verified": [
+    "dedicated key invalid/expired or wrong service",
+    "gateway auth contract differs from standard Bearer",
+    "key lacks model/path permission"
+  ],
+  "assistant_actions": "readonlystatus only; no retry POST/networkgatewaycall, no Key/environment/credentialfile inspection, no restart",
+  "next": "identify nonsecret key issuing platform/authorization scope; do not request keyvalue or bypass refusal"
+}

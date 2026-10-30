@@ -1,11 +1,11 @@
 # 项目执行路线与模块边界
 
-> 2026-10-27 当前事实：D-M02-RETENTION-013 A已批准，旧“待选择”叙述为历史。M02-C03仍DO；保留安全底座实现中，实际清理执行及PG真实仍not_run，路线与逐模块验收不变。
+> 2026-10-27 当前事实：D-M02-RETENTION-013 A已批准，旧“待选择”叙述为历史。M02-C03仍DO；本机A自动清理已启用验证，PG真实及完整模块验收仍not_run，路线与逐模块验收不变。
 更新2026-10-27；D-ROADMAP-MODEL-014记录本轮用户明确要求。它批准模块PRD和以下优先级/架构方向，不等于全部详细PLAN、LangGraph版本/安装、付费模型/外部目标/生产发布批准。
 
 ## 1. 当前状态与优先级
 
-M01已经人工验收，M02-C03还在DO。D-M02-RETENTION-013 A已批准，内部安全执行已在独立副本通过；默认自动周期启用与PG真实实例仍未验证，不得通过写规划提前closed。
+M01已经人工验收，M02-C03还在DO。D-M02-RETENTION-013 A已批准，内部安全执行已在独立副本通过；本机默认自动周期已验证；PG真实实例与模块审计验收尚未完成，不得通过写规划提前closed。
 
 **M01已验收 → M02收尾 → M04-A 模型API接入 → M03 企业语义知识库 → M04-B LangGraph受控问数 → M05资产/任务/正式历史 → M06可视化 → M07报告 → M08MVP验收。**
 
@@ -48,4 +48,13 @@ M03维护版本化结构语义/批准口径，模型可辅助理解但不能自�
 
 ## 5. 当前项目下一步
 
-按已批准D-M02-RETENTION-013 A继续有界自动周期及安全加载启用；内部执行测试不等于默认周期已运行。真实PG要用户单独授权独立实例，不暗装服务或使用公司平台。M02审计与delivery后进入M04-A PLAN，先选择供应商、受支持协议、授权端点/凭证引用、预算/外发范围，再实现真实调用。之后M03 PLAN及M04-B LangGraph PLAN逐一审批验收，不因排期调整自动提前进入DO。
+D-M02-RETENTION-013 A本机周期已启用并完成75专项/281后端/24网页及原数据保护核查；接下来审查完整M02验收覆盖与真实PG补验条件，不能以本地周期替代PG或生产验证。真实PG要用户单独授权独立实例，不暗装服务或使用公司平台。M02审计与delivery后进入M04-A PLAN，先选择供应商、受支持协议、授权端点/凭证引用、预算/外发范围，再实现真实调用。之后M03 PLAN及M04-B LangGraph PLAN逐一审批验收，不因排期调整自动提前进入DO。
+
+
+## 2026-10-28 验收后推进
+D-M02-DELIVERY-049用户“是，继续推进吧”明确验收M02有限本机范围，依赖正常关闭；PG真实和生产验证门禁/责任人条件保留。当前原有M04-A-C01首DO：薄httpx Messages候选协议、本机隐藏Key输入和状态入口，不安装新包、不复制宿主认证、不自动收费。之后真实生成及目录/流式验收完成才M03→原M04=M04-B，当前SQL/JOIN尚未完成。
+
+
+## 2026-10-30 当前架构及AIPlan连接（覆盖旧引擎提案）
+用户明确保留原LangGraph＋项目治理Harness，D-CLAUDE-ENGINE-058已答，不实施ClaudeCodeCLI/AgentSDK引擎、不安装新Agent栈。M02已验收→M04-A真实模型接入→M03→原M04=M04-B LangGraph顺序不变。公司ClaudeCLI配置仅作模型API非秘密合同：coding-plan baseURL/AUTH_TOKEN风格Bearer，当前明确套餐coding-plan/v1/messages/anthropic_messages/bearer/deepseek-v4.1-flash。用户确认AIPlan支持DeepSeek，记录userconfirmed而非应用integrationpassed；不自动替换为claude-前缀别名、不安装CLI、不执行hooks或继承令牌/无限超时。
+start-workspace-claude.cmd只是历史命名的模型API启动器，不等于工作台底层ClaudeCode。用户本人重启隐藏Key并显式test才调用，预算不reset，旧拒绝failed保留；109模型专项过（14套餐+95原专项），本轮preset/tests仅改，provider/UI/ledger未改，不称全backend/browser再过。最新网关实测未运行，收到新回执继续排查，不自动遍历认证/协议。

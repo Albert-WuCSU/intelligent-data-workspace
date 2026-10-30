@@ -1,0 +1,37 @@
+
+Running 26 tests using 1 worker
+
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (2.0s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.3s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (954ms)
+  ok  4 tests\remote-onboarding.spec.mjs:20:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (7.4s)
+  ok  5 tests\remote-onboarding.spec.mjs:35:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (1.0s)
+  ok  6 tests\remote-onboarding.spec.mjs:44:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (5.2s)
+  ok  7 tests\remote-onboarding.spec.mjs:58:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds (5.1s)
+  ok  8 tests\remote-onboarding.spec.mjs:73:1 › storage inventory is read-only, protects disabled saved data and has no delete action (816ms)
+  ok  9 tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup (1.6s)
+  ok 10 tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest (4.8s)
+  ok 11 tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support (2.6s)
+  ok 12 tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected (914ms)
+source-upload-frame {"bytes":4795,"declared":null}
+source-upload-status 200
+  ok 13 tests\source-onboarding.spec.mjs:28:1 › user adds a source, saves, reconnects after reload and browses dates with no date filter (7.0s)
+  ok 14 tests\source-onboarding.spec.mjs:40:1 › nonsecret configuration import fills form but does not auto-connect; errors preserve input (2.0s)
+  ok 15 tests\source-onboarding.spec.mjs:45:1 › mobile source navigation controls preserve visible themes without a time-filter input (591ms)
+source-upload-frame {"bytes":4644,"declared":null}
+source-upload-status 200
+  ok 16 tests\source-onboarding.spec.mjs:50:1 › xlsx workbook upload, real multisheet navigation and date columns without time filters (8.3s)
+  ok 17 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.3s)
+  ok 18 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (847ms)
+  ok 19 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.4s)
+  ok 20 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (792ms)
+  ok 21 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (903ms)
+  ok 22 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (540ms)
+  ok 23 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok 24 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (697ms)
+  ok 25 tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest (1.2s)
+  ok 26 tests\workspace.spec.mjs:132:1 › mobile context summary is opt-in and source/model controls do not overflow (651ms)
+
+  26 passed (1.3m)
+(node:21060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)

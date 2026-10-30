@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-10-28T08:30:12.356594+00:00",
+  "reviewer": "self_review",
+  "verdict": "pass",
+  "scope": "finite_local",
+  "decision_id": "D-MVP-FAST-034",
+  "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
+  "source_count": 109,
+  "source_mismatches": 0,
+  "full_regression_ref": "project-control/modules/M02/evidence/20261028T082433Z/results.json",
+  "original_sandbox_failures_ref": "project-control/modules/M02/evidence/20261028T082022Z/results.json",
+  "counts": {
+    "backend": 287,
+    "frontend": 16,
+    "browser": 27,
+    "progress_guardrails": 26
+  },
+  "deferred_real_pg": "required/not_run",
+  "production": "not_run",
+  "model_adapter_and_key_entry": "not_implemented",
+  "real_model_and_join": "not_run",
+  "delivery": "awaiting_user"
+}

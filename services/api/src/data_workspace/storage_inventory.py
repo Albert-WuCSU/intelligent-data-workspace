@@ -120,4 +120,5 @@ def storage_summary(store,auth):
             except (ValueError,OSError):incomplete=True
             return StorageArea(folders=folders,bytes=size,referenced_folders=referenced,review_only_folders=review,unknown_folders=unknown)
         uploads=area('uploads',uploaded_refs);snapshots=area('snapshots',references);staging=area('staging',set())
-        return StorageSummary(scan_state='PARTIAL' if incomplete else 'COMPLETE',uploads=uploads,snapshots=snapshots,staging=staging,saved_profiles=profiles,unsaved_tests=len(store.tests),retention=retention_status(store,auth))
+        retention=retention_status(store,auth)
+        return StorageSummary(automatic_cleanup=retention.automatic_cleanup,scan_state='PARTIAL' if incomplete else 'COMPLETE',uploads=uploads,snapshots=snapshots,staging=staging,saved_profiles=profiles,unsaved_tests=len(store.tests),retention=retention)

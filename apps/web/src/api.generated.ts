@@ -140,6 +140,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/source-profiles/retention": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retention View */
+        get: operations["retention_view_api_v1_source_profiles_retention_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/source-profiles/upload": {
         parameters: {
             query?: never;
@@ -253,6 +270,108 @@ export interface paths {
         get: operations["preview_table_api_v1_source_profiles__id__tables__table__preview_get"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/source-profiles/drafts/{id}/tables/{table}/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Attachment Preview */
+        get: operations["attachment_preview_api_v1_source_profiles_drafts__id__tables__table__preview_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Status */
+        get: operations["status_api_v1_model_service_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Test */
+        post: operations["test_api_v1_model_service_test_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/tests/{request_id}/diagnostics": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Read Diagnostics */
+        get: operations["read_diagnostics_api_v1_model_service_tests__request_id__diagnostics_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/connection": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Save Connection */
+        post: operations["save_connection_api_v1_model_service_connection_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/connection/clear": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Clear Connection */
+        post: operations["clear_connection_api_v1_model_service_connection_clear_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -514,6 +633,17 @@ export interface components {
             /** Execution Generation */
             execution_generation?: string | null;
         };
+        /** DraftPreview */
+        DraftPreview: {
+            /** Test Id */
+            test_id: string;
+            /** Table Id */
+            table_id: string;
+            /** Preview */
+            preview: {
+                [key: string]: unknown;
+            };
+        };
         /** ErrorEnvelope */
         ErrorEnvelope: {
             /** Code */
@@ -522,6 +652,45 @@ export interface components {
             safe_message: string;
             /** Trace Id */
             trace_id: string;
+        };
+        /** EstimatedBudgetSummary */
+        EstimatedBudgetSummary: {
+            /**
+             * Mode
+             * @default estimated_soft_budget
+             */
+            mode: string;
+            /** Estimated Reserved Usd */
+            estimated_reserved_usd: string;
+            /** Estimated Remaining Usd */
+            estimated_remaining_usd: string;
+            /**
+             * Target Usd
+             * @default 15
+             */
+            target_usd: string;
+            /**
+             * Planning Ceiling Usd
+             * @default 20
+             */
+            planning_ceiling_usd: string;
+            /**
+             * Per Request Estimate Usd
+             * @default 0.25
+             */
+            per_request_estimate_usd: string;
+            /** Reserved Requests */
+            reserved_requests: number;
+            /**
+             * Max Requests
+             * @default 60
+             */
+            max_requests: number;
+            /**
+             * Hard Cost Guarantee
+             * @default false
+             */
+            hard_cost_guarantee: boolean;
         };
         /** FileReceipt */
         FileReceipt: {
@@ -599,6 +768,283 @@ export interface components {
             kind: "metric";
             /** Metric Refs */
             metric_refs: components["schemas"]["MetricRef"][];
+        };
+        /** ModelClearRequest */
+        ModelClearRequest: {
+            /** Execution Generation */
+            execution_generation: string;
+        };
+        /** ModelConnectionAck */
+        ModelConnectionAck: {
+            /** Configured */
+            configured: boolean;
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /**
+             * Storage
+             * @default backend_session_memory
+             * @constant
+             */
+            storage: "backend_session_memory";
+            /** Note */
+            note: string;
+        };
+        /** ModelConnectionRequest */
+        ModelConnectionRequest: {
+            /**
+             * Preset
+             * @enum {string}
+             */
+            preset: "ai_plan" | "custom";
+            /**
+             * Protocol
+             * @enum {string}
+             */
+            protocol: "openai_responses" | "openai_chat_completions" | "anthropic_messages";
+            /** Endpoint */
+            endpoint: string;
+            /** Model Id */
+            model_id: string;
+            /**
+             * Authentication
+             * @default protocol_default
+             * @enum {string}
+             */
+            authentication: "bearer" | "x_api_key" | "protocol_default";
+            /**
+             * Api Key
+             * Format: password
+             */
+            api_key: string;
+            /** Execution Generation */
+            execution_generation: string;
+            /**
+             * Accept Fixed Test Egress
+             * @constant
+             */
+            accept_fixed_test_egress: true;
+            /**
+             * Accept Estimated Cost
+             * @constant
+             */
+            accept_estimated_cost: true;
+        };
+        /** ModelGeneration */
+        ModelGeneration: {
+            /** Text */
+            text: string;
+            /** Model Id */
+            model_id: string;
+            /** Config Version */
+            config_version: string;
+            /** Returned Model Id */
+            returned_model_id?: string | null;
+            /**
+             * Model Binding
+             * @default exact
+             * @enum {string}
+             */
+            model_binding: "exact" | "observed_gateway_alias";
+            /** Input Tokens */
+            input_tokens?: number | null;
+            /** Output Tokens */
+            output_tokens?: number | null;
+            /**
+             * Cost Status
+             * @default unknown
+             * @constant
+             */
+            cost_status: "unknown";
+            /**
+             * Sql Executed
+             * @default false
+             * @constant
+             */
+            sql_executed: false;
+        };
+        /** ModelReadiness */
+        ModelReadiness: {
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "unconfigured" | "credential_missing" | "configuration_missing" | "budget_unverified" | "ready_for_test";
+            /** Credential Configured */
+            credential_configured: boolean;
+            /** Protocol */
+            protocol?: string | null;
+            /** Model Id */
+            model_id?: string | null;
+            /** Authentication */
+            authentication?: string | null;
+            /** Config Version */
+            config_version: string;
+            /**
+             * Budget Limit Usd
+             * @default 15
+             * @constant
+             */
+            budget_limit_usd: 15;
+            /**
+             * Cost Status
+             * @default unknown
+             * @constant
+             */
+            cost_status: "unknown";
+            /**
+             * Budget Mode
+             * @default unconfigured
+             */
+            budget_mode: string;
+            /**
+             * Test Available
+             * @default false
+             */
+            test_available: boolean;
+            /**
+             * Generation Verified
+             * @default false
+             */
+            generation_verified: boolean;
+            /**
+             * Stream Verified
+             * @default false
+             */
+            stream_verified: boolean;
+            /** Models */
+            models?: string[];
+            /** Next Action */
+            next_action: string;
+            /** Execution Generation */
+            execution_generation: string;
+            /**
+             * Connection Management
+             * @default true
+             */
+            connection_management: boolean;
+            budget?: components["schemas"]["EstimatedBudgetSummary"] | null;
+        };
+        /** ModelResponseDiagnostics */
+        ModelResponseDiagnostics: {
+            /**
+             * Reason
+             * @enum {string}
+             */
+            reason: "invalid_json" | "envelope_mismatch" | "model_mismatch" | "incomplete_output" | "content_shape" | "unsupported_content" | "empty_or_oversized_text" | "usage_invalid" | "output_budget_exceeded" | "secret_echo" | "unsupported_encoding" | "unknown";
+            /** Model Matches */
+            model_matches?: boolean | null;
+            /**
+             * Model Binding
+             * @default unmatched
+             * @enum {string}
+             */
+            model_binding: "exact" | "observed_gateway_alias" | "unmatched";
+            /**
+             * Returned Model
+             * @default other_or_unreported
+             * @enum {string}
+             */
+            returned_model: "deepseek-v4.1-flash" | "claude-deepseek-v4.1-flash" | "deepseek-v4.1-flash-thinking" | "other_or_unreported";
+            /** Returned Model Identifier */
+            returned_model_identifier?: string | null;
+            /**
+             * Identifier Status
+             * @default withheld_or_missing
+             * @enum {string}
+             */
+            identifier_status: "safe_identifier" | "withheld_or_missing";
+            /**
+             * Stop Reason
+             * @default missing
+             * @enum {string}
+             */
+            stop_reason: "end_turn" | "stop_sequence" | "max_tokens" | "tool_use" | "other" | "missing";
+            /** Content Types */
+            content_types?: ("text" | "thinking" | "redacted_thinking" | "tool_use" | "other")[];
+            /** Input Tokens */
+            input_tokens?: number | null;
+            /** Output Tokens */
+            output_tokens?: number | null;
+        };
+        /** ModelTestDiagnostics */
+        ModelTestDiagnostics: {
+            /** Request Id */
+            request_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "succeeded" | "failed_or_unknown" | "running";
+            /** Error Code */
+            error_code?: string | null;
+            /** Upstream Status */
+            upstream_status?: (401 | 403) | null;
+            diagnostics?: components["schemas"]["ModelResponseDiagnostics"] | null;
+            /**
+             * Sql Executed
+             * @default false
+             * @constant
+             */
+            sql_executed: false;
+        };
+        /** ModelTestReceipt */
+        ModelTestReceipt: {
+            /** Request Id */
+            request_id: string;
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "succeeded" | "failed_or_unknown" | "running";
+            /**
+             * Kind
+             * @default model_connection_test
+             * @constant
+             */
+            kind: "model_connection_test";
+            generation?: components["schemas"]["ModelGeneration"] | null;
+            /** Error Code */
+            error_code?: string | null;
+            /** Upstream Status */
+            upstream_status?: (401 | 403) | null;
+            diagnostics?: components["schemas"]["ModelResponseDiagnostics"] | null;
+            /**
+             * Per Request Estimate Usd
+             * @default 0.25
+             */
+            per_request_estimate_usd: string;
+            /**
+             * Cost Mode
+             * @default estimated_not_actual
+             * @constant
+             */
+            cost_mode: "estimated_not_actual";
+            /**
+             * Sql Executed
+             * @default false
+             * @constant
+             */
+            sql_executed: false;
+        };
+        /** ModelTestRequest */
+        ModelTestRequest: {
+            /** Request Id */
+            request_id: string;
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /**
+             * Accept Estimated Cost
+             * @constant
+             */
+            accept_estimated_cost: true;
         };
         /** ModuleCapability */
         ModuleCapability: {
@@ -849,6 +1295,24 @@ export interface components {
              * @default false
              */
             automatic_cleanup: boolean;
+            /** Interval Seconds */
+            interval_seconds?: number | null;
+            /** Next Run At */
+            next_run_at?: string | null;
+            /**
+             * Cycle State
+             * @default NOT_RUN
+             * @enum {string}
+             */
+            cycle_state: "NOT_RUN" | "RUNNING" | "SUCCEEDED" | "PARTIAL" | "SKIPPED_BUSY" | "FAILED" | "STOPPED" | "INTERRUPTED";
+            /** Cycle At */
+            cycle_at?: string | null;
+            /** Cycle Counts */
+            cycle_counts?: {
+                [key: string]: number;
+            } | null;
+            /** Cycle Error Code */
+            cycle_error_code?: string | null;
             /**
              * Scan State
              * @default NOT_SCANNED
@@ -1281,6 +1745,26 @@ export interface operations {
             };
         };
     };
+    retention_view_api_v1_source_profiles_retention_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RetentionStatus"];
+                };
+            };
+        };
+    };
     upload_api_v1_source_profiles_upload_post: {
         parameters: {
             query?: never;
@@ -1498,6 +1982,188 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["NavigationPreview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    attachment_preview_api_v1_source_profiles_drafts__id__tables__table__preview_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+                table: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DraftPreview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    status_api_v1_model_service_status_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelReadiness"];
+                };
+            };
+        };
+    };
+    test_api_v1_model_service_test_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelTestRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelTestReceipt"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    read_diagnostics_api_v1_model_service_tests__request_id__diagnostics_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                request_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelTestDiagnostics"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    save_connection_api_v1_model_service_connection_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelConnectionRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelConnectionAck"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    clear_connection_api_v1_model_service_connection_clear_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelClearRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelConnectionAck"];
                 };
             };
             /** @description Validation Error */

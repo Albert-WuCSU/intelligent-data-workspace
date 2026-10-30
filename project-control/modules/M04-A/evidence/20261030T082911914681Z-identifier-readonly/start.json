@@ -1,0 +1,24 @@
+{
+  "reviewer": "self_review",
+  "user_actual_diagnostic": {
+    "reason": "model_mismatch",
+    "returned_model": "other_or_unreported",
+    "model_matches": false,
+    "stop_reason": "end_turn",
+    "content_types": [
+      "thinking",
+      "text"
+    ],
+    "output_tokens": 11,
+    "request_id": "358e4262-c36c-473e-a279-341b093ecc70"
+  },
+  "fix": [
+    "boundedfamily/character/secretchecks returned_model_identifier fordiagnostics only",
+    "no alias automatically permitted stillstrictmatch",
+    "standardthinking(signature)/redactedblocks ignored; text-only result no thought leak",
+    "GET tests/UUID/diagnostics isread-only no generationbody/no new networkbudget"
+  ],
+  "actualtests": "136modelspecificpassed; fullregressionpending",
+  "realcalls": "none thisturn; oldrawresponse not retained so cannot recover exactmodelretroactively",
+  "limits": "latestmodelstillfailed; olduserprocess not stopped/Keynotread; update neededto collect new identifier once"
+}

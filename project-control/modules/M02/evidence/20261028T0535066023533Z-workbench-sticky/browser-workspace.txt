@@ -1,0 +1,17 @@
+
+Running 10 tests using 1 worker
+
+  ok  1 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (4.1s)
+  ok  2 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (872ms)
+  ok  3 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.4s)
+  ok  4 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (901ms)
+  ok  5 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (906ms)
+  ok  6 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (541ms)
+  ok  7 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok  8 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (696ms)
+  ok  9 tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest (1.1s)
+  ok 10 tests\workspace.spec.mjs:132:1 › mobile context summary is opt-in and source/model controls do not overflow (647ms)
+
+  10 passed (13.8s)
+(node:32704) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)

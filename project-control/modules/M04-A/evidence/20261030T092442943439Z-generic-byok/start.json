@@ -1,0 +1,19 @@
+{
+  "reviewer": "self_review",
+  "implemented": [
+    "ModelConnectionRequestSecretStr/postconnection andclear backendmemory nofeeonsave/clear, lock/idempotencygenerationguard",
+    "ModelConnectionFormvendorpresets/protocol/endpoint/model/password explicitegressestimateconsent submitclearskey/no storage",
+    "threeproviders Responses/ChatCompletions/Messages; privateAIPlanexactpresetonly",
+    "customHTTPSpublic/DNSalladdressescheck/IPpinnedTCP+originalHostSNI/redirectsnone/proxyenvdisabled",
+    "sharedestimatedcampaignbudgetnoreset acrossproviders/keys"
+  ],
+  "actualtests": "182 combinedprovider/budget/SSRF/connectioncasespassed beforebrowseradditions; finalregressionpending",
+  "unverified": [
+    "realpublicsupplierkeys/calls/TLStarget notrun",
+    "productionauth/secretpersistence/multitenantnotimplemented",
+    "modelcatalogenable/ordinarychat/stream/SQLJOINpending"
+  ],
+  "secrets": "no realkeylookups, no actualgatewayorpublicmodelPOST",
+  "github": "user explicitly requests afterdevelopment push all toexistingrepo; notdone yet, securityauditbeforecommit/push",
+  "limitations": "fixedlocaldevelopmentidentity session notuserauth; customAPIprotocolcompatibleonly,0.25estimate heuristicnotrealfee"
+}

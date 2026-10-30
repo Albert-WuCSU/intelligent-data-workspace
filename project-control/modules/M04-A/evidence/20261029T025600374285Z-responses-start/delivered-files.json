@@ -1,0 +1,11 @@
+{
+  "services/api/src/data_workspace/model_provider.py": "5b34c0901bbd35a19ce641a44b61cac8897ebf0147b0503779c134c1ac794ad6",
+  "services/api/src/data_workspace/responses_provider.py": "aacf89dea7af991336ada1bbfd86d0adf92f0bdc058c6919ba4e63f1edf3a1f2",
+  "services/api/tests/test_responses_provider.py": "e352e0de24dd445d925ee2b4fc2a217e3e74eb2937e6ea12d07322b133b3ed21",
+  "scripts/dev.py": "8ffa95b6d9bd648f8f741880b3dd3426dfcfa402262b908e1dd4a07034881088",
+  "scripts/remote_browser_fixture.py": "0584cc7280eeb7b231e477f718533184cbebeec9c6e3d0f47c0263e82f16b5bd",
+  "apps/web/src/ModelServiceReadiness.tsx": "07323e73ce928a3d67e8db454934e295280a38955e279164b17f3cb92c2ba166",
+  "tests/remote-onboarding.spec.mjs": "de86cf7b75df1c0e3d526d5ad007c88d345f22443674063b73484dc00802ea6f",
+  "MODEL_SERVICE.md": "16d6fd01cf9980930ad2399ad3fc17dcdf11a386ecc15d5925f1266b32ff980f",
+  "start-workspace-model.cmd": "60dc3ca92e218dd412e92cadb667da55bb8a17280e2d795e1a26b02102133042"
+}

@@ -1,0 +1,12 @@
+{
+  "services/api/src/data_workspace/model_provider.py": "d4e2a4519beb456e5320ee14a8b84e21be743cd069f81ab5b67b38faa4281278",
+  "services/api/src/data_workspace/model_routes.py": "cb91dfd63d297e5759214a04e32ab0b6d1f9cf286664efe5eecb0c1184852ab1",
+  "services/api/tests/test_claude_preset.py": "2ec7539e3ea4ff76b7124028190285de9de24e8c94a5e7e9806c78f351d4db31",
+  "scripts/dev.py": "8aa5c6106b4241e1e4c0121318f5a2b1e9634c33d2d8971b54ea2e176bb2d37a",
+  "start-workspace-claude.cmd": "4d17a57cb0f558badbcc36aa45f521d0d31efcd1c68f13bf3317bc87c32f8409",
+  "scripts/remote_browser_fixture.py": "aa5295532a833b8712f850b25ca402f5d82816d32cea77d9d53b631a134f5928",
+  "apps/web/src/ModelServiceReadiness.tsx": "19e9467e83dccf98326e576f2740a34b7485dce5c1ec6e3a656ed463751e4ad2",
+  "tests/remote-onboarding.spec.mjs": "db38fc4a92f0538bc6010550cd011d91aad80d07f25ded286bfa89d286f0a456",
+  "contracts/openapi.json": "8c0d805b1d715d7891ff691de8acdc8b561fb2db0ac9d1ec1dbaeeb1b7b34cde",
+  "MODEL_SERVICE.md": "7587a9a9d440e849e3bd8155a1a8de7608e7131e011f43bcc597b722debce5d1"
+}

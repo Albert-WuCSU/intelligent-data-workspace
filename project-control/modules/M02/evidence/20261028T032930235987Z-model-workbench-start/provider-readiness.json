@@ -1,0 +1,13 @@
+{
+  "reviewer": "self_review",
+  "reference_authorization": "user explicitly allowed nonsecret local Claude Code provider/model reference; credentials not copied or used",
+  "provider_base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+  "protocol": "unverified gateway, infer Anthropic-style only; not called",
+  "model_config": "top-level custom opus alias vs haiku4-5 default mappings; not actual available models",
+  "cost_cap_usd": 15,
+  "price_and_hard_vendor_limit": "unverified; do not claim enforcement until configured",
+  "egress": "none; reference image only UX, no rows/schema/credential sent",
+  "ui_scope": "authorized workbench context, source selection and model selector entry; no verified model yet, no backend model calls",
+  "interim_frontend": "tsc exit0,15 Vitest exit0 after authorized rerun; wrong cwd initialtsc help exit1 and sandbox esbuild denied preserved here, not hidden",
+  "pending": "M02 limited scope/PG deferral+delivery, gateway app access/TLS/egress, project-specific credential, verified models/prices"
+}

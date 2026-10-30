@@ -68,6 +68,59 @@ class ProgressTests(unittest.TestCase):
         s['modules'][1]['status']='active';s['active_module']='M02'
         s['next_action']={'kind':'plan','description':'Plan M02','read_refs':['brief.md']}
 
+    def finite_delivery(self):
+        self.close_and_advance(self.s)
+        self.s['decisions'].append(decision('DSCOPE','change'))
+        m=self.s['modules'][0];m['maturity']='local_ready'
+        m['audit'].update(scope='finite_local',decision_id='DSCOPE')
+        m['tests'].append({'id':'pg','required':True,'status':'not_run','integration':'real','environment':'local'})
+        m['risks']=[{'id':'production','severity':'high','resolved':False}]
+        self.s['release_gates']=[{'id':'later','status':'not_run','decision_id':'DSCOPE','owner':'maintainer','condition':'before PG or production use'}]
+        m['delivery_scope']={'kind':'finite_local','decision_id':'DSCOPE',
+            'deferred_tests':[{'test_id':'pg','release_gate_id':'later','owner':'maintainer','condition':'real PG before PG use'}],
+            'deferred_risks':[{'risk_id':'production','release_gate_id':'later','owner':'maintainer','condition':'before production'}]}
+        return m
+
+    def test_explicit_finite_delivery_retains_required_not_run_and_high_risk(self):
+        m=self.finite_delivery();out=self.commit(self.s)
+        self.assertTrue(m['tests'][1]['required']);self.assertEqual(m['tests'][1]['status'],'not_run')
+        self.assertFalse(out['modules'][0]['risks'][0]['resolved'])
+
+    def test_finite_deferral_cannot_bypass_scoped_audit(self):
+        m=self.finite_delivery();m['audit'].pop('scope')
+        with self.assertRaisesRegex(ValueError,'scoped audit'):self.commit(self.s)
+
+    def test_finite_deferral_cannot_bypass_delivery(self):
+        m=self.finite_delivery();m['approvals']['delivery']=None
+        with self.assertRaisesRegex(ValueError,'delivery approval'):self.commit(self.s)
+
+    def test_finite_deferral_rejects_missing_or_mismatched_scope_approval(self):
+        for field,value in (('decision_id','missing'),('decision_id','DP')):
+            m=self.finite_delivery();m['delivery_scope'][field]=value
+            with self.assertRaisesRegex(ValueError,'scope approval'):progress.validate(self.s,self.root)
+            self.setUp_reset_decisions()
+
+    def setUp_reset_decisions(self):
+        # Reset only isolated fixture state between subcases, not project records.
+        self.s['decisions']=[];self.s['modules'][0]=module('M01');self.s['modules'][0]['status']='active'
+        self.s['modules'][1]['status']='pending';self.s['active_module']='M01'
+
+    def test_finite_deferral_invalid_gate_owner_condition_or_test_never_passes(self):
+        self.finite_delivery();base=copy.deepcopy(self.s)
+        mutations=[lambda s:s['release_gates'][0].update(status='passed'),
+                   lambda s:s['release_gates'][0].update(decision_id='missing'),
+                   lambda s:s['modules'][0]['delivery_scope']['deferred_tests'][0].update(owner=''),
+                   lambda s:s['modules'][0]['delivery_scope']['deferred_tests'][0].update(condition=''),
+                   lambda s:s['modules'][0]['tests'][1].update(status='failed'),
+                   lambda s:s['modules'][0]['tests'][1].update(required=False),
+                   lambda s:s['modules'][0]['tests'][1].update(integration='unit'),
+                   lambda s:s['modules'][0]['risks'][0].update(severity='critical'),
+                   lambda s:s['modules'][0].update(maturity='production_verified')]
+        for mutate in mutations:
+            with self.subTest(mutate=mutate):
+                state=copy.deepcopy(base);mutate(state)
+                with self.assertRaises(ValueError):progress.validate(state,self.root)
+
     def test_valid_initial_state(self):
         progress.validate(self.s,self.root)
 

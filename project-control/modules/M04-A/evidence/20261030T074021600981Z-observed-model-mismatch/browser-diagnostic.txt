@@ -1,0 +1,8 @@
+
+Running 1 test using 1 worker
+
+(node:4576) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\remote-onboarding.spec.mjs:188:1 › invalid model response shows safe categories without exposing partial output or retrying (1.4s)
+
+  1 passed (8.9s)

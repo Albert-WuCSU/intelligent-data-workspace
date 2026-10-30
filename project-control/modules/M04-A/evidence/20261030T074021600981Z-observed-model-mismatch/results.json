@@ -1,0 +1,74 @@
+{
+  "reviewer": "self_review",
+  "actual_user_diagnostic": {
+    "reason": "model_mismatch",
+    "model_matches": false,
+    "stop_reason": "end_turn",
+    "content_types": [
+      "thinking",
+      "text"
+    ],
+    "output_tokens": 16,
+    "request_id": "151f7703-2552-4acd-bc9c-4596fa1f43d9"
+  },
+  "interpretation": "normal completion/not128truncation; exactreturnedmodelnotyetknown; thinking/text layer notacceptedbycurrentstrictparser",
+  "implemented": "report onlyknownpublicDeepSeekalias values or other_or_unreported; noaliasacceptance, no responsebodyorKey",
+  "checks": [
+    {
+      "id": "model-specific",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests/test_model_diagnostics.py",
+        "services/api/tests/test_claude_preset.py",
+        "services/api/tests/test_model_provider.py",
+        "services/api/tests/test_responses_provider.py",
+        "services/api/tests/test_model_budget.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "9ca352848cc60642baca529ea20ed47f35b81ed356347e6b7094cc5602644574",
+      "log": "project-control/modules/M04-A/evidence/20261030T074021600981Z-observed-model-mismatch/model-specific.txt"
+    },
+    {
+      "id": "types",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "9ca352848cc60642baca529ea20ed47f35b81ed356347e6b7094cc5602644574",
+      "log": "project-control/modules/M04-A/evidence/20261030T074021600981Z-observed-model-mismatch/types.txt"
+    },
+    {
+      "id": "browser-diagnostic",
+      "command": [
+        "C:/Program Files/nodejs/node.exe",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs",
+        "--grep",
+        "invalid model response shows safe categories"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "9ca352848cc60642baca529ea20ed47f35b81ed356347e6b7094cc5602644574",
+      "log": "project-control/modules/M04-A/evidence/20261030T074021600981Z-observed-model-mismatch/browser-diagnostic.txt"
+    }
+  ],
+  "source_stable": true,
+  "code_fingerprint": "9ca352848cc60642baca529ea20ed47f35b81ed356347e6b7094cc5602644574",
+  "not_run": "full409backend/32browser not rerun; no actualgatewayPOST, Keyread or service restart",
+  "next": "userupdateonce to read knownreturnedmodel or nonsecretgatewayaliasdoc; onlythenbindexplicitmodelmappingandthinkingtextsupport"
+}

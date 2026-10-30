@@ -1,3 +1,51 @@
+# 估算预算/最小模型测试（2026-10-29）
+
+按用户D-MODEL-ESTIMATE-BUDGET-053近似预算，--model-key启动新增WORKSPACE_MODEL_ESTIMATED_BUDGET=1，仅后端继承；跨重启SQLite估算账本0.25USD/次、最多60、15USD目标，20USD为软预算参考。新增POST model-service/test，认证/CSRF/64KB请求体、当前配置与runtimegeneration、同UUID幂等回执、固定非敏感文本；浏览器不发送Key/问题/行。仅用户显式点击测试收费，不自动调用。前端合同由Pydantic导出。用户持Key旧进程必须本人重启隐输新版，不读取或迁移环境秘密。
+详细步骤MODEL_SERVICE.md；账本data/model-runtime不入Git，不删除/reset预留，未知结果/超时保留。单元在临时根/假Key/fixture运行，实际网关验证单独not_run直到用户实操。下面旧“无费用许可永远拒绝/no测试端点”文字为历史。
+
+# M04-A 当前模型适配/本机Key入口（2026-10-28）
+
+M02有限本机交付已人工验收，PG/生产required/not_run仍保留。M04-A第一切片支持 `start-workspace-model.cmd` 或 `scripts/dev.py --model-key` 本机隐藏输入，专用Key不写盘、不传Node/Worker，退出后重输；原启动器不继承环境已有modelKey。只读 `/api/v1/model-service/status` 需本机身份，显示安全状态不返回Key。
+真实模型/授权目录/流式/SQL/JOIN未完成；无费用许可实现前拒绝收费请求，不把输入Key称为已连通。详细步骤和非秘密协议/费用证据需求见 MODEL_SERVICE.md。
+
+# 2026-10-28 聊天附件与右侧多来源（当前交互）
+
+本地文件在取数工作台输入区“添加数据文件”进入。用户确认有使用权及复制到本机后，经既有20MB预算/受限预检/真实MCP目录后成为当前会话临时附件；不自动保存profile/不修改原件、不向模型发送数据行。CSV/Parquet/DuckDB/Excel沿用原解析和安全边界，真实表头/类型/日期/最多100行无筛选预览。API重启或24h后草稿失效需重新导入，行数据/附件testid不存浏览器历史；每会话最多4个附件。
+
+连接器新建只提供PostgreSQL与HTTP MCP，不再重复提供文件上传/路径表单。后端原local_file API是聊天公用安全导入层，未删除；旧本地profile折叠为“历史本地来源”保留可浏览/启禁，原文件/保存数据/unknown保护。安全存储只读计数与周期仍可查，无一键删除或降低原安全门禁。
+
+右摘要可勾选多个已启用来源（每会话最多8个），多份附件也在右侧列出。源/附件上下文按会话隔离且刷新后不当作有效资产恢复；不再在输入区单选数据源。选择来源只是限定未来查询候选，不执行SQL。多表JOIN属于真正取数计划，要确认表/关联键/粒度/权限/数据量；同一数据库的多表与跨数据源融合不同，当前UI不声称已经执行JOIN/聚合或自然语言取数。
+
+本轮用户明确确认有限本机MVP、PG/生产后补及应用专用调用公司coding-plan网关，外发仅本轮问题+必要字段信息，禁止表行/全历史/截图。15USD测试上限不变。无认证入口与openapi.json只读探测404，专用应用密钥未配置/实际model协议费率未核实，真实模型生成not_run；不会复制ClaudeCode token、猜模型/费用或用缺凭证伪造成功。M02仍须有限范围审查及用户验收后M04-A→M03→原M04=M04-B，不擅自关闭。
+
+附件预览GET /api/v1/source-profiles/drafts/{test_id}/tables/{table_id}/preview：服务端校验主体/目录/期限，持全请求引用锁和运行互斥，真正MCP提交取回结果；读取中上下文过期拒绝结果，不自动保存连接。不接任意SQL/外部路径。移除UI冗余不移除后端安全导入层。
+
+PG后补验证指真实独立PostgreSQL实例的连接/元数据/只读SQL/TLS/账号权限及失败分支；生产后补验证指正式身份/多用户数据隔离/部署/安全/恢复，不代表今天本机演示不能跑，也不能说已生产可用。保留not_run和负责补验的人/条件，不拿UI表单或DuckDB结果代替PG。
+
+---
+
+# 2026-10-28 只读连接释放修复
+
+周期与盘点的SQLite只读连接通过closing显式释放；sqlite3.Connection自身的with只结束事务，不保证关闭原生句柄。已新增关闭垃圾回收后的重复读取/原生句柄打开验证，以及真实独立API重复盘点后停止检查。首次完整网页收尾WinError32失败和诊断保留，不用gc/删除数据/忽略cleanup异常让测试变绿。默认服务需加载修复版本后再记录准确启用状态，不能沿用旧进程健康证明新代码。
+
+---
+
+# 2026-10-28 保留A R3：有界自动周期
+
+已批准的24h方案由应用lifespan持有一个原生单领导租约与单async任务。scripts/dev.py的本机开发模式默认WORKSPACE_RETENTION_CLEANUP=1；Settings/生产默认0，且拒绝在非本机开发身份启用。实际启动/启用以进度中运行证据为准，代码默认不当执行证明。可在PowerShell设置$env:WORKSPACE_RETENTION_CLEANUP='0'后启动停用；前端/受限Worker不继承这个开关或凭证，产品没有公开执行POST端点。
+
+启动后5秒开始，完成后延后600秒再触发（无并发周期/补跑积压）；每周期在既有固定WindowsJob Worker执行，墙钟15秒/累计CPU8秒/384MB进程与512MBJob/最多2进程，父监护和cancel只收回自己的Job。完整目录/引用预扫描（每区及journal/引用2000，元数据8MB），最多8个副本/实际固定句柄核验总64MB；保存SQLite写冻及全生命周期引用租约内重核。引用收据一轮最多维护64个。超范围不拿部分盘点执行，超过数量/字节的候选延期下一周期。已保存/禁用/有效测试与活动请求引用、原件、unknown历史与项目证据始终保护；不按mtime猜归属。
+
+循环开始先flush/fsync/原子保存非秘密RUNNING回执，完成回执落盘才发布SUCCEEDED/PARTIAL；Job超时/崩溃或取消记录INTERRUPTED/STOPPED，不推断删除成功。下周期/重启仅按UUID journal重新核对象/引用续接清理，不恢复SQL/模型/内存任务。损坏或ambiguous周期.tmp保留并阻止执行，需要管理员核查。未知/超限副本保守保留、可能占空间，不是全API/多用户/掉电耐久认证。
+
+GET /api/v1/source-profiles/retention是只读状态。页面存储盘点每2秒只读获取最近周期/计数/错误与配置状态；忙时分开报告、读取失败明确为上次回执，GET不触发删除。不模拟成功，不加筛选或删除日期列。已有API不返回该能力时不宣称已启用。
+
+专项：services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_retention_cycle.py services/api/tests/test_retention_execution.py services/api/tests/test_retention.py -q。首69项68过1捕获先发布后持久回执竞态，修为持久后发布并增阻塞回执的确定性检查；失败证据保留。72项中间专项通过，最终完整源码/运行证据看progress，不能把中间输出替代默认启用门禁。
+
+本轮开始两个端口都未运行，先核实际监听/归属再按权限启动，无盲杀或旧exec继承。独立browser fixture第三API用默认5s/600s真实周期，仅测试自己的25h标记副本与保存禁用数据；模拟时刻只用于fixture准备，不是生产年龄证明。普通测试API默认关闭自动回收，控制不出现在标准API。正式PG实例/身份/目标部署/磁盘SQL任务及M02审计验收仍not_run；M02不因清理通过自动关闭，验收后M04-A→M03→原M04=M04-B。
+
+---
+
 # 旧API过期能力兼容边界（2026-10-27）
 
 TestedDraft新增可选expires_at，由后端测试创建时刻+24h推导；前端只有收到此字段才说明24h过期能力。默认旧8000未报告该字段时，显示“当前运行API未报告草稿过期能力，需加载新版后核查”，不会把批准政策或新版fixture能力当作旧服务已实现。合同已由Pydantic/OpenAPI重导。新增字段缺失浏览器用显式兼容响应fixture测试（从真实新API响应去除字段），不是旧服务或新功能真实执行证明；实际新API过期/回执路径仍用独立真实API。

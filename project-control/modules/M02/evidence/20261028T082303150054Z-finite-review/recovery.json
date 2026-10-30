@@ -1,0 +1,35 @@
+{
+  "reviewer": "self_review",
+  "restored_revision": 80,
+  "source_ref": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/sources.json",
+  "source_count": 109,
+  "mismatches": [],
+  "health": {
+    "http://127.0.0.1:8000/health/live": 200,
+    "http://127.0.0.1:5173": 200
+  },
+  "ownership": {
+    "8000": {
+      "pid": 9208,
+      "parent": 1772,
+      "launcher": 13472,
+      "owner": "CN1/luqianwu",
+      "created_local": "2026-10-28 14:27:21 Asia/Shanghai"
+    },
+    "5173": {
+      "pid": 22240,
+      "parent": 13472,
+      "owner": "CN1/luqianwu",
+      "created_local": "2026-10-28 14:27:21 Asia/Shanghai"
+    }
+  },
+  "ownership_evidence": "read-only Get-NetTCPConnection/Win32_Process/GetOwner actually run; no command lines/credentials collected",
+  "service_actions": "none; no inherited exec or stop/restart",
+  "current_test": "scripts/check.py --module M02 --browser running, not yet passed",
+  "findings": [
+    "old worker-os-hardlimits-recovery not_run summary requires reconciliation with real native test scope",
+    "PG required/not_run and production release gates retained",
+    "validator currently cannot close finite local delivery with approved required deferred tests; explicit state-contract reconciliation needed, not removal/required=false"
+  ],
+  "adjacent_plan": "M04-A hidden local terminal getpass, backend memory-only dedicated credential; not implemented, no model call"
+}

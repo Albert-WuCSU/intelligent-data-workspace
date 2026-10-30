@@ -35,3 +35,10 @@ describe('local development conversation storage',()=>{
  });
  it('theme persists and rejects unknown theme',()=>{const store=memory();storeTheme(store,'light');expect(loadTheme(store)).toBe('light');store.setItem('data-workspace:theme','evil');expect(loadTheme(store)).toBe('dark');});
 });
+
+
+it('chat attachment receipts and rows are never persisted as reusable context',()=>{
+ const thread={id:'attachment-thread',title:'files',updatedAt:'2026-10-28T00:00:00Z',messages:[{id:'one',createdAt:'2026-10-28T00:00:00Z',kind:'attachment' as const,filename:'sensitive-name.csv',receipt:{test_id:'private-draft-id',name:'private',source_label:'local',tables:[],note:'unit attachment'}}]};
+ let saved='';saveConversations({setItem:(_key:string,value:string)=>{saved=value;}},'test',[thread]);
+ expect(saved).not.toContain('private-draft-id');expect(saved).not.toContain('sensitive-name');
+});

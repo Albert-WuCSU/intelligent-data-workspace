@@ -1,0 +1,1 @@
+首通用完整backend469/frontend16/typebuildpip实跑0；browser34中33过1，新用例把同fixture复用的model-test-budget错误当新0账本，产品保留预算才正确。修为保存前读取baseline，保存后同baseline、显式test/clear后baseline+1，原“不保存就收费/预算reset”的安全语义加强而非弱化。未清账/skip断言。selfreview补Chatprotocoldefault认证显示与asyncinflight409两case，当前完整复跑pending。

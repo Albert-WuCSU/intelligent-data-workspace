@@ -1,0 +1,8 @@
+{
+  "services/api/src/data_workspace/model_provider.py": "bfa87e029e343bdd9c70033e2cc22382f8dd682b709feb604c2b4143cb2bac6d",
+  "services/api/tests/test_observed_model_alias.py": "cb8e6ab098e67cb532c205599032e01aa39ab816b70b3e74ac7e9691c34d45e4",
+  "apps/web/src/ModelServiceReadiness.tsx": "e0459810d7943d27fb11789705843c76c41c009b64024d47bcbf1646563d81ed",
+  "scripts/remote_browser_fixture.py": "3c123884795f952853f3f1f92ff207e5538105838b4043af76c78545c2c2c80f",
+  "contracts/openapi.json": "4cae0d5681b54cb520293cb0d12b67e27fbf9286ae4d5553212932ef0ecd8ff1",
+  "apps/web/src/api.generated.ts": "f08cd6cbcf4bcddf23fb6b6dc7ba95bff6df26c9a0390c1ac76d554526f2d29c"
+}

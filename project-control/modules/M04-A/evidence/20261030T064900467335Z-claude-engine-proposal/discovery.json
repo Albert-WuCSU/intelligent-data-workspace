@@ -1,0 +1,43 @@
+{
+  "reviewer": "self_review",
+  "user_config_nonsecret": {
+    "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+    "auth_variable_name": "ANTHROPIC_AUTH_TOKEN",
+    "default_aliases": "haiku/opus/sonnet map to claude-haiku-4-5",
+    "top_model": "claude-kr-claude-opus-5.5[1M]",
+    "deepseek_configured_alias": "claude-deepseek-v4.1-flash"
+  },
+  "secret": "user value is placeholder 我的key; not copied or requested, no hostfile or environmentread",
+  "ignored_configuration": [
+    "hooks commands",
+    "statusline command",
+    "autoupdater flags",
+    "3000000ms timeout",
+    "xhigh effort as automatic default",
+    "modeldiscovery as automatic permissiongrant"
+  ],
+  "facts": [
+    "CLIconfiguration points coding-plan+AUTH_TOKEN convention, rootSDK/apiKeyexample belongs anothercontract",
+    "rawModelProvider invokes model notClaudeCodeagentloop",
+    "user requests actualClaudeCoderuntime as workbenchbackend not justapi-stylelauncher"
+  ],
+  "official_sources_fetched": [
+    {
+      "url": "https://platform.claude.com/docs/en/agent-sdk/overview",
+      "http": 200
+    },
+    {
+      "url": "https://code.claude.com/docs/en/headless",
+      "http": 200
+    }
+  ],
+  "proposal": "ClaudeAgentSDK asAgentEngine behind governed backend, alternative controlledheadlessCLI bridge; existingMCP/SQLpermissions/receipts remain authority",
+  "unknown": [
+    "SDKlicense/version/install andWindowsruntimecompatibility",
+    "codingplangateway AgentSDK auth and modelalias mapping",
+    "deepseek-v4.1-flash versus claude-deepseek-v4.1-flash runtime modelid",
+    "toolcallcompatibility and cumulativeagentcost",
+    "runtime config/history/telemetry isolation and corporategateway terms"
+  ],
+  "actions": "noCLIexecution/SDKinstall/hooksrun/modelcall/Keycopy/runtimechanges; architectureproposalonly"
+}

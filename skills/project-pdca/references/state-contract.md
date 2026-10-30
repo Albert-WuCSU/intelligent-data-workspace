@@ -46,3 +46,10 @@ checkpoint.lock残留时先确认没有正在写入的进程；用户或当前�
 ## 接续最小上下文
 
 恢复只加载进度、当前模块计划、最近证据、依赖合同及相关代码，不重新阅读完整策划文档和所有历史日志。首轮尚未批准时可阅读项目brief及首次方案卡。新聊天需关联同一目录并显式调用Skill一次；之后可说“继续推进”。
+
+
+## 本项目有限本机交付的显式延期（2026-10-28）
+
+用户批准延期并不允许把 required 改 false、not_run 改 passed 或 unresolved 高风险改 resolved。模块可以登记 delivery_scope.kind=finite_local，maturity 仅 local_ready；decision_id 必须指向同模块/当前 cycle 的真实用户 scope/change 决策。deferred_tests 与 deferred_risks 逐项绑定 test_id/risk_id、release_gate_id、owner、condition；门禁保持 not_run 并绑定同一批准/责任人与补验条件。只可延期 required=true/status=not_run/integration=real 测试；failed/stale/未知项不允许延期，critical 风险不可延期。
+
+closed 仍必须有当前 PLAN、真实用户 delivery、scope=finite_local 且同 decision_id 的 audit pass、至少一个真正通过的 required 测试、所有范围内测试及证据有效。延期测试和高风险事实原样保留，不取得 staging/production_verified。项目 complete 前必须实测补验并重新审查延期记录，所有发布门禁通过。没有 delivery 时保持当前模块，不激活下游。该例外用于落实已经批准的有限范围，不授权模型调用/新依赖/生产部署。

@@ -1,0 +1,3 @@
+认证协议候选依据：项目此前仅提取非秘密Claude配置记录存在ANTHROPIC_AUTH_TOKEN字段，未提取其值；ClaudeCode此类Bearer配置与标准AnthropicAPIKey的x-api-key不是同一模式。用户本轮明确要求如ClaudeCode/选择默认model，新增独立Messages/Bearer套餐，不自动试两个authheader，不抄宿主认证。请求只一个AuthorizationBearer，不同时发x-api-key；安全401403数值不暴露原错误正文。
+ada-config平台URL仅作用户提供的来源标记，没有访问含Key页面。尚不能从Key字符串外形判定签发权限或协议，故保持candidate/actual未验证。若用户控制台显示的是ANTHROPIC_API_KEY而不是AUTH_TOKEN，需用户明确选择匹配x-api-key合同后配置，不能遇拒绝自动试。
+默认claude-haiku-4-5取自用户截图且此前非秘密映射相同，适合最小文本连接测试，不保证网关实际响应model别名/版本映射；严格不因为截图有名称就标授权目录verified。
