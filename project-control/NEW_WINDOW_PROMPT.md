@@ -1,3 +1,5 @@
+> 最新通用BYOK已本机471/16/34passed，源码main71ae0ab已实际pushprivateGitHub远端SHA验证一致；进度同步另doccommit。用户旧窗口CtrlC/Y后普通start-workspace.cmd加载新版一次，此后网页厂商/custom三协议地址model/passwordKey/saveclear/test，不反复终端或重启。公网真实个人model/TLS/stream/catalog/SQLJOIN未验，M04A不closed，Key不上传/持久化。
+
 > 最新revision120：通用个人网页BYOK首切片完成471backend/16front/34browser全过。模型服务厂商custom三协议/HTTPSpublicendpoint/model/passwordKey/saveclear/test可用，Key不storagehistorylogfile/publicSSRFIPpinning、AIPlan可选exactprivatepreset；用户新个人厂商实测notrun，M04Apartial/目录streamSQLJOIN未完。用户D061明确全部当前安全源码commitpushexistingGitHub，当前安全scan初过，待暂存blob/commit/push与远端SHA；不能上传Keys/runtime/uploads/toolconfig，不部署。默认持Key服务需本人加载新API一次，新saveclear更换不用重启。
 
 > 当前revision115：unsupported_content已定位为已绑定gateway思考封装兼容，onlyexactaliasopaque thinkingdiscard（不展示执行存），strictfinaltext/model/tool/budget保留，新增model_binding诊断；444backend/16front/33browser全过。用户旧服务需本人新cmd隐输一次显式test，新真实成功尚未验证，本轮无收费POST/Key读取/停止，预算LangGraph保持。

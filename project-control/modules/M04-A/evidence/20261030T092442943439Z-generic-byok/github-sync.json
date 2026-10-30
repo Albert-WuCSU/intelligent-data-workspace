@@ -1,0 +1,19 @@
+{
+  "verified_at": "2026-10-30T11:31:29.564757+00:00",
+  "repository": "https://github.com/Albert-WuCSU/intelligent-data-workspace",
+  "private": true,
+  "branch": "main",
+  "source_commit": "71ae0ab4d0777fdcfb2e119bd5feb200a1eab1f0",
+  "local_HEAD": "71ae0ab4d0777fdcfb2e119bd5feb200a1eab1f0",
+  "github_main_SHA": "71ae0ab4d0777fdcfb2e119bd5feb200a1eab1f0",
+  "commit_exit_code": 0,
+  "push_exit_code": 0,
+  "remote_ref_check_exit_code": 0,
+  "staged_scan_ref": "project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/staged-safety.json",
+  "safe_directory": "exactworkspacecommandonly no globalconfigchanges",
+  "authentication": "existingGitHubCLIhelperpercommand only, no tokenread/copy",
+  "excluded": "Key/toolconfigs/tmp/modelledger/useruploads/connections; no userfilesdeleted",
+  "product_scope": "genericBYOK local_slicepass471/16/34; publicactualsupplier/catalogstreamSQLJOINnotverified",
+  "deployment": "not_run; source sync only",
+  "followup": "this receipt/progress/HANDOFF will be committed and pushed as documentation-only followup; source commit already verified"
+}

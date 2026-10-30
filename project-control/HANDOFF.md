@@ -1,26 +1,24 @@
 # 项目续接档案
 
-状态版本 revision 121，更新时间 2026-10-30T11:27:22.810856+00:00 UTC。
+状态版本 revision 122，更新时间 2026-10-30T11:31:29.727870+00:00 UTC。
 
 先校验 progress.json 并核对实际文件；本档案由脚本生成，主进度为唯一状态真源。
 
 - 项目：通用企业智能数据分析平台
 - 当前：M04-A 模型API与模型服务接入 / do
 - 状态：in_progress
-- 下一步：安全检查及final471/16/34已通过，按用户D061提交推送既有privateAlbert-WuCSU/intelligent-data-workspace/main，核远端SHA并保存同步证据。只同步可提交源码/证据，不上传Keys/runtime/toolconfigs，不部署；新通用BYOK需用户本人加载新版一次，之后网页save/clear/test无需终端Key/重启。
+- 下一步：通用BYOK源码已pushGitHubprivate/main sourcecommit71ae0ab并实核远端SHA一致。用户本人旧启动窗口CtrlC/Y后普通start-workspace.cmd加载新版一次，网页模型服务选择厂商或custom协议完整HTTPSendpoint/model/passwordKey→接受固定测试用途/估算→保存（不收费）→显式test；此后替换/clear不用重启，password提交清空/后台sessionmemory/预算不reset。真实公共厂商账号/TLS/网页个人实操not_run，AIPlan已有minimaltextsuccess，目录stream/SQLJOIN仍未完成，M04A不closed；不自动收费或读取Key，LangGraph/PG生产门禁保持。
 
 ## 优先读取
 - project-control/HANDOFF_DETAILS.md
 - project-control/NEW_WINDOW_PROMPT.md
 - project-control/PRODUCT_UX_PRINCIPLES.md
 - project-control/modules/M04-A/plan.md
+- project-control/prd/M04-A.md
 - MODEL_SERVICE.md
-- project-control/modules/M04-A/evidence/20261030T085625333132Z-gateway-thinking/review.md
-- project-control/modules/M04-A/evidence/20261030T085625Z/results.json
-- project-control/modules/M04-A/evidence/20261030T091015824376Z-browser-key-entry/start.json
-- project-control/modules/M04-A/evidence/20261030T091124432203Z-generic-provider-scope/scope.json
-- project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/start.json
 - project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/review.md
+- project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/github-sync.json
+- project-control/modules/M04-A/evidence/20261030T093324Z/results.json
 
 ## 工作状态
 - M01已验收；M02-C03仍DO/not_verified/audit not_run。D-MVP-FAST-034用户我确认已回答：有限本机MVP、PG生产后补、公司HTTPcoding-plan产品专用调用，仅问题/必要字段信息外发。金额15USD不变，不复制Claude token/发表行全历史截图，不自动delivery。
@@ -74,9 +72,10 @@
 - 首完整469后端/16前端/typesbuildpip过，34网页33过1：新通用保存用例错误假定fixture共享账本从0开始，而此前模型用例已预留1。修为保存不变基线/显式测试+1/clear不reset，更精确不改产品预算。self_review修Chat默认认证显示应Bearer，加async测试中save/clear409保护专项，两项新增27connectiontests全过；共享provider变动需完整复跑。失败证据保留，不删断言或resetledger。
 - 通用BYOK最终093324Z471backend（原287+184模型专项）/16front/34browser/typesbuildpip全0source稳定，PRD/5PRD/26状态/仓0。网页passwordKey/厂商协议地址model/saveclear/显式test已实现，保存无费用/字段清空/storage无Key/预算基线不变验证，publicDNSIP固定/TLSHostSNI与SSRF约束。realpublicsuppliernotrun；AIPlan此前用户minimaltextpassed不冒称完整MVP。Git现有private/ADMIN和初秘密scan通过，userD061commitpush尚待完成；默认用户Key服务不读取/停止。
 - 用户D061源码同步前实际index2099files/133.5MB检查：nohighconfidencekeys/token/privateJWT/no forbiddenruntime/toolpath/noembeddedlinks/no>95MBsinglefile/stageddiskbyteequal；是有限扫描非完整DLP。既有privateADMIN/main确认，final471/16/34全过，准备commitpush；不读取ignoredKeys或userdata，不部署/自动模块验收。
+- D061已执行GitHubprivate源码同步：main71ae0ab4d0777fdcfb2e119bd5feb200a1eab1f0 commit/push0，GitHubAPI远端SHA与localHEAD实际一致，清洁工作树核验；Key/uploads/runtime/toolconfigs均未上传，不部署/模块验收。此同步回执/进度文档跟随另一次纯文档commitpush，源指纹/471/16/34证据保持。
 
 ## 阻碍
-- 真实通用网页Key路径/个人厂商账号API尚未由用户实测，新后端需本人加载一次；只隔离fixture验证，模型目录/stream及SQLJOIN未闭环。
+- 新通用接口需用户加载新版一次并网页个人厂商显式测试；真实公共模型账号/TLS未验，不以fixture通过称所有厂商已连接。模型目录/stream/SQLJOIN及生产身份门禁仍未完成。
 
 ## 上下文建议
 在模块边界保存后按需切换。
