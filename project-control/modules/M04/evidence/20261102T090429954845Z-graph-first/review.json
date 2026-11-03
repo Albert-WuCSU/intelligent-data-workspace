@@ -1,0 +1,44 @@
+{
+  "reviewer": "self_review",
+  "scope": "M04B approvedgraph/install/backendverticalcheckpoint",
+  "installed": "26 exacthashlocked packages projectvenv, no existingpackage upgrade",
+  "checks": [
+    {
+      "command": "pip install --no-deps --only-binary=:all: --require-hashes -r services/api/requirements.langgraph.lock.txt",
+      "exit_code": 0
+    },
+    {
+      "command": "pip check",
+      "exit_code": 0
+    },
+    {
+      "command": "graph_smoke.py",
+      "exit_code": 0,
+      "scope": "runtime socket.connect denied after eventloopsetup; interrupt/resume passed with tracing_contextdisabled"
+    },
+    {
+      "command": "pytest test_agent.py -q",
+      "exit_code": 0,
+      "passed": 12
+    }
+  ],
+  "implemented": [
+    "LangGraphresolve/modelJSONvalidate/humaninterrupt/confirmedexecute graph",
+    "separatefixed workspace_aggregate_v1 stdioMCPserver/client with existingWindowsJob; oldnavigation6toolsunchanged",
+    "boundedwholeinput count/sum/ratio/group/time aggregates, row/outputbudgets/QA and compilerAST",
+    "taskowner/UUID/context/model/semantic/sourceversions/noautosubmit;modelonce/confirmonce unknowntombstone"
+  ],
+  "fixture_failures": [
+    "initial no-network smoke patched socketbefore Windowsloop socketpair, moved guard inside runningloop; no module import network tested there",
+    "MCPstructured return dict annotation invalid; corrected dict[str,Any] for SDK contract, nowactualstdioquerypassed",
+    "unsafeSQL test replaced nonexistenttableword, fixed actuallymutatingFROM",
+    "nested storagelease causedSTORAGE_BUSY; internal reader __wrapped__ used only under ownedouterlease, no public lease bypass"
+  ],
+  "not_run": [
+    "workbenchAgentUI",
+    "fullcurrentbaseline",
+    "actualuserprovider/modelJSONandbusinessquery",
+    "JOIN/L2L3/L4/PGproduction"
+  ],
+  "safety": "fakeKey/modelMockTransport only;actualMCPfullquery is independentlocalfixture. NoactualuserKeyread/paidcall/newoutsidepermissions/service restart."
+}

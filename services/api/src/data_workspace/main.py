@@ -17,6 +17,10 @@ from .contracts import (AuthContext, QuerySpec, Task, TaskStatus, ErrorEnvelope,
                         CapabilitiesResponse, ModuleCapability, ValidationResponse, DatasetAsset, ConnectorCapability)
 from .model_provider import MessagesProvider, ModelConfiguration
 from .model_routes import router as model_router, ModelTests
+from .model_stream_routes import router as stream_router, StreamTests
+from .agent_routes import router as agent_router
+from .semantic_store import SemanticStore
+from .semantic_routes import router as semantic_router
 from .repository import MemoryTaskRepository
 from .source_profiles import SourceStore
 from .remote_access import RemoteAccessPolicy
@@ -43,13 +47,26 @@ def create_app(settings: Settings | None = None):
                     if runner:await runner.stop()
         finally:
             if runner:await runner.stop()
+            if app.state.agent is not None:await app.state.agent.close()
+            await app.state.model_stream_tests.close()
     app = FastAPI(title="Data Workspace API", version="0.1.0", docs_url=None, redoc_url=None, openapi_url=None, lifespan=lifespan)
     app.state.settings = cfg
     app.state.connector = ConnectorManager(cfg.owned_warehouse)
     app.include_router(connector_router)
     app.include_router(source_router)
+    app.include_router(semantic_router)
+    app.state.semantics=SemanticStore()
+    app.include_router(agent_router)
+    if cfg.mode=='development' and cfg.dev_identity:
+        from .agent_service import AgentService
+        app.state.agent=AgentService(app)
+    else:
+        app.state.agent=None
     app.include_router(model_router)
+    app.include_router(stream_router)
+    app.state.model_stream_tests=StreamTests()
     app.state.model_tests=ModelTests()
+    app.state.model_enabled=False
     app.state.model_configuration_lock=__import__("asyncio").Lock()
     app.state.model_provider=MessagesProvider.from_env() if cfg.mode == "development" and cfg.dev_identity else MessagesProvider(ModelConfiguration(), "")
     app.state.sources=SourceStore(remote_policy=RemoteAccessPolicy.from_env())
@@ -80,12 +97,12 @@ def create_app(settings: Settings | None = None):
                 if not request.app.state.upload_admission.acquire(blocking=False):
                     return error(request,429,'UPLOAD_BUSY','上传已达本机并发上限，请等待当前上传结束后重试；未接收本次文件。')
                 admitted=True
-            if request.url.path in {"/api/v1/source-profiles/upload", "/api/v1/source-profiles/import-config", "/api/v1/source-profiles/test", "/api/v1/model-service/test", "/api/v1/model-service/connection", "/api/v1/model-service/connection/clear"}:
+            if request.url.path.startswith("/api/v1/agent") or request.url.path.startswith("/api/v1/semantics") or request.url.path in {"/api/v1/source-profiles/upload", "/api/v1/source-profiles/import-config", "/api/v1/source-profiles/test", "/api/v1/model-service/test", "/api/v1/model-service/stream-test", "/api/v1/model-service/connection", "/api/v1/model-service/connection/clear", "/api/v1/model-service/connection/enabled"}:
                 if request.url.path.startswith('/api/v1/model-service/connection'):
                     try:identity(request)
                     except PublicError as exc:return error(request,exc.status,exc.code,exc.message)
                 # Bound the multipart/secret body before its parser may spool to disk.
-                limit = 8192 if request.url.path.startswith('/api/v1/model-service/connection') else 21 * 1024 * 1024 if request.url.path.endswith("/upload") else 64 * 1024 if request.url.path.endswith("/test") else 128 * 1024
+                limit = 8192 if request.url.path.startswith("/api/v1/agent") else 32768 if request.url.path.startswith("/api/v1/semantics") else 8192 if request.url.path.startswith('/api/v1/model-service/connection') else 21 * 1024 * 1024 if request.url.path.endswith("/upload") else 64 * 1024 if request.url.path.endswith("/test") else 128 * 1024
                 try:
                     declared = int(request.headers.get("content-length", "0"))
                 except ValueError:
@@ -139,7 +156,7 @@ def create_app(settings: Settings | None = None):
         allowed=(auth.mode,auth.tenant_id,auth.principal_id)==("development","local-workspace","local-developer")
         ready=allowed and manager.verified
         connectors=[ConnectorCapability(connector_id="owned-synthetic",configured=True,sql_dialect="duckdb",metadata="supported" if ready else "unknown",asynchronous="unsupported",cancel="unsupported",query_cost="unsupported",column_acl="unknown")] if allowed and manager.enabled else []
-        return CapabilitiesResponse(modules=[ModuleCapability(id=i,label=label,available=ready and i=="connectors",milestone=m) for i,label,m in MODULES], connectors=connectors)
+        return CapabilitiesResponse(modules=[ModuleCapability(id=i,label=label,available=(ready and i=="connectors") or (allowed and i in {"knowledge","query"}),milestone=m) for i,label,m in MODULES], connectors=connectors)
 
     @app.post("/api/v1/query-spec/validate", response_model=ValidationResponse)
     def validate_spec(spec: QuerySpec, auth: AuthContext = Depends(identity)):

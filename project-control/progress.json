@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 122,
-  "updated_at": "2026-10-30T11:31:29.727870+00:00",
+  "revision": 161,
+  "updated_at": "2026-11-03T03:13:43.976350+00:00",
   "project": {
     "id": "universal-data-agent",
     "name": "通用企业智能数据分析平台",
@@ -99,7 +99,7 @@
     }
   },
   "status": "in_progress",
-  "active_module": "M04-A",
+  "active_module": "M04",
   "modules": [
     {
       "id": "M01",
@@ -186,11 +186,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "e83afde63622cd1ed1510c2098f2e883b4ad44464dd835680f7c7c440d60deec",
-          "log": "project-control/modules/M02/evidence/20261028T062915Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M01-CHAT-BACKEND-042",
-          "scope": "287/pipactualpassed; only UI/browserfixture laterchanged, relevantcode byte-identical; no newfp/backend rerunclaim."
+          "evidence_id": "M01-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade."
         },
         {
           "id": "dependency-check",
@@ -205,11 +205,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "e83afde63622cd1ed1510c2098f2e883b4ad44464dd835680f7c7c440d60deec",
-          "log": "project-control/modules/M02/evidence/20261028T062915Z/dependency-check.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/dependency-check.txt",
           "required": true,
-          "evidence_id": "M01-CHAT-BACKEND-042",
-          "scope": "287/pipactualpassed; only UI/browserfixture laterchanged, relevantcode byte-identical; no newfp/backend rerunclaim."
+          "evidence_id": "M01-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "types",
@@ -218,16 +220,18 @@
             "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
             "--noEmit"
           ],
-          "cwd": "apps/web",
+          "cwd": "apps\\web",
           "exit_code": 0,
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/types.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/types.txt",
           "required": true,
-          "evidence_id": "M01-CHAT-FINAL-042",
-          "scope": "15unit/types actually passed, later only sticky CSS changed."
+          "evidence_id": "M01-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "build",
@@ -236,16 +240,18 @@
             "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
             "build"
           ],
-          "cwd": "apps/web",
+          "cwd": "apps\\web",
           "exit_code": 0,
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/build.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/build.txt",
           "required": true,
-          "evidence_id": "M01-CHAT-FINAL-042",
-          "scope": "Actual passed original command retained; only browser test changed, all relevant core/product code identical."
+          "evidence_id": "M01-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "frontend",
@@ -254,16 +260,18 @@
             "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
             "run"
           ],
-          "cwd": "apps/web",
+          "cwd": "apps\\web",
           "exit_code": 0,
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/frontend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/frontend.txt",
           "required": true,
-          "evidence_id": "M01-CHAT-FINAL-042",
-          "scope": "15unit/types actually passed, later only sticky CSS changed."
+          "evidence_id": "M01-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "browser",
@@ -279,11 +287,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "real",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/browser.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/browser.txt",
           "required": true,
-          "evidence_id": "M01-CHAT-FINAL-042",
-          "scope": "Full26 actual UI checks preserving accepted history/theme/pipeline; only CSS header sticky later all10workspace rerun separately. No business model/query capability claimed."
+          "evidence_id": "M01-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "browser-workspace",
@@ -550,6 +560,13 @@
           "kind": "test",
           "path": "project-control/modules/M02/evidence/20261028T062915Z/results.json",
           "sha256": "54f36e2d26c74ab81348a179a7343e0eba82b92fc6700bdb5e9c0ba42ec870dd",
+          "stale": false
+        },
+        {
+          "id": "M01-M03-BASELINE-REGRESSION",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/results.json",
+          "sha256": "faa389be9c8802bf9dcd6be20f15e8383de051c5b56b3b7f6ab3c44b60061c92",
           "stale": false
         }
       ],
@@ -1285,11 +1302,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T082433Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M02-FINITE-FINAL-047",
-          "scope": "Full approved local regression actually rerun:287backend/16frontend/27browser, source-stable109; native/HTTP/attachment fixtures not realPG/model/JOIN"
+          "evidence_id": "M02-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade."
         },
         {
           "id": "dependency-check",
@@ -1304,11 +1321,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T082433Z/dependency-check.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/dependency-check.txt",
           "required": true,
-          "evidence_id": "M02-FINITE-FINAL-047",
-          "scope": "Full approved local regression actually rerun:287backend/16frontend/27browser, source-stable109; native/HTTP/attachment fixtures not realPG/model/JOIN"
+          "evidence_id": "M02-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "types",
@@ -1322,11 +1341,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T082433Z/types.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/types.txt",
           "required": true,
-          "evidence_id": "M02-FINITE-FINAL-047",
-          "scope": "Full approved local regression actually rerun:287backend/16frontend/27browser, source-stable109; native/HTTP/attachment fixtures not realPG/model/JOIN"
+          "evidence_id": "M02-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "build",
@@ -1340,11 +1361,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T082433Z/build.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/build.txt",
           "required": true,
-          "evidence_id": "M02-FINITE-FINAL-047",
-          "scope": "Full approved local regression actually rerun:287backend/16frontend/27browser, source-stable109; native/HTTP/attachment fixtures not realPG/model/JOIN"
+          "evidence_id": "M02-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "frontend",
@@ -1358,11 +1381,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T082433Z/frontend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/frontend.txt",
           "required": true,
-          "evidence_id": "M02-FINITE-FINAL-047",
-          "scope": "Full approved local regression actually rerun:287backend/16frontend/27browser, source-stable109; native/HTTP/attachment fixtures not realPG/model/JOIN"
+          "evidence_id": "M02-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "browser",
@@ -1378,11 +1403,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "real",
-          "code_fingerprint": "a885eef6f02f1fded5a1c713950869ddfd6091e385e296e265bb888c0f63dcf6",
-          "log": "project-control/modules/M02/evidence/20261028T082433Z/browser.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/browser.txt",
           "required": true,
-          "evidence_id": "M02-FINITE-FINAL-047",
-          "scope": "Full approved local regression actually rerun:287backend/16frontend/27browser, source-stable109; native/HTTP/attachment fixtures not realPG/model/JOIN"
+          "evidence_id": "M02-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "preflight-and-readonly-storage",
@@ -2457,6 +2484,13 @@
           "path": "project-control/modules/M02/evidence/20261028T082303150054Z-finite-review/audit.json",
           "sha256": "44c8c0263d8ffe0380bd9d65a5091710fc3b912ed7cd8a91669a2931425cc4df",
           "stale": false
+        },
+        {
+          "id": "M02-M03-BASELINE-REGRESSION",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/results.json",
+          "sha256": "faa389be9c8802bf9dcd6be20f15e8383de051c5b56b3b7f6ab3c44b60061c92",
+          "stale": false
         }
       ],
       "audit": {
@@ -3431,14 +3465,15 @@
       "depends_on": [
         "M02"
       ],
-      "status": "active",
-      "phase": "do",
+      "status": "closed",
+      "phase": "act",
       "cycle_id": "M04-A-C01",
-      "maturity": "not_verified",
+      "maturity": "local_ready",
       "plan_ref": "project-control/modules/M04-A/plan.md",
       "prd_ref": "project-control/prd/M04-A.md",
       "approvals": {
-        "plan": "D-M04A-PLAN-051"
+        "plan": "D-M04A-PLAN-051",
+        "delivery": "D-M04A-DELIVERY-065"
       },
       "implementation_items": [
         {
@@ -3553,21 +3588,57 @@
             "apps/web/src/ModelConnectionForm.tsx"
           ],
           "description": "3protocols/custompublicHTTPS/sessionpasswordKey/saveclear/explicitfixedtest;471/16/34localpassed, personalsupplieractualnotrun."
+        },
+        {
+          "id": "M04A-I-SESSION-CATALOG",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/model_routes.py",
+            "services/api/tests/test_model_catalog.py",
+            "apps/web/src/App.tsx",
+            "apps/web/src/ModelServiceReadiness.tsx",
+            "apps/web/src/ModelSelector.tsx"
+          ],
+          "description": "session-only explicit tested enable/catalog lifecycle implemented; full regression pending; real user/public TLS/stream not verified"
+        },
+        {
+          "id": "M04A-I-SETTINGS-MODEL-CHOICE",
+          "status": "done",
+          "paths": [
+            "apps/web/src/SettingsWorkspace.tsx",
+            "apps/web/src/App.tsx",
+            "apps/web/src/WorkbenchPanel.tsx",
+            "apps/web/src/ModelConnectionForm.tsx",
+            "apps/web/src/ModelServiceReadiness.tsx",
+            "services/api/src/data_workspace/model_routes.py"
+          ],
+          "description": "D062 independent settings and user-selected model names implemented; full regression pending, no upstream discovery or actual user credential tests"
+        },
+        {
+          "id": "M04A-I-MESSAGES-STREAM",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/model_stream.py",
+            "services/api/src/data_workspace/model_stream_routes.py",
+            "services/api/tests/test_model_stream.py",
+            "apps/web/src/ModelStreamTest.tsx"
+          ],
+          "description": "Messages explicit live fixed-test/receipt/poll/cancel/partial safety implemented, isolated tests passed; final regression and actual gateway still pending. Not SQL or Agent."
+        },
+        {
+          "id": "M04A-I-STREAM-SAFE-DIAGNOSTICS",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/model_stream.py",
+            "services/api/src/data_workspace/model_stream_routes.py",
+            "services/api/src/data_workspace/model_routes.py",
+            "apps/web/src/ModelStreamTest.tsx",
+            "services/api/tests/test_model_stream.py"
+          ],
+          "description": "fixedsafe stream receipt diagnostics and noqueuedfreshgenerate whilebusy;97special/2browser/types passed, fullchecknext"
         }
       ],
       "tests": [
-        {
-          "id": "real-model-api",
-          "required": true,
-          "status": "failed",
-          "environment": "local",
-          "integration": "real",
-          "command": "User-triggered model-service/test via browser; user receipt screenshot MODEL_ACCESS_DENIED; readonly GET model-service/status",
-          "exit_code": 1,
-          "scope": "Actual user-triggered gateway accessdenied401or403, currentcodecollapsesstatus; failednotnot_run, no generationverified, assistantdidnotretry",
-          "evidence_id": "M04A-REAL-ACCESS-DENIED-018",
-          "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33"
-        },
         {
           "id": "backend",
           "command": [
@@ -3582,11 +3653,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Actual471backend/16front/34browser fullstable, fakeKeyfixtureonly; notrealpersonalsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade."
         },
         {
           "id": "dependency-check",
@@ -3601,11 +3672,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/dependency-check.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/dependency-check.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Actual471backend/16front/34browser fullstable, fakeKeyfixtureonly; notrealpersonalsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "types",
@@ -3619,11 +3692,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/types.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/types.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Actual471backend/16front/34browser fullstable, fakeKeyfixtureonly; notrealpersonalsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "build",
@@ -3637,11 +3712,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/build.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/build.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Actual471backend/16front/34browser fullstable, fakeKeyfixtureonly; notrealpersonalsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "frontend",
@@ -3655,11 +3732,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/frontend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/frontend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Actual471backend/16front/34browser fullstable, fakeKeyfixtureonly; notrealpersonalsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "browser",
@@ -3675,11 +3754,13 @@
           "status": "passed",
           "environment": "local",
           "integration": "real",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/browser.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/browser.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Actual471backend/16front/34browser fullstable, fakeKeyfixtureonly; notrealpersonalsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Acceptedmodulebaseline covered in actualall560backend and unchanged16front/41browser verification atM03final; no maturity/permission/production/deferredgateupgrade.",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
         },
         {
           "id": "model-provider-key-isolation",
@@ -3695,11 +3776,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "user-local-hidden-key-entry",
@@ -3727,11 +3808,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "estimated-budget-test-api",
@@ -3747,11 +3828,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "estimated-budget-real-process-recovery",
@@ -3780,11 +3861,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "real-claude-model-test",
@@ -3797,15 +3878,6 @@
           "scope": "Actualfixednon-sensitivegeneration succeeded viaAIPlanMessagesBearerDeepSeek; onlytexttest not stream/tools/SQL/JOIN or newwebKeyflowverified",
           "code_fingerprint": "14083744756773d5d3d3b83368a7bdc7c176e1dc178f2edddad919becb970bb9",
           "evidence_id": "M04A-WEB-KEY-START-040"
-        },
-        {
-          "id": "real-sdk-root-key-model-test",
-          "required": true,
-          "status": "not_run",
-          "environment": "local",
-          "integration": "real",
-          "command": [],
-          "scope": "Userupdatedstart-workspace-claude.cmd root/v1/messages+xapikey DeepSeek actualgatewaytest pending"
         },
         {
           "id": "model-response-safe-diagnostics",
@@ -3821,11 +3893,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "model-specific",
@@ -3841,13 +3913,14 @@
             "-q"
           ],
           "exit_code": 0,
-          "status": "passed",
+          "status": "stale",
           "environment": "local",
           "integration": "unit",
           "code_fingerprint": "9ca352848cc60642baca529ea20ed47f35b81ed356347e6b7094cc5602644574",
           "log": "project-control/modules/M04-A/evidence/20261030T074021600981Z-observed-model-mismatch/model-specific.txt",
           "required": false,
-          "evidence_id": "M04A-OBSERVED-MISMATCH-030"
+          "evidence_id": "M04A-OBSERVED-MISMATCH-030",
+          "scope": "; session-catalog/API/UI changed, full recheck pending"
         },
         {
           "id": "types",
@@ -3864,7 +3937,7 @@
           "log": "project-control/modules/M04-A/evidence/20261030T074021600981Z-observed-model-mismatch/types.txt",
           "required": false,
           "evidence_id": "M04A-OBSERVED-MISMATCH-030",
-          "scope": "Publicmodeltransport/config/apiwebKey/threeprotocolUIchanged;182specificpassed finalpending"
+          "scope": "Archived older types snapshot; stale retained. Current required types separately passed in final regression."
         },
         {
           "id": "browser-diagnostic",
@@ -3900,11 +3973,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "observed-gateway-model-alias",
@@ -3920,11 +3993,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "Full471contains184modelbudgetcases, notactualpublicsupplier"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "observed-gateway-opaque-reasoning",
@@ -3940,11 +4013,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "14083744756773d5d3d3b83368a7bdc7c176e1dc178f2edddad919becb970bb9",
-          "log": "project-control/modules/M04-A/evidence/20261030T085625Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GATEWAY-THINKING-FINAL-038",
-          "scope": "7newgatewayreasoningcases plusno-signaturealiasbrowserfixture, non-gatewaystrictshape unchanged"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "generic-byok-security-api",
@@ -3960,11 +4033,11 @@
           "status": "passed",
           "environment": "local",
           "integration": "unit",
-          "code_fingerprint": "3834d65b0b97c018fe4f32174a73d5df38fff9b5aa9151cd9433f1802f723f9f",
-          "log": "project-control/modules/M04-A/evidence/20261030T093324Z/backend.txt",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
           "required": true,
-          "evidence_id": "M04A-GENERIC-FINAL-044",
-          "scope": "27connection+egress/Chatcases actualinfull471 inclsecretredaction/busy/SSRF/pinnedDNS andrealAPIfixture, realTLSsuppliernotrun"
+          "evidence_id": "M04-A-M03-BASELINE-REGRESSION",
+          "scope": "Actual560backend includes acceptedM04Amodel/budget/secret/stream guards, no actualpaidprovider call; deferredgate/finiteapproval unchanged."
         },
         {
           "id": "personal-public-supplier-integration",
@@ -3974,6 +4047,27 @@
           "integration": "real",
           "command": [],
           "scope": "UserpersonalBYOKHTTPSsupplier actualAPI/TLS/modeltest not run; presets not proof"
+        },
+        {
+          "id": "real-web-byok-lifecycle",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real",
+          "command": [],
+          "scope": "Current D062 left Settings -> user-enteredmodel/key -> save/test/enable/return/select lifecycle requires user real account path; isolated fakeKey fixture only so required/not_run retained."
+        },
+        {
+          "id": "real-model-stream",
+          "required": true,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "command": "User explicit fixedstream via webpage screenshot; readonly GET /api/v1/model-service/status confirmed stream_verified=true",
+          "scope": "Actual user AIPlan Messages DeepSeek fixedstream succeeded; current backend receipt capability and screenshot agree. SQL not executed, other protocolstream unsupported, no assistant paidcall.",
+          "exit_code": 0,
+          "code_fingerprint": "22797b784c32a5ba3daaf5bf4f1278dd7d4688b6d8f51828f22eb1cb29e71874",
+          "evidence_id": "M04A-REAL-STREAM-078"
         }
       ],
       "evidence": [
@@ -4368,20 +4462,273 @@
           "path": "project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/github-sync.json",
           "sha256": "da167b492aa75b046d7b26c044e0cc855a05c264b4dbe71e99472b5bb52b99d1",
           "stale": false
+        },
+        {
+          "id": "M04A-NOV02-HANDOFF-048",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T030041218179Z-nov02-handoff/review.json",
+          "sha256": "7c9ec698a5af85aed96bba5cd6457c53d39419884fed1812d6b78a33c0e56a0a",
+          "stale": false
+        },
+        {
+          "id": "M04A-LIVE-RECOVERY-049",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T030522998527Z-service-recovery/review.json",
+          "sha256": "6f26875eb327fd1fec72c7640d2bd45ffa56d790d7009089f35a297c00049e2f",
+          "stale": false
+        },
+        {
+          "id": "M04A-SESSION-CATALOG-050",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T031312536580Z-session-catalog/review.json",
+          "sha256": "4b1ceb2f3f2e2d069491f6ae6cf5354b90b647eafbb2dd140c1411c520f171d6",
+          "stale": false
+        },
+        {
+          "id": "M04A-CATALOG-REGRESSION-051",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T031336Z/results.json",
+          "sha256": "a15898d0002c43f62d9faed72b5f7af14b3249ad79ae839ca3c5219f4113780b",
+          "stale": false
+        },
+        {
+          "id": "M04A-CATALOG-FINAL-052",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T032118Z/results.json",
+          "sha256": "3051644bb229ee18c45b106dc7199b214fe1d4942e2a6f60e602cc11203a09a3",
+          "stale": false
+        },
+        {
+          "id": "M04A-CATALOG-DIAG-CORRECTION-053",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T031312536580Z-session-catalog/diagnostic-scope-correction.json",
+          "sha256": "873fc0933f041ecb1b0d19c5eac958aa4b98c34decfcabdb4bce449472f56468",
+          "stale": false
+        },
+        {
+          "id": "M04A-CATALOG-AC-054",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T031312536580Z-session-catalog/acceptance-review.md",
+          "sha256": "24260e299ce9234673821fe3f33fc0d94f4a109d7d84b2f1f6c0de53e3e2ac3f",
+          "stale": false
+        },
+        {
+          "id": "M04A-CATALOG-REVIEW-055",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T032118Z/slice-review.json",
+          "sha256": "cfd4f6a1e8cfed0f4e405939e884780b9ce0223a6c5400021b08bdf17b1bb3e6",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-IMPL-056",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T035119817768Z-settings-ui/review.json",
+          "sha256": "5234c16af534ef16510ac1248dc811da3dfc83ab70708455bb81b90cd7bd16c4",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-CHECK-057",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T035206Z/results.json",
+          "sha256": "023bb2ebded3fd09f84699b7519f666f5d267ee9c033fcf1f076711dc0fbdaf4",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-NAV-PROBE-058",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T035119817768Z-settings-ui/navigation-probe.json",
+          "sha256": "098494c99b20d6b7df80f9e4c5ce63395f3b03925bfe56fc0c3bab137c7836e9",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-TAIL-059",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T040003314531Z-settings-final/results.json",
+          "sha256": "da2cfbcdeebcbed9de0a8126675f195145adc3e01cdbcf6dac96f124523ecea3",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-FIXES-060",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T035119817768Z-settings-ui/fix-history.json",
+          "sha256": "f312b3e8d0106cd4108aacc7ccbf0803f13cf1d4427a2d8f9c270f6e614da183",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-FINAL-061",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T040455413287Z-settings-final/results.json",
+          "sha256": "171943eba305da53a7c5ce324de4efaf0e2f9f7197b680305ca4f3dafb5716c7",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-BACKEND-REUSE-062",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T040455413287Z-settings-final/backend-reuse.json",
+          "sha256": "d08788b89f3614bd5f89616084701c7b7a5bc96dc68889a045d35c2a62f6b015",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-AC-063",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T035119817768Z-settings-ui/acceptance-current.md",
+          "sha256": "0ebc7ea4a0e346930416360472e4fa61e973bb045557434468afd647ae13480f",
+          "stale": false
+        },
+        {
+          "id": "M04A-SETTINGS-REVIEW-064",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T040455413287Z-settings-final/slice-review.json",
+          "sha256": "21b7b02159ebb3d7fa5fc11b9a51d6d34f7b7b88e6799b8b3342c9ed809912da",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-IMPLEMENTATION-065",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T055036194615Z-messages-stream/review.json",
+          "sha256": "15ae0012718eee1fe9cbdf57c275681c7d4ef9a7365c675f3159867b5bafae5c",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-FULL-066",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T055036Z/results.json",
+          "sha256": "a1caf4f1e0a6b759c4fd8ae6cc9f1329bbc59da2290fbb3af2cb7aa59cbf3868",
+          "stale": false
+        },
+        {
+          "id": "M04A-USER-GLM-READY-067",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T055036194615Z-messages-stream/runtime-readonly.json",
+          "sha256": "49109f1d38dcf03c8700f1941858530a6045a026baf315e46ccd2f0ae50a450a",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-AC-068",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T055036194615Z-messages-stream/acceptance-review.md",
+          "sha256": "a05bea2d67134b86a6532f0363eff18f4ecadf5db76ae8e37da515278386b5ce",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-FINAL-069",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T055807447407Z-stream-ui-final/results.json",
+          "sha256": "8475ac3a21148e155c82f75fa393dfc7dcc58a675d3338cca0248a6f0c01b145",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-BACKEND-REUSE-070",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T055807447407Z-stream-ui-final/backend-reuse.json",
+          "sha256": "f37dbd496d1ba1f8d1bb7a016f7aa596cc0b8798ea818f6007a63ffc2fc20e3f",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-TCP-071",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T055036194615Z-messages-stream/tcp-review.json",
+          "sha256": "3a8918a01ce820c91bfe14c686af7cb15ad9e64e9eac0f813c000e133bdeeb60",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-REVIEW-072",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T055807447407Z-stream-ui-final/slice-review.json",
+          "sha256": "ae6a00dc9142a919b1419ca489a6c7af0176d46b92e61b96bc8e1bf4e3c75d8a",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-READINESS-073",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T061500559940Z-stream-integration-readiness/review.json",
+          "sha256": "6c7fc658d93f0cb70db98eb73673f391775237631c631ebb490b8198a58cebe8",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-READINESS-FINAL-074",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T061501Z/results.json",
+          "sha256": "101d20daf58471afcc67a983f8a47e9bac84182e9aa588667c2fcc12297d3788",
+          "stale": false
+        },
+        {
+          "id": "M04A-STREAM-READINESS-AC-075",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T061500559940Z-stream-integration-readiness/acceptance.md",
+          "sha256": "3d07a9a47edc93f77584113dcbe6614940bc1c2f38ae34576a98c7fd441b142c",
+          "stale": false
+        },
+        {
+          "id": "M04A-REMAINING-GATES-076",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T061500559940Z-stream-integration-readiness/remaining-gates.json",
+          "sha256": "cb205876a885d465931c39bfe74f4eb4aa5dafab0d5bca5d7743138bc73a29d6",
+          "stale": false
+        },
+        {
+          "id": "M04A-READINESS-REVIEW-077",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T061501Z/slice-review.json",
+          "sha256": "e640a2ff06283e07724c4df724c7176c563df2dba38f2eaee3a760f50e2bf017",
+          "stale": false
+        },
+        {
+          "id": "M04A-REAL-STREAM-078",
+          "kind": "test",
+          "path": "project-control/modules/M04-A/evidence/20261102T065830543311Z-actual-stream-acceptance/real-stream.json",
+          "sha256": "cab6cf0da5a0e69053ddfa954a755d504974cc6b6ad4602dbbd7682fb02c23d0",
+          "stale": false
+        },
+        {
+          "id": "M04A-REAL-STREAM-IMAGE-079",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T065830543311Z-actual-stream-acceptance/user-stream-completed.png",
+          "sha256": "ecde5166b2e32333df3712494f67ffa369d1a31ab4e0f048c9c4fbe29d2e9dfa",
+          "stale": false
+        },
+        {
+          "id": "M04A-DELIVERY-SCOPE-080",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T065830543311Z-actual-stream-acceptance/scope-review.md",
+          "sha256": "88f81d3a412490bcd1371f71a3cc64365f75fe5b9989a6bccdfd149ced24b32c",
+          "stale": false
+        },
+        {
+          "id": "M04A-HISTORICAL-CANDIDATES-081",
+          "kind": "review",
+          "path": "project-control/modules/M04-A/evidence/20261102T070314447369Z-finite-delivery/historical-candidate-tests.json",
+          "sha256": "aa9f92f4d13c606e6a6d907c1aed126bd384108856518a54f12572d297c1e402",
+          "stale": false
+        },
+        {
+          "id": "M04A-FINITE-AUDIT-082",
+          "kind": "audit",
+          "path": "project-control/modules/M04-A/evidence/20261102T070314447369Z-finite-delivery/audit.md",
+          "sha256": "468ab0f2503c4e825e14041fcbbd7277f6c59db7f64baff2518587d25cceba4b",
+          "stale": false
+        },
+        {
+          "id": "M04-A-M03-BASELINE-REGRESSION",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/results.json",
+          "sha256": "faa389be9c8802bf9dcd6be20f15e8383de051c5b56b3b7f6ab3c44b60061c92",
+          "stale": false
         }
       ],
       "audit": {
-        "verdict": "partial",
+        "verdict": "pass",
         "reviewer": "self_review",
-        "evidence_id": "M04A-GENERIC-REVIEW-045",
-        "scope": "genericwebBYOKlocal_slice, realpublicsuppliers/catalogstreamnotcomplete"
+        "scope": "finite_local",
+        "decision_id": "D-M04A-DELIVERY-M03-064",
+        "evidence_id": "M04A-FINITE-AUDIT-082"
       },
       "risks": [
         {
           "id": "M04-A-R-EGRESS",
           "severity": "high",
           "resolved": false,
-          "description": "网关/15USD/窄外发已批准不重问；秘密隔离/目标协议边界/拒绝未知费用已测，真实协议/model/费用与专用Key、用户输入/正式身份和供应商限额未核实，仍high未解决。"
+          "description": "事实更新：本机AIPlan专用Key用户自填与窄外发、近似预算已批准，真实Messages生成/流式已证实；仍保留high未解决用于未选公网供应商、生产身份/秘密持久化/硬费率。不得按当前local成功宣布生产安全或精确成本保证；拟finite-local范围须用户确认后再延期非critical风险。"
         }
       ],
       "delivery_slice": "M04-A",
@@ -6731,8 +7078,65 @@
           "required": true,
           "evidence_id": "M04A-GENERIC-FIRST-CHECK-043",
           "scope": "First469backend/16front/full34browser33pass1fail: newtestassumedsharedledgerzero;baselinecorrectedtoassertunchanged/increment1;finalrerunpending"
+        },
+        {
+          "path": "project-control/modules/M04-A/evidence/20261102T070314447369Z-finite-delivery/historical-candidate-tests.json",
+          "tests": [
+            {
+              "id": "real-model-api",
+              "required": true,
+              "status": "failed",
+              "environment": "local",
+              "integration": "real",
+              "command": "User-triggered model-service/test via browser; user receipt screenshot MODEL_ACCESS_DENIED; readonly GET model-service/status",
+              "exit_code": 1,
+              "scope": "Historical real Responses 401/403 failure retained. Independently verified AIPlan Messages/Bearer generation has separate evidence, does not rewrite this failure.",
+              "evidence_id": "M04A-REAL-ACCESS-DENIED-018",
+              "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33"
+            },
+            {
+              "id": "real-sdk-root-key-model-test",
+              "required": true,
+              "status": "not_run",
+              "environment": "local",
+              "integration": "real",
+              "command": [],
+              "scope": "Historical unselected root/v1/messages+x-api-key candidate required/not_run retained; current AIPlan coding-plan Messages/Bearer is a different contract. Review scope before module acceptance, no silent downgrade."
+            }
+          ],
+          "decision_id": "D-M04A-DELIVERY-M03-064",
+          "release_gate_ids": [
+            "RG-MODEL-OLD-RESPONSES",
+            "RG-MODEL-OLD-ROOT"
+          ]
         }
-      ]
+      ],
+      "delivery_scope": {
+        "kind": "finite_local",
+        "decision_id": "D-M04A-DELIVERY-M03-064",
+        "deferred_tests": [
+          {
+            "test_id": "personal-public-supplier-integration",
+            "release_gate_id": "RG-MODEL-PUBLIC-DEFERRED",
+            "owner": "用户/项目维护者",
+            "condition": "提供公网供应商真实能力或正式发布前，独立专用账号/TLS/API/预算/流式权限复验。"
+          },
+          {
+            "test_id": "real-web-byok-lifecycle",
+            "release_gate_id": "RG-MODEL-LIFECYCLE-DEFERRED",
+            "owner": "用户/项目维护者",
+            "condition": "提供生产配置生命周期或正式发布前，真实账号编辑/清除/禁用/恢复、身份/TLS及secretstore完整用户流程复验。"
+          }
+        ],
+        "deferred_risks": [
+          {
+            "risk_id": "M04-A-R-EGRESS",
+            "release_gate_id": "RG-MODEL-PRODUCTION-RISK",
+            "owner": "用户/项目维护者",
+            "condition": "公开/多用户/生产部署或精确成本承诺之前，正式身份/secretstore/驻留/目标权限/TLS与供应商预算上界重新审查；有限本机成功不替代。"
+          }
+        ]
+      }
     },
     {
       "id": "M03",
@@ -6743,24 +7147,402 @@
         "M02",
         "M04-A"
       ],
-      "status": "pending",
-      "phase": "plan",
+      "status": "closed",
+      "phase": "act",
       "cycle_id": "M03-C01",
-      "maturity": "not_verified",
-      "plan_ref": null,
+      "maturity": "local_ready",
+      "plan_ref": "project-control/modules/M03/plan.md",
       "approvals": {
-        "plan": null,
-        "delivery": null
+        "plan": "D-M03-PLAN-066",
+        "delivery": "D-M03-DELIVERY-067"
       },
-      "implementation_items": [],
-      "tests": [],
-      "evidence": [],
+      "implementation_items": [
+        {
+          "id": "M03-I-SEMANTIC-VERTICAL",
+          "status": "done",
+          "description": "approved single-table draft/metadata/check/humanpublish/version/resolve/UIcodeimplemented;21special/1browserpassed fullpending",
+          "paths": [
+            "services/api/src/data_workspace/semantic_metadata.py",
+            "services/api/src/data_workspace/semantic_contracts.py",
+            "services/api/src/data_workspace/semantic_store.py",
+            "services/api/src/data_workspace/semantic_routes.py",
+            "services/api/tests/test_semantics.py",
+            "apps/web/src/KnowledgeWorkspace.tsx"
+          ]
+        },
+        {
+          "id": "M03-I-SOFT-PACK-LIFECYCLE",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/semantic_store.py",
+            "services/api/src/data_workspace/semantic_routes.py",
+            "apps/web/src/KnowledgeWorkspace.tsx"
+          ],
+          "description": "semanticpack disable/revalidateenable/CASrevision/immutablehistory/supersededoldversions consume-denied;35semanticcases included full560;no automaticdeletion"
+        }
+      ],
+      "tests": [
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt",
+          "required": true,
+          "evidence_id": "M03-FINAL-CHECK-011",
+          "scope": "Current560backend actualrerun and same-source16frontend/41browser/types/build/pip explicitreuseproof; realMCP/HTTPfixture semantics only, fakePG not production, no modelbusinesscall/SQLJOIN."
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+          "log": "project-control/modules/M03/evidence/20261102T074616Z/dependency-check.txt",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json",
+          "required": true,
+          "evidence_id": "M03-FINAL-CHECK-011",
+          "scope": "Current560backend actualrerun and same-source16frontend/41browser/types/build/pip explicitreuseproof; realMCP/HTTPfixture semantics only, fakePG not production, no modelbusinesscall/SQLJOIN."
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/types.txt",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call."
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/build.txt",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call."
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/frontend.txt",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call."
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/browser.txt",
+          "verification": "reused_unchanged_product_sources",
+          "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call."
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/types.txt",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call.",
+          "cwd": "apps\\web"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/frontend.txt",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call.",
+          "cwd": "apps\\web"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/build.txt",
+          "required": true,
+          "evidence_id": "M03-DELIVERY-REGRESSION-018",
+          "scope": "17frontend/42browser/types/build actualpassed after outdatedbackendUIpatch;nonfrontend560backend previouspass reused under hashproof, no model/provider call.",
+          "cwd": "apps\\web"
+        },
+        {
+          "id": "browser-outdated",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs",
+            "--grep",
+            "knowledge missing backend route"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+          "log": "project-control/modules/M03/evidence/20261102T080917783767Z-outdated-service/browser-outdated.txt",
+          "required": true,
+          "evidence_id": "M03-OUTDATED-TEST-016",
+          "scope": "targetcase passed previously and included in currentall42browserpassing; no sourcechange or liveprovider call."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "M03-FIRST-IMPL-001",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T071212897403Z-semantics-first/review.json",
+          "sha256": "592f1c66fb5c7baee99f0f23373401ec6d4a7b16968cf54fd8f51c3af5471059",
+          "stale": false
+        },
+        {
+          "id": "M03-FIRST-CHECK-002",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T071230Z/results.json",
+          "sha256": "bcdc739cf0fb5b93732ab817ad9e8e693daf4d73cf0766e1cd98e6405a0a373e",
+          "stale": false
+        },
+        {
+          "id": "M03-REPAIRS-003",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T072238003344Z-semantics-fixes/review.json",
+          "sha256": "38eddf3a58c927588bb6e64a8372321c042a0d1837ffe6b8b1a1280aa3431810",
+          "stale": false
+        },
+        {
+          "id": "M03-SECOND-CHECK-004",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T072241Z/results.json",
+          "sha256": "f6735b347225387eed86745889401adcf337ee3c7146d456fc7ad8cf4a77164f",
+          "stale": false
+        },
+        {
+          "id": "M03-PID-FIXTURE-005",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T072238003344Z-semantics-fixes/retention-fixture-repair.json",
+          "sha256": "598ee54778728d59e7cefcd44627e647edfe3ac5bf42fe86e66168d4141799da",
+          "stale": false
+        },
+        {
+          "id": "M03-VERIFIED-BASE-006",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T073146687191Z-semantics-final/results.json",
+          "sha256": "dd13f21e214956c41d1b0183e09c0b8a1d4bd3d86e89bc1cc6a4f60cfece61ee",
+          "stale": false
+        },
+        {
+          "id": "M03-UI-REUSE-007",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T073146687191Z-semantics-final/frontend-reuse.json",
+          "sha256": "997a2421b4153d3989be6fef63b9397fb26ec190e8dac2a9108a6b15685c4506",
+          "stale": false
+        },
+        {
+          "id": "M03-SOFT-LIFECYCLE-008",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T072238003344Z-semantics-fixes/soft-lifecycle.json",
+          "sha256": "12d5e33bd25b23a6b7ddfe110e58c64db9df03801a597e2a4bb4edfd3881dae5",
+          "stale": false
+        },
+        {
+          "id": "M03-LIFECYCLE-CHECK-009",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T074616Z/results.json",
+          "sha256": "8fd99911467929df5cf8cbc81fa23a2035037cdbf020bacfdf62c20e7d3e8980",
+          "stale": false
+        },
+        {
+          "id": "M03-UPLOAD-RECHECK-010",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T072238003344Z-semantics-fixes/upload-recheck.json",
+          "sha256": "2f74382f38570996cbe3a199b052010ac43eec78b76fb7e3bf0e81a34ddd8373",
+          "stale": false
+        },
+        {
+          "id": "M03-FINAL-CHECK-011",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/results.json",
+          "sha256": "faa389be9c8802bf9dcd6be20f15e8383de051c5b56b3b7f6ab3c44b60061c92",
+          "stale": false
+        },
+        {
+          "id": "M03-FINAL-REUSE-012",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json",
+          "sha256": "87eb47e7633eced8fe1a1883b252fd6916d4c7246d6c7c3c83b1476a14c50c6a",
+          "stale": false
+        },
+        {
+          "id": "M03-RECHECK-CORRECTION-013",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T072238003344Z-semantics-fixes/recheck-note.json",
+          "sha256": "878a4f936170b8585e932dc4e19f288aaedcc29b6def4c4e598d27f9b48ff0d2",
+          "stale": false
+        },
+        {
+          "id": "M03-SLICE-AUDIT-014",
+          "kind": "audit",
+          "path": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/slice-review.json",
+          "sha256": "305073f58b9014b59557ce0dc1c5e1da5fff972364412aa82a0adfdb470ab344",
+          "stale": false
+        },
+        {
+          "id": "M03-OUTDATED-REVIEW-015",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T080917783767Z-outdated-service/review.json",
+          "sha256": "19551ae20ed060623e163c694379767a5b7f6c361c30454154515cf7abd19cc4",
+          "stale": false
+        },
+        {
+          "id": "M03-OUTDATED-TEST-016",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T080917783767Z-outdated-service/results.json",
+          "sha256": "a36af3bec286b96f9a90f28017ea7168b32c2bba6e6113f59c224a56c18209cc",
+          "stale": false
+        },
+        {
+          "id": "M03-OWNED-SERVICE-STOP-017",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T083847308636Z-owned-service-stop/review.json",
+          "sha256": "17b0ec278e4c4d90641e8a374ff07665f42df41467f15ec0dbf18e93c7781bb6",
+          "stale": false
+        },
+        {
+          "id": "M03-DELIVERY-REGRESSION-018",
+          "kind": "test",
+          "path": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/results.json",
+          "sha256": "e5c51868949b121921137c32c7978dc7788d5b17270fef41f923df69177c22a9",
+          "stale": false
+        },
+        {
+          "id": "M03-DELIVERY-BACKEND-REUSE-019",
+          "kind": "review",
+          "path": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/backend-reuse.json",
+          "sha256": "c1d16848c9885a10f5a898b04b7ba7d67bf29272d03a53d14e947f82c4aae427",
+          "stale": false
+        },
+        {
+          "id": "M03-DELIVERY-AUDIT-020",
+          "kind": "audit",
+          "path": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/delivery-audit.json",
+          "sha256": "96ee9181c83e862cd02e00df4c3f157ce15f2a759bff7ad330aa0ae04f20c54b",
+          "stale": false
+        }
+      ],
       "audit": {
-        "verdict": "not_run",
-        "reviewer": null,
-        "evidence_id": null
+        "verdict": "pass",
+        "reviewer": "self_review",
+        "scope": "approved_single_table_local_producer",
+        "evidence_id": "M03-DELIVERY-AUDIT-020"
       },
-      "risks": [],
+      "risks": [
+        {
+          "id": "M03-R-UPLOAD-OBSERVATION",
+          "severity": "medium",
+          "resolved": false,
+          "description": "旧上传preflight在一次全量出现安全UPLOAD_FAILED，底层原因未定位；同代码目标/后续560全量通过，失败记录保留，正式发布前复盘，不放宽安全门禁。"
+        },
+        {
+          "id": "M03-R-BUSINESS-SEMANTICS",
+          "severity": "medium",
+          "resolved": false,
+          "description": "当前只是本机结构/字段/声明校验和显式开发身份人工批准，未做实际唯一性/企业口径研究；后继问数必须质检和澄清，不冒充认证。"
+        }
+      ],
       "prd_ref": "project-control/prd/M03.md"
     },
     {
@@ -6772,24 +7554,309 @@
         "M03",
         "M04-A"
       ],
-      "status": "pending",
-      "phase": "plan",
+      "status": "active",
+      "phase": "do",
       "cycle_id": "M04-C01",
       "maturity": "not_verified",
-      "plan_ref": null,
+      "plan_ref": "project-control/modules/M04/plan.md",
       "approvals": {
-        "plan": null,
+        "plan": "D-M04B-PLAN-INSTALL-069",
         "delivery": null
       },
-      "implementation_items": [],
-      "tests": [],
-      "evidence": [],
+      "implementation_items": [
+        {
+          "id": "M04B-I-GRAPH-FIRST",
+          "status": "done",
+          "paths": [
+            "services/api/src/data_workspace/agent_service.py",
+            "services/api/src/data_workspace/agent_routes.py",
+            "services/api/src/data_workspace/agent_contracts.py",
+            "services/api/src/data_workspace/warehouse/aggregate_server.py",
+            "services/api/src/data_workspace/warehouse/aggregate_engine.py",
+            "services/api/tests/test_agent.py"
+          ],
+          "description": "C01 implementation and current full regression passed; actual user gateway and remaining M04 scope not verified."
+        },
+        {
+          "id": "M04B-I-WORKBENCH-QUERY-C01",
+          "status": "done",
+          "paths": [
+            "apps/web/src/AgentTaskCard.tsx",
+            "apps/web/src/App.tsx",
+            "apps/web/src/WorkbenchPanel.tsx",
+            "services/api/src/data_workspace/agent_service.py",
+            "tests/remote-onboarding.spec.mjs",
+            "AGENT.md"
+          ],
+          "description": "C01 implementation and current full regression passed; actual user gateway and remaining M04 scope not verified."
+        }
+      ],
+      "tests": [
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/backend.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/dependency-check.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/types.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/build.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/frontend.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/browser.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "M04B-REAL-USER-GATEWAY-QUERY",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real",
+          "command": [
+            "User explicitly sends approved question in Web and confirms bound query plan"
+          ],
+          "scope": "Actual gateway JSON generation + latest enabled published semantic + authorized local aggregate MCP; current running API capability404. No automatic model calls."
+        }
+      ],
+      "evidence": [
+        {
+          "id": "M04B-PLAN-PYPI-001",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/langgraph-pypi.json",
+          "sha256": "8456eb4e9fa15a9ca6da5a85b9acd69d8a3c80a4995a41a02953f972d3800388",
+          "stale": false
+        },
+        {
+          "id": "M04B-PLAN-DEPENDENCIES-002",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/dependency-resolution.json",
+          "sha256": "7a51f0545d579a1b48cde8a12ea811cd67e5df4c6bf3289c8ba71d113fa32236",
+          "stale": false
+        },
+        {
+          "id": "M04B-PLAN-LICENSE-003",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/langgraph-license.txt",
+          "sha256": "ab08cf7f0b8d47e474d2e66e0212f18f6c70f5097f404de8a35c665012c9b199",
+          "stale": false
+        },
+        {
+          "id": "M04B-PLAN-CANDIDATE-LOCK-004",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/requirements.langgraph.candidate.txt",
+          "sha256": "a74a1214d09b1681e543f0c74164636826e5100070d725f549fb8dfb9fe2e0a4",
+          "stale": false
+        },
+        {
+          "id": "M04B-PLAN-REVIEW-005",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/review.json",
+          "sha256": "82d1e6790dca4b9e543916f044b26f7a6007d3a70cf4727393b945361c0eb58a",
+          "stale": false
+        },
+        {
+          "id": "M04B-GRAPH-FIRST-006",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T090429954845Z-graph-first/review.json",
+          "sha256": "ef35dad9e01ee4800faebe9e9a9a243245330b1986e51d61e2bfc4895ec1f27b",
+          "stale": false
+        },
+        {
+          "id": "M04B-AGENT-UI-007",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T091317949020Z-agent-ui/review.json",
+          "sha256": "7754758c9953e3247c361d19ce1f33829a573e83985442abfa111da412c28b00",
+          "stale": false
+        },
+        {
+          "id": "M04B-FIRST-FULL-008",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261102T091318Z/results.json",
+          "sha256": "6c042786ea5ba5718245591b21a948071f00c4eb78b4fd26029566a6bef60eeb",
+          "stale": false
+        },
+        {
+          "id": "M04B-COMPAT-REPAIR-009",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T091317949020Z-agent-ui/optional-compat-repair.json",
+          "sha256": "065ddd2060b5c78a2901c15a960eca3a6e37e23b80e9ebea9b863615dca1b0c2",
+          "stale": false
+        },
+        {
+          "id": "M04B-SECOND-FULL-010",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261102T092605Z/results.json",
+          "sha256": "57374b9b674569e260a3c030cd1966316acfc4a78182d18c42c95fd99971ee35",
+          "stale": false
+        },
+        {
+          "id": "M04B-READINESS-REFINE-011",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T091317949020Z-agent-ui/readiness-refinements.json",
+          "sha256": "3d445e47c01cc1d73135db1c5334545ec119eb333283ccb9f43520c16a1a2134",
+          "stale": false
+        },
+        {
+          "id": "M04B-THIRD-FULL-012",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261102T093627Z/results.json",
+          "sha256": "7ab403563d2e57565648caf02edab917fecae0ab134b9767b17962377d565921",
+          "stale": false
+        },
+        {
+          "id": "M04B-TIME-DIAGNOSTICS-013",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T091317949020Z-agent-ui/typed-time-and-diagnostics.json",
+          "sha256": "7ab1a5dfe9c75beb06b6061cd5303bfae20ebbd496687b70fe741ac7e12ced57",
+          "stale": false
+        },
+        {
+          "id": "M04B-FINAL-FULL-014",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261102T094834Z/results.json",
+          "sha256": "dc2050625ad6fbc7692a4e81b5309343f753fb6b85140d2d67172c511a43251d",
+          "stale": false
+        },
+        {
+          "id": "M04B-C01-REVIEW-015",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T094834Z/checkpoint-review.json",
+          "sha256": "90b547351dbf965a5a6c1a372ebe30b186363b39a17761d61169329f87a16164",
+          "stale": false
+        },
+        {
+          "id": "M04B-INSTALL-VERIFIED-016",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/install-verified.json",
+          "sha256": "52c0b3ec99925c4a9fde79a84fe57533814585bf3e19abd6996fd9e2a96e62b9",
+          "stale": false
+        },
+        {
+          "id": "M04B-TYPED-TIME-REVIEW-017",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261102T091317949020Z-agent-ui/typed-time-final-review.md",
+          "sha256": "b8b411a26f570a0a993db0efdaf022fe755a19110c5119e5d0b2c70434dbd74d",
+          "stale": false
+        }
+      ],
       "audit": {
         "verdict": "not_run",
         "reviewer": null,
         "evidence_id": null
       },
-      "risks": [],
+      "risks": [
+        {
+          "id": "M04B-R-DEPENDENCY-EGRESS",
+          "severity": "high",
+          "resolved": false,
+          "description": "26 locked dependencies installed; runtime trace disabled and local guarded smoke/current full regression passed. Future deployment/third-party SDK egress and host credential isolation remain release review obligations."
+        },
+        {
+          "id": "M04B-R-EXECUTION-CONTRACT",
+          "severity": "high",
+          "resolved": false,
+          "description": "C01 independent governed aggregate MCP/AST/versions/confirm/QA implemented and tested; legacy navigation remains unchanged. JOIN and other adapter capabilities require approved contracts and actual evidence."
+        }
+      ],
       "prd_ref": "project-control/prd/M04-B.md",
       "delivery_slice": "M04-B"
     },
@@ -7407,26 +8474,108 @@
       "selected_option": "当前开发切片验证和安全扫描后，将截至目前所有可提交源码/交付记录同步现有GitHub仓库，不上传Key/运行数据/工具配置",
       "rationale": "明确commit/push授权，不代表部署或模块验收；禁止secret/runtime/useruploads源文件进Git。",
       "recorded_at": "2026-10-30T09:24:42.951119+00:00"
+    },
+    {
+      "id": "D-M04A-SETTINGS-MODEL-062",
+      "kind": "change",
+      "module_id": "M04-A",
+      "cycle_id": "M04-A-C01",
+      "source": "user",
+      "user_statement": "模型接入模块太突兀；左边开发设置按钮，像codex一样配置模型；不要强制写死名称，运行自行选择模型名称",
+      "selected_option": "左栏常驻设置入口＋独立模型设置页；移除右侧接入长表单。协议/地址预设保留，模型名称由用户填写，包含AIPlan；实测后启用并在输入区选择当前配置模型。",
+      "rationale": "本轮低风险信息架构和用户自选名称变更，地址/协议/认证/主体/预算治理不放宽；不自动发现厂商模型、不引入多profile秘密持久化，不代表真实供应商权限或SQL/流式验收。",
+      "recorded_at": "2026-11-02T03:45:39.713883+00:00"
+    },
+    {
+      "id": "D-M04A-MODEL-CATALOG-BACKLOG-063",
+      "kind": "change",
+      "module_id": "M04-A",
+      "cycle_id": "M04-A-C01",
+      "source": "user",
+      "user_statement": "已经完成模型修改；网关支持模型下拉切换/复用Key列入代办，先继续推进，今天争取完成MVP",
+      "selected_option": "AIPlan模型目录发现与同连接Key复用切换作为待办；当前优先M04-A流式和验收→M03→M04-B governed querying，MVP当日目标不是跳过模块门禁批准",
+      "rationale": "不再次询问已批准预算/PG延期；不自动列举模型或试探未授权端点，不以自测当真实用户整体验收。用户只确认模型修改完成，并未确认整个M04-A验收。",
+      "recorded_at": "2026-11-02T05:44:17.290939+00:00"
+    },
+    {
+      "source": "user",
+      "user_statement": "确认（对应D-M04A-DELIVERY-M03-064的有限本机范围/旧候选归档与补验门禁/M03推荐方案）",
+      "recorded_at": "2026-11-02T07:03:14.447369+00:00",
+      "id": "D-M04A-DELIVERY-M03-064",
+      "kind": "scope",
+      "module_id": "M04-A",
+      "cycle_id": "M04-A-C01",
+      "selected_option": "finite-local-and-M03",
+      "rationale": "当前AIPlanMessages真实生成/流式与通用表单隔离回归有限验收；其他公网/生产/完整生命周期保留补验；旧候选failed原样归档并绑定重启门禁。"
+    },
+    {
+      "source": "user",
+      "user_statement": "确认（对应D-M04A-DELIVERY-M03-064的有限本机范围/旧候选归档与补验门禁/M03推荐方案）",
+      "recorded_at": "2026-11-02T07:03:14.447369+00:00",
+      "id": "D-M04A-DELIVERY-065",
+      "kind": "delivery",
+      "module_id": "M04-A",
+      "cycle_id": "M04-A-C01",
+      "selected_option": "accept-finite-local",
+      "rationale": "用户明确确认当前有限本机交付，不作为productionverified。"
+    },
+    {
+      "source": "user",
+      "user_statement": "确认（对应D-M04A-DELIVERY-M03-064的有限本机范围/旧候选归档与补验门禁/M03推荐方案）",
+      "recorded_at": "2026-11-02T07:03:14.447369+00:00",
+      "id": "D-M03-PLAN-066",
+      "kind": "plan",
+      "module_id": "M03",
+      "cycle_id": "M03-C01",
+      "selected_option": "single-table-semantic-pack-SQLite",
+      "rationale": "批准单表count/sum/ratio真实字段映射/冲突校验/人工发布不可变版本，非秘密SQLite持久保留、无自动删除/新依赖。"
+    },
+    {
+      "id": "D-M03-SERVICE-RECOVERY-068",
+      "kind": "permission",
+      "module_id": "M03",
+      "cycle_id": "M03-C01",
+      "source": "user",
+      "user_statement": "看起来又error，看看什么问题，如果是因为我终端没关闭，你就找到之前的窗口关闭，然后继续推进吧",
+      "selected_option": "核实旧服务后关闭本项目残留并继续推进，不盲杀未知进程",
+      "rationale": "授权归属明确的本机旧服务切换，不授权读取/保留Key或收费；当前执行策略拦截，未执行停止/重启。",
+      "recorded_at": "2026-11-02T08:10:42.264760+00:00"
+    },
+    {
+      "id": "D-M03-DELIVERY-067",
+      "kind": "delivery",
+      "module_id": "M03",
+      "cycle_id": "M03-C01",
+      "source": "user",
+      "user_statement": "我已验收，你继续推进M04b吧",
+      "selected_option": "accept-local-semantic-producer",
+      "rationale": "明确验收D066本机单表语义producer并进入M04BPLAN；未自动批准LangGraph具体版本安装/新聚合合同或实际收费/生产查询。",
+      "recorded_at": "2026-11-02T08:51:50.951454+00:00"
+    },
+    {
+      "id": "D-M04B-PLAN-INSTALL-069",
+      "kind": "plan",
+      "module_id": "M04",
+      "cycle_id": "M04-C01",
+      "source": "user",
+      "user_statement": "允许该方案",
+      "selected_option": "langgraph-governed-query",
+      "rationale": "对应已展示M04BPLAN与LangGraph1.2.19/26新增hashlocked项目venv包安装，禁外部trace；新localMCP聚合/typedplan/humanconfirmation/QA，未自动批准实际userKey付费/公司查询/生产。",
+      "recorded_at": "2026-11-02T08:53:27.810335+00:00"
     }
   ],
   "pending_decision": null,
   "next_action": {
-    "kind": "user_test",
-    "description": "通用BYOK源码已pushGitHubprivate/main sourcecommit71ae0ab并实核远端SHA一致。用户本人旧启动窗口CtrlC/Y后普通start-workspace.cmd加载新版一次，网页模型服务选择厂商或custom协议完整HTTPSendpoint/model/passwordKey→接受固定测试用途/估算→保存（不收费）→显式test；此后替换/clear不用重启，password提交清空/后台sessionmemory/预算不reset。真实公共厂商账号/TLS/网页个人实操not_run，AIPlan已有minimaltextsuccess，目录stream/SQLJOIN仍未完成，M04A不closed；不自动收费或读取Key，LangGraph/PG生产门禁保持。",
+    "kind": "verify_real_user_query_and_prepare_followup",
+    "description": "先只读核当前服务归属和Agent能力（11月2日404为历史观察，不继承PID/exec），确认新版API是否加载；需要停止/重启时遵循授权边界，不盲杀或开启重复启动器。由用户网页安全配置/测试/启用模型、选择已发布启用语义与来源、明确问题外发并人工确认执行，补真实网关JSON→受治理MCP结果证据；不自动付费、搬Key或重问预算/PG延期。可继续已批准范围内低风险后继调查，JOIN关系契约变更先审批。M04仍DO，MVP未完成。",
     "read_refs": [
-      "project-control/HANDOFF_DETAILS.md",
-      "project-control/NEW_WINDOW_PROMPT.md",
-      "project-control/PRODUCT_UX_PRINCIPLES.md",
-      "project-control/modules/M04-A/plan.md",
-      "project-control/prd/M04-A.md",
-      "MODEL_SERVICE.md",
-      "project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/review.md",
-      "project-control/modules/M04-A/evidence/20261030T092442943439Z-generic-byok/github-sync.json",
-      "project-control/modules/M04-A/evidence/20261030T093324Z/results.json"
+      "AGENT.md",
+      "project-control/modules/M04/plan.md",
+      "project-control/prd/M04-B.md",
+      "project-control/modules/M04/evidence/20261102T094834Z/checkpoint-review.json"
     ],
     "commands": [
-      "services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root .",
-      "用户本机初次加载：start-workspace.cmd；此后网页保存/清除Key无需重启"
+      "services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root ."
     ]
   },
   "release_gates": [
@@ -7508,6 +8657,78 @@
       "decision_id": "D-MVP-FAST-034",
       "owner": "用户/项目维护者",
       "condition": "首次提供PG已验证能力或正式发布前，独立授权实例目录/SQL/TLS/权限及正式身份、目标OS隔离、整体API DoS、恢复/长期驻留/部署补验，重新审查延期"
+    },
+    {
+      "id": "RG-MODEL-OLD-RESPONSES",
+      "status": "not_run",
+      "historical_status": "failed",
+      "required": true,
+      "decision_id": "D-M04A-DELIVERY-M03-064",
+      "owner": "用户/项目维护者",
+      "condition": "重新启用该旧候选endpoint/auth/protocol前，专用账号真实验证权限/响应/预算/外发；不得复用当前Messages成功或绕过旧拒绝。",
+      "historical_test": {
+        "id": "real-model-api",
+        "required": true,
+        "status": "failed",
+        "environment": "local",
+        "integration": "real",
+        "command": "User-triggered model-service/test via browser; user receipt screenshot MODEL_ACCESS_DENIED; readonly GET model-service/status",
+        "exit_code": 1,
+        "scope": "Historical real Responses 401/403 failure retained. Independently verified AIPlan Messages/Bearer generation has separate evidence, does not rewrite this failure.",
+        "evidence_id": "M04A-REAL-ACCESS-DENIED-018",
+        "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33"
+      }
+    },
+    {
+      "id": "RG-MODEL-OLD-ROOT",
+      "status": "not_run",
+      "historical_status": "not_run",
+      "required": true,
+      "decision_id": "D-M04A-DELIVERY-M03-064",
+      "owner": "用户/项目维护者",
+      "condition": "重新启用该旧候选endpoint/auth/protocol前，专用账号真实验证权限/响应/预算/外发；不得复用当前Messages成功或绕过旧拒绝。",
+      "historical_test": {
+        "id": "real-sdk-root-key-model-test",
+        "required": true,
+        "status": "not_run",
+        "environment": "local",
+        "integration": "real",
+        "command": [],
+        "scope": "Historical unselected root/v1/messages+x-api-key candidate required/not_run retained; current AIPlan coding-plan Messages/Bearer is a different contract. Review scope before module acceptance, no silent downgrade."
+      }
+    },
+    {
+      "id": "RG-MODEL-PUBLIC-DEFERRED",
+      "status": "not_run",
+      "required": true,
+      "decision_id": "D-M04A-DELIVERY-M03-064",
+      "owner": "用户/项目维护者",
+      "condition": "提供公网供应商真实能力或正式发布前，独立专用账号/TLS/API/预算/流式权限复验。"
+    },
+    {
+      "id": "RG-MODEL-LIFECYCLE-DEFERRED",
+      "status": "not_run",
+      "required": true,
+      "decision_id": "D-M04A-DELIVERY-M03-064",
+      "owner": "用户/项目维护者",
+      "condition": "提供生产配置生命周期或正式发布前，真实账号编辑/清除/禁用/恢复、身份/TLS及secretstore完整用户流程复验。"
+    },
+    {
+      "id": "RG-MODEL-PRODUCTION-RISK",
+      "status": "not_run",
+      "required": true,
+      "decision_id": "D-M04A-DELIVERY-M03-064",
+      "owner": "用户/项目维护者",
+      "condition": "公开/多用户/生产部署或精确成本承诺之前，正式身份/secretstore/驻留/目标权限/TLS与供应商预算上界重新审查；有限本机成功不替代。"
+    },
+    {
+      "id": "RG-SEMANTIC-AGENT-CONSUMPTION",
+      "status": "not_run",
+      "module_id": "M04",
+      "required": true,
+      "description": "M04B与MVP验收前，真实model+已批准当前语义version+授权metadata/治理聚合MCP执行+schema/粒度/单位/分母/完整结果对账；metadata-onlyresolve不是完整问数。",
+      "owner": "项目维护者/用户",
+      "condition": "M04B首个自然语言业务查询与MVP交付审计之前实跑端到端并追溯版本/幂等。"
     }
   ],
   "change_impacts": [
@@ -8074,68 +9295,81 @@
         "M04-A"
       ],
       "reason": "用户明确扩大固定AIPlan快速Key到通用个人厂商，影响protocolprofile/SSRF/价格估算/权限/前端表单；先更新设计，不用删除allowlist宣称任意provider支持。"
+    },
+    {
+      "id": "CI-M04A-SESSION-CATALOG-061",
+      "modules": [
+        "M04-A",
+        "M01"
+      ],
+      "reason": "Additive authenticated session model catalog/enable lifecycle integrated into accepted workbench. M01 baseline regressions passed; preserve themes/history/default task, no reset or scope change; no new dependency/secret persistence/deployment."
+    },
+    {
+      "id": "CI-M04A-SETTINGS-062",
+      "modules": [
+        "M04-A",
+        "M01"
+      ],
+      "reason": "UserD062 moves model config from right summary to left Settings independent workspace and removes preset model-name lock incl AIPlan. No framework/endpoint/auth/fees/secretstore/production-scope expansion; accepted M01 theme/history/task layout preserved and relevant full UI tests rerun. Backends unchanged after frontend fixes, 489test source reuse proved."
+    },
+    {
+      "id": "CI-M04A-STREAM-063",
+      "modules": [
+        "M04-A",
+        "M01"
+      ],
+      "reason": "D063 prioritizes approved Messages fixedstream slice and defers gatewaymodelcatalog/keyreuse to backlog. Adds bounded stream adapter/async receipts/cancel/UI; preserves workbench/default nonquery behavior/themes/history, M01/M02 regressions passed. No new package/free Agent loop/endpoint auth expansion/actual Key mutation or spend."
+    },
+    {
+      "id": "CI-MODEL-LOCAL-DELIVERY-M03",
+      "modules": [
+        "M04-A"
+      ],
+      "reason": "UserexplicitD064 freezes finite-local delivery; historical candidate fields retained in test_history with reactivation gates, deferrednotrunrisk/test unchanged. No production claim."
+    },
+    {
+      "id": "CI-M03-METADATA-UI-001",
+      "modules": [
+        "M01",
+        "M02",
+        "M04-A",
+        "M03"
+      ],
+      "reason": "D066semanticUI/API additive implementation reuses acceptedworkbench/sourceframework. ExistingM02HTTP/PGworker adds metadata-onlydescribe under existinggrants; no row query. M04Acode not changed; API/contracts global fingerprint changed, final fullbaselinechecknext. Closedmodules not reset, no capability upgrade PGproduction."
+    },
+    {
+      "id": "CI-M03-FINAL-ACCEPTED-BASELINE",
+      "modules": [
+        "M01",
+        "M02",
+        "M04-A",
+        "M03"
+      ],
+      "reason": "D066M03additive metadata-only/schema/auth/immutableversion/softstate/UI implemented; actualfull560backend and same-source16front41browser baselineverified. Acceptedmodules regressionevidence updated without resetting acceptance/deferrals or broadening permissions; historicalmodel failures preserved."
+    },
+    {
+      "id": "CI-M03-DELIVERY-M04PLAN",
+      "modules": [
+        "M03"
+      ],
+      "reason": "UserD067explicitdelivery acceptance after repairedUI full17/42andmetadata560backendsourceproof;closeapprovedsingle-tablelocalproducer, no futureJOIN/RAG/realAgentconsumerreleasegatewaiver. Retain priorfailure and recovery audit."
     }
   ],
-  "blockers": [
-    "新通用接口需用户加载新版一次并网页个人厂商显式测试；真实公共模型账号/TLS未验，不以fixture通过称所有厂商已连接。模型目录/stream/SQLJOIN及生产身份门禁仍未完成。"
-  ],
+  "blockers": [],
   "working_state": [
-    "M01已验收；M02-C03仍DO/not_verified/audit not_run。D-MVP-FAST-034用户我确认已回答：有限本机MVP、PG生产后补、公司HTTPcoding-plan产品专用调用，仅问题/必要字段信息外发。金额15USD不变，不复制Claude token/发表行全历史截图，不自动delivery。",
-    "聊天临时文件导入/真实MCP目录和CSV/Excel原头类型日期100行无筛选预览已完成，不自动保存连接；期限24h/重启失效并活动引用保护、每会话4附件。文件testid/数据行不持久化浏览器历史，无原件修改或旧profile清除。",
-    "右侧多来源上下文按会话隔离、8源上限，禁用项不可选；输入区不再单选数据源。connector新建只PG/HTTP MCP，旧localprofile/API保留折叠可浏览启禁。模型选择仍未接入；多源UI不是已执行JOIN，真正关联键/粒度/权限/预算待M03/M04实现。",
-    "当前287backend/16frontend/类型构建pippassed，最终27browserpassed。首全27有24过3，遗漏TEST_EXPIRED清test导致保存残留已恢复；旧API精确能力提示恢复、折叠旧卡片测试展开再原断言通过。后仅connectorTSX/remote browser测试变，backend/contracts/locks byte一致复用287原fp、不冒称重跑；109source当前稳定。",
-    "6附件API真实MCP专项通过；原沙箱pytesttmp收尾拒绝后原命令获运行审批退出0，后全287亦重跑这些cases。无skip/弱化断言/删用户数据解决失败；27用户路径含实际临时API/Worker/MCP及一明确legacyexpiry响应fixture，不当模型/企业研究证据。",
-    "网关无认证root/openapi元数据探测均404，并非声明实际生成端点失效。当前未配置应用专用Key/协议实际model与15USD可靠计价/供应商硬限额，尚无收费生成请求；许可不再重问，不能复制宿主凭证补齐。",
-    "新启动本轮exec6506、API9208/Vite22240当前用户/创建时间读核、loopback健康。旧18968按精确PID/时间/父链校验获权限停，launcher自然回收其拥有服务，不盲杀树、不继承旧exec、不删除数据。默认A周期继续保护旧/保存/unknown。",
-    "新R-U28/29与60需求/13PRD一致性、文档5/进度21测试通过。网关和PG后补准入/主体/授权范围写盘，明确PG含真实实例连接SQL权限、生产含正式身份隔离恢复部署；not_run门禁/责任人与条件保留，不强行取消required。",
-    "本轮更改仅本机未commit/push，无依赖安装/公司数仓操作/模型行外发或公开部署。下步有限M02验收准备，然后专用模型Key/协议和计价安全配置真实M04-A调用，最小语义与原M04受控多表query/JOIN；M02未人工验收不能跳模块。",
-    "用户同意先完成模型适配与本机安全密钥配置入口，再自己输入应用专用Key做真实调用；不要再要求聊天粘贴密钥，也不要把未提供Key当作不能开发适配/入口的理由。入口目前未实现，认证/生成/真实JOIN仍not_run。",
-    "本轮按用户要求仅校验进度与109source hash一致、写交接/新窗口prompt；未改产品、未重跑测试、未检查或处理服务、未读取认证、未收费调用/安装/commit/push。服务PID/exec仅上轮记录，下一窗口必须重新核监听/归属。",
-    "本轮revision80恢复校验及109source一致；只读重核API9208/Vite22240归属CN1/luqianwu、父链/创建时间与正确health/live及网页200，不继承exec、不停服务。完整回归新跑中，尚不声称通过；M04-A相邻计划明确getpass本机隐藏输入/后台内存凭证与非TTY拒绝，未实现入口。",
-    "本轮首完整回归沙箱退出1：原生Worker/pytest临时目录及Vite祖先读取拒绝，浏览器25/27；保留失败日志，不弱化断言。原命令获运行审批重跑中。仅修项目内PDCA有限交付合同：scope决策/逐项责任人条件/未完成发布门禁/对应audit和人工delivery必需，required/not_run及高风险原样保留、critical不可延期；26守卫实跑通过，安装个人Skill未改。",
-    "本轮M02有限self_review pass/local_ready/ACT，等待D-M02-DELIVERY-049人工验收，未closed未激活M04-A。原命令获批重跑287后端/16前端/27浏览器、types/build/pip全退出0、109source一致；26进度守卫/5PRD及仓对账过，沙箱失败保留。旧Worker总项用本轮真实Windows证据纠正，PGrequired/not_run和两项生产高风险unresolved逐项绑定后补门禁，不取消required、不伪造delivery。",
-    "用户本轮“是，继续推进吧”对应D-M02-DELIVERY-049，M02有限local_ready已验收关闭，PG/生产仍补验门禁。当前M04-A PLAN，下一切片仅适配/隐藏输入/状态和隔离测试，不假模型调用/JOIN。",
-    "M04-A薄Messages适配/getpass隐藏本机输入/专用后台内存和状态UI第一切片已编写；最终专项/完整回归待跑，未重启默认服务、未输入真实Key/调用网关。生产BudgetPermit缺失则强制拒绝收费，不用金额或配置称硬控。",
-    "M04-A首完整322backend/16frontend/types/build/pip退出0；28网页27过1为新增用例精确文本少空格，修正API 已连接实际locator，产品未变。全28浏览器复跑待做，旧322后端原指纹保留，真实生成/预算/Key人工输入仍not_run。",
-    "新增实际模型状态浏览器原断言修正空格后全28退出0，wrapper最后GBK打印报错（已落盘actual退出0不可混称browser失败）。self_review补专用Key误填model配置也不反射/发送，新安全专项加入，旧322/28受影响标stale；强制UTF8完整复跑中，真实Key/网关/费用not_run。",
-    "最终085300Z完整323后端（原287+36模型专项）/16前端/28浏览器/types/build/pip全0且源码稳定；PRD/26状态守卫/仓对账0。首切片self_review local_slice_pass，模块partial/not_verified/DO：实际Key用户输入、网关费用/真实生成/目录启禁/流式与SQL/JOIN未完成，productionBudgetPermit不存在则拒绝收费。默认API未重启、服务归属本轮只读实核，用户隐藏输入新启动器需停自己的旧实例。源码本地未push。",
-    "用户授权Codex网关参考查找；已生成CODEX_GATEWAY_REFERENCE.json脱敏非秘密副本，实际wire_api=responses/baseurl coding-plan/v1/model gpt-6.1-sol[1M]；未复制宿主认证/读auth.json/调用网关。现有Messages适配不能替代Responses，下一步显式Responses适配隔离测试，不要求用户手写调用示例。原323/28source未变本轮未重跑。",
-    "本轮恢复revision90后增显式Responses薄适配并共享限额/预算/无自动重试门禁，保留Messages；--model-key静态脱敏候选无需手写示例且不读宿主文件。79双协议专项过（36旧+43新含2实际loopback），非真实网关。完整回归待跑，旧共享证据stale；费用未核实仍拒绝收费。",
-    "2026-10-29实际只读确认旧5173/8000均无监听，不继承旧PID或exec；获批本轮92389正常启动无Key开发服务，API25260/Vite14436当前CN1/luqianwu与loopbackhealth200，model/status200未配置/verifiedfalse/models空，无网关请求。完整Responses回归进行中。",
-    "最终20261029T025600Z完整366后端（原287+36Messages+43Responses含2实际loopback）/16前端/29浏览器、types/build/pip全部0且source稳定；PRD/5PRD守卫/26状态及仓对账0。第二切片self_reviewlocal_slice_pass，M04-A仍partial/not_verified/DO，实际modelKey/网关/费用/目录启禁/流式/SQL/JOINnot_run。无手写示例需求，静态脱敏候选--model-key启动可用；普通无Key默认新版服务已加载。",
-    "用户明确采用历史费用估算、大体10-20USD；截图gpt61历史59.37/993≈0.0598USD每次且95percentcache，不当新单价。登记15USD估算目标20USD预算上限、0.25USD预留/最多60小请求/无重试，非硬费用保证。供应商费率证明不再阻断，下一项实现estimatedledger+真实test入口，Key仍用户本机隐输。",
-    "用户双击Key启动器被5173占用阻断，尚未进入Key输入。实际核对当前Vite14436/创建时间/父4260/用户/项目命令后获批仅停此Vite，原launcher自行收回API；7秒后5173/8000实际无监听，无文件删除/旧exec继承。用户可重新双击start-workspace-model.cmd隐藏输入，真实Key与模型调用仍not_run。",
-    "用户本机隐藏输入后实际modelstatus布尔Keytrue/Responses已确认，不读值/环境不停止持Key进程。新估算持久账本/固定非敏感test+回执/同UUID幂等/明确费用接受UI已写，95专项过，完整回归待跑。用户旧进程仍budgetunverified需最终通过后由用户自己重启隐输一次，不能热拷Key。",
-    "完整073000Z382后端/16前端/30网页/typesbuildpip全0。视觉核验发现旧说明仍要求hardfee，与D053近似预算冲突，已仅改WorkbenchPanel文案并同步DEVELOPMENT；backend/tests/contracts/locks字节无变复用原382指纹，全前端/30网页再跑中，不称新后台复跑。持Key旧服务未重启，真实网关not_run。",
-    "最终估算预算/固定test切片382后端（原287+95协议预算专项）/16前端/30网页/typesbuildpip全0，后仅旧hardfee文案/DEVELOPMENT变动，最终UI和全30browser复跑0，后台byteidentical保留原指纹不冒称重跑。真实4子进程竞争60预留+新进程恢复拒绝第61过；PRD/5PRD/26状态及仓对账0。用户Key实际booltrue旧API持有，不读不停止；本人需CtrlC/newcmd隐输一次加载估算许可，显式点test才真正网关调用，当前realgatewaynot_run/SQLJOIN未实现。",
-    "用户真实模型测试截图MODEL_ACCESS_DENIED；只读状态确认Keybooltrue/Responses/verifiedfalse/2次预留0.50USD（估算非实账）。real-model-api改failed，精确401/403旧code合并未知，不猜Key错/模型无权限结论。本轮没有POST重试/读Key/凭证文件/环境/重启；先确认不含Key的签发平台和授权范围，不绕认证拒绝。",
-    "用户明确Anthropic接入/Claude Code风格并允许截图挑model，新增start-workspace-claude.cmd preset Messages/Bearer/claude-haiku-4-5；不复制宿主认证、不自动协议回退，旧Responses保留，预算账本不reset。新增401/403安全状态，测试进行中，真实新candidate未调用。",
-    "Claude风格套餐完整390backend（原287+103模型专项）/16front/31browser/typesbuildpip全0。只读旧运行GET确认仍Responses/gpt61/Keybooltrue/预留0.50USD2次未新增真实调用，不停止持Key服务。视觉后仅WorkbenchPanel旧“Responses候选”静态提示改协议中立，后台/合同/测试字节无变，全UI/31browser再复测中，保留原390actual指纹。",
-    "最终Claude套餐390backend（原287+103模型专项）/16front/31browser/typesbuildpip全0；后仅protocolneutral静态文案改WorkbenchPanel，最终16/31全UI再次0，后台byteidentical保留原390fp。PRD/5PRD/26状态/仓对账0，局部self_reviewpass模块仍partial/notverified。用户新入口start-workspace-claude.cmd隐藏Keyload后才能显式网关test，旧实际gptResponses拒绝failed保留，0.50USD估算2预留未变；本轮无真实POST/Key读取/停止/安装/推送/数据删除。",
-    "用户明确不选Haiku改deepseek-v4.1-flash，已改start-workspace-claude.cmd所用preset默认与8专项fixture；8actualpassed。只有launcher默认/测试变，provider/API/auth/ledger/UI字节未改，未完整重跑390/31，不虚称新默认网关兼容。未读Key/重启/调用网关或reset预算。",
-    "用户提供AnthropicSDK示例根baseURL+apiKey占位符，已纠正此前错误coding-plan/Bearer候选：start-workspace-claude.cmd现在/v1/messages+x_api_key+deepseek-v4.1-flash；108模型专项实跑0，根路径放行仅精确Messages/xapikey，不扩任意域接口。未读真实Key/重启/收费请求，未全backend/browser复跑；旧用户实际403记failed，新纠正实际验证not_run，预算不reset。",
-    "用户CLI配置非秘密信息证实coding-plan+AUTH_TOKEN和DeepSeek配置别名，提出实际ClaudeCodeAgent引擎非单纯API。只保存白名单脱敏发现和SDK/CLI治理提案；用户hooks/statusline/长超时未执行，未复制Key/运行CLI/安装/收费/改产品。D-CLAUDE-ENGINE-058待选择，M04A未closed，原LangGraph方向不暗改。",
-    "用户明确维持原LangGraph＋Harness方案，不采用ClaudeAgentSDK/CLI引擎；D058已答，pending清除。公司CLI配置仅用于AIPlanAPI地址coding-plan和AUTH_TOKEN/Bearer，Key隐藏不复制，hooks/超时/状态命令不执行，defaultdeepseek-v4.1-flash用户确认平台支持。preset已改，109模型专项实际过；未全回归/重启/收费请求，不以平台支持称应用验证成功。",
-    "用户最新真实test MODEL_RESPONSE_INVALID，实际GET仅状态确认Messages/bearer/DeepSeek/verifiedfalse/估算1.50USD6预留，不读Key/正文或重试。精确旧parser原因未记录，新增固定安全reason/modelmatches/stoptype/contenttypes/validusage诊断，不放宽原验证/自动增加output/modelalias。122专项passed，完整回归待做；须本人新代码update后显式一次test取得安全诊断，保持LangGraph路线。",
-    "响应诊断最终072722Z409后端（原287+122专项）/16前端/32浏览器/typesbuildpip全0，source稳定；PRD/5PRD/26状态/仓对账0。fixedsafe诊断不显示原模型/正文/Key，所有strictmodel/完成输出/128budget/工具拒绝保留。实际MODEL_RESPONSE_INVALIDfailed原因未知，未发新真实请求；用户旧Key窗口未停/Key未读，更新后本人一次test获得诊断。预算1.50USD6次估算非actual，LangGraph保持，M04Apartial/notverified。",
-    "用户实际诊断已定位model_mismatch、end_turn、thinking/text、16tokens，非认证拒绝/128截断。新白名单返回IDdiagnostic仅公开DeepSeek候选别名，未知字符串隐藏；仍拒绝任意modelmismatch，思考text兼容需绑定真实别名后一起处理，未自动收费重试/读取Key或响应正文。125模型专项、types和1真实诊断browser scoped实跑，fullsuite未跑不冒称409/32当前通过。",
-    "用户实际新诊断other_or_unreported/modelmismatch/endturn/thinkingtext/11tokens。预设3别名诊断过窄，已改bounded模型家族标识+秘密字符检查（不当授权映射），GETUUID安全诊断只读无重复网络，合法thinking和redacted块校验后不展示，仅最终text；仍拒绝任意modelmismatch/tool/partial。136专项passed/fullpending，无收费POST/Key读/服务停止。",
-    "标识诊断/只读回执/标准thinking分层最终082912Z423backend（原287+136）/16front/32browser/typesbuildpip全0、source稳定，PRD/5PRD/26状态/仓0。ID经format/family/keysecretcheck仅diagnostic，modelmismatch仍拒绝不自动绑定；只读GETUUID无正文无网络预留，思考签名不存。用户旧响应无法回溯exactID，需更新一次显式test后给安全只读链接，后续无需重复截图收费。本轮无真实POST/Key读取/服务重启；M04Apartial/notverified，LangGraph保持。",
-    "读取用户给GET只读diagnostics实际200，确切返回DeepSeek版本ID deepseek-v4-1-flash-261017/endturn/thinkingtext/input49/output16。仅为已观察exactaddress/protocol/auth/requestmodel绑定此返回ID，不任意放宽alias，version含映射，回执保留请求与返回双ID。150专项过/fullpending，没有新真实POST/费用/读Key/服务停止，旧失败回执不改为success。",
-    "实际授权GET诊断确切返回deepseek-v4-1-flash-261017，已绑定仅codingplan/v1/messages+Messages+Bearer+requestdeepseek-v4.1-flash；version含mapping/receipt双ID，不接受其他日期或账号合同。最终437backend（原287+150）/16front/33browser/typesbuildpip全0source稳定，PRD/5PRD/26状态/仓0。旧failed不回写，修复后actualtest未运行，本轮仅GET无新费用/Key读/服务停止；LangGraph/预算保留。",
-    "实际GET用户32a14cea回执200：unsupported_content/endturn/精确alias/thinkingtext/17tokens，映射已接受只是名称boolfalse。不保留原thinking所以signature缺失无法证明；针对已绑定gatewayversion思考是无需执行/回放的opaque元数据，丢弃，不强求原生签名格式；仅最终text严格检查，原工具/别的model/partial仍拒绝。新增binding enum，157专项过/fullpending，无真实POST/Key读取/重启。",
-    "用户32a14cea授权GET实际unsupported_content/endturn/knownalias/thinkingtext/17tokens说明映射已过；原思考字段不保留不声称signature缺失已证实。仅exactobservedalias丢弃不执行/展示/存的opaque思考元数据，严格最终text/tool/model/budget不变，新bindingenum避免词面false混淆。最终444backend（原287+157）/16front/33browser/typesbuildpip全0source稳定，PRD/5PRD/26状态/仓0。本轮无真实POST/Key读/服务停止，旧failure不改成功。",
-    "用户真实最小模型test成功，readonlyGET receipt/status实际succeeded/verifiedtrue、估算2.75USD11次；不读Key或正文/无新收费。用户要求网页快速Key，D059登记变更允许passwordfield仅瞬时发送loopback后台内存，不写浏览器存储/历史/log或secretfiles，不继承生产认证。将实现固定AIPlan接入一键保存本次会话和显式test，非自动收费；终端不再必需。",
-    "用户明确通用个人BYOK/任意厂商目标，不固定AIPlan。新增协议/地址/model/Key通用入口计划，Responses/ChatCompletions/Messages分适配、特殊厂商不假兼容；公网HTTPS/SSRF治理，已有内网AIPlan仅单独批准预设。当前只登记需求与设计，通用能力尚未实现，无Key访问/外部调用。",
-    "通用个人BYOK三协议/presetcustom/publicSSRF保护/密码框和POSTsessionmemoryclear已写，182专项过，fullpending。新profile不自动收费、改Key生成testgeneration失效、共享ledger不reset；仅localdevidentity不是生产账号。用户授权完成后将所有当前安全可提交改动commit/push现有GitHub，不部署不上传Key或userdata。",
-    "首完整469后端/16前端/typesbuildpip过，34网页33过1：新通用保存用例错误假定fixture共享账本从0开始，而此前模型用例已预留1。修为保存不变基线/显式测试+1/clear不reset，更精确不改产品预算。self_review修Chat默认认证显示应Bearer，加async测试中save/clear409保护专项，两项新增27connectiontests全过；共享provider变动需完整复跑。失败证据保留，不删断言或resetledger。",
-    "通用BYOK最终093324Z471backend（原287+184模型专项）/16front/34browser/typesbuildpip全0source稳定，PRD/5PRD/26状态/仓0。网页passwordKey/厂商协议地址model/saveclear/显式test已实现，保存无费用/字段清空/storage无Key/预算基线不变验证，publicDNSIP固定/TLSHostSNI与SSRF约束。realpublicsuppliernotrun；AIPlan此前用户minimaltextpassed不冒称完整MVP。Git现有private/ADMIN和初秘密scan通过，userD061commitpush尚待完成；默认用户Key服务不读取/停止。",
-    "用户D061源码同步前实际index2099files/133.5MB检查：nohighconfidencekeys/token/privateJWT/no forbiddenruntime/toolpath/noembeddedlinks/no>95MBsinglefile/stageddiskbyteequal；是有限扫描非完整DLP。既有privateADMIN/main确认，final471/16/34全过，准备commitpush；不读取ignoredKeys或userdata，不部署/自动模块验收。",
-    "D061已执行GitHubprivate源码同步：main71ae0ab4d0777fdcfb2e119bd5feb200a1eab1f0 commit/push0，GitHubAPI远端SHA与localHEAD实际一致，清洁工作树核验；Key/uploads/runtime/toolconfigs均未上传，不部署/模块验收。此同步回执/进度文档跟随另一次纯文档commitpush，源指纹/471/16/34证据保持。"
+    "M01/M02/M04-A/M03分别批准的有限本机范围closed/local_ready，PG/生产/公网与历史模型failed/not_run门禁保持；历史过程见checkpoints和evidence。",
+    "D069用户“允许该方案”已登记；当前M04（原ID=M04-B）/M04-C01/DO。LangGraph1.2.19及26个hashlocked新增包已安装，0替换，pipcheck和有限graph smoke通过，禁外部trace。",
+    "已完成C01：最新启用语义/模型绑定→一次受限JSON生成→服务端SQLAST/授权/版本检查→人工确认→独立受治理aggregate MCP完整输入聚合→真实QA/结构卡。旧6tool导航与preview不扩权。",
+    "最终094834Z全回归593backend/17frontend/44browser/types/build/pip全部exit0；33Agent专项包含其中；源指纹5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243现核一致。fake model+真实local MCP150行合成数据11325，不是真实公司模型/经营数据验证。",
+    "Typedtime：DATE/naiveTS按日边界，awareTS显式UTC+00:00参数，TIME不当日历；lockedShanghai实际边界测过。失效/双确认/未知回执不重提交，模型截断只读诊断不自动收费。前三次失败与修复证据完整保留。",
+    "最新只读核8000 API36816/venvparent34276/devparent28092，5173 Vite35620；Agentcapabilities仍404，旧运行API需安全重新加载。PID仅本次观察，之后操作必须fresh核归属；未停止/重启/读取Key/实用户收费或生产SQL。",
+    "用户实际gateway JSON+已发布口径+明确查询确认仍required/not_run；完整M04的L2/L3/L4/JOIN、M05–M08未完，不关闭或称MVP完成。模型目录Keyreuse仍B-MODEL-CATALOG-001；预算D053/PG后补不重问。",
+    "本轮源码/交接未commit/push；CRLF兼容的per-command diffcheck过，无全局git配置更改。数据/semantics和密钥不入Git；后台任务仅内存，刷新可读当前owner会话，不跨重启持久化。",
+    "2026-11-03用户要求保存交接与新窗口prompt；本次仅文档续接、validate与源码指纹复核，未重跑测试/检查实时服务/重启/读取Key/收费。11月2日API404和PID为历史观察，新窗口必须重新核实，不推断当前存活。"
   ],
   "session": {
-    "recommend_new_chat": false,
-    "reason": "已在当前对话恢复并完成M02有限审查；等待单一delivery后可继续模型模块，无需重新开窗口。"
+    "recommend_new_chat": true,
+    "reason": "用户明确要求准备新窗口第一句prompt；仅保存交接，不创建聊天或暂停项目。"
   },
   "tooling_delivery": {
     "skill_name": "project-pdca",
@@ -8206,6 +9440,17 @@
       "reason": "esbuild sandbox directory access denied",
       "rerun_ref": "project-control/modules/M02/evidence/20261026T093843Z/results.json",
       "result": "passed"
+    },
+    {
+      "module_id": "M04",
+      "failed_run_refs": [
+        "project-control/modules/M04/evidence/20261102T091318Z/results.json",
+        "project-control/modules/M04/evidence/20261102T092605Z/results.json",
+        "project-control/modules/M04/evidence/20261102T093627Z/results.json"
+      ],
+      "rerun_ref": "project-control/modules/M04/evidence/20261102T094834Z/results.json",
+      "result": "passed",
+      "scope": "593backend/17frontend/44browser/types/build/pip; actualuser integration not_run"
     }
   ],
   "documentation_evidence": [

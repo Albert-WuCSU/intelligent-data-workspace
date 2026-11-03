@@ -1,0 +1,101 @@
+{
+  "created_at": "2026-11-02T09:33:03.097724+00:00",
+  "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+  "checks": [
+    {
+      "id": "backend",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 1,
+      "status": "failed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+      "log": "project-control/modules/M04/evidence/20261102T092605Z/backend.txt"
+    },
+    {
+      "id": "dependency-check",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+      "log": "project-control/modules/M04/evidence/20261102T092605Z/dependency-check.txt"
+    },
+    {
+      "id": "types",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+      "log": "project-control/modules/M04/evidence/20261102T092605Z/types.txt"
+    },
+    {
+      "id": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "build"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+      "log": "project-control/modules/M04/evidence/20261102T092605Z/build.txt"
+    },
+    {
+      "id": "frontend",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+        "run"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+      "log": "project-control/modules/M04/evidence/20261102T092605Z/frontend.txt"
+    },
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "e27e12ddeaf01747e2f0ffbd16adcb854a27cf6507491fcc128b4c06d2b4067b",
+      "log": "project-control/modules/M04/evidence/20261102T092605Z/browser.txt"
+    }
+  ]
+}

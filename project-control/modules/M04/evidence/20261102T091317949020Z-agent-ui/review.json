@@ -1,0 +1,37 @@
+{
+  "reviewer": "self_review",
+  "scope": "C01workbenchgraph+newaggregateimplementation, finalfullchecknext",
+  "checks": [
+    {
+      "command": "pytest test_agent.py -q",
+      "passed": 22,
+      "exit_code": 0,
+      "scope": "before finalconfirmbusyandUIcopy refinement;fullnext"
+    },
+    {
+      "command": "playwright --grep LangGraph workbench",
+      "passed": 1,
+      "exit_code": 0,
+      "scope": "realAPI/realownedMCPfull150rowquery with fake-modelJSON, refreshrestoreconfirm/duplicateconfirmno2ndSQL"
+    },
+    {
+      "command": "tsc --noEmit",
+      "exit_code": 0
+    }
+  ],
+  "implemented": [
+    "workbench authorizedmetric/model/selectedsource/explicitegress-and-estimate context",
+    "true graph plan/humaninterrupt/resume and fullaggregate resultcard/actualpipeline/rights/QA",
+    "currentconversation UUID only servertask association, not authority, alltaskrefs/owner checked backend",
+    "readonlytask snapshots restored from currentserver after browser refresh, no result inlocalstorage",
+    "samebody pendingUUID retained onstart communication failure, noautoretry",
+    "postread/postexec schema/model/semanticstate change check; sourceouterstoragelease throughownedMCP avoidsretention race"
+  ],
+  "not_run": [
+    "fullbaseline after26dependency install",
+    "actualusergatewayJSONplanandbusinessquery",
+    "JOIN/L2L3L4/M05assets/PGproduction"
+  ],
+  "oldtests": "unconfiguredlayout testscapabilitystub explicitly404; realAgenttest overridesroute actualproductAPI not mock task outputs; no arbitrarydatafabrication",
+  "secret": "providerkeyfake only, no actualKey/envread/spend/deployment/restart/Gitpush"
+}

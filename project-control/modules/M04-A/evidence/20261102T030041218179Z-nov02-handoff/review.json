@@ -1,0 +1,24 @@
+{
+  "reviewer": "self_review",
+  "kind": "documentation_only",
+  "restored_revision": 122,
+  "source_ref": "project-control/modules/M04-A/evidence/20261030T093324Z/sources.json",
+  "source_count": 126,
+  "source_hash_mismatches": 0,
+  "local_git_HEAD": "fe824fdec05f05e98b086755d9b92b8c94d1f5a9",
+  "initial_worktree": "clean",
+  "actual_run": "progress validate + source hashes + gitstatus/HEAD",
+  "not_run": [
+    "productregression",
+    "serviceownership/health",
+    "modelcalls",
+    "remoteGitcheck",
+    "commit/push"
+  ],
+  "files": [
+    "project-control/STATUS.md",
+    "project-control/HANDOFF_DETAILS.md",
+    "project-control/NEW_WINDOW_PROMPT.md"
+  ],
+  "state": "M04-A DO/active/not_verified/partial; no automatic delivery/moduleadvance"
+}

@@ -1,0 +1,80 @@
+...F................F................................................... [ 12%]
+........................................................................ [ 24%]
+........................................................................ [ 36%]
+........................................................................ [ 48%]
+........................................................................ [ 61%]
+........................................................................ [ 73%]
+........................................................................ [ 85%]
+........................................................................ [ 97%]
+............                                                             [100%]
+================================== FAILURES ===================================
+___________ test_group_time_and_duplicate_grain_quality_real_engine ___________
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-147/test_group_time_and_duplicate_0')
+
+    def test_group_time_and_duplicate_grain_quality_real_engine(tmp_path):
+     store,database=fixture(tmp_path,duplicates=True);w=LocalFileWarehouse(database);d=w.describe('t0')
+     req=AggregateRequest(table='t0',schema_hash=schema_hash(d),metric=metric(),grain=['id'],dimensions=['region'],time_filter=AggregateTime(column='created_at',start=date(2026,10,1),end_exclusive=date(2026,10,11)))
+>    result=execute_aggregate(w,req);assert len(result.rows)==2 and result.matched_rows<150 and result.quality=='WARN'
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_agent.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\api\src\data_workspace\warehouse\aggregate_engine.py:12: in execute_aggregate
+    with warehouse.connect() as con:
+         ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+warehouse = <data_workspace.warehouse.local_file.LocalFileWarehouse object at 0x000001A1E14F6D50>
+request = AggregateRequest(table='t0', schema_hash='f774a2f1678e1c04221ca93adefa8e0e6bcbbcd2af460777ecf838859149f166', metric=Se...filter=AggregateTime(column='created_at', start=datetime.date(2026, 10, 1), end_exclusive=datetime.date(2026, 10, 11)))
+
+    def execute_aggregate(warehouse,request):
+        b=AggregateRequest.model_validate(request) if isinstance(request,dict) else request
+        desc=warehouse.describe(b.table);sql,params,where,target=compile_aggregate(b,desc)
+        with warehouse.connect() as con:
+            timer=Timer(5,con.interrupt)
+            try:
+                timer.start()
+                if b.time_filter and con.execute("SELECT current_setting('TimeZone')").fetchone()[0] not in ('UTC','Etc/UTC','GMT','Etc/GMT'):
+>                   raise QueryDenied('UTC time semantics require matching locked engine timezone')
+E                   data_workspace.warehouse.policy.QueryDenied: UTC time semantics require matching locked engine timezone
+
+services\api\src\data_workspace\warehouse\aggregate_engine.py:17: QueryDenied
+________ test_zero_denominator_empty_and_group_limits_not_fake_success ________
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-147/test_zero_denominator_empty_an0')
+
+    def test_zero_denominator_empty_and_group_limits_not_fake_success(tmp_path):
+     store,database=fixture(tmp_path);w=LocalFileWarehouse(database);desc=w.describe('t0')
+     request=AggregateRequest(table='t0',schema_hash=schema_hash(desc),metric=metric(),grain=['id'],dimensions=['id'])
+     with pytest.raises(QueryDenied):execute_aggregate(w,request)
+     request=request.model_copy(update={'dimensions':[],'time_filter':AggregateTime(column='created_at',start=date(2020,1,1),end_exclusive=date(2020,1,2))})
+>    result=execute_aggregate(w,request);assert result.rows==[[None]] and result.matched_rows==0 and result.quality=='WARN'
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_agent.py:209: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\api\src\data_workspace\warehouse\aggregate_engine.py:12: in execute_aggregate
+    with warehouse.connect() as con:
+         ^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+warehouse = <data_workspace.warehouse.local_file.LocalFileWarehouse object at 0x000001A1E2356FC0>
+request = AggregateRequest(table='t0', schema_hash='f774a2f1678e1c04221ca93adefa8e0e6bcbbcd2af460777ecf838859149f166', metric=Se...me_filter=AggregateTime(column='created_at', start=datetime.date(2020, 1, 1), end_exclusive=datetime.date(2020, 1, 2)))
+
+    def execute_aggregate(warehouse,request):
+        b=AggregateRequest.model_validate(request) if isinstance(request,dict) else request
+        desc=warehouse.describe(b.table);sql,params,where,target=compile_aggregate(b,desc)
+        with warehouse.connect() as con:
+            timer=Timer(5,con.interrupt)
+            try:
+                timer.start()
+                if b.time_filter and con.execute("SELECT current_setting('TimeZone')").fetchone()[0] not in ('UTC','Etc/UTC','GMT','Etc/GMT'):
+>                   raise QueryDenied('UTC time semantics require matching locked engine timezone')
+E                   data_workspace.warehouse.policy.QueryDenied: UTC time semantics require matching locked engine timezone
+
+services\api\src\data_workspace\warehouse\aggregate_engine.py:17: QueryDenied
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_agent.py::test_group_time_and_duplicate_grain_quality_real_engine
+FAILED services\api\tests\test_agent.py::test_zero_denominator_empty_and_group_limits_not_fake_success
+2 failed, 586 passed in 252.67s (0:04:12)

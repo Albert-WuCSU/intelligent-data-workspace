@@ -1,0 +1,68 @@
+{
+  "reviewer": "self_review",
+  "scope": "module acceptance gate map, no change of required statuses",
+  "gates": [
+    {
+      "id": "real-model-api",
+      "status": "failed",
+      "required": true,
+      "scope": "Historical real Responses 401/403 failure retained. Independently verified AIPlan Messages/Bearer generation has separate evidence, does not rewrite this failure."
+    },
+    {
+      "id": "browser",
+      "status": "stale",
+      "required": true,
+      "scope": "Current 16frontend/38browser/types/build rerun passed with wrapped stream panel. Model calls use isolated fakeKey upstream, not actual supplier/user; all frontend sources stable.; streamdiagnostics/modelbusycontract changed, fullchecknext"
+    },
+    {
+      "id": "user-local-hidden-key-entry",
+      "status": "passed",
+      "required": true,
+      "scope": "ActualoldrunningAPI keyconfiguredbooleantrue/Responses; noKeyvalueinspection; auth/generationunverified/newbudgetcodenotloaded"
+    },
+    {
+      "id": "estimated-budget-real-process-recovery",
+      "status": "passed",
+      "required": true,
+      "scope": "actual4childprocesses fixed60reservation then freshprocess summary/exhausteddenial on independenttmp DB, no actualKey/fees"
+    },
+    {
+      "id": "real-claude-model-test",
+      "status": "passed",
+      "required": true,
+      "scope": "Actualfixednon-sensitivegeneration succeeded viaAIPlanMessagesBearerDeepSeek; onlytexttest not stream/tools/SQL/JOIN or newwebKeyflowverified"
+    },
+    {
+      "id": "real-sdk-root-key-model-test",
+      "status": "not_run",
+      "required": true,
+      "scope": "Historical unselected root/v1/messages+x-api-key candidate required/not_run retained; current AIPlan coding-plan Messages/Bearer is a different contract. Review scope before module acceptance, no silent downgrade."
+    },
+    {
+      "id": "personal-public-supplier-integration",
+      "status": "not_run",
+      "required": true,
+      "scope": "UserpersonalBYOKHTTPSsupplier actualAPI/TLS/modeltest not run; presets not proof"
+    },
+    {
+      "id": "real-web-byok-lifecycle",
+      "status": "not_run",
+      "required": true,
+      "scope": "Current D062 left Settings -> user-enteredmodel/key -> save/test/enable/return/select lifecycle requires user real account path; isolated fakeKey fixture only so required/not_run retained."
+    },
+    {
+      "id": "real-model-stream",
+      "status": "not_run",
+      "required": true,
+      "scope": "Messages fixed-text stream implemented and isolated/TCP/API/browser passed, actual user AIPlan stream still required/not_run; current runtime lacks stream_management. Other protocol stream support unimplemented explicitly unsupported."
+    }
+  ],
+  "clarifications": [
+    "real-model-api is historical Responses refusal; cannot silently waive or rewrite it with Messages success",
+    "real-sdk-root-key-model-test is earlier different unselected endpoint/authmode contract; scope correction needs explicit review before overall module delivery",
+    "public supplier real integration remains required/not_run; broad BYOK fixtures do not prove all protocols/providerTLS",
+    "real-web-byok-lifecycle user states model modified, currentreadonlyglm status proves chosen generation enabled only, not every teardown/recovery path",
+    "real-model-stream local code implemented but current actual API lacks it and no real streamed completion observed"
+  ],
+  "next_human_action": "User-owned current launcher loads new backend, user enters ownKey only into webpage, explicitly fixedstream once. No repeat nonstream test needed if currently verified; configure version change may require new test as enforced server lifecycle."
+}

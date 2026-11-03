@@ -1,0 +1,13 @@
+{
+  "command": "Node headless Chrome readonly navigation probe using installed @playwright/test; goto query -> left Settings -> browser Back -> browser Forward",
+  "exit_code": 0,
+  "observed": {
+    "url_settings": true,
+    "settings_visible": false,
+    "composer_visible": true
+  },
+  "assertion_verdict": "failed",
+  "root_cause": "existing hashchange handler recognizes main pages but not settings; handler also has no live settings-busy guard",
+  "scope": "navigation only, no network mutations, credentials or model calls",
+  "next_fix": "add settings route to hash handler; live ref gate restores current URL during busy save; add regression for history forward/back and back during save"
+}

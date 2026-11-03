@@ -1,0 +1,52 @@
+{
+  "reviewer": "self_review",
+  "scope": "session model catalog vertical slice; full checks pending",
+  "implemented": [
+    "authenticated one-config catalog bound to generation/version",
+    "explicit enable after actual response validation",
+    "disable/key edit/clear revoke verification and selection",
+    "server-side selection resolver and budget/busy checks",
+    "composer reads catalog; selected model never implies SQL or chat invocation",
+    "all nonsecret and Key state remain backend session memory"
+  ],
+  "observed_checks": [
+    {
+      "command": "pytest test_model_catalog.py test_model_connections.py -q",
+      "exit_code": 0,
+      "result": "35 passed before final quota/cancellation changes; full rerun required"
+    },
+    {
+      "command": "playwright --grep generic personal BYOK (isolated fixture)",
+      "exit_code": 0,
+      "result": "1 passed; config/save/fixed test/enable/choose/refresh/disable/clear; fake Key and MockTransport only"
+    },
+    {
+      "command": "tsc --noEmit",
+      "exit_code": 0
+    }
+  ],
+  "failed_attempts": [
+    {
+      "result": "initial filtered BYOK missing fixture budget; explicit initialization added; subsequent sandbox retry still failed",
+      "correction": "sandbox temp/SQLite access failure additionally identified; identical browser test passed outside sandbox; not a supplier failure"
+    },
+    {
+      "result": "new helper duplicate enabled keyword TypeError",
+      "correction": "test helper dictionary overrides fixed; assertions retained"
+    },
+    {
+      "result": "sandbox pytest temp permission errors/hanging async fixture",
+      "correction": "own exec interrupted, no process blind-kill; escalated isolated tests passed"
+    }
+  ],
+  "not_run": [
+    "live new-web user Key input",
+    "public supplier real Key/TLS",
+    "real streaming",
+    "tools and structured output",
+    "SQL/JOIN",
+    "production/PG"
+  ],
+  "live_api": "untouched old API, no credential read or paid invocation",
+  "visual_qa": "mobile screenshot viewed; no horizontal overflow; visible black/white controls and explicit disabled/unknown states"
+}

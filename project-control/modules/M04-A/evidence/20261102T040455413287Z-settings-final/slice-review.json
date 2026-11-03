@@ -1,0 +1,47 @@
+{
+  "reviewer": "self_review",
+  "verdict": "pass",
+  "scope": "D062 settings/user-selected-model implementation slice only, not full M04-A acceptance",
+  "code_fingerprint": "c513b721b216feb88749f2249266f0698c13f25b95a727ecdfeea81171ed2f8b",
+  "frontend_checks": {
+    "types": "passed",
+    "build": "passed",
+    "frontend": 16,
+    "browser": 37
+  },
+  "backend": {
+    "passed": 489,
+    "dependency_check": "passed",
+    "source": "20261102T035206Z full actual run",
+    "rerun": false,
+    "reuse_proof": "all nonfrontend source/contracts/locks/runtime scripts unchanged; backend-reuse.json"
+  },
+  "visual_qa": [
+    "latest desktop light screenshot viewed;left Settings, independent two-column model config/status, no sidebar conversation form",
+    "dark/mobile screenshots generated; first layout screenshots viewed, no horizontal overflow"
+  ],
+  "behavior": [
+    "preserves conversation draft and history",
+    "freely editable model ID for every preset incl AIPlan; only protocol/endpoint/auth stay exact approved private grant",
+    "test->enable->return->input model selection on isolated product API",
+    "user edits never overwritten by async hydration; state read does not block returning",
+    "critical save/test/enable navigation lock; same-document browser back protected during save",
+    "browser Back/Forward handles query empty hash and settings, keyboard focus restored",
+    "legacy backend warning prevents silent model locking"
+  ],
+  "preserved_failures": [
+    "hydration race 35/36browser in20261102T035206Z",
+    "history/readonly-busy/test-isolation34/37browser in20261102T040003314531Z",
+    "navigation-probe failed; fixed and covered"
+  ],
+  "mock_boundaries": "model transports use fake Key; unconfigured workbench UI tests use explicit empty catalog fixture, while actual catalog/enable/save/selection is separately isolated-product API tested; not real public supplier or user research",
+  "not_run": [
+    "real user new-settings Key/lifecycle",
+    "public supplier real API/TLS",
+    "streamAC02/tools/structured-output/SQL-JOIN",
+    "PG/production"
+  ],
+  "runtime": "did not restart/stop/read/mutate user Key/model configuration or send paid provider request; previous explicitly authorized orphan stop was separate completed action",
+  "git": "no commit/push; whitespace diff with cr-at-eol and per-command safe.directory passed",
+  "maturity": "M04-A DO/not_verified, overall audit partial; M01/M02 finite-local acceptance retained"
+}

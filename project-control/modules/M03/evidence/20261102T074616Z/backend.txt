@@ -1,0 +1,88 @@
+........................................................................ [ 12%]
+........................................................................ [ 25%]
+........................................................................ [ 38%]
+........................................................................ [ 51%]
+........................................................................ [ 64%]
+........................................................................ [ 77%]
+..............................................................F......... [ 90%]
+........................................................                 [100%]
+================================== FAILURES ===================================
+_ test_actual_preflight_runs_in_worker_not_api_and_promotes_only_valid_upload _
+
+store = <data_workspace.source_profiles.SourceStore object at 0x0000026317802C60>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002631766B9E0>
+
+    def test_actual_preflight_runs_in_worker_not_api_and_promotes_only_valid_upload(store,monkeypatch):
+        # If the API tried XML validation, this monkeypatch would fail it; actual child
+        # imports its own parser after the Job gate and checks the real package.
+        def no_api_parser(content):raise AssertionError('XML parser ran in API')
+        monkeypatch.setattr('data_workspace.excel_import.validate_package',no_api_parser)
+>       receipt=store.upload(AUTH,'中文原件.xlsx',workbook_bytes())
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_upload_preflight_storage.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+services\api\src\data_workspace\retention.py:204: in operation
+    return function(self, auth, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <data_workspace.source_profiles.SourceStore object at 0x0000026317802C60>
+auth = AuthContext(principal_id='local-developer', tenant_id='local-workspace', mode='development')
+filename = '中文原件.xlsx'
+content = b'PK\x03\x04\x14\x00\x00\x00\x08\x00!~b]0\xc3;:\xe8\x00\x00\x00\xf8\x02\x00\x00\x13\x00\x00\x00[Content_Types].xml\xc5...01z\x0e\x00\x00xl/worksheets/sheet2.xmlPK\x05\x06\x00\x00\x00\x00\x07\x00\x07\x00\xc6\x01\x00\x00R\x0f\x00\x00\x00\x00'
+
+    @storage_operation
+    def upload(self,auth,filename,content):
+        self.authorize(auth)
+        suffix=Path(filename or '').suffix.lower()
+        if suffix not in {'.duckdb','.csv','.parquet','.xlsx'} or not 0<len(content)<=MAX_BYTES:raise PublicError(422,'INVALID_FILE','仅接收20MB以内的DuckDB、CSV、Parquet或.xlsx文件。')
+        from .worker_runtime import run_worker,WorkerLimits,WorkerFailure,public_worker_error
+        from .upload_preflight import checked_runtime_path
+        id=str(uuid4());folder=self.root/'staging'/id;destination=self.root/'uploads'/id
+        try:
+            checked_runtime_path(self.root,folder);checked_runtime_path(self.root,destination)
+        except ValueError:raise PublicError(422,'INVALID_UPLOAD_LOCATION','后端隔离目录不可用，请由管理员检查；不会写入其他位置。') from None
+        with self.lock:self.uploads_in_flight.add(id)
+        promoted=False
+        try:
+            folder.mkdir(parents=True,exist_ok=False)
+            checked_runtime_path(self.root,folder)
+            created_at=self.clock().isoformat()
+            write_marker(self.root,folder,kind='upload',owner=self.owner(auth),created_at=created_at)
+            source=folder/f'source{suffix}';source.write_bytes(content)
+            digest=hashlib.sha256(content).hexdigest()
+            payload={'root':str(self.root),'upload_id':id,'suffix':suffix,'sha256':digest}
+            try:value=run_worker('upload_preflight',payload,limits=WorkerLimits(wall_seconds=10))
+            except WorkerFailure as exc:raise public_worker_error(exc) from None
+            if value.get('ok') is not True:
+                code=value.get('code')
+                if code in {'INVALID_XLSX','INVALID_FILE'}:raise PublicError(422,code,value['safe_message'])
+                raise PublicError(422,'INVALID_FILE','文件预检失败，请检查格式或缩小文件；原文件不会修改。')
+            if value.get('data')!={'size_bytes':len(content),'sha256':digest,'suffix':suffix}:
+                raise PublicError(422,'UPLOAD_PREFLIGHT_INVALID','上传预检回执不一致，未保留可用上传。')
+            # Persist only non-secret artifact provenance. Never user file contents/filename in receipt.
+            receipt={'schema_version':'1.0','created_at':created_at,'owner':self.owner(auth),'sha256':digest,'size_bytes':len(content)}
+            (folder/'upload.receipt.json').write_text(json.dumps(receipt),encoding='utf-8')
+            write_marker(self.root,folder,kind='upload',owner=self.owner(auth),created_at=created_at,complete=True)
+            destination.parent.mkdir(parents=True,exist_ok=True)
+            checked_runtime_path(self.root,folder);checked_runtime_path(self.root,destination)
+            if destination.exists():raise ValueError('upload id collision')
+            folder.rename(destination)  # Both absolute targets verified inside this store, same-volume promotion.
+            promoted=True
+            return FileReceipt(file_id=id,source_label=Path(filename).name[:100])
+        except PublicError:raise
+>       except Exception:raise PublicError(422,'UPLOAD_FAILED','上传写入或预检失败，请检查后端隔离目录后重试；原文件未修改。') from None
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       data_workspace.auth.PublicError: (422, 'UPLOAD_FAILED', '上传写入或预检失败，请检查后端隔离目录后重试；原文件未修改。')
+
+services\api\src\data_workspace\source_profiles.py:191: PublicError
+============================== warnings summary ===============================
+services\api\.venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\Users\luqianwu\Desktop\智能问数\services\api\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_upload_preflight_storage.py::test_actual_preflight_runs_in_worker_not_api_and_promotes_only_valid_upload
+1 failed, 559 passed, 1 warning in 198.15s (0:03:18)

@@ -1,0 +1,14 @@
+{
+  "reviewer": "self_review",
+  "command": "services/api/.venv/Scripts/python.exe project-control/modules/M04-A/evidence/20261102T055036194615Z-messages-stream/check_live_tcp_stream.py",
+  "exit_code": 0,
+  "scope": "Actual owned HTTPServer on ephemeral loopback TCP/SSE, fakeKey, explicit test-only transport maps request to localhost; not a permitted real warehouse/provider adapter",
+  "result": {
+    "status": "passed",
+    "calls": 1,
+    "events": 3,
+    "completed": true,
+    "sql_executed": false
+  },
+  "limitations": "Not TLS certificate/real provider network/authentication/production or user-account verification. Test server shut down and joined; independent temporary budget removed by tempfile."
+}

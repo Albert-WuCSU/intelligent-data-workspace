@@ -36,3 +36,6 @@ test-results/
 
 # Nonsecret local model budget/receipts; never reset to evade campaign limits
 /data/model-runtime/
+
+# User-authored semantic metadata is runtime content, not portfolio source or public fixtures
+/data/semantics/

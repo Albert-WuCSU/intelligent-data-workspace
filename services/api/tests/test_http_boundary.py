@@ -172,7 +172,8 @@ def test_real_loopback_http_mcp_handshake_catalog_dates_and_100_rows(tmp_path, m
     sock = socket.socket()
     sock.bind(("127.0.0.1", 0))
     endpoint = f"http://127.0.0.1:{sock.getsockname()[1]}/mcp"
-    server = uvicorn.Server(uvicorn.Config(application, host="127.0.0.1", log_level="error", access_log=False))
+    # This independent fixture owns live SSE connections; bound their shutdown inside the existing10s thread guard.
+    server = uvicorn.Server(uvicorn.Config(application, host="127.0.0.1", log_level="error", access_log=False, timeout_graceful_shutdown=2))
     thread = Thread(target=lambda: server.run(sockets=[sock]), daemon=True)
     thread.start()
     try:

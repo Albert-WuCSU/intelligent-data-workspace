@@ -1,0 +1,41 @@
+{
+  "reviewer": "self_review",
+  "scope": "D062 settings/model-selection implementation checkpoint; full regression next",
+  "implemented": [
+    "left persistent Settings button and #settings independent workspace",
+    "configuration removed from right conversation summary",
+    "compact form/status side-by-side with budget/security disclosure",
+    "model ID empty and editable in every preset incl approved AIPlan",
+    "AIPlan only exact address/protocol/auth, strict model response and exact observed alias unchanged",
+    "runtime input picker uses enabled verified catalog, not arbitrary upstream list",
+    "backend reports nonsecret valid endpoint and model_name_editable for safe old-server compatibility",
+    "busy blocks leaving save/test; leaving settings drops password"
+  ],
+  "checks_before_last_compat_change": [
+    {
+      "command": "pytest test_model_connections.py test_model_catalog.py -q",
+      "exit_code": 0,
+      "count": 45
+    },
+    {
+      "command": "playwright --grep left settings|generic personal BYOK|reference-style|mobile context",
+      "exit_code": 0,
+      "count": 4
+    },
+    {
+      "command": "tsc --noEmit -p apps/web/tsconfig.json",
+      "exit_code": 0
+    }
+  ],
+  "visual_review": [
+    "settings-models-light.png viewed: desktop left settings, 2columns, no conversation form",
+    "settings-models-mobile.png viewed: independent scrollable settings, no horizontal overflow"
+  ],
+  "live_runtime": "New user-started services ownership rechecked current port33908/25732 and projectvenv parent under common launcher; no restart/secret read or mutation this turn. Old residual services were closed only on prior explicit user request, ports freed then user restarted. PID observations not reusable.",
+  "not_run": [
+    "final full regression after compatibility changes",
+    "real user new-settings Key/model lifecycle",
+    "real public supplier integration/TLS",
+    "real streaming/SQL/JOIN/PG/production"
+  ]
+}

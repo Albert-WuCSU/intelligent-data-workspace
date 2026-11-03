@@ -1,0 +1,20 @@
+{
+  "reviewer": "self_review",
+  "first_full_run": "489backend/16frontend passed;35/36browser passed;hydrate race preserved",
+  "first_frontend_recheck": "types/build/16frontend passed;34/37browser passed;3failures preserved",
+  "corrections": [
+    "hydrate cannot overwrite user edits",
+    "empty hash maps back to query; settings recognized on forward",
+    "only credential save/model test/enable mutation gates app navigation; pure status refresh does not block returning",
+    "busy-save history test now starts with in-app query->settings history, not cross-document aboutblank departure",
+    "unavailable-catalog workspace layout tests use explicit empty catalog fixture instead of assuming live user catalog disabled; real catalog selection stays isolated-product integration covered"
+  ],
+  "latest_targeted_result": {
+    "command": "playwright --grep settings refuses|settings browser history|reference-style",
+    "exit_code": 0,
+    "passed": 3
+  },
+  "final_frontend_recheck": "next",
+  "unchanged_backend": "hash proof from all nonfrontend sources;489actual full run remains passed, no backend modification after it",
+  "runtime": "no current user Key/model config or services modified, unknown external/tab-close not claimed preventable"
+}

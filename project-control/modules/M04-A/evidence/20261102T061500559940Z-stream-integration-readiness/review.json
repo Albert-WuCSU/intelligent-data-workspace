@@ -1,0 +1,40 @@
+{
+  "reviewer": "self_review",
+  "scope": "all model tests use fakeKey/isolated productAPI/upstreamfixture; no actual model calls/Key read/runtime restart",
+  "actual_runtime_readonly": {
+    "protocol": "anthropic_messages",
+    "model_id": "glm-5.3",
+    "generation_verified": true,
+    "catalog_enabled": true,
+    "stream_management": "absent",
+    "stream_verified": false
+  },
+  "implemented": [
+    "StreamDiagnostics fixed reason enum/only401403429 numeric status, no response body/model/Key reflection",
+    "Frame/sequence/model/usage/secret/EOF/transport/encoding failures actionable in read-only receipt/UI",
+    "nonstream fresh POST while configuration/stream busy refused immediately, no queued second paid call; sameUUID cache stays read-only"
+  ],
+  "checks": [
+    {
+      "command": "pytest test_model_stream.py test_model_budget.py test_model_catalog.py test_model_connections.py -q",
+      "exit_code": 0,
+      "passed": 97
+    },
+    {
+      "command": "playwright --grep stream auth refusal|real Messages stream",
+      "exit_code": 0,
+      "passed": 2
+    },
+    {
+      "command": "tsc --noEmit -p apps/web/tsconfig.json",
+      "exit_code": 0
+    }
+  ],
+  "next_module": "M03/PLAN_DRAFT prepared but unapproved; activeM04Aunchanged",
+  "not_run": [
+    "new actual AIPlanstream integration",
+    "actual user new flow/module acceptance",
+    "full current regression",
+    "M03implementation/M04Bagent/SQLJOIN/publicTLS/PGproduction"
+  ]
+}

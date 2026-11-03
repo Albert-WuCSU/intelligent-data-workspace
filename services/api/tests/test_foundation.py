@@ -89,7 +89,10 @@ def test_unknown_capabilities_are_not_supported():
 
 def test_capabilities_no_fake_connectors(client):
     c=client.get('/api/v1/capabilities').json()
-    assert c['connectors']==[] and not any(m['available'] for m in c['modules'])
+    assert c['connectors']==[] and not any(m['available'] for m in c['modules'] if m['id'] not in {'knowledge','query'})
+    assert next(m for m in c['modules'] if m['id']=='knowledge')['available'] is True
+    assert next(m for m in c['modules'] if m['id']=='query')['available'] is True
+    # Knowledge now offers structured authoring; it does not expose a fake connector or query executor.
 
 def test_session_is_server_owned(client):
     s=client.get('/api/v1/session',headers={'X-Tenant-ID':'other','X-User-ID':'other'}).json()

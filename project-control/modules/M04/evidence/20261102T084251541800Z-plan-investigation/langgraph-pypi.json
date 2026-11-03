@@ -1,0 +1,48 @@
+{
+  "source": "https://pypi.org/pypi/langgraph/json",
+  "name": "langgraph",
+  "version": "1.2.19",
+  "requires_python": ">=3.10",
+  "license": null,
+  "classifiers": [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy"
+  ],
+  "requires_dist": [
+    "langchain-core<2,>=1.4.7",
+    "langgraph-checkpoint<5.0.0,>=4.3.0",
+    "langgraph-prebuilt<1.2.0,>=1.1.0",
+    "langgraph-sdk<0.5.0,>=0.4.6",
+    "pydantic>=2.7.4",
+    "xxhash>=3.5.0"
+  ],
+  "project_urls": {
+    "Changelog": "https://github.com/langchain-ai/langgraph/releases",
+    "Documentation": "https://reference.langchain.com/python/langgraph/",
+    "Homepage": "https://docs.langchain.com/oss/python/langgraph/overview",
+    "Reddit": "https://www.reddit.com/r/LangChain/",
+    "Slack": "https://www.langchain.com/join-community",
+    "Source": "https://github.com/langchain-ai/langgraph/tree/main/libs/langgraph",
+    "Twitter": "https://x.com/langchain_oss"
+  },
+  "files": [
+    {
+      "filename": "langgraph-1.2.19-py3-none-any.whl",
+      "sha256": "6094a5cbed52a77d8c74c276fcd2056abde7b2836eab1c7a6b74bacbd1a269b3",
+      "uploaded": "2026-10-30T22:23:31.334338Z"
+    },
+    {
+      "filename": "langgraph-1.2.19.tar.gz",
+      "sha256": "4a00fa1aad2b5fc2d3a789a8e9eaf993f76218ca924b434902ecf1bbaaf300f6",
+      "uploaded": "2026-10-30T22:23:32.962772Z"
+    }
+  ]
+}

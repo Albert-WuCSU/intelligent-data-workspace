@@ -1,0 +1,132 @@
+
+Running 37 tests using 1 worker
+
+(node:13380) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (2.0s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.3s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (978ms)
+  ok  4 tests\remote-onboarding.spec.mjs:20:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (7.9s)
+  ok  5 tests\remote-onboarding.spec.mjs:35:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (988ms)
+  ok  6 tests\remote-onboarding.spec.mjs:44:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (5.1s)
+  ok  7 tests\remote-onboarding.spec.mjs:58:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds (4.7s)
+  ok  8 tests\remote-onboarding.spec.mjs:73:1 › storage inventory is read-only, protects disabled saved data and has no delete action (691ms)
+  ok  9 tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup (1.6s)
+  ok 10 tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest (3.6s)
+  ok 11 tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support (2.0s)
+  ok 12 tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected (886ms)
+  ok 13 tests\remote-onboarding.spec.mjs:132:1 › model readiness comes from actual isolated API with empty password and no automatic generation (872ms)
+  ok 14 tests\remote-onboarding.spec.mjs:145:1 › Responses candidate is disclosed from real isolated status without enabling generation (802ms)
+  ok 15 tests\remote-onboarding.spec.mjs:158:1 › estimated model test uses real product route and preserves same receipt without a second reservation (1.2s)
+  ok 16 tests\remote-onboarding.spec.mjs:173:1 › explicit Claude preset shows bearer Haiku and safe 401 refusal without protocol fallback (1.2s)
+  ok 17 tests\remote-onboarding.spec.mjs:188:1 › invalid model response shows safe categories without exposing partial output or retrying (1.2s)
+  ok 18 tests\remote-onboarding.spec.mjs:205:1 › observed gateway alias preserves both model identities and never exposes reasoning (1.1s)
+  ok 19 tests\remote-onboarding.spec.mjs:221:1 › generic personal BYOK config saves session key without restart or browser persistence and tests explicitly (2.5s)
+  ok 20 tests\remote-onboarding.spec.mjs:257:1 › left settings keeps conversation clean, model IDs are free for every preset and secrets are cleared on leave (2.0s)
+  x  21 tests\remote-onboarding.spec.mjs:287:1 › settings refuses silent legacy model lock and prevents leaving an in-flight save (6.0s)
+(node:12228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 22 tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection (5.3s)
+  ok 23 tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets (799ms)
+  ok 24 tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain (652ms)
+  ok 25 tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters (7.0s)
+  ok 26 tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support (9.1s)
+  ok 27 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (3.4s)
+  ok 28 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (905ms)
+  ok 29 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (1.5s)
+  ok 30 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (961ms)
+  ok 31 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (940ms)
+  ok 32 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (573ms)
+  ok 33 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.3s)
+  ok 34 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (728ms)
+  x  35 tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest (5.5s)
+(node:30516) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 36 tests\workspace.spec.mjs:130:1 › mobile context summary is opt-in and source/model controls do not overflow (983ms)
+  x  37 tests\workspace.spec.mjs:142:1 › settings browser history and keyboard return preserve the unsent conversation (5.6s)
+
+
+  1) tests\remote-onboarding.spec.mjs:287:1 › settings refuses silent legacy model lock and prevents leaving an in-flight save 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByLabel('设置页面')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByLabel('设置页面') with timeout 5000ms
+      - waiting for getByLabel('设置页面')
+
+
+      300 |  await form.getByLabel('模型服务厂商').selectOption('custom');await form.getByLabel('模型 API 地址').fill('https://api.example.com/v1/chat/completions');await form.getByLabel('模型名称',{exact:true}).fill('fixture-model');await form.getByLabel('专用模型 API Key').fill('fixture-only-save-key');await form.getByLabel('同意模型测试外发和估算').check();
+      301 |  await form.getByRole('button',{name:'保存连接（不调用模型）'}).click();
+    > 302 |  try{await expect.poll(()=>typeof releaseSave).toBe('function');await expect(page.getByRole('button',{name:'返回工作台',exact:true})).toBeDisabled();await expect(page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'取数工作台',exact:true})).toBeDisabled();await expect(page.getByRole('button',{name:'设置',exact:true})).toBeDisabled();await page.goBack();await expect(page.getByLabel('设置页面')).toBeVisible();await expect(page).toHaveURL(/#settings$/);}finally{releaseSave?.();}
+          |                                                                                                                                                                                                                                                                                                                                                                                                             ^
+      303 |  await expect(form).toContainText('已保存到本次后端会话');await expect(page.getByRole('button',{name:'返回工作台',exact:true})).toBeEnabled();
+      304 |  await page.getByRole('button',{name:'返回工作台',exact:true}).click();await expect(page.getByLabel('业务问题')).toBeEnabled();
+      305 | });
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:302:397
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-settings-257d0-s-leaving-an-in-flight-save\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-settings-257d0-s-leaving-an-in-flight-save\error-context.md
+
+  2) tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByLabel('切换模型')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" getByLabel('切换模型') with timeout 5000ms
+      - waiting for getByLabel('切换模型')
+        14 × locator resolved to <select id="_r_0_" aria-label="切换模型">…</select>
+           - unexpected value "enabled"
+
+
+      114 |  await online(page);
+      115 |  const panel=page.getByRole('complementary',{name:'会话摘要'});
+    > 116 |  await expect(panel).toBeVisible();await expect(panel).toContainText('等待提问');await expect(page.getByLabel('切换模型')).toBeDisabled();
+          |                                                                                                                    ^
+      117 |  await expect(page.getByLabel('选择问数数据源')).toHaveCount(0);await expect(panel.getByRole('region',{name:'多来源上下文'})).toBeVisible();
+      118 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();
+      119 |  await expect(page.getByLabel('设置页面')).toBeVisible();await expect(panel).toHaveCount(0);await expect(page.getByLabel('设置页面')).toContainText('业务问数仍未接入');await page.getByRole('button',{name:'返回工作台',exact:true}).click();await expect(panel).toBeVisible();await expect(panel.locator('input[type=password]')).toHaveCount(0);
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:116:116
+
+    Error Context: tmp\m01-browser-results\workspace-reference-style--fdcc0--model-entry-remains-honest\error-context.md
+
+  3) tests\workspace.spec.mjs:142:1 › settings browser history and keyboard return preserve the unsent conversation 
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator: getByLabel('业务问题')
+    Expected: "只保留草稿，不发送"
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toHaveValue" getByLabel('业务问题') with timeout 5000ms
+      - waiting for getByLabel('业务问题')
+
+
+      144 |  const button=page.getByRole('button',{name:'设置',exact:true});await button.focus();await page.keyboard.press('Enter');
+      145 |  await expect(page.getByLabel('设置页面')).toBeVisible();await expect(page.getByRole('heading',{name:'模型服务',exact:true})).toBeFocused();
+    > 146 |  await page.goBack();await expect(page.getByLabel('业务问题')).toHaveValue('只保留草稿，不发送');
+          |                                                            ^
+      147 |  await page.goForward();await expect(page.getByLabel('设置页面')).toBeVisible();
+      148 |  await page.getByRole('button',{name:'返回工作台',exact:true}).focus();await page.keyboard.press('Enter');await expect(page.getByLabel('业务问题')).toHaveValue('只保留草稿，不发送');await expect(page.getByLabel('业务问题')).toBeFocused();
+      149 |  await expect(page.getByRole('complementary',{name:'会话摘要'}).locator('input[type=password]')).toHaveCount(0);
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:146:60
+
+    Error Context: tmp\m01-browser-results\workspace-settings-browser-d471d-rve-the-unsent-conversation\error-context.md
+
+  3 failed
+    tests\remote-onboarding.spec.mjs:287:1 › settings refuses silent legacy model lock and prevents leaving an in-flight save 
+    tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest 
+    tests\workspace.spec.mjs:142:1 › settings browser history and keyboard return preserve the unsent conversation 
+  34 passed (1.8m)

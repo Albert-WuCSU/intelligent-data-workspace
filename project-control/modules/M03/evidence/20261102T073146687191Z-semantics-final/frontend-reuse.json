@@ -1,0 +1,18 @@
+{
+  "verdict": "unchanged_pass",
+  "baseline": "project-control/modules/M03/evidence/20261102T072241Z",
+  "actual_checks_reused": [
+    "16frontend",
+    "41browser",
+    "types",
+    "build",
+    "pip dependency check"
+  ],
+  "changed_files": [
+    "services/api/tests/test_retention_cycle.py"
+  ],
+  "all_product_frontend_browser_sources_contracts_runtime_locks": "unchanged SHA256",
+  "old_code_fingerprint": "3fa1724fe6a509a75a47667e11e348be0a4eef7a81ab84a3c26a91cceac75278",
+  "current_code_fingerprint": "c011806328bb902a6b9cc9506d1a8ee7b12f8bfe633069b5233e5cce88b1aa76",
+  "scope": "only backend test fixture readiness changed; no production/backend/UI functionality changed after actual UI pass"
+}

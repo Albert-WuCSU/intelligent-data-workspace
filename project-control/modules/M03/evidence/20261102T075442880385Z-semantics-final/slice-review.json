@@ -1,0 +1,35 @@
+{
+  "reviewer": "self_review",
+  "verdict": "pass",
+  "scope": "D066 approved single-table semantic producer local slice, not whole futurePRD/Agent integration/production acceptance",
+  "counts": {
+    "backend": 560,
+    "frontend": 16,
+    "browser": 41
+  },
+  "backend": "actual560 rerun same complete current code",
+  "frontend": "16frontend/41browser/types/build/pip previously actually passed at074616Z, all source files identical, hashproof reuse not claimed rerun",
+  "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+  "user_path": [
+    "real saved-source MCP/HTTP metadata-only mapping, no preview-row requests",
+    "draft/create or 32KiBJSONimport->field/type/alias conflicts->repair->explicit Boolean approval->immutablev1/v2",
+    "independentstate_revision CAS softdisable/metadatarevalidateenable; immutablebody retained; oldversions superseded cannotnewplan",
+    "published version resolve rechecks source/schema/version/status before+after; disabled/stale denied",
+    "restart retains published history/replayreceipt but not draft/check",
+    "unknowncode/operators/privilege/keys extras denied; no forced time columns; exact numeric/temporaltypes; ratio nonadditive/zero-null"
+  ],
+  "evidence_limits": [
+    "semantic nativeMCP/ownedHTTPfixture real, PGfakeconnect only, not realPG or externalidentity",
+    "browser uses ownedtemporarysource/database/productAPI, not userresearch or defaultserver actual interaction",
+    "M04B actualmodelsemanticconsumption and governedfullSQL not implemented, future releasegate"
+  ],
+  "remaining": [
+    "optional RAG/joins/domainhierarchy/fullfuturePRD not implemented in firstscope",
+    "M03 user delivery pending; no autoclose",
+    "metadata remains user-declared businessmeaning not uniqueness/causal certification",
+    "preexistingpreflightUPLOAD_FAILED once in priorfullrun, exactunderlyingcauseunknown; samecode target and all560 subsequently passed, originalfailedlogs preserved and tracked before production"
+  ],
+  "visual_qa": "desktoplight and mobile history screenshot viewed, labels separate publication/disabled/superseded and no horizontaloverflow; blacktheme/generatedscreens retained",
+  "safety": "no actualmodel/warehousebusinessSQL/providerKeyread/newpackages/service restart/deployment/push; SQLitenonsecretversions ignored byGit",
+  "next": "userreview/accept currentM03localproducer, then M04B PLAN version/install/aggregationMCPcontract approval; existingpreviewonly cannot compute fulltotals"
+}

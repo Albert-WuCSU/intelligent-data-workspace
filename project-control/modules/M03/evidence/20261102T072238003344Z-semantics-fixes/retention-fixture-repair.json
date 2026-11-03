@@ -1,0 +1,10 @@
+{
+  "reviewer": "self_review",
+  "failed_case": "test_stop_actual_owned_job_cancels_and_releases_worker_slot",
+  "failure": "PID marker existed before data was written; int(\"\")ValueError, not productruntime failure",
+  "repair": "same5second deadline now waits for nonemptyactualPID;assertnumeric/liveownedprocess before stop, same6secondstopbound and actualOSdead/stateSTOPPED/2slots reusable;finallyalwaysstopsownrunnerandreturnsacquiredslots even onfailure",
+  "command": "pytest services/api/tests/test_retention_cycle.py::test_stop_actual_owned_job_cancels_and_releases_worker_slot -q",
+  "exit_code": 0,
+  "passed": 1,
+  "scope": "testfixture/readinessonly, no productioncodechanges/foreignprocesskill;fullbackendnext"
+}

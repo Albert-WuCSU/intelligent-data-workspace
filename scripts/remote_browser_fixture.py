@@ -35,6 +35,8 @@ if __name__=='__main__':
             mcp_url=f'http://127.0.0.1:{socks[0].getsockname()[1]}/mcp'
             port=socks[1].getsockname()[1]
             api=create_app(Settings(mode='development',dev_identity=True,port=port,owned_warehouse=True))
+            from data_workspace.semantic_store import SemanticStore
+            api.state.semantics=SemanticStore(root/'semantics')
             @api.post('/fixture-only/inject-personal-chat-transport')
             async def inject_personal_chat_transport():
                 import httpx
@@ -75,6 +77,70 @@ if __name__=='__main__':
                     'http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages','deepseek-v4.1-flash','anthropic_messages','bearer'),
                     'fixture-only-model-key',EstimatedBudget(root/'model-diagnostics-budget'),httpx.MockTransport(handler))
                 api.state.model_tests=ModelTests()
+                return {'fixture_only':True}
+            @api.post('/fixture-only/semantic-source')
+            async def semantic_source_fixture():
+                from uuid import uuid4
+                from data_workspace.contracts import AuthContext
+                auth=AuthContext(mode='development',tenant_id='local-workspace',principal_id='local-developer')
+                id=str(uuid4())
+                semantic_source=root/'allowed'/'semantic-fixture.csv'
+                semantic_source.write_text('id,amount,cost,created_at\n1,10,3,2025-01-01\n2,20,4,2025-01-02\n',encoding='utf-8')
+                semantic_database,_=SourceStore(root/'semantic-snapshots',allowed).snapshot(ProfileDraft(name='semantic fixture',path=str(semantic_source),usage_authorized=True))
+                with api.state.sources.db() as db:
+                    db.execute('INSERT INTO profiles(id,owner,name,version,enabled,database_path,source_label,last_test_at) VALUES(?,?,?,?,?,?,?,?)',[id,api.state.sources.owner(auth),'Semantic fixture rows',1,1,str(semantic_database),'independent local fixture', '2026-11-02'])
+                return {'id':id,'table':'t0'}
+            @api.post('/fixture-only/agent-ready')
+            async def agent_ready_fixture(request:__import__('fastapi').Request):
+                mode=(await request.json()).get('mode','normal')
+                from uuid import uuid4
+                import httpx
+                from data_workspace.contracts import AuthContext
+                from data_workspace.semantic_contracts import SemanticDraftInput,SemanticMetric,PublishInput
+                from data_workspace.semantic_metadata import read_schema
+                from data_workspace.model_provider import MessagesProvider,ModelConfiguration
+                from data_workspace.model_budget import EstimatedBudget
+                auth=AuthContext(mode='development',tenant_id='local-workspace',principal_id='local-developer')
+                file=allowed/'agent-fixture.csv';file.write_text('id,region,amount,cost,created_at\n'+''.join(f'{i},A,{i},1,2026-10-01\n' for i in range(1,151)),encoding='utf-8')
+                database,_=SourceStore(root/'agent-snapshots',allowed).snapshot(ProfileDraft(name='agent fixture',path=str(file),usage_authorized=True))
+                source_id=str(uuid4())
+                with api.state.sources.db() as db:db.execute('INSERT INTO profiles(id,owner,name,version,enabled,database_path,source_label,last_test_at) VALUES(?,?,?,?,?,?,?,?)',[source_id,api.state.sources.owner(auth),'Agent fixture source150rows-'+source_id[:6],1,1,str(database),'independent fixture','2026-11-02'])
+                metric=SemanticMetric(id='amount_sum',name='总金额',operator='sum',column='amount',unit='测试单位',additive=True)
+                draft=api.state.semantics.draft(auth,SemanticDraftInput(domain='agent_fixture_'+source_id[:8],name='受控问数测试口径',owner_note='fixture not enterprise data',source_id=source_id,table_id='t0',grain=['id'],grain_note='one row per id',metrics=[metric]))
+                schema=await read_schema(api.state.sources,auth,source_id,'t0')
+                published=api.state.semantics.publish(auth,PublishInput(draft_id=draft.draft_id,validation_id=str(uuid4()),request_id=str(uuid4()),approve_definition=True),draft,schema)
+                def handler(req):return httpx.Response(200,json={'type':'message','role':'assistant','model':'fixture-agent-model','stop_reason':'max_tokens' if mode=='incomplete' else 'end_turn','content':[{'type':'text','text':json.dumps({'metric_id':'amount_sum','dimensions':[],'time_range':None,'needs_clarification':'none'})}],'usage':{'input_tokens':30,'output_tokens':28}})
+                api.state.model_provider=MessagesProvider(ModelConfiguration('http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages','fixture-agent-model','anthropic_messages','bearer'),'fake-fixture-agent-key',EstimatedBudget(root/'agent-budget'),httpx.MockTransport(handler));api.state.model_provider._verified=True;api.state.model_enabled=True
+                return {'source_name':'Agent fixture source150rows-'+source_id[:6],'source_id':source_id,'semantic_version_id':published.id,'model_ref':api.state.model_tests.generation+':'+api.state.model_provider.configuration.version}
+            @api.post('/fixture-only/semantic-restart')
+            async def semantic_restart_fixture():
+                api.state.semantics=SemanticStore(root/'semantics')
+                return {'fixture_only':True}
+            @api.post('/fixture-only/enable-stream-test')
+            async def enable_stream_fixture(request:__import__('fastapi').Request):
+                import httpx,asyncio
+                from data_workspace.model_provider import MessagesProvider,ModelConfiguration
+                from data_workspace.model_budget import EstimatedBudget
+                from data_workspace.model_stream_routes import StreamTests
+                from data_workspace.model_routes import ModelTests
+                mode=(await request.json()).get('mode','complete')
+                key='fixture-only-stream-key';model='fixture-stream-model'
+                class Stream(httpx.AsyncByteStream):
+                    async def __aiter__(self):
+                        events=[{'type':'message_start','message':{'type':'message','role':'assistant','model':model,'content':[],'stop_reason':None,'usage':{'input_tokens':8}}},
+                            {'type':'content_block_start','index':0,'content_block':{'type':'text','text':''}},
+                            {'type':'content_block_delta','index':0,'delta':{'type':'text_delta','text':'Live fixture text safe. '*4}}]
+                        if mode=='complete':events += [{'type':'content_block_stop','index':0},{'type':'message_delta','delta':{'stop_reason':'end_turn'},'usage':{'output_tokens':20}},{'type':'message_stop'}]
+                        for event in events:
+                            yield ('event: '+event['type']+'\ndata: '+json.dumps(event)+'\n\n').encode()
+                            await asyncio.sleep(.12)
+                        if mode=='cancel':await asyncio.sleep(30)
+                def handler(req):
+                    if mode=='denied':return httpx.Response(403,text='fixture-private-error-'+key)
+                    return httpx.Response(200,headers={'content-type':'text/event-stream'},stream=Stream())
+                await api.state.model_stream_tests.close()
+                api.state.model_provider=MessagesProvider(ModelConfiguration('http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages',model,'anthropic_messages','bearer'),key,EstimatedBudget(root/'stream-budget'),httpx.MockTransport(handler))
+                api.state.model_tests=ModelTests();api.state.model_stream_tests=StreamTests();api.state.model_enabled=False
                 return {'fixture_only':True}
             @api.post('/fixture-only/enable-claude-test')
             async def enable_claude_fixture():

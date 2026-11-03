@@ -1,0 +1,28 @@
+{
+  "user_statement": "我不太清楚任务管理器中哪个是本次项目的残留进程，你找到并帮我关闭",
+  "scope": "fresh owned process verification and explicit user-authorized stop",
+  "verified_processes": [
+    {
+      "pid": 16300,
+      "workspace_vite": true,
+      "port": 5173
+    },
+    {
+      "pid": 32752,
+      "module": "data_workspace.main",
+      "project_venv_parent": 23872,
+      "port": 8000
+    },
+    {
+      "pid": 23872,
+      "executable": "project services/api/.venv/Scripts/python.exe",
+      "module": "data_workspace.main"
+    }
+  ],
+  "command": "Stop-Process -Id 16300,32752,23872 -Force",
+  "exit_code": 0,
+  "postcondition": "Get-NetTCPConnection shows no listeners on5173/8000 and Get-Process reports all3stopped",
+  "correction": "Previous combined recovery command policy rejection did not terminate anything; this explicit direct stop succeeded after fresh ownership verification. No workaround shell or secret read.",
+  "data": "No filesystem deletion; model Key in old API memory dies on process exit, savedsource/semanticversions/budget remain. No service launch or model call this turn.",
+  "next": "User starts ordinary start-workspace.cmd then refreshes knowledge; no need identifyTaskManager process. PID observations must not be reused."
+}

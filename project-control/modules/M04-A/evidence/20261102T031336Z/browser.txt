@@ -1,0 +1,105 @@
+
+Running 34 tests using 1 worker
+
+(node:4664) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok  1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (2.8s)
+  ok  2 tests\connector.spec.mjs:14:1 › table navigation has no filters, shows all headers and mobile preview (1.6s)
+  ok  3 tests\connector.spec.mjs:17:1 › unconfigured source and recoverable permission failure do not claim success (1.1s)
+  ok  4 tests\remote-onboarding.spec.mjs:20:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (9.1s)
+  ok  5 tests\remote-onboarding.spec.mjs:35:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (1.2s)
+  ok  6 tests\remote-onboarding.spec.mjs:44:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (7.4s)
+  ok  7 tests\remote-onboarding.spec.mjs:58:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds (5.9s)
+  ok  8 tests\remote-onboarding.spec.mjs:73:1 › storage inventory is read-only, protects disabled saved data and has no delete action (1.1s)
+  ok  9 tests\remote-onboarding.spec.mjs:81:1 › real isolated cleanup receipt appears without enabling automatic cleanup (2.0s)
+  ok 10 tests\remote-onboarding.spec.mjs:93:1 › expired draft refuses save, keeps fields and explicitly requires retest (4.9s)
+  ok 11 tests\remote-onboarding.spec.mjs:107:1 › legacy API expiry metadata omission is not advertised as active expiry support (2.7s)
+  ok 12 tests\remote-onboarding.spec.mjs:121:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected (1.1s)
+  x  13 tests\remote-onboarding.spec.mjs:132:1 › model readiness comes from actual isolated API and never accepts browser keys or claims generation (5.8s)
+(node:7104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 14 tests\remote-onboarding.spec.mjs:145:1 › Responses candidate is disclosed from real isolated status without enabling generation (1.5s)
+  ok 15 tests\remote-onboarding.spec.mjs:158:1 › estimated model test uses real product route and preserves same receipt without a second reservation (1.6s)
+  ok 16 tests\remote-onboarding.spec.mjs:173:1 › explicit Claude preset shows bearer Haiku and safe 401 refusal without protocol fallback (1.5s)
+  ok 17 tests\remote-onboarding.spec.mjs:188:1 › invalid model response shows safe categories without exposing partial output or retrying (1.3s)
+  ok 18 tests\remote-onboarding.spec.mjs:205:1 › observed gateway alias preserves both model identities and never exposes reasoning (1.2s)
+  ok 19 tests\remote-onboarding.spec.mjs:221:1 › generic personal BYOK config saves session key without restart or browser persistence and tests explicitly (2.5s)
+  ok 20 tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection (5.8s)
+  ok 21 tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets (883ms)
+  ok 22 tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain (749ms)
+  ok 23 tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters (7.9s)
+  ok 24 tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support (11.9s)
+  ok 25 tests\workspace.spec.mjs:7:1 › business-first layout, real output cards and preserved API checks (4.1s)
+  ok 26 tests\workspace.spec.mjs:52:1 › black and white themes persist through reload (1.3s)
+  ok 27 tests\workspace.spec.mjs:61:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (2.1s)
+  ok 28 tests\workspace.spec.mjs:76:1 › API validation snapshots are not persisted as authentic results on reload (1.1s)
+  ok 29 tests\workspace.spec.mjs:83:1 › mobile themes, history access and tools have no overflow (1.1s)
+  ok 30 tests\workspace.spec.mjs:94:1 › unavailable API shows failure and disables input (661ms)
+  ok 31 tests\workspace.spec.mjs:100:1 › loading state is visible before API responds (1.4s)
+  ok 32 tests\workspace.spec.mjs:105:1 › stored text is escaped rather than executed as HTML (922ms)
+  x  33 tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest (5.7s)
+(node:18808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node.EXE --trace-warnings ...` to show where the warning was created)
+  ok 34 tests\workspace.spec.mjs:130:1 › mobile context summary is opt-in and source/model controls do not overflow (1.2s)
+
+
+  1) tests\remote-onboarding.spec.mjs:132:1 › model readiness comes from actual isolated API and never accepts browser keys or claims generation 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByLabel('模型服务实际状态')
+    Expected substring: "start-workspace-model.cmd"
+    Received string:    "连接自己的模型 API选择厂商预设或自定义标准协议；预设名称不代表你的账号已授权或模型已验证。无需终端输 Key。厂商／服务OpenAIDeepSeek 官方Anthropic公司 AI Plan（已授权内网）自定义兼容服务协议OpenAI ResponsesOpenAI-compatible Chat CompletionsAnthropic Messages完整 API 地址模型名称专用 API Key同意向此服务发送固定非敏感测试文本，并接受每次 $0.25 估算预留（非厂商单价或费用保证）；不发数据行、历史、截图自定义服务只允许 HTTPS 公网，私有协议需另适配。Key只通过本机请求发送给后端，提交后密码框清空；不进日志、历史或浏览器存储，后端重启需重输。共享电脑仍需注意隐私。保存连接（不调用模型）清除会话 Key尚未配置专用Key：未配置 · 真实生成：未验证在模型服务中填写专用Key并保存；不在聊天提供密钥，保存不会调用模型。本次后端会话目录：未启用，需先测试。流式、工具与业务问数仍未接入。启用已实测模型仅当前本机身份/后端内存，刷新网页可复用；重启须重新输入Key与测试，不是生产账号或永久配置。推荐在上方直接配置 API Key，保存后再显式测试；无需每次更换Key就重启。终端入口保留为高级方式。首次加载新版后端仍需更新服务一次。测试只验证模型文本连接，不会执行 SQL 或 JOIN；保存、清除与刷新状态不会收费，换厂商不清空预算。刷新模型状态"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByLabel('模型服务实际状态') with timeout 5000ms
+      - waiting for getByLabel('模型服务实际状态')
+        14 × locator resolved to <div aria-label="模型服务实际状态">…</div>
+           - unexpected value "连接自己的模型 API选择厂商预设或自定义标准协议；预设名称不代表你的账号已授权或模型已验证。无需终端输 Key。厂商／服务OpenAIDeepSeek 官方Anthropic公司 AI Plan（已授权内网）自定义兼容服务协议OpenAI ResponsesOpenAI-compatible Chat CompletionsAnthropic Messages完整 API 地址模型名称专用 API Key同意向此服务发送固定非敏感测试文本，并接受每次 $0.25 估算预留（非厂商单价或费用保证）；不发数据行、历史、截图自定义服务只允许 HTTPS 公网，私有协议需另适配。Key只通过本机请求发送给后端，提交后密码框清空；不进日志、历史或浏览器存储，后端重启需重输。共享电脑仍需注意隐私。保存连接（不调用模型）清除会话 Key尚未配置专用Key：未配置 · 真实生成：未验证在模型服务中填写专用Key并保存；不在聊天提供密钥，保存不会调用模型。本次后端会话目录：未启用，需先测试。流式、工具与业务问数仍未接入。启用已实测模型仅当前本机身份/后端内存，刷新网页可复用；重启须重新输入Key与测试，不是生产账号或永久配置。推荐在上方直接配置 API Key，保存后再显式测试；无需每次更换Key就重启。终端入口保留为高级方式。首次加载新版后端仍需更新服务一次。测试只验证模型文本连接，不会执行 SQL 或 JOIN；保存、清除与刷新状态不会收费，换厂商不清空预算。刷新模型状态"
+
+
+      135 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();
+      136 |  const status=page.getByLabel('模型服务实际状态');await expect(status).toContainText('尚未配置');
+    > 137 |  await expect(status).toContainText('未验证');await expect(status).toContainText('start-workspace-model.cmd');
+          |                                                                 ^
+      138 |  await expect(status.getByLabel('专用模型 API Key')).toHaveAttribute('type','password');await expect(status.getByLabel('专用模型 API Key')).toHaveValue('');
+      139 |  await expect(page.getByLabel('切换模型')).toBeDisabled();
+      140 |  await status.getByRole('button',{name:'刷新模型状态'}).click();await expect(status).toContainText('尚未配置');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:137:65
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-model-re-39673-r-keys-or-claims-generation\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-model-re-39673-r-keys-or-claims-generation\error-context.md
+
+  2) tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('complementary', { name: '会话摘要' })
+    Expected substring: "尚无已验证、已授权的模型"
+    Received string:    "CONVERSATION CONTEXT会话摘要×当前目标添加数据文件或描述问题，允许多个来源参与。来源范围在右侧管理；选择多个来源不代表JOIN已执行。任务进度等待提问1口径确认等待确认2数据检索未访问3SQL执行未执行4结果校验未运行来源与附件可选多个已接入来源；真正取数还需确认表及关联键，跨源JOIN尚待受控实现。Excel工作簿-1793067919289local_fileExcel工作簿-1793069002952已禁用，不能加入Excel工作簿-1793070670592已禁用，不能加入Excel工作簿-1793071026624已禁用，不能加入Excel工作簿-1793071194200已禁用，不能加入Excel工作簿-1793076174000已禁用，不能加入Excel工作簿-1793076452893已禁用，不能加入Excel工作簿-1793077529138已禁用，不能加入Excel工作簿-1793077849481已禁用，不能加入Excel工作簿-1793079094996已禁用，不能加入Excel工作簿-1793079507793已禁用，不能加入Excel工作簿-1793085373953已禁用，不能加入Excel工作簿-1793085773814已禁用，不能加入日期数据源-1793066829251已禁用，不能加入日期数据源-1793067105934已禁用，不能加入日期数据源-1793067911212已禁用，不能加入日期数据源-1793068996401已禁用，不能加入日期数据源-1793070663971已禁用，不能加入日期数据源-1793071019149已禁用，不能加入日期数据源-1793071186345已禁用，不能加入日期数据源-1793076166946已禁用，不能加入日期数据源-1793076444229已禁用，不能加入日期数据源-1793077519865已禁用，不能加入日期数据源-1793077839532已禁用，不能加入日期数据源-1793079084811已禁用，不能加入日期数据源-1793079498165已禁用，不能加入日期数据源-1793085363481已禁用，不能加入日期数据源-1793085762677已禁用，不能加入日期数据源-1793086724416已禁用，不能加入来源与证据暂无查询来源回执；选择数据源不等于已经取数。结果与文件未生成可下载文件。会话文字只保存在此浏览器，API回执不跨刷新保留。模型服务与连接测试×仅实测并显式启用的模型进入本次会话目录；下方最小生成测试不代表已取数。不会读取Claude Code或其他宿主工具的密钥。可在下方选择厂商、输入自己的Key。使用本机专用Key和所选协议/模型候选（Claude或Responses入口），先完成最小生成测试；实测后可显式启用目录，业务问数仍待接入。本次估算预算目标为15美元、参考上限20美元。按每次0.25美元保守预留，最多60次；不是实际账单或硬费用保证。仅显式点击测试才发送固定非敏感文本；不发送表行、全历史或截图。输入Key和刷新状态不会自动收费。连接自己的模型 API选择厂商预设或自定义标准协议；预设名称不代表你的账号已授权或模型已验证。无需终端输 Key。当前后端未加载快捷接入接口；更新服务后刷新，不要在旧页面提交 Key。厂商／服务OpenAIDeepSeek 官方Anthropic公司 AI Plan（已授权内网）自定义兼容服务协议OpenAI ResponsesOpenAI-compatible Chat CompletionsAnthropic Messages完整 API 地址模型名称专用 API Key同意向此服务发送固定非敏感测试文本，并接受每次 $0.25 估算预留（非厂商单价或费用保证）；不发数据行、历史、截图自定义服务只允许 HTTPS 公网，私有协议需另适配。Key只通过本机请求发送给后端，提交后密码框清空；不进日志、历史或浏览器存储，后端重启需重输。共享电脑仍需注意隐私。保存连接（不调用模型）清除会话 Key可进行最小模型测试专用Key：仅后端内存已配置 · 真实生成：已验证最小生成候选协议：anthropic_messages · 认证：bearer · 模型：deepseek-v4.1-flash（已测最小生成；连接测试不等于取数）可点击最小模型测试；每次估算预留0.25美元，费用不是硬保证，不执行SQL。本次后端会话目录：已实测，待显式启用。流式、工具与业务问数仍未接入。仅当前本机身份/后端内存，刷新网页可复用；重启须重新输入Key与测试，不是生产账号或永久配置。估算预留 $2.75 / 目标 $15 · 已预留 11/60 次。每次按 $0.25 估算，预算参考上限 $20；不是实际费用或硬限额。接受估算费用，仅发送固定非敏感测试文本，不发送表行、历史或截图测试模型连接（估算 $0.25）推荐在上方直接配置 API Key，保存后再显式测试；无需每次更换Key就重启。终端入口保留为高级方式。首次加载新版后端仍需更新服务一次。测试只验证模型文本连接，不会执行 SQL 或 JOIN；保存、清除与刷新状态不会收费，换厂商不清空预算。刷新模型状态管理数据源只读摘要 · 不执行查询"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toContainText" getByRole('complementary', { name: '会话摘要' }) with timeout 5000ms
+      - waiting for getByRole('complementary', { name: '会话摘要' })
+        14 × locator resolved to <aside aria-label="会话摘要" class="workbench-panel">…</aside>
+           - unexpected value "CONVERSATION CONTEXT会话摘要×当前目标添加数据文件或描述问题，允许多个来源参与。来源范围在右侧管理；选择多个来源不代表JOIN已执行。任务进度等待提问1口径确认等待确认2数据检索未访问3SQL执行未执行4结果校验未运行来源与附件可选多个已接入来源；真正取数还需确认表及关联键，跨源JOIN尚待受控实现。Excel工作簿-1793067919289local_fileExcel工作簿-1793069002952已禁用，不能加入Excel工作簿-1793070670592已禁用，不能加入Excel工作簿-1793071026624已禁用，不能加入Excel工作簿-1793071194200已禁用，不能加入Excel工作簿-1793076174000已禁用，不能加入Excel工作簿-1793076452893已禁用，不能加入Excel工作簿-1793077529138已禁用，不能加入Excel工作簿-1793077849481已禁用，不能加入Excel工作簿-1793079094996已禁用，不能加入Excel工作簿-1793079507793已禁用，不能加入Excel工作簿-1793085373953已禁用，不能加入Excel工作簿-1793085773814已禁用，不能加入日期数据源-1793066829251已禁用，不能加入日期数据源-1793067105934已禁用，不能加入日期数据源-1793067911212已禁用，不能加入日期数据源-1793068996401已禁用，不能加入日期数据源-1793070663971已禁用，不能加入日期数据源-1793071019149已禁用，不能加入日期数据源-1793071186345已禁用，不能加入日期数据源-1793076166946已禁用，不能加入日期数据源-1793076444229已禁用，不能加入日期数据源-1793077519865已禁用，不能加入日期数据源-1793077839532已禁用，不能加入日期数据源-1793079084811已禁用，不能加入日期数据源-1793079498165已禁用，不能加入日期数据源-1793085363481已禁用，不能加入日期数据源-1793085762677已禁用，不能加入日期数据源-1793086724416已禁用，不能加入来源与证据暂无查询来源回执；选择数据源不等于已经取数。结果与文件未生成可下载文件。会话文字只保存在此浏览器，API回执不跨刷新保留。模型服务与连接测试×仅实测并显式启用的模型进入本次会话目录；下方最小生成测试不代表已取数。不会读取Claude Code或其他宿主工具的密钥。可在下方选择厂商、输入自己的Key。使用本机专用Key和所选协议/模型候选（Claude或Responses入口），先完成最小生成测试；实测后可显式启用目录，业务问数仍待接入。本次估算预算目标为15美元、参考上限20美元。按每次0.25美元保守预留，最多60次；不是实际账单或硬费用保证。仅显式点击测试才发送固定非敏感文本；不发送表行、全历史或截图。输入Key和刷新状态不会自动收费。连接自己的模型 API选择厂商预设或自定义标准协议；预设名称不代表你的账号已授权或模型已验证。无需终端输 Key。当前后端未加载快捷接入接口；更新服务后刷新，不要在旧页面提交 Key。厂商／服务OpenAIDeepSeek 官方Anthropic公司 AI Plan（已授权内网）自定义兼容服务协议OpenAI ResponsesOpenAI-compatible Chat CompletionsAnthropic Messages完整 API 地址模型名称专用 API Key同意向此服务发送固定非敏感测试文本，并接受每次 $0.25 估算预留（非厂商单价或费用保证）；不发数据行、历史、截图自定义服务只允许 HTTPS 公网，私有协议需另适配。Key只通过本机请求发送给后端，提交后密码框清空；不进日志、历史或浏览器存储，后端重启需重输。共享电脑仍需注意隐私。保存连接（不调用模型）清除会话 Key可进行最小模型测试专用Key：仅后端内存已配置 · 真实生成：已验证最小生成候选协议：anthropic_messages · 认证：bearer · 模型：deepseek-v4.1-flash（已测最小生成；连接测试不等于取数）可点击最小模型测试；每次估算预留0.25美元，费用不是硬保证，不执行SQL。本次后端会话目录：已实测，待显式启用。流式、工具与业务问数仍未接入。仅当前本机身份/后端内存，刷新网页可复用；重启须重新输入Key与测试，不是生产账号或永久配置。估算预留 $2.75 / 目标 $15 · 已预留 11/60 次。每次按 $0.25 估算，预算参考上限 $20；不是实际费用或硬限额。接受估算费用，仅发送固定非敏感测试文本，不发送表行、历史或截图测试模型连接（估算 $0.25）推荐在上方直接配置 API Key，保存后再显式测试；无需每次更换Key就重启。终端入口保留为高级方式。首次加载新版后端仍需更新服务一次。测试只验证模型文本连接，不会执行 SQL 或 JOIN；保存、清除与刷新状态不会收费，换厂商不清空预算。刷新模型状态管理数据源只读摘要 · 不执行查询"
+
+
+      117 |  await expect(page.getByLabel('选择问数数据源')).toHaveCount(0);await expect(panel.getByRole('region',{name:'多来源上下文'})).toBeVisible();
+      118 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();
+    > 119 |  await expect(page.getByRole('region',{name:'模型接入说明',exact:true})).toContainText('15美元');await expect(panel).toContainText('尚无已验证、已授权的模型');
+          |                                                                                                              ^
+      120 |  await page.getByLabel('业务问题').fill('请统计订单数量');await page.getByRole('button',{name:'发送问题'}).click();
+      121 |  await expect(panel).toContainText('自然语言请求未执行');await expect(panel).toContainText('暂无查询来源回执');await expect(panel).toContainText('未生成可下载文件');
+      122 |  await expect(page.getByRole('region',{name:'执行进度'})).toContainText('未执行');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:119:110
+
+    Error Context: tmp\m01-browser-results\workspace-reference-style--fdcc0--model-entry-remains-honest\error-context.md
+
+  2 failed
+    tests\remote-onboarding.spec.mjs:132:1 › model readiness comes from actual isolated API and never accepts browser keys or claims generation 
+    tests\workspace.spec.mjs:113:1 › reference-style context panel shows only real state and model entry remains honest 
+  32 passed (2.2m)

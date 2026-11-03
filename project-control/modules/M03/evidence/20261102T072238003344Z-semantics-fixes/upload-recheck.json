@@ -1,0 +1,12 @@
+{
+  "reviewer": "self_review",
+  "full_run": "559passed1failed, UPLOAD_FAILED in existingtest_actual_preflight_runs_in_worker_not_api_and_promotes_only_valid_upload",
+  "diagnosis": "inner original exception masked by intentionally safe product envelope; cannot claim exact cause yet",
+  "target_recheck": {
+    "command": "pytest services/api/tests/test_upload_preflight_storage.py::test_actual_preflight_runs_in_worker_not_api_and_promotes_only_valid_upload -q",
+    "exit_code": 0,
+    "passed": 1
+  },
+  "next": "rerun allbackend samecode with safe exception-class/winerror diagnostic instrumentation only, no raw exception/body/Key; frontend and contracts unchanged reuseproof",
+  "safety": "No product assertion deletion/reretry/limit relaxation/unknownprocessstop."
+}

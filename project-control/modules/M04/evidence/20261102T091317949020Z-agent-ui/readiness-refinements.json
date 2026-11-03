@@ -1,0 +1,11 @@
+{
+  "reviewer": "self_review",
+  "scope": "C01fullcheckfailure/actual-event refinements",
+  "failed_full": "existingHTTPMCPfixture query/dates/100row allassertionspassed but ownsSSEserverthreadshutdown>10s, Win10054callbacklogged. Originalfailedresult preserved",
+  "fix": "independentfixture uvicorn timeout_graceful_shutdown=2, same10s threaddeathguard and no canceleddataassertions; no productserver shutdown changes",
+  "target_test": "29agent+HTTPcasespassed afterfix before smallUTC/copy changes",
+  "actualevent": "resolve nowreportsreading inprogress first, completedmetadata only afteractualverify_context;rightsteps onlycompletedmetadata marksaccessed",
+  "nocontextUI": "agent-enabled question with nosemantic showsactionablechooseknowledgecontext, no modeltask/paidcall;welcomecopy actualcapabilityaware",
+  "timezone": "locked engine rejects TimeZone configurationchanges as verified. Keep lock and inspect existing TimeZone before timefilter, reject nonUTC, never relaxlock to force setting. UTC-onlyapproved semantics remain explicit.",
+  "not_run": "final allregression/realuserproviderJSON/SQLbusiness/remainingJOINmodule"
+}

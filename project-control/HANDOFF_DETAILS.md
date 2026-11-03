@@ -1,3 +1,190 @@
+# 2026-11-03 新窗口交接（revision161）
+
+本次只保存交接、校验进度并复核源码指纹；未重跑测试、重新检查实时服务、停止/启动进程、读取Key或调用真实模型。最近实际测试仍为11月2日094834Z：593后端/17前端/44浏览器及types/build/pip通过，当前源码指纹一致。M04-B/M04-C01仍DO，未整体验收。
+
+现在无需用户提供Key或再次批准方案。下一步先由新窗口只读核当前API/启动器归属与Agent能力；11月2日API404及所有PID仅历史，不推断当前状态，不继承exec、不盲杀、不另开重复启动器。若需要停止/重启，遵循授权边界。真实网关闭环需要用户在网页安全配置/测试/启用模型，选择已发布启用口径与来源，明确发送问题并人工确认查询；可在新版服务就绪后进行，不聊天给Key、不搬宿主令牌、不自动付费。
+
+LangGraph及26个hashlocked新增依赖已安装，不重复安装。M01/M02/M04-A/M03有限本机验收不变；真实网关JSON问数required/not_run、L2/L3/L4/JOIN及M05–M08未完，保留全部发布门禁，预算/PG后补不重问。源码/交接未commit/push。以progress.json和自动HANDOFF为真源。
+
+---
+以下是历史状态。
+
+# 最新状态：M04-B C01 回归通过，仍 DO（2026-11-02，revision 160）
+
+D-M04B-PLAN-INSTALL-069 已获用户“允许该方案”批准并实施。LangGraph 1.2.19 / 26 个新增哈希锁包已安装，无现有包替换。单表 count/sum/ratio、维度/明确时间、受限模型 JSON、服务端 AST/权限/版本、人工确认、独立受治理 MCP 全输入聚合、QA/结果卡已接入工作台。
+
+最终 `project-control/modules/M04/evidence/20261102T094834Z/results.json`：593 后端、17 前端、44 浏览器通过，types/build/pip 退出0；源指纹复核一致。33 Agent 专项包含在后端中。独立 fake-model + 真实本机 MCP 合成150行结果11325不代表真实网关/公司业务验证。前三次失败及修复原样保留，当前 self_review 只覆盖 C01，不是完整模块审计。
+
+最新只读核：8000 的运行 API 仍 Agent capabilities404；5173 Vite 正常。需安全加载新版 API 后，用户网页配置/测试/启用模型、选择已发布启用口径并勾选来源、明确问题/必要字段外发，再确认查询。不要另开重复启动器；原启动器安全停止再运行 start-workspace.cmd。当前PID仅观察，后续操作先核归属；本轮没有停止/重启、读取Key或自动真实模型收费。Key只用户网页安全输入，不聊天提供或搬宿主令牌；预算和保存来源不重置。
+
+M04 保持 DO，真实网关 JSON → 已批准语义 → 授权 MCP 结果仍 required/not_run；L2/L3/L4、JOIN 关系/粒度合同与 M05–M08 未完成，不能称整个 MVP 完成。M01/M02/M04-A/M03有限本机人工验收及原 PG/生产/公网/历史模型门禁不变；模型目录/复用Key仍待办。源码与此次交接未 commit/push。
+
+下一步以 progress.json 的 next_action 为准。详细 evidence：`project-control/modules/M04/evidence/20261102T094834Z/checkpoint-review.json`。
+
+---
+以下仅为历史，不覆盖上述当前状态。
+
+# 最新进度：M03已验收，M04-B进入PLAN（2026-11-02）
+
+用户“我已验收，你继续推进M04b吧”明确D067。知识库新版GET200；页面旧backend提示修复后17frontend/42browser/types/build实际passed，560backend非frontendcodehash未变复用。M03本机单表producer closed/local_ready，其他未来语义/RAG/JOIN及实际Agent消费RGnotrun保留。
+
+当前M04原ID=M04-B/M04-C01/PLAN。plan.md已规划LangGraph有限图：已批准语义→受限modelJSON计划→确定性SQLAST/权限/版本→人确认→新受治理local聚合MCP→全量结果QA/结构卡。现previewonlyAPI不能聚合，不以100行算总体，也不扩权旧6toolHTTP/PG。
+
+LangGraph1.2.19（2026-10-30）MIT/Python>=3.10与WinCPython3.12.14wheelmetadata核；pipdryrun只26新增0替换，无实际安装。候选pins/hash/licenses明确，LangSmith/SDK传递包外部trace禁止、hostKeys/env不继承，nativecompat/graph/fullbaseline要安装后测。
+
+待D069一次确认推荐PLAN及项目venv依赖安装、新local聚合contract/人工确认/QA。方向批准不是安装/真实调用/生产部署权限，确认前不实施Agent；既有预算/PG后补不重问。第一C01后继续C02C03/JOIN等完整模块范围，不能单表成功就说MVP完成。
+
+原有限本机验收/requirednotrun/旧模型failed历史/生产riskgate保持。此次未收费/读Key/重启服务/安装/SQL/push；模型目录Keyreuse仍待办。
+
+---
+历史不覆盖上方状态。
+
+# 最新：知识库错误为旧运行后端404（2026-11-02）
+
+当前M03尚未人工验收，D067仍待确认。用户页面HTTP_ERROR实核/api/v1/semantics404，而health/model正常，旧API未加载新语义路由。fresh核项目Vite/API子进程归属；用户授权关闭/启动但tool执行策略拦截，实际未关闭/启动或搬运Key。
+已改页面为SEMANTIC_BACKEND_OUTDATED明确原启动器停止/重新加载/刷新步骤，预算与保存来源保持；17frontend/types/build/1targetbrowseractualpassed。原560后台与41browser是前次证据，页面错误修复后41browser须最终重验，未声称整回归已再过。
+需要用户在原项目终端停止服务（若终端已关，任务管理器结束经重新核实的本项目进程），再普通start-workspace.cmd启动新版，knowledgeGET200后走用户语义流程。重启Key内存丢失由用户安全网页输入，不聊天给Key、不搬宿主认证。
+M01/M02/M04-A有限本机验收和发布门禁不变，M03producer已实现但M04B模型取数/SQLJOIN未完成。此次error修复不是D067交付验收，安装/生产/收费不自动批准，源码/交接未push。
+
+---
+# 最新状态（2026-11-02，M03 单表语义首切片待验收）
+
+- M01/M02/M04-A有限本机人工验收不变。用户明确确认D064后M04A finite_local closed/local_ready；旧候选failed/required未改，归档与再启用门禁保留，公网/生产/完整生命周期/high风险补验绑定不取消。真实Messagesstream已用户截图/readonly确认，不重复测试。
+- D066批准M03单表定义/真实字段mapping/人工发布/非秘密SQLite存储。当前M03 ACT/local_ready、尚未delivery关闭。
+- 已实现knowledgeUI：元数据-only MCP/HTTP/PG系统目录contract（不preview取行），count_rows/sum/ratio/grain/unit/可选时间/别名，JSON草稿import/冲突检查/明确Boolean批准、v1/v2不可变版本、幂等/restart、pack软停用/重验启用/CAS状态版本。旧版只追溯不新计划、disabled/stale禁止下游resolve。
+- 当前完整560backend实跑passed；16frontend/41browser/types/build/pip早一同code实跑passed，所有sourceSHA一致复用，不说再跑UI；最终075442880385Z证据。35语义专项nativeMCP/ownedHTTP+fakePG，不是realPG/生产或用户研究。
+- 早期capability/placeholder旧断言失败、PIDfile就绪race、一次preflight安全UPLOAD_FAILED失败原样留证据。PID等待修复不放宽时间/进程资源断言；preflight根因未定位但同code单case/560全量重过，medium观察留到生产前复盘，不改production检查。
+- 发布定义与metadata契约不是企业认证/唯一性统计，也不是actualAgent消费/SQL完成；未来M04B实际LLM+当前semantic+治理MCP聚合/质检RGnot_run。RAG/JOIN/hierarchy等未实施，首切片不冒称全PRD。
+- 待D067用户验收当前本机单表producer后进入M04B PLAN，不自动install/callmodel/deploy。准备已实核langgraph未装，M02preview AST仅SELECT列/LIMIT，不支持聚合WHEREJOIN，不用100行计算总体。
+- 默认用户backend是否加载M03未验证。本轮没有停/重启或读Key；需要时用户原启动器安全加载一次，不盲杀/继承PID。源码/交接未push，data/semantics/不入Git，模型目录keyreuse/预算/PG延期照旧。
+
+---
+历史不能覆盖上方当前状态。
+
+# 最新状态：真实流式已通过，等待交付范围与 M03 PLAN 确认
+
+2026-11-02。M01/M02有限本机验收不变；M04-A仍active/DO，未整体验收。
+
+用户截图“流式完成已确认、OK”，本轮readonlystatus证实DeepSeek Messages generation_verified/stream_verified=true、新流式版本已加载；无需再次收费测试。当前catalog_enabled=false需用户显式启用，不自动修改。
+
+525backend/16frontend/39browser源码证据仍一致。真实stream门禁已passed；旧Responsesfailed和其他rootauth未验、公网provider/TLS/生产/完整生命周期补验并非当前Messages失败，结果原样保留。
+
+推荐D064一次确认：以本机AIPlan已实测能力有限验收M04-A；未选协议历史候选原失败/required完整归档保留再启用前门禁；外部/生产/完整生命周期绑定发布补验；采用M03单表count/sum/ratio语义、真实字段映射/人工批准、非秘密SQLite版本存储（版本持久保留、无自动删除），不装RAG。用户确认前不关闭/激活M03。
+
+方案草稿M03/PLAN_DRAFT.md；正式范围见当前scope-review。M04-B仍LangGraph＋治理Harness，SQLJOIN未完成；目录/复用Key待办不变。本轮无重启/收费/Key访问，源码/交接未push。
+
+---
+历史不能覆盖上述当前状态。
+
+# 最新续接摘要（2026-11-02，流式安全诊断与不排队修复）
+
+- M01/M02有限本机验收不变；M04-A仍DO/partial未整体验收，不跳M03或宣称MVP闭环。
+- 最新完整实跑525后端、16前端、39浏览器、types/build/pip退出0、源码稳定：061501Z。模型上游fakeKey/独立fixture，非真实gateway/TLS。
+- 新增固定流式诊断reason/仅HTTP401403429，不回显上游正文/模型/Key；同UUID只读回执不追加预算。stream/config busy的新普通test立即拒绝，不排队收费；现context已有普通test回执可读。
+- fresh只读当前API仍glm-5.3非流式generation_verified/enabled，但没有stream_management；用户未加载本轮流式。未读取Key/env、实际收费调用、服务重启或网关modelcatalog请求。
+- 需要用户本人在原启动器加载新版、网页安全输入Key、设置显式一次固定流式测试收回执，后续诊断只读不用反复测试或索价格。Key不能发聊天，不自动替用户搬运/持久化。
+- M03/PLAN_DRAFT已准备单表语义count/sum/ratio、真实字段映射、人工发布版本/非秘密存储候选；只是草稿，未批准/激活。M04-A范围审查＋人工验收后才确认M03PLAN，再M04-B LangGraph＋治理Harness调用模型/执行SQL。
+- 真实网关stream/用户完整Key生命周期/公网TLS/Agent业务调用/SQLJOIN/PG生产仍未验；历史Responsesfailed与不同rootauth候选门禁不改required。AIPlan模型目录/复用Key切换保留BACKLOG，不批量扫描。
+- 本轮源码/交接未commit/push；进度关键checkpoint137和最终138。PID/exec不可继承，不自动创建新聊天或调度任务。
+
+---
+历史不覆盖上述当前状态。
+
+# 最新续接摘要（2026-11-02，Messages流式＋D063模型目录待办）
+
+- M01/M02有限本机已验收，M04-A-C01仍DO/整体partial、未人工验收，不重置。今天MVP目标不免除门禁。
+- 用户完成模型修改；只读当前runtime证实glm-5.3非流式generation_verified/enabled。未再次收费test/读Key/改运行服务。当前新stream_management未加载，真实网关stream仍未验。
+- D063网关全部可用model目录＋输入区同连接Key复用切换已列BACKLOG.md，不假造清单/猜测目录URL或批量test；当前仍单会话配置/手动名称，跨重启秘密存储另决策。
+- 新Messages固定文本stream：真实上游SSE安全解析→有界后台任务/回执→网页500ms只读快照，有显式同意/开始/同UUID读取/取消/partial。完成须严格EOF/usage/model等检查，thinking不输出，tool拒绝，secret跨chunk后缀拦截，预算未知保留不重试。只模型连接，不是Agent问数/SQL。
+- 全回归517backend/16frontend/38browser/types/build/pip实际通过（055036Z）；CSS手机wrap与截图补验后全16frontend/38browser/types/build再过（055807447407Z），所有非前端hash不变，517后台证据显式复用。28stream安全专项和独立实际loopbackTCPHTTP SSE过，均fakeKey/非实际supplierTLS；最新手机partial流式截图已看、无元素横溢出。
+- 仅Messages首流式，Responses/Chatstream明确unsupported，不自动换协议。真实用户AIPlanstream/完整设置Key生命周期/公网supplierTLS仍required/not_run；历史Responsesfailed/root候选not_run保持。
+- 主干仍M04-A实际stream与范围审查/人工验收→M03语义→原M04=M04-B LangGraph＋治理Harness。M03/PREPARATION只是准备，没有激活；业务Agent模型调用/SQLJOIN尚未实现，不能说MVP完成。
+- 用户在核归属的原启动器加载新版一次后，可在设置显式流式测试，固定非敏感文本估算0.25；不聊天给Key、不搬宿主Token、不重复问预算/PG生产后补。不盲杀/继承PID/exec，本轮未重启用户服务。
+- 源码/交接未commit/push；不创建新聊天或自动monitor。最新progress按validate为准。
+
+---
+以下历史不能覆盖上述最新状态。
+
+# 最新续接摘要（2026-11-02，设置与自选模型 D062）
+
+- M01/M02有限本机验收不变，M04-A-C01仍DO、未整体验收；LangGraph＋治理Harness顺序不改。
+- 左栏常驻“设置”进入独立模型配置页；右摘要移除接入表单/长文，仅任务、来源、附件和证据。输入区链接跳设置，返回保留草稿/历史，黑白主题和手机布局通过。
+- 模型名称用户自填，各preset不自动填名/锁名，AIPlan也自由填写。只地址/协议/auth固定原批准目标；模型响应exact、已证实alias、权限与预算未放宽。测试成功后显式启用，再在输入区选择；选择不调用/不执行SQL。
+- 当前一个后端会话配置，非完整供应商模型发现/多profile秘密持久化。Key提交/离开清瞬时输入，不进storage/history/log；改Key/模型/禁用清除失效，预算保留。
+- 最终16前端/37浏览器/types/build实跑通过，指纹稳定：20261102T040455413287Z。489后端和pip依赖035206Z实跑通过；仅前端修复后所有非前端来源hash不变、明确复用，backend-reuse.json保存证明。
+- hydrate竞态、settings/空hash原生BackForward、只读busy误锁返回和测试依赖live模型目录已修；初次35/36和34/37失败保留，不删断言。业务未接入布局使用明确空catalogfixture，真正目录/save/test/enable/select用独立产品API/假Key上游验证，非公网或真实用户研究。
+- 旧孤儿服务只在用户明确要求时关闭并确认释放。用户重启后本轮重新只读核新父链；本轮不停止/重启或改用户Key/模型、不收费、无公司生产SQL。不得继承任何旧PID/exec。
+- 页面刷新可见新设置；若AIPlan显示旧后端model_name_editable缺失提示，用户本人在核归属的启动器加载新版一次。不给聊天Key，不搬运宿主Token，不重问预算/PG生产后补。
+- 未完成：真实用户新设置Key流程、公网API/TLS、真实stream（STREAM_NEXT）、工具/结构化/SQL-JOIN、PG/生产。局部设置完成不整体验收或进入M03。源码/交接未commit/push。
+
+---
+以下历史不覆盖上述最新状态。
+
+# 最新续接摘要（2026-11-02，会话目录切片）
+
+- M01/M02有限本机验收不变，M04-A-C01仍DO未整体验收；LangGraph＋治理Harness顺序不改。
+- 已补会话模型目录、显式启用、版本代际失效、禁用/清除、服务端预算/忙/取消撤销及输入区授权模型选择。选择不调用模型/SQL，只当前单配置，不造第二个模型，不引入秘密持久化。
+- 最终482后端、16前端、34浏览器及types/build/pip实际通过、源码稳定；证据20261102T032118Z。模型浏览器链路是独立产品API＋假Key/隔离上游，不是公网用户实操。
+- 首轮2旧文案失败保留20261102T031336Z；断言更新为网页BYOK/显式启用，保留并加强无自动调用/无假SQL检查。历史Responses failed和root/x-api-key required/not_run保留，需按当前协议scope审查。
+- 5173/8000及父链已只读核实属于本项目；默认API仍缺connection_management，旧Key untouched。用户本人原启动终端Ctrl+C后用普通start-workspace.cmd加载新版一次；之后Key保存/替换/清除都在网页，不需每次重启。不索聊天Key/不复制宿主令牌。
+- 未完成：用户新网页Key实操、公网API/TLS、真实流式（STREAM_NEXT.md）、工具/结构化输出、SQL/JOIN、PG/生产。不整体验收或进入M03。
+- 本轮源码及交接均未commit/push，不继承PID/exec，下次重启前重新核实际归属。
+
+---
+以下历史仅作来源，不覆盖上方最新状态。
+
+# 最新进度与续接摘要
+
+更新：2026-11-02（Asia/Shanghai）。主状态以 progress.json 校验结果为准。
+
+## 当前状态
+- M01 已验收；M02 已按有限本机范围人工验收，PG/生产补验 required/not_run 保留。
+- 当前 M04-A-C01 / DO / active / not_verified，局部 self_review 通过、模块审计 partial，未人工验收关闭。
+- 顺序保持 **M04-A → M03 → 原 M04=M04-B**。Agent采用 **LangGraph＋项目治理Harness**；不嵌入Claude Code CLI/Agent SDK，不安装第二套自由Agent循环。
+
+## 已实现及实际证据
+- 通用个人 BYOK：OpenAI Responses、OpenAI-compatible Chat Completions、Anthropic Messages；可选厂商预设＋自定义完整HTTPS接口地址/model/passwordKey，AIPlan只是可选内网预设。
+- 网页保存/替换/清除Key，仅后端本次内存；密码提交后清空，不进浏览器storage/历史/log/secret文件。保存/刷新不收费，显式固定非敏感测试才调用；更新Key使旧测试失效，忙时拒绝变更。
+- 公网SSRF保护：HTTPS、DNS所有地址global、连接固定已验证IP并保留Host/SNI、禁跳转/代理继承。既有内网AIPlan仅exact批准预设，不允许任意私网地址。
+- AIPlan用户真实最小文本成功：Messages/Bearer，请求 deepseek-v4.1-flash、返回 deepseek-v4-1-flash-261017 精确版本别名；思考块隔离丢弃、最终只text，双模型ID可追溯。这不是自然语言SQL/JOIN完成。
+- 用户已接受近似10–20USD测试预算：目标15USD、每次0.25USD估算预留、最多60次，20USD仅软预算参考而非厂商硬保证；未知/失败保留预留，跨Key/厂商/重启不reset账本。
+- 最终实跑 **471后端（含184模型/预算专项）、16前端、34浏览器**，types/build/pip均退出0；证据 20261030T093324Z/results.json。PRD/进度守卫与仓SQL/Parquet对账有实际通过证据。
+- 本轮2026-11-02仅复核progress与上述126个source指纹全一致，未重跑产品测试、未联网/收费或处理服务。
+
+## 未完成，不能冒充完成
+- 个人公网供应商真实账号/API/TLS集成及新网页输入流程的用户实操 not_run；隔离fixture不能替代真实厂商验证。
+- 授权模型目录/启用选择、模型配置保存编辑启禁的完整合同、流式验收仍未闭环；Key秘密持久化/生产身份不是本切片能力。
+- M03语义及原M04-B受控规划、SQL生成执行/真实JOIN未实现；不得以100行预览计算总体或将最小生成当智能问数闭环。
+- 正式身份/跨租户/生产部署及PG真实实例门禁保留。
+- tests存在历史命名与摘要残留：real-model-api 是早期Responses拒绝 failed；real-claude-model-test 是后来AIPlan成功 passed；另有早期重复types/stale。下一审查按最新协议/证据澄清与归档，不删除失败、取消required或自动绿灯。
+
+## 下一步（不要重新初始化）
+1. 核对实际工作树和5173/8000监听/健康/拥有者，不能继承任何旧PID或exec。服务是否还在运行本轮没有确认。
+2. 若后端仍旧版，由用户本人Ctrl+C/Y并普通 start-workspace.cmd 加载新版一次；此后网页输入Key/替换/清除不需终端或重启。无需在聊天提供Key，不读取或复制Claude/Codex认证。
+3. 走通“模型服务→厂商或custom协议→地址/model/passwordKey→同意用途/估算→保存→显式测试→清除/替换”的真实用户路径。公司AIPlan已批准；其他厂商仅按其表单明确用途、专用Key和测试同意发固定文本，不自动调用。
+4. 对照M04-A PRD补齐授权模型目录/状态、配置生命周期和真实流式/异常验收，先审当前切片缺项并推进已批准范围；涉及新依赖、持久秘密方案、生产权限或更广数据外发需另确认。模块审计＋人工验收后才进入M03。
+
+## 产品与安全约束
+保留聊天临时文件、右侧多来源、显式黑白主题、本地历史、真实pipeline和结构化卡；SQL/schema默认折叠。秘密不进source/Git/日志/浏览器持久存储；不执行提供配置的hooks/statusline/未知命令，不复制宿主Token。既有data/connections与data/model-runtime保留不删除，不通过清账/改断言消除失败。
+
+## Git与本轮改动
+- 私有仓库 https://github.com/Albert-WuCSU/intelligent-data-workspace，main。
+- 产品源码提交 71ae0ab4d0777fdcfb2e119bd5feb200a1eab1f0；随后交接提交 fe824fdec05f05e98b086755d9b92b8c94d1f5a9，上一轮已实核远端一致。
+- 2026-11-02本轮起始HEAD仍fe824fd、工作树干净。此次只写交接/进度文档，**未commit/push**；不能说新文档已上传。
+- 不自动创建新聊天。新窗口在同项目目录读取项目内skills/project-pdca和最新档案；个人安装Skill未同步有限延期校验，状态脚本以项目内版本为准。
+
+## 复现命令
+```powershell
+./services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root .
+./services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py show --root .
+./services/api/.venv/Scripts/python.exe scripts/check.py --module M04-A --browser
+```
+最后一条需要先核实本机服务，重新运行只在有代码变化/需要补验证时；本轮没有运行该回归。
+
+
+---
+# 历史交接（旧状态不得覆盖上方最新摘要）
+
 # 项目交接详细说明
 
 更新2026年10月26日。配合自动生成的HANDOFF.md阅读；当前状态以progress.json为准，不根据本文件覆盖JSON。

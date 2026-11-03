@@ -1,0 +1,40 @@
+{
+  "reviewer": "self_review",
+  "scope": "read-only live service recovery",
+  "ports": {
+    "5173": {
+      "pid": 6088,
+      "parent": 24564,
+      "workspace_vite": true,
+      "owner": "current_user"
+    },
+    "8000": {
+      "pid": 34220,
+      "parent": 10668,
+      "ancestor": 24564,
+      "parent_executable": "project .venv python",
+      "owner": "current_user"
+    }
+  },
+  "http": {
+    "web": 200,
+    "model_status": 200,
+    "wrong_health_path": 404
+  },
+  "observed": {
+    "credential_configured": true,
+    "generation_verified": true,
+    "connection_management_field": false,
+    "models": [],
+    "stream_verified": false,
+    "budget_reserved_requests": 11
+  },
+  "conclusion": "Existing API lacks new connection_management field; do not submit or clear live Key. No paid calls, secret reads, service termination or restart. New code validation will use isolated fixtures.",
+  "remaining": [
+    "user loads new default API via own launcher",
+    "real web Key lifecycle",
+    "authorized session catalog/lifecycle",
+    "real streaming",
+    "personal public supplier TLS integration"
+  ]
+}

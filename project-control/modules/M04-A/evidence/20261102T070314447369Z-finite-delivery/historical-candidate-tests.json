@@ -1,0 +1,27 @@
+{
+  "decision_id": "D-M04A-DELIVERY-M03-064",
+  "tests": [
+    {
+      "id": "real-model-api",
+      "required": true,
+      "status": "failed",
+      "environment": "local",
+      "integration": "real",
+      "command": "User-triggered model-service/test via browser; user receipt screenshot MODEL_ACCESS_DENIED; readonly GET model-service/status",
+      "exit_code": 1,
+      "scope": "Historical real Responses 401/403 failure retained. Independently verified AIPlan Messages/Bearer generation has separate evidence, does not rewrite this failure.",
+      "evidence_id": "M04A-REAL-ACCESS-DENIED-018",
+      "code_fingerprint": "eada6ccb6267488641b4ccdf75d458596b59930d644e15d41e92e2076ecd5b33"
+    },
+    {
+      "id": "real-sdk-root-key-model-test",
+      "required": true,
+      "status": "not_run",
+      "environment": "local",
+      "integration": "real",
+      "command": [],
+      "scope": "Historical unselected root/v1/messages+x-api-key candidate required/not_run retained; current AIPlan coding-plan Messages/Bearer is a different contract. Review scope before module acceptance, no silent downgrade."
+    }
+  ],
+  "scope": "exact historical fields retained, required/failed/not_run remain; unselected former endpoint/auth contracts, not replaced by successful currentMessages. Re-enabling candidate requires independent verification before offering to user."
+}

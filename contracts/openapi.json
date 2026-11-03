@@ -606,6 +606,555 @@
         }
       }
     },
+    "/api/v1/semantics": {
+      "get": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Versions",
+        "operationId": "versions_api_v1_semantics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemanticList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/sources/{source_id}/tables/{table_id}/schema": {
+      "get": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Schema",
+        "operationId": "schema_api_v1_semantics_sources__source_id__tables__table_id__schema_get",
+        "parameters": [
+          {
+            "name": "source_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Source Id"
+            }
+          },
+          {
+            "name": "table_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Table Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SemanticSchema"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/drafts": {
+      "post": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Create Draft",
+        "operationId": "create_draft_api_v1_semantics_drafts_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SemanticDraftInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DraftReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/drafts/{draft_id}/check": {
+      "post": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Check",
+        "operationId": "check_api_v1_semantics_drafts__draft_id__check_post",
+        "parameters": [
+          {
+            "name": "draft_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Draft Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/publish": {
+      "post": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Publish",
+        "operationId": "publish_api_v1_semantics_publish_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PublishInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishedSemantic"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/versions/{version_id}": {
+      "get": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Version",
+        "operationId": "version_api_v1_semantics_versions__version_id__get",
+        "parameters": [
+          {
+            "name": "version_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Version Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishedSemantic"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/versions/{version_id}/resolve": {
+      "post": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Resolve",
+        "operationId": "resolve_api_v1_semantics_versions__version_id__resolve_post",
+        "parameters": [
+          {
+            "name": "version_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Version Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResolvedSemantic"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/semantics/packs/{pack_id}/state": {
+      "post": {
+        "tags": [
+          "semantics"
+        ],
+        "summary": "Toggle",
+        "operationId": "toggle_api_v1_semantics_packs__pack_id__state_post",
+        "parameters": [
+          {
+            "name": "pack_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Pack Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SemanticStateInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PublishedSemantic"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/agent/capabilities": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Capabilities",
+        "operationId": "capabilities_api_v1_agent_capabilities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentCapabilities"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/agent/tasks": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "List Tasks",
+        "operationId": "list_tasks_api_v1_agent_tasks_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentTasks"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Start",
+        "operationId": "start_api_v1_agent_tasks_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentTask"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/agent/tasks/{id}": {
+      "get": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Read",
+        "operationId": "read_api_v1_agent_tasks__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentTask"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/agent/tasks/{id}/confirm": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Confirm",
+        "operationId": "confirm_api_v1_agent_tasks__id__confirm_post",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentConfirm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentTask"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/agent/tasks/{id}/cancel": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Cancel",
+        "operationId": "cancel_api_v1_agent_tasks__id__cancel_post",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentTask"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/model-service/status": {
       "get": {
         "tags": [
@@ -775,6 +1324,193 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ModelConnectionAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/catalog": {
+      "get": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Catalog",
+        "operationId": "catalog_api_v1_model_service_catalog_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelCatalog"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/connection/enabled": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Enable Connection",
+        "operationId": "enable_connection_api_v1_model_service_connection_enabled_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelEnableRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelConnectionAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/stream-test": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Start Stream",
+        "operationId": "start_stream_api_v1_model_service_stream_test_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelTestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamTestReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/stream-tests/{request_id}": {
+      "get": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Snapshot",
+        "operationId": "snapshot_api_v1_model_service_stream_tests__request_id__get",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamTestReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/stream-tests/{request_id}/cancel": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Cancel",
+        "operationId": "cancel_api_v1_model_service_stream_tests__request_id__cancel_post",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Request Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StreamTestReceipt"
                 }
               }
             }
@@ -1038,6 +1774,526 @@
   },
   "components": {
     "schemas": {
+      "AgentCapabilities": {
+        "properties": {
+          "implementation": {
+            "type": "string",
+            "const": "langgraph_governed_single_table_v1",
+            "title": "Implementation",
+            "default": "langgraph_governed_single_table_v1"
+          },
+          "available": {
+            "type": "boolean",
+            "title": "Available"
+          },
+          "query_protocol": {
+            "type": "string",
+            "const": "workspace_aggregate_v1",
+            "title": "Query Protocol",
+            "default": "workspace_aggregate_v1"
+          },
+          "supported_sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Supported Sources",
+            "default": [
+              "local_file"
+            ]
+          },
+          "join_available": {
+            "type": "boolean",
+            "const": false,
+            "title": "Join Available",
+            "default": false
+          },
+          "durable_tasks": {
+            "type": "boolean",
+            "const": false,
+            "title": "Durable Tasks",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "available"
+        ],
+        "title": "AgentCapabilities"
+      },
+      "AgentConfirm": {
+        "properties": {
+          "plan_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Plan Hash"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "confirm_execute": {
+            "type": "boolean",
+            "const": true,
+            "title": "Confirm Execute"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "plan_hash",
+          "execution_generation",
+          "confirm_execute"
+        ],
+        "title": "AgentConfirm"
+      },
+      "AgentRequest": {
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "maxLength": 36,
+            "title": "Conversation Id",
+            "default": ""
+          },
+          "request_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Request Id"
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 1600,
+            "minLength": 1,
+            "title": "Question"
+          },
+          "model_ref": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Model Ref"
+          },
+          "semantic_version_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Semantic Version Id"
+          },
+          "selected_source_refs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Selected Source Refs"
+          },
+          "accept_model_egress": {
+            "type": "boolean",
+            "const": true,
+            "title": "Accept Model Egress"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "question",
+          "model_ref",
+          "semantic_version_id",
+          "selected_source_refs",
+          "accept_model_egress"
+        ],
+        "title": "AgentRequest"
+      },
+      "AgentTask": {
+        "properties": {
+          "conversation_id": {
+            "type": "string",
+            "title": "Conversation Id",
+            "default": ""
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "phase": {
+            "type": "string",
+            "enum": [
+              "PLANNING",
+              "NEEDS_CLARIFICATION",
+              "AWAITING_CONFIRMATION",
+              "VALIDATING",
+              "EXECUTING",
+              "CHECKING",
+              "SUCCEEDED",
+              "FAILED",
+              "UNKNOWN",
+              "EXPIRED",
+              "CANCELLED"
+            ],
+            "title": "Phase"
+          },
+          "model_ref": {
+            "type": "string",
+            "title": "Model Ref"
+          },
+          "semantic_version_id": {
+            "type": "string",
+            "title": "Semantic Version Id"
+          },
+          "events": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "plan_hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Hash"
+          },
+          "plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AggregateRequest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sql": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sql"
+          },
+          "clarification": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clarification"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "model_diagnostics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelResponseDiagnostics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AggregateResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "execution_receipt": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Execution Receipt"
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "title": "Sql Executed",
+            "default": false
+          },
+          "storage": {
+            "type": "string",
+            "const": "backend_session_memory",
+            "title": "Storage",
+            "default": "backend_session_memory"
+          },
+          "cost_mode": {
+            "type": "string",
+            "const": "estimated_not_actual",
+            "title": "Cost Mode",
+            "default": "estimated_not_actual"
+          },
+          "returned_model_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Returned Model Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "request_id",
+          "execution_generation",
+          "phase",
+          "model_ref",
+          "semantic_version_id"
+        ],
+        "title": "AgentTask"
+      },
+      "AgentTasks": {
+        "properties": {
+          "tasks": {
+            "items": {
+              "$ref": "#/components/schemas/AgentTask"
+            },
+            "type": "array",
+            "title": "Tasks"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "tasks"
+        ],
+        "title": "AgentTasks"
+      },
+      "AggregateRequest": {
+        "properties": {
+          "table": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Table"
+          },
+          "schema_hash": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Schema Hash"
+          },
+          "metric": {
+            "$ref": "#/components/schemas/SemanticMetric"
+          },
+          "grain": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Grain"
+          },
+          "dimensions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Dimensions"
+          },
+          "time_filter": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AggregateTime"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "table",
+          "schema_hash",
+          "metric",
+          "grain"
+        ],
+        "title": "AggregateRequest"
+      },
+      "AggregateResult": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "columns": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "rows": {
+            "items": {
+              "items": {},
+              "type": "array"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "input_rows": {
+            "type": "integer",
+            "title": "Input Rows"
+          },
+          "matched_rows": {
+            "type": "integer",
+            "title": "Matched Rows"
+          },
+          "duplicate_grain_rows": {
+            "type": "integer",
+            "title": "Duplicate Grain Rows"
+          },
+          "null_grain_rows": {
+            "type": "integer",
+            "title": "Null Grain Rows"
+          },
+          "null_metric_rows": {
+            "type": "integer",
+            "title": "Null Metric Rows"
+          },
+          "zero_denominator_groups": {
+            "type": "integer",
+            "title": "Zero Denominator Groups"
+          },
+          "null_denominator_groups": {
+            "type": "integer",
+            "title": "Null Denominator Groups"
+          },
+          "returned_row_count": {
+            "type": "integer",
+            "title": "Returned Row Count"
+          },
+          "truncated": {
+            "type": "boolean",
+            "const": false,
+            "title": "Truncated",
+            "default": false
+          },
+          "full_input_aggregate": {
+            "type": "boolean",
+            "const": true,
+            "title": "Full Input Aggregate",
+            "default": true
+          },
+          "quality": {
+            "type": "string",
+            "enum": [
+              "PASS",
+              "WARN"
+            ],
+            "title": "Quality"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "const": true,
+            "title": "Sql Executed",
+            "default": true
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source",
+          "columns",
+          "rows",
+          "input_rows",
+          "matched_rows",
+          "duplicate_grain_rows",
+          "null_grain_rows",
+          "null_metric_rows",
+          "zero_denominator_groups",
+          "null_denominator_groups",
+          "returned_row_count",
+          "quality",
+          "unit",
+          "limitations"
+        ],
+        "title": "AggregateResult"
+      },
+      "AggregateTime": {
+        "properties": {
+          "column": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Column"
+          },
+          "start": {
+            "type": "string",
+            "format": "date",
+            "title": "Start"
+          },
+          "end_exclusive": {
+            "type": "string",
+            "format": "date",
+            "title": "End Exclusive"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "column",
+          "start",
+          "end_exclusive"
+        ],
+        "title": "AggregateTime"
+      },
       "AuthContext": {
         "properties": {
           "principal_id": {
@@ -1124,6 +2380,29 @@
           "connectors"
         ],
         "title": "CapabilitiesResponse"
+      },
+      "CheckReceipt": {
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "title": "Draft Id"
+          },
+          "validation_id": {
+            "type": "string",
+            "title": "Validation Id"
+          },
+          "result": {
+            "$ref": "#/components/schemas/SemanticCheck"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "draft_id",
+          "validation_id",
+          "result"
+        ],
+        "title": "CheckReceipt"
       },
       "ConnectorCapability": {
         "properties": {
@@ -1319,6 +2598,34 @@
           "preview"
         ],
         "title": "DraftPreview"
+      },
+      "DraftReceipt": {
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "title": "Draft Id"
+          },
+          "pack_id": {
+            "type": "string",
+            "title": "Pack Id"
+          },
+          "contract": {
+            "$ref": "#/components/schemas/SemanticDraftInput"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "default": "语义草稿仅当前后端内存，尚未校验或批准；不会执行SQL。"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "draft_id",
+          "pack_id",
+          "contract"
+        ],
+        "title": "DraftReceipt"
       },
       "ErrorEnvelope": {
         "properties": {
@@ -1596,6 +2903,105 @@
         ],
         "title": "MetricTarget"
       },
+      "ModelCatalog": {
+        "properties": {
+          "models": {
+            "items": {
+              "$ref": "#/components/schemas/ModelCatalogEntry"
+            },
+            "type": "array",
+            "title": "Models"
+          },
+          "storage": {
+            "type": "string",
+            "const": "backend_session_memory",
+            "title": "Storage",
+            "default": "backend_session_memory"
+          },
+          "query_available": {
+            "type": "boolean",
+            "const": false,
+            "title": "Query Available",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "models"
+        ],
+        "title": "ModelCatalog"
+      },
+      "ModelCatalogEntry": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "model_id": {
+            "type": "string",
+            "title": "Model Id"
+          },
+          "protocol": {
+            "type": "string",
+            "title": "Protocol"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "available": {
+            "type": "boolean",
+            "title": "Available"
+          },
+          "generation_verified": {
+            "type": "boolean",
+            "title": "Generation Verified"
+          },
+          "stream_verified": {
+            "type": "boolean",
+            "title": "Stream Verified",
+            "default": false
+          },
+          "tools_verified": {
+            "type": "boolean",
+            "const": false,
+            "title": "Tools Verified",
+            "default": false
+          },
+          "structured_output_verified": {
+            "type": "boolean",
+            "const": false,
+            "title": "Structured Output Verified",
+            "default": false
+          },
+          "query_available": {
+            "type": "boolean",
+            "const": false,
+            "title": "Query Available",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "model_id",
+          "protocol",
+          "config_version",
+          "execution_generation",
+          "enabled",
+          "available",
+          "generation_verified"
+        ],
+        "title": "ModelCatalogEntry"
+      },
       "ModelClearRequest": {
         "properties": {
           "execution_generation": {
@@ -1718,6 +3124,30 @@
           "accept_estimated_cost"
         ],
         "title": "ModelConnectionRequest"
+      },
+      "ModelEnableRequest": {
+        "properties": {
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_generation",
+          "config_version",
+          "enabled"
+        ],
+        "title": "ModelEnableRequest"
       },
       "ModelGeneration": {
         "properties": {
@@ -1912,6 +3342,42 @@
                 "type": "null"
               }
             ]
+          },
+          "endpoint": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Endpoint"
+          },
+          "stream_management": {
+            "type": "boolean",
+            "title": "Stream Management",
+            "default": true
+          },
+          "stream_available": {
+            "type": "boolean",
+            "title": "Stream Available",
+            "default": false
+          },
+          "model_name_editable": {
+            "type": "boolean",
+            "title": "Model Name Editable",
+            "default": true
+          },
+          "catalog_management": {
+            "type": "boolean",
+            "title": "Catalog Management",
+            "default": true
+          },
+          "catalog_enabled": {
+            "type": "boolean",
+            "title": "Catalog Enabled",
+            "default": false
           }
         },
         "type": "object",
@@ -2716,6 +4182,135 @@
         ],
         "title": "ProfileList"
       },
+      "ProviderStreamEvent": {
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "text_delta",
+              "completed"
+            ],
+            "title": "Kind"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text",
+            "default": ""
+          },
+          "generation": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ModelGeneration"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "title": "ProviderStreamEvent"
+      },
+      "PublishInput": {
+        "properties": {
+          "draft_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Draft Id"
+          },
+          "validation_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Validation Id"
+          },
+          "request_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Request Id"
+          },
+          "approve_definition": {
+            "type": "boolean",
+            "const": true,
+            "title": "Approve Definition"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "draft_id",
+          "validation_id",
+          "request_id",
+          "approve_definition"
+        ],
+        "title": "PublishInput"
+      },
+      "PublishedSemantic": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "pack_id": {
+            "type": "string",
+            "title": "Pack Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "published_at": {
+            "type": "string",
+            "title": "Published At"
+          },
+          "approved_by": {
+            "type": "string",
+            "title": "Approved By"
+          },
+          "contract": {
+            "$ref": "#/components/schemas/SemanticDraftInput"
+          },
+          "schema_snapshot": {
+            "$ref": "#/components/schemas/SemanticSchema"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "published_recheck_required",
+              "disabled",
+              "superseded"
+            ],
+            "title": "State",
+            "default": "published_recheck_required"
+          },
+          "state_revision": {
+            "type": "integer",
+            "title": "State Revision",
+            "default": 0
+          },
+          "execution_available": {
+            "type": "boolean",
+            "const": false,
+            "title": "Execution Available",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "pack_id",
+          "version",
+          "published_at",
+          "approved_by",
+          "contract",
+          "schema_snapshot"
+        ],
+        "title": "PublishedSemantic"
+      },
       "QueryPreview": {
         "properties": {
           "source": {
@@ -2882,6 +4477,31 @@
           "timezone"
         ],
         "title": "QuerySpec"
+      },
+      "ResolvedSemantic": {
+        "properties": {
+          "version": {
+            "$ref": "#/components/schemas/PublishedSemantic"
+          },
+          "mapping_verified": {
+            "type": "boolean",
+            "const": true,
+            "title": "Mapping Verified",
+            "default": true
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "const": false,
+            "title": "Sql Executed",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "version"
+        ],
+        "title": "ResolvedSemantic"
       },
       "RetentionStatus": {
         "properties": {
@@ -3097,6 +4717,394 @@
         ],
         "title": "SaveProfile"
       },
+      "SemanticCheck": {
+        "properties": {
+          "valid": {
+            "type": "boolean",
+            "title": "Valid"
+          },
+          "issues": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticIssue"
+            },
+            "type": "array",
+            "title": "Issues"
+          },
+          "schema_snapshot": {
+            "$ref": "#/components/schemas/SemanticSchema"
+          },
+          "requires_human_approval": {
+            "type": "boolean",
+            "const": true,
+            "title": "Requires Human Approval",
+            "default": true
+          },
+          "rows_read": {
+            "type": "boolean",
+            "const": false,
+            "title": "Rows Read",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "valid",
+          "issues",
+          "schema_snapshot"
+        ],
+        "title": "SemanticCheck"
+      },
+      "SemanticColumn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "data_type": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Data Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "data_type"
+        ],
+        "title": "SemanticColumn"
+      },
+      "SemanticDraftInput": {
+        "properties": {
+          "pack_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9-]{36}$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pack Id"
+          },
+          "expected_version": {
+            "type": "integer",
+            "maximum": 500.0,
+            "minimum": 0.0,
+            "title": "Expected Version",
+            "default": 0
+          },
+          "domain": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]{0,39}$",
+            "title": "Domain"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Name"
+          },
+          "owner_note": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Owner Note"
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Source Id"
+          },
+          "table_id": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Table Id"
+          },
+          "grain": {
+            "items": {
+              "type": "string",
+              "maxLength": 200,
+              "minLength": 1
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Grain"
+          },
+          "grain_note": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Grain Note"
+          },
+          "time": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TimeMeaning"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metrics": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticMetric"
+            },
+            "type": "array",
+            "maxItems": 12,
+            "minItems": 1,
+            "title": "Metrics"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "domain",
+          "name",
+          "owner_note",
+          "source_id",
+          "table_id",
+          "grain",
+          "grain_note",
+          "metrics"
+        ],
+        "title": "SemanticDraftInput"
+      },
+      "SemanticIssue": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "FIELD_MISSING",
+              "TYPE_MISMATCH",
+              "ALIAS_CONFLICT",
+              "METRIC_CONFLICT",
+              "GRAIN_DUPLICATE"
+            ],
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "SemanticIssue"
+      },
+      "SemanticList": {
+        "properties": {
+          "versions": {
+            "items": {
+              "$ref": "#/components/schemas/PublishedSemantic"
+            },
+            "type": "array",
+            "title": "Versions"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "default": "已发布结构定义可追溯；执行前必须重新核验真实字段。不是企业认证或已执行查询。"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "versions"
+        ],
+        "title": "SemanticList"
+      },
+      "SemanticMetric": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,39}$",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Name"
+          },
+          "aliases": {
+            "items": {
+              "type": "string",
+              "maxLength": 80,
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "type": "array",
+            "maxItems": 8,
+            "title": "Aliases"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "count_rows",
+              "sum",
+              "ratio"
+            ],
+            "title": "Operator"
+          },
+          "column": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Column"
+          },
+          "numerator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Numerator"
+          },
+          "denominator": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denominator"
+          },
+          "denominator_zero": {
+            "type": "string",
+            "const": "null",
+            "title": "Denominator Zero",
+            "default": "null"
+          },
+          "unit": {
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Unit"
+          },
+          "additive": {
+            "type": "boolean",
+            "title": "Additive"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "operator",
+          "unit",
+          "additive"
+        ],
+        "title": "SemanticMetric"
+      },
+      "SemanticSchema": {
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "title": "Source Id"
+          },
+          "source_version": {
+            "type": "integer",
+            "title": "Source Version"
+          },
+          "table_id": {
+            "type": "string",
+            "title": "Table Id"
+          },
+          "table_name": {
+            "type": "string",
+            "title": "Table Name"
+          },
+          "columns": {
+            "items": {
+              "$ref": "#/components/schemas/SemanticColumn"
+            },
+            "type": "array",
+            "title": "Columns"
+          },
+          "fingerprint": {
+            "type": "string",
+            "title": "Fingerprint"
+          },
+          "rows_read": {
+            "type": "boolean",
+            "title": "Rows Read",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "source_id",
+          "source_version",
+          "table_id",
+          "table_name",
+          "columns",
+          "fingerprint"
+        ],
+        "title": "SemanticSchema"
+      },
+      "SemanticStateInput": {
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "maximum": 500.0,
+            "minimum": 1.0,
+            "title": "Expected Version"
+          },
+          "expected_state_revision": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected State Revision"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_version",
+          "expected_state_revision",
+          "enabled"
+        ],
+        "title": "SemanticStateInput"
+      },
       "SessionResponse": {
         "properties": {
           "identity": {
@@ -3210,6 +5218,138 @@
           "unsaved_tests"
         ],
         "title": "StorageSummary"
+      },
+      "StreamDiagnostics": {
+        "properties": {
+          "reason": {
+            "type": "string",
+            "enum": [
+              "sequence",
+              "sse_frame",
+              "model_mismatch",
+              "message_envelope",
+              "unsupported_content",
+              "incomplete_output",
+              "usage_invalid",
+              "secret_echo",
+              "resource_limit",
+              "invalid_encoding",
+              "transport",
+              "timeout",
+              "upstream_refused",
+              "cancelled",
+              "unknown"
+            ],
+            "title": "Reason"
+          },
+          "upstream_status": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  401,
+                  403,
+                  429
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Upstream Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "reason"
+        ],
+        "title": "StreamDiagnostics"
+      },
+      "StreamTestReceipt": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "succeeded",
+              "partial",
+              "failed_or_unknown"
+            ],
+            "title": "Status",
+            "default": "running"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/ProviderStreamEvent"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "diagnostics": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StreamDiagnostics"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "const": "fixed_model_stream_test",
+            "title": "Kind",
+            "default": "fixed_model_stream_test"
+          },
+          "sql_executed": {
+            "type": "boolean",
+            "const": false,
+            "title": "Sql Executed",
+            "default": false
+          },
+          "cost_mode": {
+            "type": "string",
+            "const": "estimated_not_actual",
+            "title": "Cost Mode",
+            "default": "estimated_not_actual"
+          },
+          "per_request_estimate_usd": {
+            "type": "string",
+            "title": "Per Request Estimate Usd",
+            "default": "0.25"
+          }
+        },
+        "type": "object",
+        "required": [
+          "request_id",
+          "execution_generation",
+          "config_version"
+        ],
+        "title": "StreamTestReceipt"
       },
       "TableTarget": {
         "properties": {
@@ -3385,6 +5525,37 @@
           "tables"
         ],
         "title": "TestedDraft"
+      },
+      "TimeMeaning": {
+        "properties": {
+          "column": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Column"
+          },
+          "meaning": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Meaning"
+          },
+          "timezone": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Timezone"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "column",
+          "meaning",
+          "timezone"
+        ],
+        "title": "TimeMeaning"
       },
       "TimeRange": {
         "properties": {

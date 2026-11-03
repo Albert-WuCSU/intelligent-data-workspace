@@ -133,13 +133,27 @@ def test_stop_actual_owned_job_cancels_and_releases_worker_slot(store,monkeypatc
     monkeypatch.setattr('data_workspace.retention_runner.run_worker',blocked)
     async def scenario():
         runner=RetentionRunner(store,start_delay=0);await runner.start()
-        deadline=time.monotonic()+5
-        while not marker.exists() and time.monotonic()<deadline:await asyncio.sleep(.01)
-        assert marker.exists();pid=int(marker.read_text())
-        before=time.monotonic();await runner.stop()
-        assert time.monotonic()-before<6 and runner.last['state']=='STOPPED'
-        assert not alive(pid) and read_cycle(store.root)['state']=='STOPPED'
-        assert SLOTS.acquire(blocking=False) and SLOTS.acquire(blocking=False);SLOTS.release();SLOTS.release()
+        try:
+            deadline=time.monotonic()+5;raw=''
+            # File creation precedes write completion. Wait for the actual owned PID, not only existence.
+            while time.monotonic()<deadline:
+                try:raw=marker.read_text().strip()
+                except (FileNotFoundError,PermissionError):raw=''
+                if raw:break
+                await asyncio.sleep(.01)
+            assert raw.isdigit();pid=int(raw);assert pid>0 and alive(pid)
+            before=time.monotonic();await runner.stop()
+            assert time.monotonic()-before<6 and runner.last['state']=='STOPPED'
+            assert not alive(pid) and read_cycle(store.root)['state']=='STOPPED'
+            acquired=[]
+            try:
+                for _ in range(2):acquired.append(SLOTS.acquire(blocking=False))
+                assert all(acquired)
+            finally:
+                for value in acquired:
+                    if value:SLOTS.release()
+        finally:
+            await runner.stop()
     asyncio.run(scenario())
 
 

@@ -13,7 +13,7 @@ def navigate(payload,connect=None):
     from data_workspace.remote_access import PostgresDraft
     draft=PostgresDraft.model_validate(payload['draft'])
     schemas=payload['schemas']
-    if payload['operation'] not in {'tables','preview'} or not 1<=len(schemas)<=20: raise ValueError('operation')
+    if payload['operation'] not in {'tables','preview','describe'} or not 1<=len(schemas)<=20: raise ValueError('operation')
     with (connect or pg_connect)(host=draft.host,hostaddr=draft.host,port=draft.port,dbname=draft.database,user=draft.username,password=payload['password'],sslmode=draft.sslmode,connect_timeout=4,passfile=os.devnull,sslcert=os.devnull,sslkey=os.devnull,sslrootcert='system',application_name='data_workspace_navigation') as con:
         con.execute('BEGIN READ ONLY')
         con.execute("SET LOCAL statement_timeout = '3000ms'")
@@ -28,6 +28,7 @@ def navigate(payload,connect=None):
         schema,name=mapping[payload['table']]
         fields=con.execute("SELECT a.attname,pg_catalog.format_type(a.atttypid,a.atttypmod) FROM pg_catalog.pg_attribute a JOIN pg_catalog.pg_class c ON c.oid=a.attrelid JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname=%s AND c.relname=%s AND a.attnum>0 AND NOT a.attisdropped ORDER BY a.attnum LIMIT 101",[schema,name]).fetchall()
         if not 1<=len(fields)<=100: raise ValueError('column budget')
+        if payload['operation']=='describe':return {'source':'postgresql','table':schema+'.'+name,'fields':[{'name':n,'type':t} for n,t in fields]}
         rows=con.execute(sql.SQL('SELECT * FROM {}.{} LIMIT 101').format(sql.Identifier(schema),sql.Identifier(name))).fetchmany(101)
         def cell(v):
             if isinstance(v,(date,datetime)): return v.isoformat()

@@ -1,0 +1,4 @@
+{
+  "result": "filtered BYOK initially relied on prior fixture setup; made setup explicit, but sandbox retry still received a status body without budget",
+  "correction": "explicit setup retained for test independence; pytest WinError5 temp access confirmed. Identical browser test passed outside sandbox; exact sandbox browser response cause not separately diagnosed, not a supplier failure"
+}

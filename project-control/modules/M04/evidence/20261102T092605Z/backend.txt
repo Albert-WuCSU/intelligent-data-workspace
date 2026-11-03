@@ -1,0 +1,80 @@
+........................................................................ [ 12%]
+........................................................................ [ 24%]
+..............F......................................................... [ 36%]
+........................................................................ [ 48%]
+........................................................................ [ 61%]
+........................................................................ [ 73%]
+........................................................................ [ 85%]
+........................................................................ [ 97%]
+............                                                             [100%]
+================================== FAILURES ===================================
+______ test_real_loopback_http_mcp_handshake_catalog_dates_and_100_rows _______
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-145/test_real_loopback_http_mcp_ha0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000258436A3CE0>
+
+    def test_real_loopback_http_mcp_handshake_catalog_dates_and_100_rows(tmp_path, monkeypatch):
+        from data_workspace.warehouse.mcp_server import create_server
+        # The production store is untouched; create a synthetic snapshot in tmp_path.
+        allowed = tmp_path / "allowed"
+        allowed.mkdir()
+        source = allowed / "fixture.csv"
+        source.write_text("id,created_at,shipped_on\n" + "".join(f"{i},2025-01-01 12:00:00,2025-01-02\n" for i in range(120)), encoding="utf-8")
+        store = SourceStore(tmp_path / "connections", allowed)
+        database, _ = store.snapshot(ProfileDraft(name="HTTP fixture", path=str(source), usage_authorized=True))
+        mcp_server = create_server(tmp_path, database)
+        application = mcp_server.streamable_http_app()
+        sock = socket.socket()
+        sock.bind(("127.0.0.1", 0))
+        endpoint = f"http://127.0.0.1:{sock.getsockname()[1]}/mcp"
+        server = uvicorn.Server(uvicorn.Config(application, host="127.0.0.1", log_level="error", access_log=False))
+        thread = Thread(target=lambda: server.run(sockets=[sock]), daemon=True)
+        thread.start()
+        try:
+            deadline = time.monotonic() + 10
+            while not server.started and thread.is_alive() and time.monotonic() < deadline:
+                time.sleep(0.02)
+            assert server.started, "owned HTTP fixture failed to start"
+            # Invalid environment proxies/CA paths must not be consulted.
+            for name in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY"):
+                monkeypatch.setenv(name, "http://127.0.0.1:1")
+            monkeypatch.setenv("SSL_CERT_FILE", str(tmp_path / "no-environment-ca.pem"))
+            async def exercise():
+                async with create_governed_http_client(endpoint, HTTPEndpointPolicy((endpoint,))) as http_client:
+                    async with streamable_http_client(endpoint, http_client=http_client) as (read, write, _):
+                        async with ClientSession(read, write, read_timeout_seconds=timedelta(seconds=10)) as session:
+                            assert (await session.initialize()).protocolVersion
+                            assert {tool.name for tool in (await session.list_tools()).tools} == TOOLS
+                            metadata = (await session.call_tool("list_tables", {})).structuredContent["metadata"]
+                            assert metadata["source"] == "user_provided" and metadata["tables"][0]["id"] == "t0"
+                            receipt = (await session.call_tool("submit_query", {"request": {"table": "t0", "limit": 100}, "idempotency_key": "http-navigation-fixture"})).structuredContent
+                            assert receipt["task"]["status"] == "SUCCEEDED"
+                            data = (await session.call_tool("get_query_result", {"task_id": receipt["task"]["task_id"]})).structuredContent["result"]
+                            assert data["returned_row_count"] == 100 and data["truncated"] is True
+                            assert [c["name"] for c in data["columns"]] == ["id", "created_at", "shipped_on"]
+                            assert data["rows"][0][1:] == ["2025-01-01T12:00:00", "2025-01-02"]
+                            assert data["source"] == "user_provided" and data["currency"] is None
+            asyncio.run(asyncio.wait_for(exercise(), timeout=20))
+        finally:
+            server.should_exit = True
+            thread.join(10)
+            sock.close()
+>           assert not thread.is_alive(), "owned fixture did not release its HTTP worker"
+E           AssertionError: owned fixture did not release its HTTP worker
+E           assert not True
+E            +  where True = is_alive()
+E            +    where is_alive = <Thread(Thread-154 (<lambda>), started daemon 23880)>.is_alive
+
+services\api\tests\test_http_boundary.py:207: AssertionError
+------------------------------ Captured log call ------------------------------
+ERROR    asyncio:base_events.py:1833 Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "D:\Users\luqianwu\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "D:\Users\luqianwu\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_http_boundary.py::test_real_loopback_http_mcp_handshake_catalog_dates_and_100_rows
+1 failed, 587 passed in 256.75s (0:04:16)

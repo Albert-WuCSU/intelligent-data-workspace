@@ -112,3 +112,31 @@ start-workspace-claude.cmd只是历史命名的模型API启动器，不等于工
 D060/D059已准入口，实际实现三协议Responses/ChatCompletions/Messages，自定义HTTPSendpoint/model/passwordKey/固定AIPlan预设。POSTconnection SecretStr/8192body/CSRF和loopback身份、配置锁、改Key失效testgeneration不自动test，清除仅内存Key/验证不resetbudget。passwordsubmit无论成功失败清空，不进storage/history/log或文件，无费用保存/清除/刷新。
 publiccustomHTTPSDNS解析所有IP为global后TCP固定校验IP，原Host/SNI保留certificatehostname验证、无proxyenv/redirect，禁止loopback/private/userinfo/queryURL，privateAIPlan仅exactpreset已授权原路径。特殊私有协议/真实厂商权限未测，不能宣称anyvendoralreadycompatible；fixeddevidentity仍非productionauth，公共真实Keys不自动外发，仅用户固定test目的接受。
 182专项实跑过/fullpending，API/合同/前端generated Types真源生成。收到D061完成后安全scan/commit/push现有GitHub明确授权，Keys/uploads/runtime/toolconfig不上传，不算部署或模块验收。
+
+
+## 2026-11-02 会话模型目录切片（非模块验收）
+- 本机旧API经只读归属核查仍缺 `connection_management`，不修改其Key或自动重启。测试使用独立fixture，新版默认服务须用户本人更新启动器加载一次。
+- 当前本机开发身份的模型目录仅来自后端实际配置，最小测试成功后须显式启用；不拉取/猜测供应商所有模型、不自动授权第二个模型。目录ID绑定执行代际和配置版本，服务端复核下游选择；选择模型不调用、不执行SQL。
+- 保存/替换Key或模型、禁用、清除使旧测试/目录选择失效，忙时拒绝变更；禁用保留后台内存Key但重新启用须重测，预算跨所有操作保留。刷新网页可复用后端会话，重启丢失，未引入秘密持久化/生产身份/永久Profile。
+- 能力分开标记：最小文本实测、显式启用与可选目录；流式/工具/结构化输出/业务问数均未验证。输入区文案明确已选模型不意味着本轮问题会送给模型。
+- AC01仅会话配置/测试/刷新/编辑启禁局部验证；真实用户网页Key输入、公网供应商TLS、AC02流式及完整模块验收仍待补，历史失败/not_run和PG/生产发布门禁原样保留。
+
+
+## 2026-11-02 设置与自选模型（D-M04A-SETTINGS-MODEL-062）
+用户指出右侧接入模块突兀，明确左栏设置/独立模型配置、不要写死模型名称。最短路径：左栏设置→模型服务→厂商/地址/协议/自选model ID/专用Key→保存→显式测试→启用→返回会话选择实测模型。右摘要只放任务/来源/附件/证据，不塞配置长表单；默认设置页展示配置和状态，费用/安全/技术说明按需展开。
+- 复用React/现有后端薄适配，不安装依赖。所有厂商model ID均由用户决定，预设不自动填入/锁定名称；AIPlan仅固定已有获批地址/协议/认证，取消固定DeepSeek名称，精确响应校验与仅已证实版本alias保留，不fuzzy接受陌生返回ID。
+- 当前仍单配置/后台内存：更新模型需保存并重测，实测启用后才入输入区目录；不宣称自动获取厂商完整模型清单或多服务持久化。选择不触发调用/SQL。
+- 设置页切换/刷新/返回不会收费，测试/保存进行中阻止页面导航以避免丢回执；离开设置清空瞬时password。主题入口、历史/业务工作台、SQL分层保留。手机独立全宽设置而非窄右栏。
+- 测试覆盖设置可发现/关闭返回/保留问题与历史/主题/键盘/手机布局，preset切换自由模型、地址私网拒绝、换模型旧验证失效、真实fixture测试/启用/输入选择、不自动网络费用。真实账号/TLS/stream与SQL/JOIN仍not_run。
+
+
+## 2026-11-02 Messages 流式首切片及网关目录待办（D063）
+用户已报告完成模型修改，要求目录/复用Key切换列待办并优先今天MVP主干；不等于模块整体验收。待办见BACKLOG.md，未调用/猜测网关目录接口。
+- 首流式实现仅Messages固定非敏感连接测试，显式同意每次0.25估算并POST start，模型上游真实SSE→后台有界任务/收据→网页每500ms只读快照。不是动画打字，也不是业务问题/SQL，短输出因秘密后缀检查可延迟释放。
+- completed必须严验结束回执与bounded EOF；未完成/截断/非法/限流/取消标partial或failed_unknown，保留估算、不自动重试，同UUID缓存，禁止换Key/启禁中断治理。15s/64KiB/256events/16blocks/128token；thinking不存不转发，tool拒绝，modelexact/唯一已实证alias不放宽。
+- 仅当前配置真正完成后stream_verified，Responses/Chat流式当前unsupported，不从非流式成功推导支持。任务/正文仅后台sessionmemory、重启丢失；配置失效清旧stream回执，预算保持。
+- CHECK用独立fakeKey/upstreamfixture/API/browser，不称真实网关；AC02实际供应商/用户请求门禁仍not_run。整体验收/M03/M04-B不自动跳过，LangGraph/Harness方向不改。
+
+
+## 2026-11-02 流式联调收尾
+固定安全诊断reason与数值401/403/429用于只读定位，无上游正文/model/Key反射，不需重复收费截图。流式或配置busy时新普通test立即拒绝而非排队，已有同UUID回执可读、预算不重复；真实集成门禁仍未验。M03/PLAN_DRAFT仅准备，不新增审批或模块激活。

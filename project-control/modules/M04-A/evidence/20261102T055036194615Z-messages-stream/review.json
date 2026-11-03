@@ -1,0 +1,49 @@
+{
+  "reviewer": "self_review",
+  "scope": "Messages streaming fixed-test implementation checkpoint, full recheck next",
+  "user_backlog": "D063 AIPlan catalog discovery/runtime Key reuse switch recorded in project-control/BACKLOG.md; not implemented or probed",
+  "implemented": [
+    "MessagesProvider.stream bounded15s/64KiB/16blocks/256events/128outputtokens SSE UTF8/CRLF parser",
+    "text Key-prefix holdback before any browser release, discarded reasoning/tool rejection/exactmodel binding",
+    "explicit start with UUID/generation/version, bounded background receipt/task memory",
+    "readonly live snapshots no provider retry; cancellation/partial/failed/unknown retain estimate",
+    "same UUID namespace guards versus normal test, busy prevents credential mutations",
+    "shutdown cancels tasks; config/disable/clear discard old receipts and capability",
+    "only Messages stream_available; Responses/Chat stream unsupported, no protocol fallback",
+    "Settings live fixed text/consent/start/cancel/same receipt; snapshot updates, no timed fake tokens/SQL"
+  ],
+  "actual_checks": [
+    {
+      "command": "pytest test_model_stream.py -q",
+      "exit_code": 0,
+      "passed": 28
+    },
+    {
+      "command": "pytest test_model_stream.py test_model_connections.py test_model_catalog.py test_model_budget.py -q",
+      "exit_code": 0,
+      "passed": 80,
+      "scope": "before final additional boundary cases,28stream now independently passed"
+    },
+    {
+      "command": "playwright --grep real Messages stream",
+      "exit_code": 0,
+      "passed": 1,
+      "scope": "real product API plus fakeKey and independent timed upstreamfixture, no actual supplier"
+    },
+    {
+      "command": "tsc --noEmit -p apps/web/tsconfig.json",
+      "exit_code": 0
+    }
+  ],
+  "not_run": [
+    "full regression after stream changes",
+    "actual user gateway streaming",
+    "Responses/Chat streaming",
+    "real public supplier API/TLS",
+    "M03/M04-B agent model invocation and SQL/JOIN",
+    "PG/production"
+  ],
+  "architecture": "LangGraph＋governedHarness preserved, no installed new packages/frameworks; stream is model connection test, not autonomous agent",
+  "secrets": "no host Key/env read, no actual user API mutation/paid request/restart/Gitpush",
+  "user_confirmation": "user states model editing complete, not observed complete stream or whole module acceptance"
+}

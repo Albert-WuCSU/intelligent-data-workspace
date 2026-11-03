@@ -127,3 +127,38 @@ def test_connection_update_rejected_while_real_async_test_inflight(tmp_path):
    task.cancel()
    with pytest.raises(asyncio.CancelledError):await task
  asyncio.run(scenario())
+
+@pytest.mark.parametrize('model',['claude-sonnet-user-choice','deepseek-custom-choice','gateway/model-v2'])
+def test_aiplan_user_model_name_not_locked_but_endpoint_auth_still_governed(tmp_path,model):
+ app=app_for(tmp_path)
+ with TestClient(app,base_url='http://127.0.0.1:8000',client=('127.0.0.1',1)) as c:
+  body=payload(app,preset='ai_plan',protocol='anthropic_messages',endpoint='http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages',model_id=model,authentication='bearer')
+  r=c.post('/api/v1/model-service/connection',json=body,headers=H)
+  # Governed private model IDs permit valid standard characters, not slash aliases.
+  if '/' in model:
+   assert r.status_code==422
+  else:
+   assert r.status_code==200 and KEY not in r.text
+   assert app.state.model_provider.configuration.model_id==model
+   assert app.state.model_provider.configuration.observed_response_alias is None
+   status=c.get('/api/v1/model-service/status').json()
+   assert status['model_id']==model and not status['generation_verified']
+   assert status['endpoint']==body['endpoint'] and KEY not in str(status)
+  assert app.state.model_provider.budget.summary().reserved_requests==0
+
+@pytest.mark.parametrize('change',[{'endpoint':'http://10.0.0.1/v1/messages'},{'protocol':'openai_responses'},{'authentication':'x_api_key'}])
+def test_user_selected_aiplan_model_does_not_widen_network_auth_grant(tmp_path,change):
+ app=app_for(tmp_path)
+ with TestClient(app,base_url='http://127.0.0.1:8000',client=('127.0.0.1',1)) as c:
+  body=payload(app,preset='ai_plan',protocol='anthropic_messages',endpoint='http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages',model_id='my-chosen-model',authentication='bearer')
+  body.update(change);r=c.post('/api/v1/model-service/connection',json=body,headers=H)
+  assert r.status_code==403 and KEY not in r.text
+  assert not app.state.model_provider.key and app.state.model_provider.budget.summary().reserved_requests==0
+
+def test_private_user_model_response_still_exact_not_fuzzy(tmp_path):
+ from data_workspace.auth import PublicError
+ from test_model_provider import Permit
+ data={'type':'message','role':'assistant','model':'other-version','stop_reason':'end_turn','content':[{'type':'text','text':'OK'}],'usage':{'input_tokens':4,'output_tokens':2}}
+ provider=MessagesProvider(ModelConfiguration('http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages','my-user-model','anthropic_messages','bearer'),KEY,Permit(),httpx.MockTransport(lambda r:httpx.Response(200,json=data)))
+ with pytest.raises(PublicError):asyncio.run(provider.generate('fixed'))
+ assert not provider._verified

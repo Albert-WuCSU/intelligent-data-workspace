@@ -1,0 +1,17 @@
+{
+  "reviewer": "self_review",
+  "scope": "settings UI repairs following full run",
+  "fixed": [
+    "mark first local edit before asynchronous config hydration, so user choice is never overwritten",
+    "recognize #settings on browser history and restore URL during in-flight save",
+    "focus model settings heading when entering and composer when returning by keyboard",
+    "AIPlan legacy backend model-lock warning disables save, rather than silently forcing old model"
+  ],
+  "failed_evidence": "20261102T035206Z/results.json:489backend/16frontend passed,35/36browser passed with hydration override race; navigation-probe failed separately; both retained",
+  "recheck": "All frontend types/build/unit/browser rerun, backend and contracts unchanged versus full run proved by code hashes; dependency/backend 489 reused not claimed rerun",
+  "privacy": "No user Key read, request sent to actual provider, hook execution, service restart, Git push or production query",
+  "limitations": [
+    "only current session configuration, not multi-profile secret persistence or live provider model discovery",
+    "actual user settings credential test/public TLS/stream/SQL-JOIN still not_run"
+  ]
+}

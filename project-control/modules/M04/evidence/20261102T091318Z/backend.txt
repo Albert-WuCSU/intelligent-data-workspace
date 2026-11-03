@@ -1,0 +1,47 @@
+......................................................F................. [ 12%]
+........................................................................ [ 24%]
+........................................................................ [ 37%]
+........................................................................ [ 49%]
+........................................................................ [ 61%]
+........................................................................ [ 74%]
+........................................................................ [ 86%]
+........................................................................ [ 98%]
+......                                                                   [100%]
+================================== FAILURES ===================================
+__________ test_disabled_api_loads_without_optional_engine_packages ___________
+
+    def test_disabled_api_loads_without_optional_engine_packages():
+        import subprocess,sys
+        code='''import sys,importlib.abc
+    class Block(importlib.abc.MetaPathFinder):
+        def find_spec(self,fullname,path=None,target=None):
+            if fullname.split('.')[0] in {'duckdb','sqlglot','mcp'}:raise ImportError('blocked optional dependency')
+    sys.meta_path.insert(0,Block())
+    from data_workspace.main import create_app
+    from data_workspace.config import Settings
+    assert create_app(Settings()).state.connector.enabled is False
+    '''
+        run=subprocess.run([sys.executable,'-c',code],capture_output=True,text=True)
+>       assert run.returncode==0,run.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "<string>", line 6, in <module>
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\main.py", line 21, in <module>
+E             from .agent_service import AgentService
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\agent_service.py", line 10, in <module>
+E             from .agent_contracts import AgentTask,ModelQueryPlan
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\agent_contracts.py", line 6, in <module>
+E             from .warehouse.aggregate_contract import AggregateRequest,AggregateResult
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\warehouse\aggregate_contract.py", line 8, in <module>
+E             from .policy import QueryDenied
+E           File "D:\Users\luqianwu\Desktop\智能问数\services\api\src\data_workspace\warehouse\policy.py", line 2, in <module>
+E             import sqlglot
+E           File "<string>", line 4, in find_spec
+E         ImportError: blocked optional dependency
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe', '-c', "import ... in <module>\n    import sqlglot\n  File "<string>", line 4, in find_spec\nImportError: blocked optional dependency\n').returncode
+
+services\api\tests\test_connector_api.py:111: AssertionError
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_connector_api.py::test_disabled_api_loads_without_optional_engine_packages
+1 failed, 581 passed in 240.75s (0:04:00)

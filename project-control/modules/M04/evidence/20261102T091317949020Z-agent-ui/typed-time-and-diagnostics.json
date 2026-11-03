@@ -1,0 +1,30 @@
+{
+  "reviewer": "self_review",
+  "scope": "C01typedtimezone/readonlymodeldiagnostics fixes, finalregressionnext",
+  "implemented": [
+    "DATE/naiveTIMESTAMP range uses typedcolumn dates; timezoneawareTIMESTAMP boundaries explicitISO+00:00UTC independentoflockedengine displayzone, no globalconfigunlock",
+    "TIME/timeofday cannot accept calendar dates and Agent asksclarification; awareresultdatetime normalizedUTC",
+    "safeModelResponseDiagnostics included onownedtask errors, no rawJSON/text/Key; sameGET no extra provider call",
+    "fixtureagent domains/source labels unique percreatedsource so malformedmodelsecondcase cannot collide with firstapprovedsemantic/checkboxlabels"
+  ],
+  "actual_checks": [
+    {
+      "command": "pytest test_agent.py -q",
+      "passed": 33,
+      "exit_code": 0,
+      "scope": "actualMCP/modelMock and realDuckDBdate/naive/awareUTCboundaries underlockedAsiaShanghai zone"
+    },
+    {
+      "command": "playwright --grep LangGraph workbench|Agent incomplete",
+      "passed": 2,
+      "exit_code": 0
+    },
+    {
+      "command": "tsc --noEmit",
+      "exit_code": 0
+    }
+  ],
+  "failure_history": "586/2newUTCguardfailures preserved; initialtwo-browserfixturecasecollision preserved with unique fixtureidentity fix, no relaxed semantic alias constraints",
+  "remaining": "all593backend/44browsercurrentcheck and actualusergatewayJSON/Agentbusinessquery, fullremainingM04JOINroute/MVPnotfinished",
+  "safety": "no actualuserKey access/restart/modelcall/SQLproduction or externaltrace; oldpreview20kimport limitunchanged"
+}

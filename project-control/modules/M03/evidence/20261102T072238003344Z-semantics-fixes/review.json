@@ -1,0 +1,41 @@
+{
+  "reviewer": "self_review",
+  "scope": "M03 firstcheck repairs/extension within approved semantic contract",
+  "first_failures": [
+    "foundation blanketallmodulesunavailable assumption;knowledge module now actuallyauthoring so assert knowledgeonlyavailable while allotherunavailable preserved",
+    "workspace assumed knowledgeplaceholder, now asserts realsemanticUI/noautomaticSQL while otherfutureplaceholders retained",
+    "initialHTTPfixture test mkdir overlap repaired disjointroot"
+  ],
+  "enhanced": [
+    "numerictypeexact allowlist avoids INTERVAL/prefixguesses",
+    "approvalexplicitTruebool only, not numeric1/stringtrue",
+    "JSON32KiBimport through same strictdraftAPI only, no autopublish/query or credentials import",
+    "UI multiplealiastyping preserves comma then normalizes on validatedraft",
+    "HTTPdescribe actualtablelabel matches authorizedcatalog",
+    "M03runtime metadata/versions excluded fromGit by/data/semantics ignore"
+  ],
+  "actual_checks": [
+    {
+      "command": "pytest test_semantics.py test_foundation.py -q",
+      "passed": 65,
+      "exit_code": 0,
+      "scope": "before finalHTTPcatalogbinding tweak, same semantics bodies;fullnext"
+    },
+    {
+      "command": "playwright --grep semantic metadata draft|semantic JSON import",
+      "passed": 2,
+      "exit_code": 0
+    },
+    {
+      "command": "tsc --noEmit -p apps/web/tsconfig.json",
+      "exit_code": 0
+    }
+  ],
+  "not_run": [
+    "currentfullregression",
+    "actualdefaultserverM03userworkflow",
+    "M04BactualAgentconsumption/SQLJOIN",
+    "realPGproduction"
+  ],
+  "metadata": "local/ownedHTTP realMCP describes, PGfakeconnectcontractnotactualinstance; never previews rows"
+}

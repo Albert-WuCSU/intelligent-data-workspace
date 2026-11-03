@@ -111,6 +111,7 @@ class BudgetPermit(Protocol):
 
 class ModelProvider(Protocol):
     async def generate(self, question: str) -> ModelGeneration: ...
+    def stream(self, question: str): ...
 
 @dataclass(repr=False)
 class MessagesProvider:
@@ -120,6 +121,7 @@ class MessagesProvider:
     transport: httpx.AsyncBaseTransport | None = field(default=None, repr=False)
     _busy: bool = field(default=False, init=False, repr=False)
     _verified: bool = field(default=False, init=False, repr=False)
+    _stream_verified: bool = field(default=False, init=False, repr=False)
 
     def __repr__(self):
         return f'{type(self).__name__}(version={self.configuration.version!r})'
@@ -156,10 +158,10 @@ class MessagesProvider:
                  'credential_missing' if not configured else 'configuration_missing' if not valid else
                  'budget_unverified' if self.budget is None else 'ready_for_test')
         actions = {
-            'unconfigured': '在本机双击 start-workspace-model.cmd 隐藏输入应用专用Key；不在聊天提供密钥。',
-            'credential_missing': '请使用本机隐藏输入启动器配置应用专用Key。',
+            'unconfigured': '在模型服务中填写专用Key并保存；不在聊天提供密钥，保存不会调用模型。',
+            'credential_missing': '请在模型服务中输入自己的专用Key并保存，再显式测试。',
             'configuration_missing': 'Key已在后端内存；需补精确路径、受支持协议及授权model，尚未请求网关。',
-            'budget_unverified': '需核实专用供应商15USD硬限额或计费治理；未发起收费请求。',
+            'budget_unverified': '估算预算尚未加载，请更新本机服务后重试；未发起收费请求。',
             'ready_for_test': '可点击最小模型测试；每次估算预留0.25美元，费用不是硬保证，不执行SQL。',
         }
         return ModelServiceStatus(state=state, credential_configured=configured,
@@ -264,6 +266,10 @@ class MessagesProvider:
             config_version=self.configuration.version,returned_model_id=data['model'],
             model_binding='exact' if diagnostic.model_matches else 'observed_gateway_alias',
             input_tokens=counts[0],output_tokens=counts[1])
+
+    def stream(self, question: str):
+        from .model_stream import messages_stream
+        return messages_stream(self,question)
 
     async def generate(self, question: str):
         if not self.key:

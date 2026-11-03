@@ -1,0 +1,6 @@
+{
+  "failed_run": "third full run586passed2timezoneguardfailed; ordinaryDATE/naiveTSshouldnotdependonengineTimeZone",
+  "fix_design": "do not unlock/change engine; DATE/naiveTS get date boundaries, TIMESTAMPTZ gets explicitISO+00:00UTC boundaries, TIME/TIMETZ rejectdateinterval; format aware resulttimestamps inUTC. ModelUTCplan binding requires published semantic UTC as already enforced.",
+  "validation": "actualisolatedDuckDB timestamptz rows aroundUTC boundary plus existingDATEgroup/emptyqualitycases and naive datetimes, sameSQLAST/placeholders/columnbounds preserved; no value fabricated or host setting bypass",
+  "status": "plan ready, apply only after current fullrun finishes to preserve source-stability evidence"
+}

@@ -1,0 +1,67 @@
+{
+  "checks": [
+    {
+      "id": "types",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+      "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/types.txt"
+    },
+    {
+      "id": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "build"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+      "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/build.txt"
+    },
+    {
+      "id": "frontend",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+        "run"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+      "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/frontend.txt"
+    },
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f",
+      "log": "project-control/modules/M03/evidence/20261102T084614123589Z-delivery-regression/browser.txt"
+    }
+  ],
+  "code_fingerprint": "6d38294248d4a6e18aa7c4b7d65bcd3bd642bb26c528131cef4a65f63bbd176f"
+}

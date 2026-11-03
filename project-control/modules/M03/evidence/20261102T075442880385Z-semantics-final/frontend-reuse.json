@@ -1,0 +1,16 @@
+{
+  "verdict": "unchanged_pass",
+  "baseline": "project-control/modules/M03/evidence/20261102T074616Z",
+  "actual_checks_reused": [
+    "16frontend",
+    "41browser",
+    "types",
+    "build",
+    "pip dependency check"
+  ],
+  "changed_files": [],
+  "all_product_frontend_browser_sources_contracts_runtime_locks": "unchanged SHA256",
+  "old_code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+  "current_code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+  "scope": "all source files unchanged since full UI pass; repeat backend to inspect intermittent masked preflight failure"
+}

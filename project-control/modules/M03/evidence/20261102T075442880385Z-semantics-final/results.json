@@ -1,0 +1,111 @@
+{
+  "created_at": "2026-11-02T07:58:01.112928+00:00",
+  "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+  "checks": [
+    {
+      "id": "backend",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pytest",
+        "services/api/tests",
+        "-q"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+      "log": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/backend.txt"
+    },
+    {
+      "id": "dependency-check",
+      "command": [
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+        "-m",
+        "pip",
+        "check"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+      "log": "project-control/modules/M03/evidence/20261102T074616Z/dependency-check.txt",
+      "verification": "reused_unchanged_product_sources",
+      "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
+    },
+    {
+      "id": "types",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+        "--noEmit"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+      "log": "project-control/modules/M03/evidence/20261102T074616Z/types.txt",
+      "verification": "reused_unchanged_product_sources",
+      "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
+    },
+    {
+      "id": "build",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+        "build"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+      "log": "project-control/modules/M03/evidence/20261102T074616Z/build.txt",
+      "verification": "reused_unchanged_product_sources",
+      "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
+    },
+    {
+      "id": "frontend",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+        "run"
+      ],
+      "cwd": "apps\\web",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "unit",
+      "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+      "log": "project-control/modules/M03/evidence/20261102T074616Z/frontend.txt",
+      "verification": "reused_unchanged_product_sources",
+      "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
+    },
+    {
+      "id": "browser",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+        "test",
+        "--config",
+        "playwright.config.mjs"
+      ],
+      "cwd": ".",
+      "exit_code": 0,
+      "status": "passed",
+      "environment": "local",
+      "integration": "real",
+      "code_fingerprint": "92429a48bdba65a6288d69656b4c1829b6b0196e4d20da444666cefcc2c85ceb",
+      "log": "project-control/modules/M03/evidence/20261102T074616Z/browser.txt",
+      "verification": "reused_unchanged_product_sources",
+      "reuse_proof": "project-control/modules/M03/evidence/20261102T075442880385Z-semantics-final/frontend-reuse.json"
+    }
+  ]
+}

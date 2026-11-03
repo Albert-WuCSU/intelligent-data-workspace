@@ -11,7 +11,7 @@ export type Session = components['schemas']['SessionResponse'];
 export type Capabilities = components['schemas']['CapabilitiesResponse'];
 export type Validation = components['schemas']['ValidationResponse'];
 export class ApiError extends Error {
-  constructor(public code:string, message:string, public traceId:string){super(message);}
+  constructor(public code:string, message:string, public traceId:string, public status?:number){super(message);}
 }
 export async function request<T>(path:string, body?:unknown, timeoutMs=8000):Promise<T>{
   const controller=new AbortController();
@@ -21,7 +21,7 @@ export async function request<T>(path:string, body?:unknown, timeoutMs=8000):Pro
       headers:body === undefined?{}:{'Content-Type':'application/json','X-Workspace-Request':'1'},
       body:body===undefined?undefined:JSON.stringify(body),signal:controller.signal});
     const data=await response.json();
-    if(!response.ok)throw new ApiError(data.code||'SERVICE_ERROR',data.safe_message||'服务请求失败。',data.trace_id||'');
+    if(!response.ok)throw new ApiError(data.code||'SERVICE_ERROR',data.safe_message||'服务请求失败。',data.trace_id||'',response.status);
     return data as T;
   }catch(e){
     if(e instanceof ApiError)throw e;
@@ -59,3 +59,20 @@ export type DraftPreview = components['schemas']['DraftPreview'];
 
 export type ModelServiceStatus = components['schemas']['ModelReadiness'];
 export type ModelTestReceipt = components['schemas']['ModelTestReceipt'];
+
+export type ModelCatalog = components['schemas']['ModelCatalog'];
+
+export type StreamTestReceipt = components['schemas']['StreamTestReceipt'];
+
+export type SemanticDraftInput = components['schemas']['SemanticDraftInput'];
+export type SemanticMetric = components['schemas']['SemanticMetric'];
+export type SemanticSchema = components['schemas']['SemanticSchema'];
+export type SemanticList = components['schemas']['SemanticList'];
+export type DraftReceipt = components['schemas']['DraftReceipt'];
+export type CheckReceipt = components['schemas']['CheckReceipt'];
+export type PublishedSemantic = components['schemas']['PublishedSemantic'];
+export type ResolvedSemantic = components['schemas']['ResolvedSemantic'];
+export type AgentTask = components['schemas']['AgentTask'];
+export type AgentTasks = components['schemas']['AgentTasks'];
+export type AgentRequest = components['schemas']['AgentRequest'];
+export type AgentCapabilities = components['schemas']['AgentCapabilities'];

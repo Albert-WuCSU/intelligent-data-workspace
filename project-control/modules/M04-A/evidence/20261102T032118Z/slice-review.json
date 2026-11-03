@@ -1,0 +1,30 @@
+{
+  "reviewer": "self_review",
+  "verdict": "pass",
+  "scope": "session catalog implementation slice only; module remains partial, not user delivery accepted",
+  "counts": {
+    "backend": 482,
+    "frontend": 16,
+    "browser": 34
+  },
+  "checks_ref": "project-control/modules/M04-A/evidence/20261102T032118Z/results.json",
+  "code_fingerprint": "3df7168e854e2957176bb2e45ecdd921d9e23cd4f29464ac3804dcedd5f7d084",
+  "source_stability": "passed",
+  "preserved_failures": "First regression 481/16/32browser and 2old-copy failures preserved in 20261102T031336Z; historical Responses failed retained",
+  "coverage": [
+    "version/identity/busy/budget guards and downstream selection recheck",
+    "cancelled retest revokes verified and enabled, preserves reservations",
+    "web save/test/expired-enable error/enable/select/refresh/disable/clear with fake Key and isolated upstream",
+    "black-white themes/history/mobile and M01/M02 regressions"
+  ],
+  "not_run": [
+    "real user new-web Key lifecycle",
+    "real public supplier API/TLS",
+    "real streaming",
+    "tools/structured output/SQL/JOIN",
+    "PG/production identity/deployment"
+  ],
+  "runtime": "old default API read-only ownership checked, no restart/credential mutation/secret read or paid model call",
+  "limitations": "single current model config, backend session memory only, selection never invokes business questions; not permanent profile or production authentication",
+  "whitespace_check": "git diff --check with cr-at-eol Windows line endings passed"
+}

@@ -1,0 +1,36 @@
+{
+  "reviewer": "self_review",
+  "scope": "approved pack lifecycle implemented, finalfullchecknext",
+  "implemented": [
+    "separate SQLitepack_states preservesimmutableversionbody, perowner contentversion/state_revisionCAS",
+    "disabledpack blocksresolve without readingdata, historyretainedafterrestart",
+    "enable validates latest actualschema/sourceversion, stale source refused",
+    "newpublicationwhiledisabledstaysdisabled; supersededversionsread-only and cannotnewplan",
+    "resolve rechecks state and version after metadataawait, concurrentdisable causes409",
+    "unit/metricnameblank denied and temporalexacttype guards",
+    "UIstop/revalidateenable/history/falseAgentpendingcopycorrected"
+  ],
+  "checks": [
+    {
+      "command": "pytest test_semantics.py -q",
+      "exit_code": 0,
+      "passed": 35
+    },
+    {
+      "command": "playwright --grep semantic metadata draft|semantic JSON import",
+      "exit_code": 0,
+      "passed": 2,
+      "scope": "softstop/enable included before final label/typeguards,fullnext"
+    },
+    {
+      "command": "tsc --noEmit -p apps/web/tsconfig.json",
+      "exit_code": 0
+    }
+  ],
+  "not_run": [
+    "finalcurrentallregression",
+    "realuserdefaultM03interaction",
+    "actualM04Bmodel/SQLconsumer/PGproduction"
+  ],
+  "secrets": "no newpackage/Keyread/providercall/servicerestart or delete; versionstore ignoredbyGit"
+}

@@ -1,0 +1,29 @@
+{
+  "scope": "fresh current service ownership and readiness, read-only",
+  "ports": {
+    "5173": {
+      "pid": 35620,
+      "parent": 28092,
+      "projectVite": true
+    },
+    "8000": {
+      "pid": 36816,
+      "parent": 34276,
+      "projectvenvParent": true,
+      "module": "data_workspace.main"
+    }
+  },
+  "http": {
+    "agent_capabilities": 404,
+    "semantics": 200,
+    "health": 200
+  },
+  "model_status": {
+    "credential_configured": false,
+    "generation_verified": false,
+    "catalog_enabled": false,
+    "stream_verified": false
+  },
+  "conclusion": "Current default user API serves knowledge but has not loadednewAgent route; current modelKey notconfigured. Actual AgentJSON/businessquery cannot be verified from this live runtime yet. Agent did not terminate/restart services or readKey/env; identity/PID must recheck later.",
+  "next": "After safe user-owned newAPIload, user webpageconfig/test/enable ownmodel then chooseapprovedsemantic/source and explicitlyconsent+question+confirm. No automatic provider test or migration of in-memoryKey."
+}

@@ -83,6 +83,12 @@ async def http_navigation(draft, policy, operation, table=None, secrets=None):
                         if operation=='tables': return metadata
                         if table not in {t['id'] for t in metadata['tables']}:
                             raise PublicError(403,'RESOURCE_DENIED','该表未在后端授权范围或实际目录中；请选择已授权的表。')
+                        if operation=='describe':
+                            value=await call('describe_table',{'table':table})
+                            if value.get('ok') is not True or not isinstance(value.get('metadata'),dict):invalid()
+                            expected=next(t['name'] for t in metadata['tables'] if t['id']==table)
+                            if value['metadata'].get('table')!=expected:invalid()
+                            return value['metadata']
                         receipt=await call('submit_query',{'request':{'table':table,'limit':100},'idempotency_key':str(uuid4())})
                         task=receipt.get('task',{})
                         if receipt.get('ok') is not True or not isinstance(task.get('task_id'),str) or len(task['task_id'])>100: invalid()

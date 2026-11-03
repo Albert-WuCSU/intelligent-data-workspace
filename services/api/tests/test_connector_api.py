@@ -101,7 +101,7 @@ def test_disabled_api_loads_without_optional_engine_packages():
     code='''import sys,importlib.abc
 class Block(importlib.abc.MetaPathFinder):
     def find_spec(self,fullname,path=None,target=None):
-        if fullname.split('.')[0] in {'duckdb','sqlglot','mcp'}:raise ImportError('blocked optional dependency')
+        if fullname.split('.')[0] in {'duckdb','sqlglot','mcp','langgraph','langsmith','langchain_core'}:raise ImportError('blocked optional dependency')
 sys.meta_path.insert(0,Block())
 from data_workspace.main import create_app
 from data_workspace.config import Settings

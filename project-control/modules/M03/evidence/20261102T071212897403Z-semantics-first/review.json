@@ -1,0 +1,39 @@
+{
+  "reviewer": "self_review",
+  "scope": "M03 approved single-table semantic vertical implementation; finalchecknext",
+  "implemented": [
+    "finite Pydanticcount_rows/sum/ratio/grain/unit/time/alias contracts",
+    "actualMCPmetadata-onlydescribe no preview/row access, governed HTTPdescribe and PGsystemcatalog branch",
+    "sessiondraft/checktokens->user explicit approve->SQLiteatomicimmutable version publication",
+    "samepublishUUID/hash replay, expectedversion/conflict/alias collision, restart historical versions",
+    "published downstreamresolve gate rechecks realsourceversion/schema; disabled/stale rejects",
+    "knowledgepage fieldselectors/ratio/optionaltime/grain/humanapproval/publish/edit-v2/history"
+  ],
+  "checks": [
+    {
+      "command": "pytest test_semantics.py -q",
+      "exit_code": 0,
+      "passed": 21,
+      "scope": "actual local MCP and actual ownedHTTP metadata; other deterministic fault injection and fakePG connect, not realPG"
+    },
+    {
+      "command": "playwright --grep semantic metadata draft",
+      "exit_code": 0,
+      "passed": 1,
+      "scope": "isolated owned productAPI+realMCPsource metadata; draftconflict/humanpublish/v2/restart, no previewrequest/model or businessSQL"
+    },
+    {
+      "command": "tsc --noEmit -p apps/web/tsconfig.json",
+      "exit_code": 0
+    }
+  ],
+  "failed_attempt": "HTTPfixture and appfixture initially shared allowed directory mkdir conflict; moved applicationfixture into disjoint root, assertions kept,21passed on rerun",
+  "visual_review": "desktoplight screenshot viewed knowledgefields/publishedversions; dark/mobile generated",
+  "not_run": [
+    "fullcurrentregression",
+    "user defaultloadedM03UI/realownershipworkflow",
+    "M04BAgent publishedsemanticSQLconsumption",
+    "realPG/productionIdentity"
+  ],
+  "boundaries": "M04Afiniteclosed/local_ready and deferredreleasegates unchanged; additive M02metadata-onlydescribe under existingWorker scopes; no new dependency/modelcall/runtime restart/Keyread/deployment/push"
+}

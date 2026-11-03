@@ -1,0 +1,35 @@
+{
+  "reviewer": "self_review",
+  "scope": "M04-C01 single-table local development slice only",
+  "source_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+  "source_manifest_unchanged": true,
+  "backend_passed": 593,
+  "frontend_passed": 17,
+  "browser_passed": 44,
+  "checks": "all six commands exit0; specialized Agent33 covered by backend",
+  "model_integration": "isolated fake provider; actual product API, LangGraph and owned MCP/DuckDB",
+  "golden_fixture": "150 synthetic rows; sum11325, count150; not company business data",
+  "visual_review": [
+    "agent-whole-input-result-light.png: real result/QA card and folded SQL, visible themes",
+    "agent-result-mobile.png: opt-in summary drawer overlays content; no horizontal overflow assertion passed"
+  ],
+  "actual_user_gateway_query": "not_run",
+  "runtime_observation": {
+    "observed_at": "2026-11-02T09:58:09.079568+00:00",
+    "api_port": 8000,
+    "api_pid": 36816,
+    "venv_parent_pid": 34276,
+    "dev_parent_pid": 28092,
+    "vite_pid": 35620,
+    "agent_capabilities_http": 404,
+    "action": "read-only; no stop/restart/key read/model call"
+  },
+  "remaining": [
+    "real user gateway JSON plan + published semantic + explicit SQL confirmation",
+    "L2/L3/L4 routing",
+    "M03 approved relation contract before JOIN",
+    "M05-M08 and production integration gates"
+  ],
+  "diff_check": "exit0 with per-command core.whitespace including cr-at-eol; plain git diff --check reports repository CRLF as trailing whitespace; no source rewriting",
+  "verdict": "C01 reproducible tests passed; complete M04 audit not_run"
+}

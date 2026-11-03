@@ -1,0 +1,22 @@
+{
+  "reviewer": "self_review",
+  "verdict": "pass",
+  "scope": "D066approvedsingle-tablelocalproducer, user D067deliveryaccepted",
+  "user_statement": "我已验收，你继续推进M04b吧",
+  "current_runtime": {
+    "web": 200,
+    "semantics": 200
+  },
+  "regression": {
+    "frontend": 17,
+    "browser": 42,
+    "types": "passed",
+    "build": "passed",
+    "backend": 560,
+    "backend_scope": "prioractual560passed, all nonfrontendcode/tests/contracts/locks unchanged since fullrun, backend-reuse.json hash proof; not claimed backendrerun"
+  },
+  "limits": "M03single-tabledefinition/mapping/check/publish/softenable/versions only, actualAgentconsumer/realPG/production/complexJOIN/RAGnotverified;releasegatesretained",
+  "retained_failures": "preliminarybrowser41pass1missingenvXLSX_FIXTURE failed invocation, correctedexistingfixtureenv rerun all42pass; earlierunknownpreflightfailure remains tracked mediumrisk beforeproduction",
+  "deferred_existing": "M04A/M02finite scopes and failedoldmodelcandidatehistory unchanged",
+  "runtime_safety": "no stop/start/secret read/currentuserdata/modelPOST; semanticknowledge GET200 only. Useracceptance not installation permission."
+}

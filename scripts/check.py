@@ -18,6 +18,7 @@ def sources():
                  'apps/web/tsconfig.json','apps/web/vite.config.ts','apps/web/pnpm-lock.yaml','apps/web/pnpm-workspace.yaml',
                  'apps/web/index.html','playwright.config.mjs','DEVELOPMENT.md','start-workspace.cmd'):
         files.append(ROOT/name)
+    files.append(ROOT/'services/api/requirements.langgraph.lock.txt')
     manifest={str(p.relative_to(ROOT)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(set(files))}
     fingerprint=hashlib.sha256(json.dumps(manifest,sort_keys=True).encode()).hexdigest()
     return manifest,fingerprint
@@ -25,7 +26,7 @@ def sources():
 if __name__=='__main__':
     sys.stdout.reconfigure(encoding='utf-8',errors='replace')
     sys.stderr.reconfigure(encoding='utf-8',errors='replace')
-    parser=argparse.ArgumentParser();parser.add_argument('--browser',action='store_true');parser.add_argument('--module',choices=['M01','M02','M04-A'],default='M01');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--browser',action='store_true');parser.add_argument('--module',choices=['M01','M02','M04-A','M03','M04'],default='M01');args=parser.parse_args()
     stamp=datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')
     target=ROOT/f'project-control/modules/{args.module}/evidence'/stamp
     target.mkdir(parents=True,exist_ok=False)

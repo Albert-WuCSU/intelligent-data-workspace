@@ -1,0 +1,28 @@
+{
+  "reviewer": "self_review",
+  "scope": "C01firstfullfailure fixes and additional security checks",
+  "first_full": "581backendpassed1optionaldependencyloadfailed,17frontend/43browser/type/build/pippassed, actual results preserved091318Z",
+  "fixed": [
+    "production/baseAPIlazygraphservice, aggregatecompilerSQLimports deferred; strengthenedexistingbaseimport blocker includeslanggraph/langsmith/langchaincore",
+    "rightsummary actualtasksteps correspond to real model/metadata/SQL/QA events not stalewaiting",
+    "knownmodelKey insemanticunit/context refused before task/model and reflected plan",
+    "request/conversation malformedUUIDsafe422, consent/confirmstrictTrue",
+    "no freshconcurrentconfirm across tasks; cacheconfirmationknownnotreplayed"
+  ],
+  "additional_tests": "original22graphcases plus 6more supplierrefusal/Key/contextsize/resource cases; attemptedhigherrowfixture hit existing20000snapshotimport cap, corrected isolatedactualDuckDBfixture tests engine200000cap rather than raisingimporterlimit; originalM02limit stays intact",
+  "passed_targeted": [
+    {
+      "command": "pytest disabled_api... test_agent.py -q",
+      "count": 23,
+      "exit_code": 0,
+      "scope": "prioradditional6tests"
+    },
+    {
+      "command": "pytest input_row_budget... disabled_api... -q",
+      "count": 2,
+      "exit_code": 0
+    }
+  ],
+  "pending": "current allbackend/17front/43browserfullrecheck and realuserproviderJSON/actualquery",
+  "safety": "no assertion removal/productionpermission changes/no arbitrarySQL/privateaccount/Keyread or reset; no externaltrace SDK client"
+}

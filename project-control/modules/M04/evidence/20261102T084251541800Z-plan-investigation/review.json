@@ -1,0 +1,34 @@
+{
+  "reviewer": "self_review",
+  "scope": "M04BPLAN publicpackage/actualexistingcontracts investigation, not implementation/install",
+  "candidate": "LangGraph1.2.19 released2026-10-30 MIT Python>=3.10",
+  "resolution_command": "python -m pip install --dry-run --only-binary=:all: --report tmp/langgraph-dry-run-20261102.json langgraph==1.2.19",
+  "exit_code": 0,
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.12.14",
+    "os_name": "nt",
+    "platform_machine": "AMD64",
+    "platform_release": "11",
+    "platform_system": "Windows",
+    "platform_version": "10.0.26200",
+    "python_full_version": "3.12.14",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.12",
+    "sys_platform": "win32"
+  },
+  "new_packages": 26,
+  "existing_replacements": 0,
+  "installed": false,
+  "license_files": "MIT LICENSE from hash-selectedwheel read; perdependency license metadata recorded",
+  "trace_risk": "LangSmith MIT package mandatory transitive dependency; no cloudtracing/SDKconnection/hostKeyinheritance approved. Planned server and Worker environment containment and unnetworked graph smoke; compatibility runtime not_run until installed and tested.",
+  "actual_existing_executor": "M02PreviewRequest/select-onlyAST cannot aggregate or WHEREJOIN; plan proposes new explicitly ownedlocal aggregateMCP contract instead of silently expanding old6toolHTTP or computing on100previewrows",
+  "first_verticalslice": "authorizedsemantic/model boundedJSONplan->deterministiccheckedAST->userinterruptconfirmation->ownedMCPwhole-dataaggregation->qualitycard; module futureL2/L3/L4/JOINsegments explicitly still planned, cannot claimfullMVP",
+  "next_permission": "single bundled D-M04B-PLAN-INSTALL-069 approval for detailedplan/new26projectvenvpackages/newlocalaggregatecontract; do not reask existingbudget/PGdefer",
+  "not_run": [
+    "LangGraphimport/actualgraph/Windowsdependencytests",
+    "actualLLMstructuredplan/SQLaggregate/Agent/MVP",
+    "externalprovider/production/PG"
+  ],
+  "backlog": "AIPlanwholemodelcatalog/Keyreuse remains deferred B-MODEL-CATALOG-001"
+}

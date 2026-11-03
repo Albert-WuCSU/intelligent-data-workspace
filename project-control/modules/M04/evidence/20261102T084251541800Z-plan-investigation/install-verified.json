@@ -1,0 +1,18 @@
+{
+  "scope": "D069authorized projectvenv dependency installation/compatibility",
+  "command": "python -m pip install --no-deps --only-binary=:all: --require-hashes -r services/api/requirements.langgraph.lock.txt",
+  "exit_code": 0,
+  "installed_exact": 26,
+  "existing_packages_replaced": 0,
+  "lock_ref": "services/api/requirements.langgraph.lock.txt",
+  "lock_sha256": "a74a1214d09b1681e543f0c74164636826e5100070d725f549fb8dfb9fe2e0a4",
+  "checks": {
+    "pip_check_exit": 0,
+    "graph_smoke_exit": 0,
+    "graph_smoke_ref": "project-control/modules/M04/evidence/20261102T084251541800Z-plan-investigation/graph_smoke.py"
+  },
+  "network_smoke_scope": "Network denied only during graph runtime after Windows eventloop setup, not claiming package import scanner/no-code-execution for untrusted modules",
+  "external_trace": "mandatoryLangSmith/SDK installed as dependency but no cloudclient created; no_external_tracing and callbacks=[] plus hostfake enabled flags under blocked connect test passed",
+  "runtime": "Windows CPython3.12.14 AMD64 actual; otherOS/production unverified, original dependency locks not overwritten",
+  "first_failure_fix": "disabledbaseAPIshouldnotimport optionalengine/graph packages. lazygraphservice productionbase and delayedSQLcompilerimports preserve original APIstartupguard; assertion strengthened to blockgraph/tracingmodules too."
+}

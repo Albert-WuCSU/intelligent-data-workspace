@@ -1,0 +1,31 @@
+.......................................................................F [ 13%]
+........................................................................ [ 26%]
+........................................................................ [ 39%]
+........................................................................ [ 52%]
+........................................................................ [ 65%]
+........................................................................ [ 79%]
+........................................................................ [ 92%]
+..........................................                               [100%]
+================================== FAILURES ===================================
+____________________ test_capabilities_no_fake_connectors _____________________
+
+client = <starlette.testclient.TestClient object at 0x000001F4FB4AF4D0>
+
+    def test_capabilities_no_fake_connectors(client):
+        c=client.get('/api/v1/capabilities').json()
+>       assert c['connectors']==[] and not any(m['available'] for m in c['modules'])
+E       assert ([] == []
+E         
+E         Use -v to get more diff and not True)
+E        +  where True = any(<generator object test_capabilities_no_fake_connectors.<locals>.<genexpr> at 0x000001F4FB4B0A00>)
+
+services\api\tests\test_foundation.py:92: AssertionError
+============================== warnings summary ===============================
+services\api\.venv\Lib\site-packages\fastapi\testclient.py:1
+  D:\Users\luqianwu\Desktop\智能问数\services\api\.venv\Lib\site-packages\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_foundation.py::test_capabilities_no_fake_connectors
+1 failed, 545 passed, 1 warning in 203.04s (0:03:23)

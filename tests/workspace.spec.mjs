@@ -1,6 +1,9 @@
 import { test, expect } from '../apps/web/node_modules/@playwright/test/index.mjs';
 const URL='http://127.0.0.1:5173';
 const EVIDENCE=process.env.WORKSPACE_BROWSER_EVIDENCE||`project-control/modules/M02/evidence/manual-browser-${Date.now()}`;
+// These layout tests intentionally exercise an unavailable catalog; the developer's live catalog may be enabled.
+// Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
 async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
 async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
 
@@ -42,7 +45,9 @@ test('business-first layout, real output cards and preserved API checks',async({
  await expect(page.getByRole('status')).toContainText('当前显示 Schema');expect(JSON.parse(await editor.inputValue()).title).toBe('QuerySpec');
  await expect(page.getByRole('button',{name:'验证数据契约'})).toBeDisabled();await page.getByRole('button',{name:'恢复示例'}).click();
  await page.getByRole('button',{name:'关闭开发工具'}).click();
- for(const label of ['知识库','数据资产','可视化看板','分析报告']){
+ await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'知识库',exact:true}).click();
+ await expect(page.getByLabel('企业语义知识库')).toBeVisible();await expect(page.getByLabel('企业语义知识库')).toContainText('不由模型自动认证或执行SQL');
+ for(const label of ['数据资产','可视化看板','分析报告']){
   await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:label,exact:true}).click();
   await expect(page.getByRole('heading',{name:label+'尚未接入',exact:true})).toBeVisible();
  }
@@ -116,11 +121,11 @@ test('reference-style context panel shows only real state and model entry remain
  await expect(panel).toBeVisible();await expect(panel).toContainText('等待提问');await expect(page.getByLabel('切换模型')).toBeDisabled();
  await expect(page.getByLabel('选择问数数据源')).toHaveCount(0);await expect(panel.getByRole('region',{name:'多来源上下文'})).toBeVisible();
  await page.getByRole('button',{name:'模型服务',exact:true}).click();
- await expect(page.getByRole('region',{name:'模型接入说明',exact:true})).toContainText('15美元');await expect(panel).toContainText('尚无已验证、已授权的模型');
+ await expect(page.getByLabel('设置页面')).toBeVisible();await expect(panel).toHaveCount(0);await expect(page.getByLabel('设置页面')).toContainText('业务问数仍未接入');await page.getByRole('button',{name:'返回工作台',exact:true}).click();await expect(panel).toBeVisible();await expect(panel.locator('input[type=password]')).toHaveCount(0);
  await page.getByLabel('业务问题').fill('请统计订单数量');await page.getByRole('button',{name:'发送问题'}).click();
  await expect(panel).toContainText('自然语言请求未执行');await expect(panel).toContainText('暂无查询来源回执');await expect(panel).toContainText('未生成可下载文件');
  await expect(page.getByRole('region',{name:'执行进度'})).toContainText('未执行');
- await page.getByRole('button',{name:'关闭模型接入说明'}).click();await page.getByRole('button',{name:'白色主题'}).click();
+await page.getByRole('button',{name:'白色主题'}).click();
  await page.screenshot({path:`${EVIDENCE}/workbench-context-light.png`,fullPage:true});
  await page.getByRole('button',{name:'黑色主题'}).click();await page.screenshot({path:`${EVIDENCE}/workbench-context-dark.png`,fullPage:true});
  await page.getByRole('button',{name:'收起会话摘要'}).click();await expect(panel).toHaveCount(0);
@@ -132,9 +137,27 @@ test('mobile context summary is opt-in and source/model controls do not overflow
  await expect(page.getByRole('complementary',{name:'会话摘要'})).toHaveCount(0);
  await expect(page.getByLabel('切换模型')).toBeDisabled();
  await page.getByRole('button',{name:'模型服务',exact:true}).click();
- const panel=page.getByRole('complementary',{name:'会话摘要'});await expect(panel).toBeVisible();await expect(panel).toContainText('待接入');
+ const settings=page.getByLabel('设置页面');await expect(settings).toBeVisible();await expect(page.getByRole('complementary',{name:'会话摘要'})).toHaveCount(0);await expect(settings).toContainText('业务问数仍未接入');
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
  await page.screenshot({path:`${EVIDENCE}/workbench-context-mobile.png`,fullPage:true});
- await page.getByRole('button',{name:'收起会话摘要'}).click();await expect(panel).toHaveCount(0);await expect(page.getByLabel('业务问题')).toBeEnabled();
+ await page.getByRole('button',{name:'返回工作台',exact:true}).click();await expect(page.getByRole('complementary',{name:'会话摘要'})).toHaveCount(0);await expect(page.getByLabel('业务问题')).toBeEnabled();
  await page.getByRole('button',{name:'白色主题'}).click();await expect(page.getByRole('button',{name:'白色主题'})).toHaveAttribute('aria-pressed','true');
+});
+
+test('settings browser history and keyboard return preserve the unsent conversation',async({page})=>{
+ await online(page);await page.getByLabel('业务问题').fill('只保留草稿，不发送');
+ const button=page.getByRole('button',{name:'设置',exact:true});await button.focus();await page.keyboard.press('Enter');
+ await expect(page.getByLabel('设置页面')).toBeVisible();await expect(page.getByRole('heading',{name:'模型服务',exact:true})).toBeFocused();
+ await page.goBack();await expect(page.getByLabel('业务问题')).toHaveValue('只保留草稿，不发送');
+ await page.goForward();await expect(page.getByLabel('设置页面')).toBeVisible();
+ await page.getByRole('button',{name:'返回工作台',exact:true}).focus();await page.keyboard.press('Enter');await expect(page.getByLabel('业务问题')).toHaveValue('只保留草稿，不发送');await expect(page.getByLabel('业务问题')).toBeFocused();
+ await expect(page.getByRole('complementary',{name:'会话摘要'}).locator('input[type=password]')).toHaveCount(0);
+});
+
+test('knowledge missing backend route explains safe reload and never submits or alters saved sources',async({page})=>{
+ const mutations=[];page.on('request',r=>{if(r.method()==='POST')mutations.push(r.url());});
+ await page.route('**/api/v1/semantics',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'请求的接口不可用。',trace_id:'old-backend-fixture'}}));
+ await online(page);await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'知识库',exact:true}).click();
+ const panel=page.getByLabel('企业语义知识库');await expect(panel.getByRole('alert')).toContainText('SEMANTIC_BACKEND_OUTDATED');await expect(panel).toContainText('先停止原项目启动器');await expect(panel).toContainText('预算和保存的数据源保留');
+ await expect(panel.getByRole('button',{name:'校验实际字段与口径'})).toBeDisabled();await panel.getByRole('button',{name:'刷新知识库'}).click();await expect(panel.getByRole('alert')).toContainText('不要另开第二个启动器');expect(mutations).toEqual([]);
 });
