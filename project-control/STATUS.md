@@ -1,3 +1,14 @@
+# 最终新窗口交接（2026-11-03，revision165）
+
+最新主线已批准Claude Agent SDK＋产品Skills＋治理Harness，M04-C02-SDK PLAN，SDK未安装/实现/网关验证。方案/PRD/项目Skill及安装副本/CHANGELOG已更新并push；main收尾6697c4e、LangGraph比较分支92d0b03已核GitHub，最终交接提交另push，续接核最新Git refs。
+
+下一步按progress.next_action先调查SDK/内置CLI确切版本、hash/许可CommercialTerms、Windows环境与工具权限隔离、现AIPlan网关tool_use/Skill/stream/usage及有限多轮预算，再列安装许可点。不重复选择SDK、不按旧D058/D069推进LangGraph主线。旧C01源码暂在main仅用于迁移，593/17/44是历史图测试，非SDK证据；M01/M02/M04-A/M03验收和预算/PG门禁不变。
+
+当前不要求用户聊天给Key；不读宿主认证/设置/hooks、不自动安装SDK/实模型收费/扩大外发/生产查询。模型负责Skill路由/探索/澄清，执行授权/确认/预算/幂等与自动QA、发布回执由Harness强制保证。未授权子Agent，MVP未完成。完整续接第一句见NEW_WINDOW_PROMPT.md。
+
+---
+以下仅历史。
+
 # SDK主线交接已推送（2026-11-03，revision164）
 
 D070：当前主线Claude Agent SDK＋产品Skills＋治理Harness，M04-C02-SDK PLAN。方案/PRD/需求/项目Skill及其安装副本/CHANGELOG已更新。GitHub main的方案提交ce14cd4、LangGraph保留分支codex/langgraph-baseline-20261103=92d0b03已atomicpush并ls-remote核一致；本收尾记录另commit/push，最新提交以Git refs为准。

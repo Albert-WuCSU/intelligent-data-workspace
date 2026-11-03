@@ -1,6 +1,6 @@
 # 项目续接档案
 
-状态版本 revision 164，更新时间 2026-11-03T05:49:37.301047+00:00 UTC。
+状态版本 revision 165，更新时间 2026-11-03T05:52:11.143132+00:00 UTC。
 
 先校验 progress.json 并核对实际文件；本档案由脚本生成，主进度为唯一状态真源。
 
@@ -23,6 +23,7 @@
 - 本轮未重启/核实时服务、读Key、实模型收费或productionSQL，未installSDK/新CLI，未授权子Agent。用户授权GitHub推送main及保留分支；main ce14cd4及LangGraphbaseline92d0b03已正常atomicpush；ls-remote同SHA证实。
 - SDK方向文档self_review通过：PRD覆盖/引用/顺序、31测试+9subtests及3Skillfiles安装同步过；产品源SHA仍5be4b137...不变，旧C01未重跑。源代码/文档diffcheck过，原始evidence stdout空白保留。正常atomicpush和ls-remote实核通过，无force；后续收尾记录单独commit/push，续接以实际Git refs为准。
 - GitHub main ce14cd4已承载SDK方案；codex/langgraph-baseline-20261103=92d0b03完整保留。官方PRD最终文档audit13模块/60需求通过，当前SDK所有runtime testsnot_run、M04-C02-SDK PLAN。下一步仅SDK兼容/锁版/隔离/安装计划，不复问选型、不自动实调用。
+- 2026-11-03最终换窗口交接：GitHub main收尾6697c4e、LangGraph比较分支92d0b03已push/ls-remote核一致，当前源码工作区干净；本次仅交接更新，不新增SDK安装/调用/重跑产品测试。后续交接提交SHA以gitrefs为准。
 
 ## 阻碍
 
