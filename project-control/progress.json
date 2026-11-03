@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 161,
-  "updated_at": "2026-11-03T03:13:43.976350+00:00",
+  "revision": 163,
+  "updated_at": "2026-11-03T05:48:09.682211+00:00",
   "project": {
     "id": "universal-data-agent",
     "name": "通用企业智能数据分析平台",
@@ -7547,7 +7547,7 @@
     },
     {
       "id": "M04",
-      "name": "取数Agent与Harness（M04-B LangGraph受控问数）",
+      "name": "取数Agent与Harness（M04-B Claude Agent SDK＋Skills主线）",
       "milestone": "MVP",
       "depends_on": [
         "M02",
@@ -7555,166 +7555,71 @@
         "M04-A"
       ],
       "status": "active",
-      "phase": "do",
-      "cycle_id": "M04-C01",
+      "phase": "plan",
+      "cycle_id": "M04-C02-SDK",
       "maturity": "not_verified",
       "plan_ref": "project-control/modules/M04/plan.md",
       "approvals": {
-        "plan": "D-M04B-PLAN-INSTALL-069",
+        "plan": null,
         "delivery": null
       },
       "implementation_items": [
         {
-          "id": "M04B-I-GRAPH-FIRST",
+          "id": "M04B-SDK-S00-DOCS",
           "status": "done",
           "paths": [
-            "services/api/src/data_workspace/agent_service.py",
-            "services/api/src/data_workspace/agent_routes.py",
-            "services/api/src/data_workspace/agent_contracts.py",
-            "services/api/src/data_workspace/warehouse/aggregate_server.py",
-            "services/api/src/data_workspace/warehouse/aggregate_engine.py",
-            "services/api/tests/test_agent.py"
+            "project-control/modules/M04/plan.md",
+            "project-control/prd/M04-B.md",
+            "skills/project-pdca/references/claude-sdk-routing.md",
+            "CHANGELOG.md"
           ],
-          "description": "C01 implementation and current full regression passed; actual user gateway and remaining M04 scope not verified."
-        },
-        {
-          "id": "M04B-I-WORKBENCH-QUERY-C01",
-          "status": "done",
-          "paths": [
-            "apps/web/src/AgentTaskCard.tsx",
-            "apps/web/src/App.tsx",
-            "apps/web/src/WorkbenchPanel.tsx",
-            "services/api/src/data_workspace/agent_service.py",
-            "tests/remote-onboarding.spec.mjs",
-            "AGENT.md"
-          ],
-          "description": "C01 implementation and current full regression passed; actual user gateway and remaining M04 scope not verified."
+          "description": "D070方向变更/主线方案/历史分支保存；SDK运行未实现"
         }
       ],
       "tests": [
         {
-          "id": "backend",
-          "command": [
-            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
-            "-m",
-            "pytest",
-            "services/api/tests",
-            "-q"
-          ],
-          "cwd": ".",
-          "exit_code": 0,
-          "status": "passed",
-          "environment": "local",
-          "integration": "unit",
-          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
-          "log": "project-control/modules/M04/evidence/20261102T094834Z/backend.txt",
-          "required": true,
-          "evidence_id": "M04B-FINAL-FULL-014",
-          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
-        },
-        {
-          "id": "dependency-check",
-          "command": [
-            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
-            "-m",
-            "pip",
-            "check"
-          ],
-          "cwd": ".",
-          "exit_code": 0,
-          "status": "passed",
-          "environment": "local",
-          "integration": "unit",
-          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
-          "log": "project-control/modules/M04/evidence/20261102T094834Z/dependency-check.txt",
-          "required": true,
-          "evidence_id": "M04B-FINAL-FULL-014",
-          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
-        },
-        {
-          "id": "types",
-          "command": [
-            "C:\\Program Files\\nodejs\\node.EXE",
-            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
-            "--noEmit"
-          ],
-          "cwd": "apps\\web",
-          "exit_code": 0,
-          "status": "passed",
-          "environment": "local",
-          "integration": "unit",
-          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
-          "log": "project-control/modules/M04/evidence/20261102T094834Z/types.txt",
-          "required": true,
-          "evidence_id": "M04B-FINAL-FULL-014",
-          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
-        },
-        {
-          "id": "build",
-          "command": [
-            "C:\\Program Files\\nodejs\\node.EXE",
-            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
-            "build"
-          ],
-          "cwd": "apps\\web",
-          "exit_code": 0,
-          "status": "passed",
-          "environment": "local",
-          "integration": "unit",
-          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
-          "log": "project-control/modules/M04/evidence/20261102T094834Z/build.txt",
-          "required": true,
-          "evidence_id": "M04B-FINAL-FULL-014",
-          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
-        },
-        {
-          "id": "frontend",
-          "command": [
-            "C:\\Program Files\\nodejs\\node.EXE",
-            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
-            "run"
-          ],
-          "cwd": "apps\\web",
-          "exit_code": 0,
-          "status": "passed",
-          "environment": "local",
-          "integration": "unit",
-          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
-          "log": "project-control/modules/M04/evidence/20261102T094834Z/frontend.txt",
-          "required": true,
-          "evidence_id": "M04B-FINAL-FULL-014",
-          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
-        },
-        {
-          "id": "browser",
-          "command": [
-            "C:\\Program Files\\nodejs\\node.EXE",
-            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
-            "test",
-            "--config",
-            "playwright.config.mjs"
-          ],
-          "cwd": ".",
-          "exit_code": 0,
-          "status": "passed",
-          "environment": "local",
-          "integration": "real",
-          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
-          "log": "project-control/modules/M04/evidence/20261102T094834Z/browser.txt",
-          "required": true,
-          "evidence_id": "M04B-FINAL-FULL-014",
-          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
-        },
-        {
-          "id": "M04B-REAL-USER-GATEWAY-QUERY",
+          "id": "sdk-runtime-compat",
           "required": true,
           "status": "not_run",
           "environment": "local",
           "integration": "real",
           "command": [
-            "User explicitly sends approved question in Web and confirms bound query plan"
+            "Pinned SDK/CLI isolated Windows fixture and license validation after installation approval"
           ],
-          "scope": "Actual gateway JSON generation + latest enabled published semantic + authorized local aggregate MCP; current running API capability404. No automatic model calls."
+          "scope": "M04-C02-SDK; LangGraph旧测试不得填为SDK通过"
+        },
+        {
+          "id": "sdk-tool-quality-e2e",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real",
+          "command": [
+            "Skill load/routing -> metric/SQL -> confirm -> actual MCP -> mandatoryQA -> receiptgate"
+          ],
+          "scope": "M04-C02-SDK; LangGraph旧测试不得填为SDK通过"
+        },
+        {
+          "id": "sdk-real-gateway",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real",
+          "command": [
+            "User explicitly runs authorized gateway SDK tool_use question and confirms query"
+          ],
+          "scope": "M04-C02-SDK; LangGraph旧测试不得填为SDK通过"
+        },
+        {
+          "id": "sdk-full-regression",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real",
+          "command": [
+            "services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser after implementation"
+          ],
+          "scope": "M04-C02-SDK; LangGraph旧测试不得填为SDK通过"
         }
       ],
       "evidence": [
@@ -7836,6 +7741,27 @@
           "path": "project-control/modules/M04/evidence/20261102T091317949020Z-agent-ui/typed-time-final-review.md",
           "sha256": "b8b411a26f570a0a993db0efdaf022fe755a19110c5119e5d0b2c70434dbd74d",
           "stale": false
+        },
+        {
+          "id": "M04B-SDK-RESEARCH-018",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261103-sdk-route-change/research.json",
+          "sha256": "e369a01fe418d8e032ca6a69c20afefd24eab3f83cbdc41dc25e9ed403c51ec4",
+          "stale": false
+        },
+        {
+          "id": "M04B-SDK-DOC-AUDIT-019",
+          "kind": "review",
+          "path": "project-control/modules/M04/evidence/20261103-sdk-route-change/document-audit.json",
+          "sha256": "9087ef90916b1c21e197a2dd44cc07fdb157218859b7f1b7240cb801f18ed5db",
+          "stale": false
+        },
+        {
+          "id": "M04B-SDK-DOC-TESTS-020",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261103-sdk-route-change/validation-summary.json",
+          "sha256": "f3c9efca56facc618aca6dccfc9a5d0892813346f02ac47be2c452902e0e76fa",
+          "stale": false
         }
       ],
       "audit": {
@@ -7855,10 +7781,23 @@
           "severity": "high",
           "resolved": false,
           "description": "C01 independent governed aggregate MCP/AST/versions/confirm/QA implemented and tested; legacy navigation remains unchanged. JOIN and other adapter capabilities require approved contracts and actual evidence."
+        },
+        {
+          "id": "M04B-R-SDK-COMPAT",
+          "severity": "high",
+          "resolved": false,
+          "description": "AIPlan/DeepSeek text verification does not prove ClaudeSDK tool/Skill/stream/usage or terms; pinnedSDK/CLI Windows runtime/license not_run."
+        },
+        {
+          "id": "M04B-R-SDK-ISOLATION",
+          "severity": "high",
+          "resolved": false,
+          "description": "SDKparentenv/settings/hook/toolautoapproval/file/network isolation and multi-turnbudget requires hardservergates and fixtures, notRun."
         }
       ],
       "prd_ref": "project-control/prd/M04-B.md",
-      "delivery_slice": "M04-B"
+      "delivery_slice": "M04-B",
+      "architecture_decision_id": "D-M04B-CLAUDE-SDK-070"
     },
     {
       "id": "M05",
@@ -8562,17 +8501,33 @@
       "selected_option": "langgraph-governed-query",
       "rationale": "对应已展示M04BPLAN与LangGraph1.2.19/26新增hashlocked项目venv包安装，禁外部trace；新localMCP聚合/typedplan/humanconfirmation/QA，未自动批准实际userKey付费/公司查询/生产。",
       "recorded_at": "2026-11-02T08:53:27.810335+00:00"
+    },
+    {
+      "id": "D-M04B-CLAUDE-SDK-070",
+      "kind": "change",
+      "module_id": "M04",
+      "cycle_id": "M04-C02-SDK",
+      "source": "user",
+      "user_statement": "我思考再三，我决定使用claude sdk那一套。因为我认为Claude为底座会更加灵活，有时候用户自己都不知道自己想要取什么数据，langgraph可能会让agent变得像流程审批一样死板。你帮我更新一下方案和对应的规划skill,更新一下PRD，然后你最好写一个更新日志，然后上传到github里，这个作为主线，之前langgraph作为一个分支先不要删去。后续我要有多余资源可以尝试开发对比效果，目前还是按照SDK的方案来",
+      "selected_option": "claude-agent-sdk-skills-governed-harness",
+      "supersedes": [
+        "D-CLAUDE-ENGINE-058",
+        "D-M04B-PLAN-INSTALL-069"
+      ],
+      "rationale": "仅替代编排主线方向，保留原安装/测试事实与安全底座；批准更新方案/项目Skill/PRD/日志并push GitHub，LangGraph分支留待比较。不推导未知SDK版本安装、主机工具、真实费用、新外发或生产许可。",
+      "recorded_at": "2026-11-03T05:46:22.059727+00:00"
     }
   ],
   "pending_decision": null,
   "next_action": {
-    "kind": "verify_real_user_query_and_prepare_followup",
-    "description": "先只读核当前服务归属和Agent能力（11月2日404为历史观察，不继承PID/exec），确认新版API是否加载；需要停止/重启时遵循授权边界，不盲杀或开启重复启动器。由用户网页安全配置/测试/启用模型、选择已发布启用语义与来源、明确问题外发并人工确认执行，补真实网关JSON→受治理MCP结果证据；不自动付费、搬Key或重问预算/PG延期。可继续已批准范围内低风险后继调查，JOIN关系契约变更先审批。M04仍DO，MVP未完成。",
+    "kind": "sdk_compatibility_and_install_plan",
+    "description": "按D070SDK主线先只读调查确切SDK/内置CLI版本/hash/许可CommercialTerms/Windows隔离与现AIPlan网关tool_use/Skill/stream/usage兼容、有限turn/tool/token/墙钟预算和治理工具合同，准备明确安装许可点；方向已选不重问。旧LangGraph只比较基线，不按旧next_action自动调用/重启/继续图主线。不读hostKey、不自动付费/猜端点或扩大数据外发，完整SDK实现和MVP均not_run。",
     "read_refs": [
-      "AGENT.md",
       "project-control/modules/M04/plan.md",
       "project-control/prd/M04-B.md",
-      "project-control/modules/M04/evidence/20261102T094834Z/checkpoint-review.json"
+      "skills/project-pdca/references/claude-sdk-routing.md",
+      "CHANGELOG.md",
+      "project-control/modules/M04/evidence/20261103-sdk-route-change/research.json"
     ],
     "commands": [
       "services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root ."
@@ -9353,19 +9308,28 @@
         "M03"
       ],
       "reason": "UserD067explicitdelivery acceptance after repairedUI full17/42andmetadata560backendsourceproof;closeapprovedsingle-tablelocalproducer, no futureJOIN/RAG/realAgentconsumerreleasegatewaiver. Retain priorfailure and recovery audit."
+    },
+    {
+      "id": "CI-M04B-SDK-070",
+      "decision_id": "D-M04B-CLAUDE-SDK-070",
+      "reason": "用户决定SDK柔性Skills/tool_use主线，LangGraph留比较分支",
+      "affected_modules": [
+        "M04",
+        "M04-A",
+        "M03",
+        "M05",
+        "M08"
+      ],
+      "handling": "M04进入新cyclePLAN；其他已验收模块不重开/不假改代码，适配/数据外发变化在实施时另审；current运行SDKnotrun，旧C01测试归档历史；本轮仅文档/需求/Skill及Git。"
     }
   ],
   "blockers": [],
   "working_state": [
-    "M01/M02/M04-A/M03分别批准的有限本机范围closed/local_ready，PG/生产/公网与历史模型failed/not_run门禁保持；历史过程见checkpoints和evidence。",
-    "D069用户“允许该方案”已登记；当前M04（原ID=M04-B）/M04-C01/DO。LangGraph1.2.19及26个hashlocked新增包已安装，0替换，pipcheck和有限graph smoke通过，禁外部trace。",
-    "已完成C01：最新启用语义/模型绑定→一次受限JSON生成→服务端SQLAST/授权/版本检查→人工确认→独立受治理aggregate MCP完整输入聚合→真实QA/结构卡。旧6tool导航与preview不扩权。",
-    "最终094834Z全回归593backend/17frontend/44browser/types/build/pip全部exit0；33Agent专项包含其中；源指纹5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243现核一致。fake model+真实local MCP150行合成数据11325，不是真实公司模型/经营数据验证。",
-    "Typedtime：DATE/naiveTS按日边界，awareTS显式UTC+00:00参数，TIME不当日历；lockedShanghai实际边界测过。失效/双确认/未知回执不重提交，模型截断只读诊断不自动收费。前三次失败与修复证据完整保留。",
-    "最新只读核8000 API36816/venvparent34276/devparent28092，5173 Vite35620；Agentcapabilities仍404，旧运行API需安全重新加载。PID仅本次观察，之后操作必须fresh核归属；未停止/重启/读取Key/实用户收费或生产SQL。",
-    "用户实际gateway JSON+已发布口径+明确查询确认仍required/not_run；完整M04的L2/L3/L4/JOIN、M05–M08未完，不关闭或称MVP完成。模型目录Keyreuse仍B-MODEL-CATALOG-001；预算D053/PG后补不重问。",
-    "本轮源码/交接未commit/push；CRLF兼容的per-command diffcheck过，无全局git配置更改。数据/semantics和密钥不入Git；后台任务仅内存，刷新可读当前owner会话，不跨重启持久化。",
-    "2026-11-03用户要求保存交接与新窗口prompt；本次仅文档续接、validate与源码指纹复核，未重跑测试/检查实时服务/重启/读取Key/收费。11月2日API404和PID为历史观察，新窗口必须重新核实，不推断当前存活。"
+    "D070用户明确改Claude Agent SDK＋产品Skills＋治理Harness主线，旧D058/D069选择历史不删。M04原ID/M04-C02-SDK PLAN；已验收M01/M02/M04-A/M03、预算D053及PG/生产门禁保留。",
+    "LangGraph完整C01源码/测试/证据/交接已commit92d0b03于codex/langgraph-baseline-20261103，main快进继承以复用底座。主线仅文档迁移，当前运行代码仍旧C01，不称SDK已实现；旧593/17/44为历史基线。",
+    "M04SDK plan/PRD/Skill及对应安装副本、需求和日志已更新，SDK安装/运行/网关兼容not_run；官方docs403，officialPythonREADME/types调研成功，未锁release。",
+    "本轮未重启/核实时服务、读Key、实模型收费或productionSQL，未installSDK/新CLI，未授权子Agent。用户授权GitHub推送main及保留分支；push结果待实核。",
+    "SDK方向文档self_review通过：PRD覆盖/引用/顺序、31测试+9subtests及3Skillfiles安装同步过；产品源SHA仍5be4b137...不变，旧C01未重跑。源代码/文档diffcheck过，原始evidence stdout空白保留。即将正常push main和LangGraphbaseline，无force。"
   ],
   "session": {
     "recommend_new_chat": true,
@@ -9451,6 +9415,143 @@
       "rerun_ref": "project-control/modules/M04/evidence/20261102T094834Z/results.json",
       "result": "passed",
       "scope": "593backend/17frontend/44browser/types/build/pip; actualuser integration not_run"
+    },
+    {
+      "module_id": "M04",
+      "cycle_id": "M04-C01",
+      "result": "historical_langgraph_baseline_only",
+      "tests": [
+        {
+          "id": "backend",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pytest",
+            "services/api/tests",
+            "-q"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/backend.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "dependency-check",
+          "command": [
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\services\\api\\.venv\\Scripts\\python.exe",
+            "-m",
+            "pip",
+            "check"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/dependency-check.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "types",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\typescript\\bin\\tsc",
+            "--noEmit"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/types.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "build",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vite\\bin\\vite.js",
+            "build"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/build.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "frontend",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\vitest\\vitest.mjs",
+            "run"
+          ],
+          "cwd": "apps\\web",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "unit",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/frontend.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "browser",
+          "command": [
+            "C:\\Program Files\\nodejs\\node.EXE",
+            "D:\\Users\\luqianwu\\Desktop\\智能问数\\apps\\web\\node_modules\\@playwright\\test\\cli.js",
+            "test",
+            "--config",
+            "playwright.config.mjs"
+          ],
+          "cwd": ".",
+          "exit_code": 0,
+          "status": "passed",
+          "environment": "local",
+          "integration": "real",
+          "code_fingerprint": "5be4b1373cd2d76c8628a52508b3a8332d1100bc4c21fa560048a21dd248b243",
+          "log": "project-control/modules/M04/evidence/20261102T094834Z/browser.txt",
+          "required": true,
+          "evidence_id": "M04B-FINAL-FULL-014",
+          "scope": "C01 current full regression; fake model / real governed local MCP, not actual user gateway or production"
+        },
+        {
+          "id": "M04B-REAL-USER-GATEWAY-QUERY",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "real",
+          "command": [
+            "User explicitly sends approved question in Web and confirms bound query plan"
+          ],
+          "scope": "Actual gateway JSON generation + latest enabled published semantic + authorized local aggregate MCP; current running API capability404. No automatic model calls."
+        }
+      ],
+      "audit": {
+        "verdict": "not_run"
+      },
+      "baseline_branch": "codex/langgraph-baseline-20261103",
+      "baseline_commit": "92d0b03",
+      "reason": "SDK路线变更；旧通过保留非SDK运行证明"
     }
   ],
   "documentation_evidence": [

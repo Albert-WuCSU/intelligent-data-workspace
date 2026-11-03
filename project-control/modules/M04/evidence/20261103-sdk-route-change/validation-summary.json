@@ -1,0 +1,25 @@
+{
+  "kind": "documentation_self_review",
+  "command": [
+    "services/api/.venv/Scripts/python.exe",
+    "-m",
+    "pytest",
+    "project-control/prd/test_validate.py",
+    "skills/project-pdca/scripts/test_progress.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "result": "31 passed, 9 subtests passed",
+  "checks": [
+    "D070 plus previous decisions preserved",
+    "SDKnewcyclePLAN all runtime testsnotrun",
+    "M01/M02/M04A/M03 accepted unchanged",
+    "3 relevant Skillfiles exact installedsync",
+    "product sourcefingerprint unchanged baseline5be4b137...",
+    "diffcheck pass with CRLF compatible git option",
+    "PRD13module coverage and references pass"
+  ],
+  "reviewer": "self_review",
+  "sdk_integration": "not_run",
+  "product_tests_rerun": false
+}

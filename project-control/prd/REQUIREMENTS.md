@@ -1,3 +1,5 @@
+> 2026-11-03：D070更新R-U24/R-A05/R-A06，机器真源requirements.json；SDK主线运行not_run，旧LangGraph方向仅历史。
+
 > 2026-10-27：D-M02-RETENTION-013 A已由用户采用，清理执行仍not_run；下方历史待选记录以最新progress决策为准。
 
 # 需求追踪表｜用户反馈、原产品规划与验收证据
@@ -37,13 +39,13 @@
 | R-U21 | 真实证据门禁：实际命令/退出码/指纹/环境；mock不冒充真实，未验证not_run；M02未验收不closed，不因进度推进虚报生产。 | M01, M02, M08 | AGENTS.md+project-pdca / user_statement | M02本机切片部分已实测；Spark/Hive/真实PG/生产等未验证按progress.not_run，不当全能力完成。 |
 | R-U22 | 模块PRD与追踪：项目目录每模块有PRD，已提出需求可追踪到来源、实现、验收或not_run；未来模块不虚构完成。 | M01, M02, M04-A, M03, M04-B(M04), M05, M06, M07, M08, M09, M10, M11, M12 | 2026-10-27本轮用户PRD要求 / user_statement | 本轮文档实现；文档审计不是产品功能测试。 |
 | R-U23 | 大模型是核心能力：用户能配置自己的模型API，由真实调用驱动理解/生成；不能只做好数据连接而长期没有模型接入。 | M04-A, M04-B(M04) | 2026-10-27用户模型API反馈 / user_statement | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
-| R-U24 | 新优先级：M02收尾→M04-A模型API→M03语义库→M04-B LangGraph受控问数，同步PRD/Skill/规划；已批准方向，不越过当前验收。 | M02, M04-A, M03, M04-B(M04) | D-ROADMAP-MODEL-014（本轮登记） / user_decision | 本轮明确批准路线/编排方向；模型服务和LangGraph代码均未实现/未安装。 |
+| R-U24 | 已批准模块顺序与SDK主线 | M02→M04-A→M03→M04（M04-B）顺序保留，D070改为Claude Agent SDK＋Skills＋治理Harness主线；LangGraph独立分支保留比较。 | D-M04B-CLAUDE-SDK-070（替代旧编排方向，原决策保留） / user_decision | SDK方向/文档已批准；运行迁移、安装和真实网关兼容not_run。LangGraph历史C01证据不当SDK证据。 |
 | R-A01 | 模型服务分层：设置→模型服务和数据源连接器分开；管理员配置，业务选授权模型；ModelProvider薄适配优先，不为单API调用引入全套框架。 | M04-A, M04-B(M04) | 本轮采纳前一轮模型接入建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
 | R-A02 | 模型能力与协议：供应商/base URL/模型名称/凭证引用/能力/限额配置，实测认证及最小生成/流式/结构化/工具支持分别声明。API兼容标签不等于全支持。 | M04-A | 本轮采纳前一轮模型接入建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
 | R-A03 | 模型费用与失败：真实token用量/可核验费率；无费率显示未知，限制预算/最大输出/重试。401/403/429/超时/中断/部分输出有下一步，不假成功。 | M04-A, M08 | 本轮采纳前一轮模型接入建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
 | R-A04 | 模型数据外发：连接数据源不自动批准把表行/Schema/知识/日志发给LLM；单独确认供应商/域/地域/处理条款/最小上下文，私有部署不自动保证驻留。 | M04-A, M03, M04-B(M04), M12 | 产品方案14.2+本轮架构方向 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
-| R-A05 | LangGraph编排：M04-B优先LangGraph控制图，混合确定性检查和受限模型节点；M04-A薄适配不强依赖LangChain。具体版本/许可/安装待PLAN核验。 | M04-B(M04) | D-ROADMAP-MODEL-014（本轮登记） / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
-| R-A06 | 框架非安全边界：LangGraph检查点不保证查询恰好一次，复用幂等/回执/代际；不默认接外部LangSmith/追踪付费平台，不因框架让Agent无限工具。 | M04-B(M04), M05 | 本轮采纳前一轮架构建议 / approved_direction | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
+| R-A05 | Claude SDK＋Skills编排 | 模型先产品Skill路由/加载，再自主澄清/探索与指标优先或受控SQL；Claude Agent SDK承载tool_use循环，版本/许可/网关/隔离/安装待核。 | D-M04B-CLAUDE-SDK-070（替代旧编排方向，原决策保留） / approved_direction | SDK方向/文档已批准；运行迁移、安装和真实网关兼容not_run。LangGraph历史C01证据不当SDK证据。 |
+| R-A06 | 编排与安全边界分离 | Prompt/Skills/SDK权限hook不能替代后端授权/SQL/预算/确认/幂等；取数内部必QA且发布核回执，SDK resume非exactly-once，不默认外部trace或无限工具。 | D-M04B-CLAUDE-SDK-070（替代旧编排方向，原决策保留） / approved_direction | SDK方向/文档已批准；运行迁移、安装和真实网关兼容not_run。LangGraph历史C01证据不当SDK证据。 |
 | R-P01 | 任务分类：取数/指标分析/体验洞察/建模/实验/普通对话；低置信多意图先选择，VOC独立授权，依赖操作串行。 | M04-B(M04), M09, M10, M11 | 产品方案6.1/6.8 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
 | R-P02 | L1至L4治理：认证指标优先L1、审核模板L2、授权范围探索L3、明确目标L4；不机械全路试探，权限拒绝不换路线绕过。 | M03, M04-B(M04) | 产品方案6.2/6.7 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |
 | R-P03 | 关键口径澄清：指标版本/分子分母/粒度/实际时间字段/时区/币种/状态/基准集中澄清，只问缺关键项；已批准默认披露，不统一给所有表日期槽。 | M03, M04-B(M04) | 产品方案6.3+用户日期澄清 / product_plan | 规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。 |

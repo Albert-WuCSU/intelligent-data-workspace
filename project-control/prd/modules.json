@@ -197,8 +197,8 @@
     },
     {
       "id": "M04",
-      "title": "M04-B LangGraph编排的受控问数Agent与Harness",
-      "state": "规划待实施 / not_run；原模块ID=M04，交付切片=M04-B",
+      "title": "M04-B Claude Agent SDK＋Skills的受治理问数",
+      "state": "M04-C02-SDK PLAN / not_run；旧LangGraph C01为比较基线",
       "phase": "MVP：M02→M04-A→M03之后",
       "deps": [
         "M02",
@@ -207,7 +207,7 @@
       ],
       "role": "业务用户提问/澄清/确认得到可复用证据结果；分析师查看SQL，管理员控制资源与模型权限",
       "problem": "把真实模型、企业口径、治理数仓协作成问数闭环，而不是自由工具循环或只有API连通。",
-      "path": "提问→任务分类→引用已批准知识→L1/L2/L3/L4合法路由→关键口径澄清→QuerySpec确认→SQL质检/预算→执行→结果质检→结构化卡→追问/复用。",
+      "path": "提问→Skill路由/加载→澄清与元数据探索→指标优先或受控SQL→授权预算/用户确认→MCP取数→自动QA→回执核验发布",
       "features": [
         [
           "路由与澄清",
@@ -215,8 +215,8 @@
           "R-P01,R-P02,R-P03,R-U09"
         ],
         [
-          "LangGraph工作流",
-          "显式state/nodes/edges/interrupt/events，模型节点受schema限制、代码节点做授权/SQL/预算；ModelProvider薄接口可替换，不重写MCP/Worker。",
+          "SDK＋产品Skills",
+          "按问题动态选择技能/探索/工具；Harness验证技能路由与版本、受控执行和必经QA发布，不把推理写死成审批图。",
           "R-U24,R-A05,R-A06"
         ],
         [
@@ -235,16 +235,16 @@
           "R-U18,R-A03,R-A06,R-P22"
         ]
       ],
-      "non": "不无限探索/模型自行扩权，不将LangGraph checkpoint当exactly-once或生产持久化；不自行生成经营数字/因果，不自动发布业务动作。",
-      "contracts": "QuerySpec/RouteTrace/ToolCallRequest/QualityReport/TaskEvents/Clarification/Interrupt，M04-A提供模型适配，M02执行，M03知识，M05持久化；M05前最小资产合同不能省。",
+      "non": "不将Skills/SDK权限机制当安全边界，不无限工具或继承宿主Shell/Key；SDK resume非exactly-once，不造业务/因果或部署成功",
+      "contracts": "QuerySpec/RouteTrace/ToolCallRequest/QualityReport/TaskEvents/Clarification/Interrupt，M04-A提供模型适配，M02执行，M03知识，M05持久化；M05前最小资产合同不能省。；新增SkillRouteReceipt/QualityReceipt/受治理工具与SDK会话版本，不替代现有授权。",
       "accept": [
         "真实模型+已批准语义+授权MCP→真实结果，缺槽先澄清，拒绝不上其他路线，工具输入服务端校验。",
         "模型API429/超时、SQL失败、空/部分、质检FAIL/预算耗尽给真实状态；固定版本金标准比较语义及数值而非SQL字符串。",
         "等待用户确认可恢复且不重复执行；模型/SQL/权限防护可测，影子与版本回归。",
-        "LangGraph版本/许可/传递依赖/Windows及未来目标部署核验和模块PLAN后安装；若不兼容返回决策，不暗换框架。"
+        "确切Claude SDK/内置CLI版本/许可Commercial Terms/Windows隔离/工具权限/网关及用量核验，批准后安装；不兼容不暗切回旧框架或别的模型。"
       ],
-      "risk": "实际供应商工具/结构化兼容、口径样例、SQL扫描预算、检查点存储和任务幂等待实施；安全不能由Prompt或框架替代。",
-      "evidence": "当前自然语言仍本地规则提示，Agent/LangGraph无运行证据；新编排方向批准不等于交付批准。"
+      "risk": "SDK网关/模型协议和费用、内置CLI/许可、父环境与settings/hook隔离、工具自动批准、会话恢复和结果外发待核。",
+      "evidence": "LangGraph C01593backend/17frontend/44browser仅旧引擎基线；Claude SDK安装/运行/网关/真实工具循环not_run。"
     },
     {
       "id": "M05",

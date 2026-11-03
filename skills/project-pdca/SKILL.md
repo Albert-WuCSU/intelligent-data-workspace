@@ -75,9 +75,11 @@ CHECK/ACT 失败 → DO 修复 → 重跑 CHECK → 再审计；需改变方案 
 
 ## 本项目的模型服务优先级（条件适用）
 
-仅当项目档案确认 `project.id=universal-data-agent` 且有 D-ROADMAP-MODEL-014 时，读项目 `project-control/ROADMAP.md`、PRD入口与当前 `prd_ref`：采用 **M02 收尾 → M04-A 模型 API 接入 → M03 语义知识库 → M04-B LangGraph 编排的受控问数**。保留旧进度ID M04作为M04-B，新M04-A单独验收；模型服务与数据源连接器分开。其他项目以其自己的批准路线为准。
+仅对 `project.id=universal-data-agent` 且已登记 D-ROADMAP-MODEL-014：保持 **M02 → M04-A → M03 → M04（M04-B）** 顺序和已验收范围，不新增重复Agent模块。恢复时读取最新决策；D-M04B-CLAUDE-SDK-070 已替代旧 LangGraph 主线方向：**Claude Agent SDK＋产品 Skills＋治理 Harness** 为主线，LangGraph C01 保留在比较分支，不删除实现、测试和证据，不因历史文案继续安装/推进图引擎。
 
-M04-A先薄ModelProvider适配，M04-B优先LangGraph图编排；方向批准不等于具体版本/安装/模型费用/端点/数据外发批准。框架不能替代已有MCP、Worker、服务端SQL/权限或幂等回执，不默认外部追踪。详细边界见 [references/data-platform-roadmap.md](references/data-platform-roadmap.md)。原M02待清理决策和真实验证门禁不得被新路线自动绕过。
+模型负责 Skills 路由、探索、澄清及指标优先/SQL选择，不把所有思考写成固定审批图。Harness在执行工具和结果发布入口强制验证已加载技能版本/路由记录、授权、SQL/预算/用户确认/幂等，并在取数后自动质量检查；system prompt/SKILL.md是指导，不是安全边界。详见 [SDK路由迁移约束](references/claude-sdk-routing.md)，本项目M04规划/审计/续接时读取。
+
+M04-A已验收模型API不等于SDK兼容：SDK内置CLI、工具协议、模型、网关、许可、Windows资源隔离、环境/目录/设置来源、遥测及预算须实核。SDK env覆盖可能仍继承父环境；allowed_tools可能自动批准工具，不能当唯一白名单。不得读取宿主Claude/Codex登录、加载用户settings/hooks、自动fallback或把旧128token/单次预算当SDK工具循环能力。方向与文档/Git推送已批准，未知版本安装、模型实际费用、新端点/数据外发/生产仍按原授权边界。只更新本项目Skill和它的对应安装副本，不改无关Skill。
 
 ## 进度与每轮收尾
 

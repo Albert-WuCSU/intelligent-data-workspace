@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-10-28",
+  "updated_on": "2026-11-03",
   "coverage_basis": "当前聊天、人类决策ledger、PRODUCT_UX_PRINCIPLES、现存产品方案和交接；不能声称恢复了项目外不可访问聊天。",
   "requirements": [
     {
@@ -458,25 +458,27 @@
     },
     {
       "id": "R-U24",
-      "title": "新优先级",
-      "requirement": "M02收尾→M04-A模型API→M03语义库→M04-B LangGraph受控问数，同步PRD/Skill/规划；已批准方向，不越过当前验收。",
+      "title": "已批准模块顺序与SDK主线",
+      "requirement": "M02→M04-A→M03→M04（M04-B）顺序保留，D070改为Claude Agent SDK＋Skills＋治理Harness主线；LangGraph独立分支保留比较。",
       "modules": [
         "M02",
         "M04-A",
         "M03",
         "M04"
       ],
-      "source": "D-ROADMAP-MODEL-014（本轮登记）",
+      "source": "D-M04B-CLAUDE-SDK-070（替代旧编排方向，原决策保留）",
       "origin": "user_decision",
       "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
       "source_refs": [
         "project-control/progress.json",
-        "project-control/prd/USER_REQUESTS.md"
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/modules/M04/plan.md"
       ],
       "decision_ids": [
-        "D-ROADMAP-MODEL-014"
+        "D-ROADMAP-MODEL-014",
+        "D-M04B-CLAUDE-SDK-070"
       ],
-      "current_evidence_boundary": "本轮明确批准路线/编排方向；模型服务和LangGraph代码均未实现/未安装。"
+      "current_evidence_boundary": "SDK方向/文档已批准；运行迁移、安装和真实网关兼容not_run。LangGraph历史C01证据不当SDK证据。"
     },
     {
       "id": "R-A01",
@@ -552,40 +554,45 @@
     },
     {
       "id": "R-A05",
-      "title": "LangGraph编排",
-      "requirement": "M04-B优先LangGraph控制图，混合确定性检查和受限模型节点；M04-A薄适配不强依赖LangChain。具体版本/许可/安装待PLAN核验。",
+      "title": "Claude SDK＋Skills编排",
+      "requirement": "模型先产品Skill路由/加载，再自主澄清/探索与指标优先或受控SQL；Claude Agent SDK承载tool_use循环，版本/许可/网关/隔离/安装待核。",
       "modules": [
         "M04"
       ],
-      "source": "D-ROADMAP-MODEL-014（本轮登记）",
+      "source": "D-M04B-CLAUDE-SDK-070（替代旧编排方向，原决策保留）",
       "origin": "approved_direction",
       "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
       "source_refs": [
         "project-control/PRODUCT_UX_PRINCIPLES.md",
-        "project-control/prd/USER_REQUESTS.md"
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/modules/M04/plan.md"
       ],
       "decision_ids": [
-        "D-ROADMAP-MODEL-014"
+        "D-ROADMAP-MODEL-014",
+        "D-M04B-CLAUDE-SDK-070"
       ],
-      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+      "current_evidence_boundary": "SDK方向/文档已批准；运行迁移、安装和真实网关兼容not_run。LangGraph历史C01证据不当SDK证据。"
     },
     {
       "id": "R-A06",
-      "title": "框架非安全边界",
-      "requirement": "LangGraph检查点不保证查询恰好一次，复用幂等/回执/代际；不默认接外部LangSmith/追踪付费平台，不因框架让Agent无限工具。",
+      "title": "编排与安全边界分离",
+      "requirement": "Prompt/Skills/SDK权限hook不能替代后端授权/SQL/预算/确认/幂等；取数内部必QA且发布核回执，SDK resume非exactly-once，不默认外部trace或无限工具。",
       "modules": [
         "M04",
         "M05"
       ],
-      "source": "本轮采纳前一轮架构建议",
+      "source": "D-M04B-CLAUDE-SDK-070（替代旧编排方向，原决策保留）",
       "origin": "approved_direction",
       "approval_boundary": "已登记决策按原范围；产品方案为规划目标而非全部实现/网络/发布授权；细节需模块PLAN确认。",
       "source_refs": [
         "project-control/PRODUCT_UX_PRINCIPLES.md",
-        "project-control/prd/USER_REQUESTS.md"
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/modules/M04/plan.md"
       ],
-      "decision_ids": [],
-      "current_evidence_boundary": "规划目标或已批准方向；真实模型/知识库/下游分析尚未实现，not_run。"
+      "decision_ids": [
+        "D-M04B-CLAUDE-SDK-070"
+      ],
+      "current_evidence_boundary": "SDK方向/文档已批准；运行迁移、安装和真实网关兼容not_run。LangGraph历史C01证据不当SDK证据。"
     },
     {
       "id": "R-P01",

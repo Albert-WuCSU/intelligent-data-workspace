@@ -1,3 +1,14 @@
+# 2026-11-03 当前主线改为 Claude Agent SDK（revision162）
+
+D070是用户明确的新方向：SDK＋产品Skills＋治理Harness，覆盖旧“坚持LangGraph/禁止SDK”主线选择。M04原ID保留，M04-C02-SDK回到PLAN，SDK运行not_run。先Skill路由/加载、动态探索澄清，指标优先或受控SQL；取数内部必QA，发布核回执，Prompt/Skills不替代安全。
+
+已将完整LangGraph C01及未push成果保存为codex/langgraph-baseline-20261103 @92d0b03，供未来同任务/工具/数据/预算对比。main暂继承旧源码用于迁移，尚未实现SDK，不声称引擎已切换。旧593backend/17frontend/44browser仅历史基线，未重跑SDK；M01/M02/M04-A/M03有限本机验收、PG/生产/预算门禁保持。
+
+本轮更新方案/PRD/需求/项目Skill及其安装副本/更新日志，不安装SDK/CLI、不重启/读Key/收费/执行生产SQL。下一步先核确切SDK/内置CLI版本/许可CommercialTerms/Windows隔离、工具权限和现AIPlan网关兼容、有限多轮预算/最小外发，再列明确安装批准点；不重问SDK方向。官方文档站403，officialPythonREADME/types调研成功，main源码不当锁版。GitHub推送状态以后续同步证据为准。
+
+---
+以下历史状态不能覆盖当前D070。
+
 # 2026-11-03 新窗口交接（revision161）
 
 本次只保存交接、校验进度并复核源码指纹；未重跑测试、重新检查实时服务、停止/启动进程、读取Key或调用真实模型。最近实际测试仍为11月2日094834Z：593后端/17前端/44浏览器及types/build/pip通过，当前源码指纹一致。M04-B/M04-C01仍DO，未整体验收。

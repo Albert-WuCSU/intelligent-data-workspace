@@ -1,3 +1,11 @@
+# 当前主线：Claude Agent SDK＋Skills＋治理Harness（迁移规划，2026-11-03）
+D070已选择SDK，当前运行代码仍旧LangGraph C01迁移基线，SDK未安装/实现/网关验证。不要将下面旧路径称SDK。实施入口project-control/modules/M04/plan.md，SDK路由/安全约束skills/project-pdca/references/claude-sdk-routing.md；先调查确切SDK/CLI版本/terms/Windows和网关兼容，不自动安装或真实收费。
+
+LangGraph备选基线：codex/langgraph-baseline-20261103 @92d0b03，593backend/17frontend/44browser历史通过；保留未来同口径对比。旧锁/代码/测试不删除，主线尚未切换运行引擎。旧模型成功不证明SDK，原真实问数/PG/生产门禁保持。
+
+---
+以下旧实现仅供迁移复用/历史比较。
+
 # 受控问数 Agent（M04-B C01 开发切片，尚未整体验收）
 
 ## 当前路径

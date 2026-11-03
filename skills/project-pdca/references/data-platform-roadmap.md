@@ -8,13 +8,9 @@
 
 ## 本项目已批准的模型服务前置路线
 
-对 `universal-data-agent` 且已登记D-ROADMAP-MODEL-014：**M02 收尾 → M04-A 模型 API 接入 → M03 语义知识库 → M04-B LangGraph 编排的受控问数**。M01验收保留、M02未delivery不跳转，旧M04 ID对应M04-B，不删除历史。项目ROADMAP/PRD/progress为恢复真源；下方原通用模块表作为初始建议，不覆盖已批准重排。
+对universal-data-agent：D-ROADMAP-MODEL-014的M02→M04-A→M03→M04（M04-B）顺序保留；D-M04B-CLAUDE-SDK-070将当前编排主线替换为Claude Agent SDK＋产品Skills＋治理Harness。LangGraph保留比较分支codex/langgraph-baseline-20261103及旧证据，不自动继续开发图主线。其他项目不强制此路线。
 
-M04-A独立“设置→模型服务”薄适配，真实供应商/模型/流式/能力/用量/秘密引用和预算，不为了简单API调用引入全套框架。M04-B优先LangGraph作为状态图编排，确定性安全节点/人类澄清确认/工具事件可观察，复用MCP/Worker/SQL质检与幂等回执。LangChain按组件收益选，不默认LangSmith/收费追踪；新版本/许可/兼容/安装和外部模型端点/数据驻留用途需要详细PLAN及授权，不能从本轮文档请求推导。
-
-连接数据源不意味着批准将Schema/行/历史外发模型，秘密不写Prompt/源码/日志或继承宿主；graph checkpoint也不是SQL恰好一次/生产持久队列保证。当前清理未选/真实PG等not_run保留，用户可先要求文档/低风险检查，不自动扩大执行范围。
-
-其他项目若未确认此路线，仍采用其当前批准记录，不强行前置M04-A或选LangGraph。
+先Skill路由/澄清和授权内探索，再指标优先或受控SQL，取数工具内部必过质量检查，发布入口校验回执。Prompt/技能文档不替代代码安全，工具名称不代表当前助手的权限可继承。SDK工具循环不是无限执行；独立环境/设置目录、工具暴露与服务器门禁、费用预留/幂等、许可及网关兼容在PLAN核验。具体约束见[SDK迁移](claude-sdk-routing.md)。SDK版本/安装/真实调用尚未获本次文档变更的自动授权；生产/PG后补等原门禁保持。
 
 ## 推荐模块
 

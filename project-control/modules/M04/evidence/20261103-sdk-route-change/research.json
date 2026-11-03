@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-03",
+  "kind": "architecture_research",
+  "documentation_site": "six agent-sdk pages HTTP403; not fully verified",
+  "official_source_urls": [
+    "https://github.com/anthropics/claude-agent-sdk-python",
+    "https://raw.githubusercontent.com/anthropics/claude-agent-sdk-python/main/README.md",
+    "https://raw.githubusercontent.com/anthropics/claude-agent-sdk-python/main/src/claude_agent_sdk/types.py"
+  ],
+  "source_sha256": {
+    "sdk-readme": "c38a933bf8fef26316ea38635989b254e69a26d21d80b96bf5731cba4e88bcc6",
+    "sdk-types": "536acb144fb8e515aa91a5153eb824901bacef4c6b8aa88e6d7a0f0b7b2a8004"
+  },
+  "verified_source_claims": [
+    "Python3.10+ and bundled ClaudeCode CLI; README build workflow includes Windows wheels",
+    "allowed_tools permission autoapproval not removal whitelist; disallowed_tools available",
+    "env overrides merged with parent environment; setting_sources controls filesystem settings",
+    "max_turns/max_budget_usd options exist; not evidence gateway tariff support",
+    "SDK use governed by Anthropic Commercial Terms, component licenses differ"
+  ],
+  "not_run": [
+    "pinned release/CLI and license validation",
+    "AIPlan gateway SDK/tool_use compatibility",
+    "SDK install/run/real paid model/production/deployment"
+  ],
+  "baseline_branch": "codex/langgraph-baseline-20261103",
+  "baseline_commit": "92d0b03",
+  "secret_scan": "3072 candidate tracked/nonignored files; common secret prefix/private key/header patterns no matches; runtime dirs ignored; heuristic not proof of absence",
+  "baseline_diff_check": "source/doc check passed excluding raw test evidence; unchanged stdout evidence has native whitespace, preserved not rewritten"
+}

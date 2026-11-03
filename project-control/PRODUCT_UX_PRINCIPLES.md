@@ -209,3 +209,6 @@ M04-A经D064有限本机验收后进入M03 DO。当前知识库结构化表单�
 ## 2026-11-02 D069批准后的C01受控单表问数开发
 项目内LangGraph1.2.19依赖已装并pip/no网络interruptsmoke通过，工作台用户选择真实启用model/已发布口径/源，明确问题必要字段外发/估算，生成typedJSON计划→后端AST/版本权限检查→人确认→独立workspace_aggregate_v1 ownedMCP对完整输入聚合→真实QA/resultcard/pipeline。旧preview/HTTP6tools不变，不用100行算总体；SQL/版本日志折叠。
 当前独立fake-model+真实MCP150行E2E不代表用户实网关JSON/实际业务query已通过，JOIN/L2L3L4后继及M05MVP未完成。刷新读取当前后台memorytask按会话/owner归属恢复确认，不持久化结果快照或宣称exactlyonce/跨重启。实际Key只设置safeinput，不自动收费/读取hosttoken/开启外部trace。
+
+## 2026-11-03 SDK主线交互原则（D070）
+用户不知道指标/表名也能提出问题；产品Skill引导动态探索/澄清，不要求先选择固定metric_id或展示审批式推理流程。危险执行仍明确口径/范围/预算确认；取数工具自动QA，结果发布核质量回执，模型不自行宣布通过。真实工具事件形成pipeline，思考链/技术日志不默认显示。现阶段是规划，不宣称已改运行工作台或用户研究。
