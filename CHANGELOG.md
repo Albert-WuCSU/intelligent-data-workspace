@@ -13,3 +13,6 @@
 未安装/运行SDK或重启服务、读Key、调用模型、提交生产SQL。SDK＋内置CLI版本/许可/Commercial Terms/Windows隔离、AI Plan/DeepSeek工具协议、Skill加载/权限顺序、遥测/多轮费用与外发需进一步核。既有单次Messages文本/stream成功≠SDK。SDK依赖env覆盖不等于环境隔离，allowed_tools非安全白名单；不默认Bash/Write/任意Read或宿主settings/hooks/认证。SDK安装/循环/真实网关/MVP均not_run。
 ### 验证计划
 本轮验证文档一致性、Skill引用与同步、progress checkpoint、需求覆盖、Git分支和秘密扫描。历史运行测试不声称新重跑。新SDK实现后再全回归＋真实工具/质量/恢复/网关测试。后续同问题/合成数据/工具/预算比较SDK与LangGraph，比较结果not_run。
+
+### 本轮实际验证与同步结果
+文档审计13模块/60需求通过；31项规划/进度测试及9个subtests通过，3个相关Skill文件与安装副本完全一致。主线方案ce14cd4与LangGraph分支92d0b03已atomicpush/ls-remote核一致；收尾状态另commit/push，最新以Git refs为准。源指纹仍与历史C01一致，未重跑产品测试或安装/运行SDK。

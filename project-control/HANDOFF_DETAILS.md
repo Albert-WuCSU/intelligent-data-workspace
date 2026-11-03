@@ -1,3 +1,14 @@
+# SDK主线交接已推送（2026-11-03，revision164）
+
+D070：当前主线Claude Agent SDK＋产品Skills＋治理Harness，M04-C02-SDK PLAN。方案/PRD/需求/项目Skill及其安装副本/CHANGELOG已更新。GitHub main的方案提交ce14cd4、LangGraph保留分支codex/langgraph-baseline-20261103=92d0b03已atomicpush并ls-remote核一致；本收尾记录另commit/push，最新提交以Git refs为准。
+
+SDK尚未安装/实现或实网关验证，运行代码仍旧C01迁移基线。文档审计13模块/60需求、31tests+9subtests及Skill同步通过；旧593backend/17frontend/44browser未重跑、不当SDK证据。原LangGraph计划/PRD归档，旧成果不删，比较效果not_run。
+
+先Skill路由/探索澄清→指标优先或受控SQL→治理执行→自动QA→质量回执核验发布。安全不靠Prompt/Skills/hooks，默认不开放Bash/Write/任意Read/宿主认证或settings；先核版本/内置CLI/许可/Windows/网关/多轮预算，再明确安装许可。无需再次选择SDK、提供聊天Key或重问预算/PG生产后补；旧“保留LangGraph主线”已被D070替代。未重启/收费/生产查询，M01/M02/M04-A/M03验收不变，MVP未完成。
+
+---
+以下仅历史。
+
 # 2026-11-03 当前主线改为 Claude Agent SDK（revision162）
 
 D070是用户明确的新方向：SDK＋产品Skills＋治理Harness，覆盖旧“坚持LangGraph/禁止SDK”主线选择。M04原ID保留，M04-C02-SDK回到PLAN，SDK运行not_run。先Skill路由/加载、动态探索澄清，指标优先或受控SQL；取数内部必QA，发布核回执，Prompt/Skills不替代安全。
