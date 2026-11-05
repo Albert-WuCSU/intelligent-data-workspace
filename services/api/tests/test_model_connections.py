@@ -9,6 +9,7 @@ from data_workspace.model_provider import ModelConfiguration,MessagesProvider
 from data_workspace.model_egress import public_endpoint_valid,PublicModelTransport
 from data_workspace.model_budget import EstimatedBudget
 from data_workspace.chat_model_provider import ChatCompletionsProvider
+from data_workspace.model_routes import resolve_catalog_model
 from test_model_provider import KEY
 
 def payload(app,**change):
@@ -162,3 +163,48 @@ def test_private_user_model_response_still_exact_not_fuzzy(tmp_path):
  provider=MessagesProvider(ModelConfiguration('http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages','my-user-model','anthropic_messages','bearer'),KEY,Permit(),httpx.MockTransport(lambda r:httpx.Response(200,json=data)))
  with pytest.raises(PublicError):asyncio.run(provider.generate('fixed'))
  assert not provider._verified
+
+
+def test_multi_model_catalog_add_test_enable_select_remove(tmp_path):
+ app=app_for(tmp_path)
+ with TestClient(app,base_url='http://127.0.0.1:8000',client=('127.0.0.1',1)) as c:
+  assert c.post('/api/v1/model-service/connection',json=payload(app),headers=H).status_code==200
+  generation=app.state.model_tests.generation
+  primary_version=app.state.model_provider.configuration.version
+  added=c.post('/api/v1/model-service/connection/models',json={'execution_generation':generation,'config_version':primary_version,'model_id':'second-model'},headers=H)
+  assert added.status_code==200,added.text
+  entry=app.state.model_registry.entries['second-model']
+  entry.provider.transport=httpx.MockTransport(lambda request:httpx.Response(200,json={'model':'second-model','choices':[{'finish_reason':'stop','message':{'role':'assistant','content':'OK'}}],'usage':{'prompt_tokens':4,'completion_tokens':2}}))
+  catalog=c.get('/api/v1/model-service/catalog').json()
+  assert len(catalog['models'])==2 and catalog['default_model_id']=='fixture-model'
+  second=next(model for model in catalog['models'] if model['model_id']=='second-model')
+  assert second['available'] is False and second['enabled'] is False
+  tested=c.post('/api/v1/model-service/models/test',json={'model_id':'second-model','request_id':str(uuid4()),'execution_generation':generation,'config_version':entry.provider.configuration.version,'accept_estimated_cost':True},headers=H)
+  assert tested.status_code==200 and tested.json()['status']=='succeeded'
+  enabled=c.post('/api/v1/model-service/models/enabled',json={'model_id':'second-model','execution_generation':generation,'config_version':entry.provider.configuration.version,'enabled':True},headers=H)
+  assert enabled.status_code==200,enabled.text
+  catalog=c.get('/api/v1/model-service/catalog').json()
+  second=next(model for model in catalog['models'] if model['model_id']=='second-model')
+  assert second['enabled'] is True and second['available'] is True and second['source']=='personal_api'
+  assert resolve_catalog_model(app,second['id']) is entry.provider
+  removed=c.post('/api/v1/model-service/connection/models/remove',json={'execution_generation':generation,'config_version':primary_version,'model_id':'second-model'},headers=H)
+  assert removed.status_code==200,removed.text
+  assert len(c.get('/api/v1/model-service/catalog').json()['models'])==1
+  assert entry.provider.key==''
+
+
+def test_multi_model_rejects_primary_duplicate_and_unverified_enable(tmp_path):
+ app=app_for(tmp_path)
+ with TestClient(app,base_url='http://127.0.0.1:8000',client=('127.0.0.1',1)) as c:
+  assert c.post('/api/v1/model-service/connection',json=payload(app),headers=H).status_code==200
+  generation=app.state.model_tests.generation
+  primary_version=app.state.model_provider.configuration.version
+  duplicate=c.post('/api/v1/model-service/connection/models',json={'execution_generation':generation,'config_version':primary_version,'model_id':'fixture-model'},headers=H)
+  assert duplicate.status_code==409 and duplicate.json()['code']=='MODEL_ALREADY_PRIMARY'
+  added=c.post('/api/v1/model-service/connection/models',json={'execution_generation':generation,'config_version':primary_version,'model_id':'second-model'},headers=H)
+  assert added.status_code==200
+  entry=app.state.model_registry.entries['second-model']
+  enable=c.post('/api/v1/model-service/models/enabled',json={'model_id':'second-model','execution_generation':generation,'config_version':entry.provider.configuration.version,'enabled':True},headers=H)
+  assert enable.status_code==409 and enable.json()['code']=='MODEL_NOT_VERIFIED'
+  stale=c.post('/api/v1/model-service/connection/models',json={'execution_generation':generation,'config_version':'stale','model_id':'third-model'},headers=H)
+  assert stale.status_code==409

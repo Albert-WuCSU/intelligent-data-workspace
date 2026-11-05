@@ -137,6 +137,11 @@
           "秘密/费用/驻留",
           "独立模型凭证命名空间和资源绑定沿用A原则；最小可授权上下文、模型外发单独确认；token用量与可核验费用，无费率显示未知。",
           "R-U16,R-A03,R-A04,R-P21,R-P25"
+        ],
+        [
+          "多模型目录",
+          "同一连接可维护多个模型，独立测试/启停；目录仅来自服务端实测状态，不自动枚举网关模型。",
+          "R-U30,R-A07,R-P26"
         ]
       ],
       "non": "不在本切片生成未经M04-B门禁的SQL或运营结论，不自动发送表行/全历史到LLM，不因OpenAI-compatible就承诺任何供应商功能；不默认收费追踪平台。",
@@ -198,7 +203,7 @@
     {
       "id": "M04",
       "title": "M04-B Claude Agent SDK＋Skills的受治理问数",
-      "state": "M04-C02-SDK PLAN / not_run；旧LangGraph C01为比较基线",
+      "state": "M04-C02-SDK DO/not_verified；A3-M1有限metadata/L2派生模板本机CHECK通过，完整L2/L3/真实体验/生产未验收",
       "phase": "MVP：M02→M04-A→M03之后",
       "deps": [
         "M02",
@@ -207,11 +212,11 @@
       ],
       "role": "业务用户提问/澄清/确认得到可复用证据结果；分析师查看SQL，管理员控制资源与模型权限",
       "problem": "把真实模型、企业口径、治理数仓协作成问数闭环，而不是自由工具循环或只有API连通。",
-      "path": "提问→Skill路由/加载→澄清与元数据探索→指标优先或受控SQL→授权预算/用户确认→MCP取数→自动QA→回执核验发布",
+      "path": "提问→连续公开执行说明/实际工具标签→L1优先与授权探索→发现限制/原任务澄清问答→独立执行确认→MCP/自动QA→正文报告/内嵌结果/折叠回执",
       "features": [
         [
           "路由与澄清",
-          "分类取数/归因/洞察/建模/实验/对话；低置信或歧义卡，L1优先而L4明确目标直入，依赖串行，权限拒绝停止不绕路。",
+          "分类取数/归因/洞察/建模/实验/对话；低置信或可恢复澄清消息，L1优先而L4明确目标直入，依赖串行，权限拒绝停止不绕路。",
           "R-P01,R-P02,R-P03,R-U09"
         ],
         [
@@ -233,18 +238,29 @@
           "恢复和预算",
           "检查点恢复不重复SQL，幂等键/回执/tombstone/代际守卫，有限工具/修复/时间/token预算；不默认外部LangSmith或多套框架。",
           "R-U18,R-A03,R-A06,R-P22"
+        ],
+        [
+          "工作台模型选择器与绑定",
+          "类似Claude Code的选择/搜索/分组；选中模型绑定SDK/Agent任务，模型变化使旧计划失效。",
+          "R-U30,R-A07,R-P26"
+        ],
+        [
+          "常规Agent式对话",
+          "顺序化公开执行说明/实际工具标签/可恢复澄清/最终正文报告和内嵌表格；不以短句加大卡片替代。",
+          "R-U31"
         ]
       ],
       "non": "不将Skills/SDK权限机制当安全边界，不无限工具或继承宿主Shell/Key；SDK resume非exactly-once，不造业务/因果或部署成功",
-      "contracts": "QuerySpec/RouteTrace/ToolCallRequest/QualityReport/TaskEvents/Clarification/Interrupt，M04-A提供模型适配，M02执行，M03知识，M05持久化；M05前最小资产合同不能省。；新增SkillRouteReceipt/QualityReceipt/受治理工具与SDK会话版本，不替代现有授权。",
+      "contracts": "QuerySpec/RouteTrace/ToolCallRequest/QualityReport/TaskEvents/Clarification/Interrupt，M04-A提供模型适配，M02执行，M03知识，M05持久化；M05前最小资产合同不能省。；新增SkillRouteReceipt/QualityReceipt/受治理工具与SDK会话版本，不替代现有授权。；AgentDialogueEntry仅公开治理事实/用户补充，不转发原始thinking或工具参数。",
       "accept": [
         "真实模型+已批准语义+授权MCP→真实结果，缺槽先澄清，拒绝不上其他路线，工具输入服务端校验。",
         "模型API429/超时、SQL失败、空/部分、质检FAIL/预算耗尽给真实状态；固定版本金标准比较语义及数值而非SQL字符串。",
         "等待用户确认可恢复且不重复执行；模型/SQL/权限防护可测，影子与版本回归。",
-        "确切Claude SDK/内置CLI版本/许可Commercial Terms/Windows隔离/工具权限/网关及用量核验，批准后安装；不兼容不暗切回旧框架或别的模型。"
+        "确切Claude SDK/内置CLI版本/许可Commercial Terms/Windows隔离/工具权限/网关及用量核验，批准后安装；不兼容不暗切回旧框架或别的模型。",
+        "M04-B-AC05/R-U31：执行说明、实际工具和澄清问答按时间顺序留在主聊天，最终正文报告为主、技术证据折叠，不展示原始思维链或伪造步骤。"
       ],
       "risk": "SDK网关/模型协议和费用、内置CLI/许可、父环境与settings/hook隔离、工具自动批准、会话恢复和结果外发待核。",
-      "evidence": "LangGraph C01593backend/17frontend/44browser仅旧引擎基线；Claude SDK安装/运行/网关/真实工具循环not_run。"
+      "evidence": "当前A3-M1 642后端/23前端/45浏览器/types/build/pip/源稳定通过（101013Z）。单源单表canonical语义派生L2模板，非企业主题库/自由SQL；默认A3加载与真实模型not_run；历史A2/A2.1/LangGraph证据保留。"
     },
     {
       "id": "M05",

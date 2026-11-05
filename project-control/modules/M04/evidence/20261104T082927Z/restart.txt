@@ -1,0 +1,2 @@
+Final full627/20/45/types/build/pip passed; verified project bootstrap=27956 and both loopback listeners, process tree count=11. No Key/env read.
+New final launcher PID=20164; no Key prompt or model invocation.

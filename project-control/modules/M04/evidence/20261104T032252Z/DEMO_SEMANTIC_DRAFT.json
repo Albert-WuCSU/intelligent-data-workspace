@@ -1,0 +1,20 @@
+{
+  "domain": "orders",
+  "name": "订单总金额",
+  "owner_note": "演示口径：本机Excel订单表，未认证业务含义",
+  "source_id": "c0ea94d5-d9e0-406d-8037-6b018f7ff871",
+  "table_id": "t0",
+  "grain": ["编号"],
+  "grain_note": "每行订单编号",
+  "metrics": [
+    {
+      "id": "total_amount",
+      "name": "订单总金额",
+      "aliases": ["总金额", "金额合计"],
+      "operator": "sum",
+      "column": "金额",
+      "unit": "未声明单位",
+      "additive": true
+    }
+  ]
+}

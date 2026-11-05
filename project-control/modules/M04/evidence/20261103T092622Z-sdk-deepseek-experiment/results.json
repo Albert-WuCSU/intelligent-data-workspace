@@ -1,0 +1,275 @@
+{
+  "decision_id": "D-M04B-SDK-REAL-072",
+  "selected_option": "D",
+  "kind": "non_claude_sdk_compatibility_experiment",
+  "created_at": "2026-11-03T09:26:40.395621+00:00",
+  "official_support": "unsupported_non_claude_experiment",
+  "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+  "question": "What is total amount?",
+  "models": [
+    "deepseek-v4.1-flash"
+  ],
+  "auto_confirm_fixture": true,
+  "fixture": "D:\\Users\\luqianwu\\Desktop\\智能问数\\project-control\\modules\\M04\\evidence\\20261103T092622Z-sdk-deepseek-experiment\\fixture\\connections\\snapshots\\ccc32331-2051-4a1e-878c-70da60ac44e1\\source.duckdb",
+  "budget_contract": {
+    "model_steps": 8,
+    "tool_calls": 10,
+    "metadata_calls": 3,
+    "total_tokens": 100000,
+    "wall_clock_seconds": 300,
+    "estimated_reserve_usd": 2.0,
+    "campaign": "D053, no reset; two runs reserve at most 4 USD estimate"
+  },
+  "results": [
+    {
+      "model": "deepseek-v4.1-flash",
+      "task_id": "f764d02f-4e49-4d01-803c-47094267d002",
+      "config": {
+        "database": "D:\\Users\\luqianwu\\Desktop\\智能问数\\project-control\\modules\\M04\\evidence\\20261103T092622Z-sdk-deepseek-experiment\\fixture\\connections\\snapshots\\ccc32331-2051-4a1e-878c-70da60ac44e1\\source.duckdb",
+        "question": "What is total amount?",
+        "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+        "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-1-q5o14711",
+        "task_id": "f764d02f-4e49-4d01-803c-47094267d002",
+        "model": "deepseek-v4.1-flash",
+        "mode": "real_gateway_experiment",
+        "auto_confirm_fixture": true,
+        "wall_clock_seconds": 300
+      },
+      "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-1-q5o14711",
+      "runtime_cleaned": true,
+      "process": {
+        "returncode": 0,
+        "timed_out": false,
+        "job_cpu_100ns": 65781250,
+        "job_process_limit": 10,
+        "job_active_processes": 1,
+        "job_peak_processes": 8,
+        "job_peak_memory_bytes": 566145024,
+        "process_peak_memory_bytes": 446324736,
+        "job_memory_limit": 2147483648,
+        "process_memory_limit": 1073741824,
+        "wall_seconds": 300
+      },
+      "child_output": {
+        "status": "SUCCEEDED",
+        "capability": {
+          "implementation": "claude_agent_sdk_skills_v1",
+          "available_fixture_only": false,
+          "sdk_version": "0.2.177",
+          "cli_version": "2.1.317",
+          "real_gateway_available": false,
+          "non_claude_compatibility_experiment": true,
+          "production_available": false,
+          "durable_tasks": false,
+          "legacy_implementation": "langgraph_governed_single_table_v1"
+        },
+        "experiment": {
+          "mode": "real_gateway_experiment",
+          "model": "deepseek-v4.1-flash",
+          "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+          "official_support": "unsupported_non_claude_experiment"
+        },
+        "skill": {
+          "name": "data-query",
+          "version": "1.0.1",
+          "sha256": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580"
+        },
+        "route_receipt": {
+          "route_receipt": "route-f0ba7ff2d23f00d66a0aeb705c70717a",
+          "skill": "governed:data-query",
+          "skill_sha256": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580",
+          "published_metric_match": true
+        },
+        "query_receipt": {
+          "query_receipt_id": "query-106293c5588961f10c747ef7b37f2739",
+          "status": "SUCCEEDED",
+          "plan_hash": "106293c5588961f10c747ef7b37f273939447f2d35ad39f504c337bc654fefcf",
+          "mcp_task_id": "973135ab-cd4d-4418-87aa-9dda8b376090"
+        },
+        "quality_receipt": {
+          "quality_receipt_id": "quality-106293c5588961f10c747ef7b37f2739",
+          "status": "PASS",
+          "checks": [
+            "schema",
+            "unit",
+            "full_input",
+            "row_count",
+            "grain",
+            "limitations"
+          ],
+          "input_rows": 150,
+          "matched_rows": 150,
+          "limitations": []
+        },
+        "publication": {
+          "publication_id": "publication-106293c5588961f10c747ef7b37f2739",
+          "source": "independent_synthetic_fixture",
+          "result": {
+            "source": "user_provided",
+            "columns": [
+              {
+                "name": "metric_value",
+                "type": "HUGEINT"
+              }
+            ],
+            "rows": [
+              [
+                11325
+              ]
+            ],
+            "input_rows": 150,
+            "matched_rows": 150,
+            "duplicate_grain_rows": 0,
+            "null_grain_rows": 0,
+            "null_metric_rows": 0,
+            "zero_denominator_groups": 0,
+            "null_denominator_groups": 0,
+            "returned_row_count": 1,
+            "truncated": false,
+            "full_input_aggregate": true,
+            "quality": "PASS",
+            "unit": "declared units",
+            "sql_executed": true,
+            "limitations": []
+          },
+          "query_receipt": {
+            "query_receipt_id": "query-106293c5588961f10c747ef7b37f2739",
+            "status": "SUCCEEDED",
+            "plan_hash": "106293c5588961f10c747ef7b37f273939447f2d35ad39f504c337bc654fefcf",
+            "mcp_task_id": "973135ab-cd4d-4418-87aa-9dda8b376090"
+          },
+          "quality_receipt": {
+            "quality_receipt_id": "quality-106293c5588961f10c747ef7b37f2739",
+            "status": "PASS",
+            "checks": [
+              "schema",
+              "unit",
+              "full_input",
+              "row_count",
+              "grain",
+              "limitations"
+            ],
+            "input_rows": 150,
+            "matched_rows": 150,
+            "limitations": []
+          },
+          "model_generated_numbers": false
+        },
+        "model_text": "I'll start by loading the governed data query skill.I'll search the published semantics to see if there's an authorized metric for this.The only published metric matching this is **Total amount** (`sum(amount)`). I'll propose a scalar plan (no breakdown dimensions).Your query is published: **Total amount** = `sum(amount)`, with no breakdown dimensions.\n\n- Query status: SUCCEEDED\n- Quality status: PASS\n\nThe verified value is on the result card (publication `publication-106293c5588961f10c747ef7b37f2739`). Note this is scoped to the published \"Total amount\" metric only — if you need a total for a different table, time period, or grouped by a dimension, tell me and I'll propose a new plan.",
+        "events": [
+          {
+            "type": "SDK_INIT",
+            "skills": [
+              "deep-research",
+              "governed:data-query",
+              "dataviz",
+              "update-config",
+              "verify",
+              "debug",
+              "code-review",
+              "simplify",
+              "batch",
+              "fewer-permission-prompts",
+              "doctor",
+              "loop",
+              "claude-api",
+              "workflow-authoring",
+              "run",
+              "run-skill-generator",
+              "plugin-authoring"
+            ]
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "Skill"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__search_semantics"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__propose_metric_query"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__request_confirmation"
+          },
+          {
+            "type": "AWAITING_CONFIRMATION",
+            "confirmation_id": "confirm-c94457e54def31d148c14230cef67c70"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__execute_approved_query"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__execute_approved_query"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__publish_result"
+          }
+        ],
+        "usage": {
+          "deepseek-v4.1-flash": {
+            "inputTokens": 4014,
+            "outputTokens": 1146,
+            "cacheReadInputTokens": 17920,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.04256,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "thinkingTokens": 0,
+            "cacheCreationEphemeral5mInputTokens": 0,
+            "cacheCreationEphemeral1hInputTokens": 0,
+            "canonicalModel": "deepseek-v4.1-flash",
+            "provider": "firstParty",
+            "costBasis": "unknown"
+          }
+        },
+        "total_cost_usd_client_estimate": 0.04256,
+        "budget": {
+          "model_steps": 8,
+          "tool_calls": 7,
+          "metadata_calls": 1,
+          "total_tokens": 23080,
+          "estimated_reserve_usd": 2.0,
+          "max_model_steps": 8,
+          "max_tool_calls": 10,
+          "max_total_tokens": 100000,
+          "wall_clock_seconds": 300
+        },
+        "stream_events": 661,
+        "result_rows_returned_to_model": false,
+        "real_gateway_called": true,
+        "production_sql_executed": false
+      },
+      "failure_diagnostics": null,
+      "stdout": "{\"status\": \"SUCCEEDED\", \"output\": \"D:\\\\Users\\\\luqianwu\\\\Desktop\\\\��������\\\\project-control\\\\modules\\\\M04\\\\evidence\\\\20261103T092622Z-sdk-deepseek-experiment\\\\model-1\\\\output.json\"}\n",
+      "stderr": "D:\\Users\\luqianwu\\Desktop\\��������\\services\\api\\.venv\\Lib\\site-packages\\claude_agent_sdk\\types.py:2314: CanUseToolShadowedWarning: can_use_tool will not be invoked for: mcp__governed__search_semantics, mcp__governed__resolve_route, mcp__governed__read_authorized_metadata, mcp__governed__propose_metric_query, mcp__governed__propose_sql_query, mcp__governed__request_confirmation, mcp__governed__get_receipt. An allowed_tools entry that allows a whole tool auto-approves it before the callback is consulted. To gate every tool call, use a PreToolUse hook; or narrow the entry so calls fall through to can_use_tool. Allow rules from settings files can also shadow the callback but are not visible here.\n  _warn_if_can_use_tool_shadowed(options)\n[claude-code:unrecognized_model] {\"model\":\"deepseek-v4.1-flash\",\"query_source\":\"sdk\"}\n",
+      "error": null,
+      "status": "SUCCEEDED"
+    }
+  ],
+  "not_run": [
+    "authorized Claude model",
+    "official Claude SDK gateway compatibility",
+    "production/business data",
+    "default Web migration",
+    "deployment"
+  ],
+  "validity": {
+    "clean_project_tree_isolation": true,
+    "job_peak_within_limit": true,
+    "clean_success": true,
+    "residual_init_skill_list": true,
+    "official_support": "unsupported_non_claude_experiment",
+    "model_generated_numbers": false,
+    "result_rows_returned_to_model": false,
+    "success_report_ref": "project-control/modules/M04/evidence/20261103T092622Z-sdk-deepseek-experiment/success-report.md"
+  },
+  "success_report_ref": "project-control/modules/M04/evidence/20261103T092622Z-sdk-deepseek-experiment/success-report.md"
+}

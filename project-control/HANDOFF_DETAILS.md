@@ -1,3 +1,231 @@
+# 下班后自主推进：A3-M1本机CHECK完成（2026-11-04，revision198）
+
+用户报告已手动重启A2.1并明确要求继续无需人工的工作。本轮未重新初始化、未请求Key/真实调用、未commit/push。D070/071/072-D/075/076/077/078、已验收模块及真实门禁不变。
+
+- A3-M1：只限当前绑定单来源单表，新增list_authorized_tables/search_authorized_fields与canonical已批准口径派生load_topic_sql_template/propose_topic_query。L1匹配不可改走L2；模板receipt绑route/Skill/source/task/schema/澄清；参数仍经原编译/AST/字段/grain/预算/显式确认/MCP/自动QA/receipt发布。没有开放自由SQL/未批准metric/新数据源/多表/host权限。
+- 安全修复：原_set_plan只比metric ID，现完整定义比较，阻止同ID偷换字段/算子/单位；提交后禁改计划。query_path由实际计划+发布回执核验，正文明确L1/L2，标签不作质量认证；实际工具标签按真实L2提案显示。
+- Skill1.0.6、工具1.0.1、模板1.0.0。L2只是已有批准指标派生单表模板基础，不是完整企业业务主题Skill。L3目前只有metadata发现，不是自由SQL/无语义/多表/分区；未知分区不猜。
+- 最终642后端/23前端/45浏览器/types/build/pip/源稳定全通过，证据`project-control/modules/M04/evidence/20261104T101013Z/results.json`与`A3_M1_CHECK_REPORT.md`。SDK假网关+真实合成MCP9步/全输入150/51匹配/2组/总6375是独立合成金标准，非企业经营数；新UI快照独立标mock，非用户研究。PRD13模块/64需求、5 tests及progress26tests通过。
+- 用户重启A2.1后监听PID8000=32324/Vite30252，18:01:32创建，200/模型unconfigured/0任务/原来源启用。A3源修改在其后，default A3 API未加载；本轮不打断用户服务或绕过前轮重启拒绝。不要求用户今晚操作。
+- 只读账本49/60/估算余额2.75USD不变，不reset；重测0.25+一个SDK任务2USD只够一次真实复测，更多需补授权。Key/收费/公司数据/截图SQL/host工具/安装/委派均未使用。
+- 下一轮可无需真实Key做完整L2/L3合成合同/评估及公开模型消息脱敏流/最小会话上下文设计调查；不能把新业务口径/公司表授权/外发/费用通过“继续”推导。B M03授权/合成文档RAG及C公司多源/导出/QA按原顺序。真实A3/Claude/生产/MVP仍not_run，M04DO/not_verified未验收。
+
+---
+以下仅历史。
+
+# A2.1 常规Agent式对话本机CHECK完成，默认API待手动加载（2026-11-04，revision195）
+
+用户再次指出“纯卡片，不像常规Agent”；原PRD连续对话描述过于笼统，已登记D078，新增R-U31/M04-B-AC05并同步PRD/原话/索引/需求/specs/plan/UX/ROADMAP。不是用户验收A2。截图仅参考，未复制公司数据/SQL/图片或开放其宿主工具。
+
+- 已实现：顺序化公开治理说明/真实工具标签/穿插同任务澄清回答；模型最终正文安全标题/列表/强调、后端权威数字与内嵌表格；SDK没有大型result-card壳、技术回执折叠。Skill1.0.5/prompt要求正文报告，多TextBlock最终正文保留；原预算/确认/幂等/版本/QA门禁不变。
+- 最终完整631后端/23前端/45浏览器/types/build/pip/源稳定全通过：`project-control/modules/M04/evidence/20261104T092140Z/results.json`/`A21_CHECK_REPORT.md`。首次091236Z源变化检查stale保留；不能拿旧清单作当前证据。SDK测试假网关+真实合成MCP，UI-only场景非实模型/用户研究；PRD13模块/64需求、5测试与progress26测试通过。
+- 本轮重启命令被执行环境拦截，未停止/重启或绕过；旧launcher20164/8000与5173仍200，模型未配置、0任务，默认API尚未加载新增dialogue字段。Vite可能热载UI，不表示API生效。需要用户手动关闭本项目原开发服务后启动start-workspace.cmd，再网页重输专用Key并显式选择复测。
+- 原来源启用、D053账本49/60/估算余额2.75USD不变；只够0.25连接重测+一个2USD SDK复测。三项需新补预算授权及实现，不reset；未自动调用模型/增加收费/commit/push。
+- 过程消息当前来自治理事实，明确标注，不冒充模型thinking；逐条模型中间公开消息安全流式、跨独立任务语义继承仍未实现。真实A2.1体验/Claude/生产/MVP not_run。A3 L2/L3→B M03 RAG→C公司多源/下载/PythonQA按原顺序后续，需相应数据授权；M04仍DO/not_verified，未关闭。
+
+---
+以下仅历史。
+
+# A2 本机检查完成，等待用户真实复测（2026-11-04，revision191）
+
+- 最终627后端/20前端/45浏览器/types/build/pip/源稳定检查通过，证据 `project-control/modules/M04/evidence/20261104T082927Z/results.json` 和 `A2_CHECK_REPORT.md`。失败/修复历史保留，self_review非独立审计或用户研究。
+- 连续消息/工具进度/报告、同任务澄清API、幂等/owner/generation/模型/语义/来源/Schema/取消重核、旧确认失效、自动QA发布及严格有效usage门禁均已实现。两轮/1600字符/共享16步20工具6元数据200K/600秒；不开放宿主Bash/Read/Write/Key。
+- 最终检查后安全停止仅本项目进程树并隐藏启动，launcher20164，8000/5173 loopback200；Key未配置须用户重输。原授权来源启用、语义1与账本49/60保留，旧内存任务不跨后端重启。
+- D053估算余额2.75USD，连接重测0.25+一个SDK任务2USD后约余0.50；只能先做一个真实场景，三项需补充预算授权/实施，不允许reset账本。真实费率/账单未知。
+- 下一步：设置→重输专用Key→测试/启用deepseek-v4.1-flash→选择已授权来源/语义→显式选择一个复测（建议同任务澄清主路径，但未登记为用户选择）→另确认执行→反馈非秘密任务ID/阶段/QA。不要回传结果行/业务聚合值/SQL/Key；旧UNKNOWN不自动重提。见最新REAL_RETEST_RUNBOOK.md。
+- M04仍DO/in_progress/not_verified，未验收。A3 L2/L3、B M03 RAG、C公司多源/导出/Python QA后续；新公司数据需新授权。真实DeepSeek本轮三项、Claude、生产/MVP均not_run。无新安装/真实调用/commit/push；D070/071/072-D/075/076/077及已验收模块不变。
+
+---
+以下仅历史。
+
+# 新窗口交接：A1 真实失败、可靠性修复与连续对话/L1–L4 新方向（2026-11-04，revision186）
+
+## 本轮发生了什么
+
+用户真实使用 A1 后否定当前形态：
+
+- 两个问题（`金额 gte 100`、按 `发货日期` 分组）都显示 `AGENT_RESULT_UNKNOWN`，没有结果。
+- 只读诊断：任务 `15fd86fb-12f9-459a-8436-9fea12ee6a4d`、`9d659f76-3212-4162-a2db-e8d82a5d5943` 的后端已经执行、QA、发布，但 SDK 循环在发布后撞 **8 步 max_turns**，runner 判 `SDK_RUN_FAILED`，API 把 `record.submitted` 的任务标成 `UNKNOWN` 并丢弃已发布结果。这是 harness 可靠性 bug。
+- 第三个问题 `113e56ce-883a-4ad9-a8a9-d85fd5920c74` 进入终止式 `NEEDS_CLARIFICATION`，回答内容正确，但交互仍是卡片、不能在同一任务继续。
+- 用户明确新方向 D-M04B-AGENT-EXPERIENCE-077：连续对话 Agent + L1 指标引擎→L2 主题 SQL Skill→L3 元数据检索/受控 SQL→L4 知识/RAG；“把它当成祖训”。参考截图仅交互参考，**公司数据/SQL/水印对象未复制**。
+
+## 当前工作树（未 commit）
+
+A1 代码 + 以下可靠性修复（仅专项验证，完整回归未跑）：
+
+- `sdk_agent_runner.py`：`backend.publication` 存在且 usage 有效时，不再因 `error_max_turns` 丢弃结果；Web 预算 16 模型步/20 工具/6 元数据/200K tokens/600 秒。
+- `sdk_agent_backend.py`：执行 + QA 成功后后端自动发布；模型后续 `publish_result` 幂等。
+- `sdk_web_service.py`：Web wallclock 600、进程 1260、CPU 600。
+- `test_sdk_agent.py`：新增“发布后 max_turns 仍成功”回归测试。
+- 专项：`project-control/modules/M04/evidence/20261104T075000Z-reliability-fix/focused.txt`，**23 passed**，fingerprint `64c7ed98d618ac6c9d8b3a6467674fa693c646685c98e851c9534203ef73f0b5`。
+- **完整回归、浏览器、types/build、真实复测均未在本轮修复后执行**；不得称修复已验证完成。
+
+A1 的已归档证据仍是 `project-control/modules/M04/evidence/20261104T062640Z/`（617/20/44，A1 版本、修复前）；它不能证明可靠性修复。
+
+## 新方向规划
+
+- 主文档：`project-control/modules/M04/AGENTIC_CONVERSATION_L1L4_PLAN.md`
+- 核心祖训：请求分类；L1 指标引擎→L2 主题 SQL Skill→L3 元数据/受控 SQL→L4 知识/RAG；SQL 前确认口径/表/字段/分区/权限；关键歧义可恢复澄清；执行后自动 QA/来源可信度/报告；不猜表、不绕权限、不编数。
+- 交互：聊天区是主叙述（Agent 消息、工具进度、澄清、报告），任务卡/结果表/回执只是证据；右侧显示实际来源/表/字段/分区/质量。
+- 安全：只使用治理工具；**不开放宿主 Bash/Read/Write/WebFetch/子 Agent/Key/settings/hooks**；公司 Hive/dashboard/公司 MCP 需新连接器、权限与安全评审；参考截图仅交互参考。
+- 顺序：A2（可靠性 + 连续对话 + 可恢复澄清 + 报告）→ A3（L2/L3 单源/单表工具）→ B（M03 RAG 文档）→ C（公司多源/导出/QA，需新授权）。
+
+## 服务与运行状态
+
+- 本机 8000/5173 仍在运行，但 API 进程加载的是**可靠性修复前**的 A1 代码；模型 Key 在旧进程内存，重启后需用户重输。
+- 新窗口先核对端口/归属，不继承旧 PID/exec；在完整回归后安全停止/重启本项目服务。
+- 已发布语义「订单总金额 v1」、Excel 来源、估算账本在 SQLite 中保留；任务内存会随重启清空。
+
+## 下一步（新窗口）
+
+1. `progress.py validate/show`，读本文档、`AGENTIC_CONVERSATION_L1L4_PLAN.md`、M04 plan/PRD、A1 证据、可靠性 focused 证据。
+2. 先跑完整回归（含浏览器/types/build）并保存新证据目录；确认可靠性修复后，再重启服务。
+3. 实现 A2：连续对话 UI（Agent 消息/工具进度/报告）、可恢复澄清（`POST /agent/tasks/{id}/clarify` + 同任务继续）、publication 不丢失/自动发布；用真实 DeepSeek 复测两个失败问题 + 一个含糊问题。
+4. 之后 A3 L2/L3、B RAG；不要先扩大数据源/公司数据/宿主工具。
+5. 不自动 commit/push；用户验收前 M04 仍 `not_verified`。
+
+## 复现命令
+
+```powershell
+services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root .
+services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py show --root .
+services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_aggregate_filters.py services/api/tests/test_sdk_agent.py services/api/tests/test_sdk_web_agent.py -q
+services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser
+```
+
+---
+以下仅历史。
+
+# Agentic 单源 SQL A1 完成，等待用户验证（2026-11-04，revision185）
+
+用户选择 D-M04B-AGENT-EXPERIENCE-076 A 后，A1 已实现：受控筛选 `eq/in/gte/lt`、SDK 工具可选 `filters/time_range`、Skill 1.0.3、`AgentTask.answer` 自然语言回答、实际表/指标/Agent 事件右侧摘要、终止式 `request_clarification`（不执行 SQL）。最终 617 后端/20 前端/44 浏览器/types/build/pip 通过，证据 `project-control/modules/M04/evidence/20261104T062640Z/results.json` 与 `AGENTIC_SQL_A1_IMPLEMENTATION.md`。
+
+本机服务已重启加载 A1（8000/5173 loopback 200）。已发布语义「订单总金额 v1」、Excel 来源和估算账本保留；**模型 Key 仅旧进程内存，重启后需重新输入**。用户下一步：网页重新输入 Key → 测试/启用 `deepseek-v4.1-flash` → 选择语义/来源 → 问一个带筛选或分组的问题（如按金额阈值/发货日期筛选的订单总金额），查看自然语言回答、右侧实际表/指标/步骤、确认/QA/回执；也可问含糊问题触发终止式澄清。
+
+真实 A1 Web 测试仍 `not_run`；RAG 业务知识文档、多表 JOIN、企业 Hive、导出/Python QA 未实现；截图仅交互参考，公司数据/SQL 未复制。真实 Claude `sdk-real-gateway`、个人 API 的 SDK 绑定、生产与整体 MVP 仍 `not_run`。未 commit/push。
+
+---
+以下仅历史。
+
+# 真实测试准备完成，等待用户操作（2026-11-04，revision182）
+
+本机服务已启动并保持运行：`http://127.0.0.1:5173` / API `http://127.0.0.1:8000`（loopback 200）。默认库有 1 个启用 Excel 订单表来源（`c0ea94d5-d9e0-406d-8037-6b018f7ff871`，`t0`，字段 `编号`/`created_at`/`发货日期`/`金额`），**0 个已发布语义**。已准备 `DEMO_SEMANTIC_DRAFT.json`，通过实际来源校验 `valid:true`、无 issue、`rows_read:false`，但未发布；需用户人工批准。估算账本 15/60 单元，足够 1 单元模型测试 + 8 单元 SDK 任务预留。
+
+用户需手动完成：① 网页输入专用 Key，测试并启用 AI Plan `deepseek-v4.1-flash`；② 知识库上传/校验/批准发布演示口径；③ 工作台发送“请计算总金额，全部数据”并确认执行。完整步骤见 `project-control/modules/M04/evidence/20261104T032252Z/REAL_WEB_TEST_RUNBOOK.md`。真实测试完成后保存结果/截图/任务编号，再继续审计与 MVP 剩余模块；M05–M08 仍未完成。
+
+---
+以下仅历史。
+
+# SDK/Web 模型绑定切片完成，下一步真实 DeepSeek Web 用户测试（2026-11-04，revision181）
+
+用户要求在本窗口继续 next_action；本轮完成“选中 catalog 模型 → SDK runner / 默认 Web 问数路径”的绑定切片，并保存 revision181。最终完整回归 613 后端 / 20 前端 / 44 浏览器 / types / build / pip 通过，证据 `project-control/modules/M04/evidence/20261104T032252Z/results.json` 与 `SDK_WEB_BINDING_IMPLEMENTATION.md`，code fingerprint `1fd8ffff644261a56caf5c6abcfa1b55895a9fa6d3b4c29a5a6952a282fcc628`。
+
+## 已完成
+
+- AI Plan 且 `anthropic_messages` 的 catalog 模型经服务端 catalog 引用进入 SDK runner 的 `web_catalog` 模式；个人 API / 非 AI Plan 模型保留既有 LangGraph 路径。浏览器只传 `model_ref`，端点、模型 ID、Key 均由后端解析。
+- 新增真实用户确认桥：runner 写 `AWAITING_CONFIRMATION` 状态并等待确认文件；API 只在用户显式确认且模型/语义/来源/实时 Schema 复核通过后写确认文件。模型不能自行确认。
+- 任务开始前预留 2 USD 估算（8×0.25，D053 不 reset）；失败/取消不退款；账本仍为估算而非供应商账单。
+- 模型/语义/来源/Schema 变化使旧计划/确认/回执失效；执行后绑定变化则不发布结果。API 再次核验 `publication`、query/quality receipt 与结果合同。
+- `AgentTask.engine` 与服务端 `AgentCapabilities.engines` 标识引擎；UI 标签由服务端字段决定，不按模型名推断。
+- 失败与修复：第一次浏览器回归 42/44，legacy Agent fixture 因 AI Plan 测试模型被新路由进入 SDK；在 `scripts/remote_browser_fixture.py` 显式 `sdk_web_agent=False` 后最终 44/44。没有放宽断言语义；SDK 路径由独立 API E2E 覆盖。
+
+## 必须保留的边界
+
+- 真实 DeepSeek Web 调用 **not_run**；需要用户在本机 Web 显式选择已测试/启用的 AI Plan `deepseek-v4.1-flash`、输入专用 Key、发送问题并确认。本轮未读 Key、未调用真实网关、未收费。
+- `deepseek-v4-1-flash-261017` 是网关返回版本别名，作为请求名返回 400，不能作为请求 ID；代码已拒绝该名称。
+- DeepSeek 成功仍是非 Claude/unsupported 证据；`sdk-real-gateway`（Claude 模型）门禁仍 not_run，不自动回退 LangGraph。
+- 个人 API / 非 AI Plan 模型的 SDK 绑定、网关自动发现、价格/上下文元数据、生产与整体 MVP 仍 not_run。
+- M01/M02/M04-A/M03 验收、D053 预算、PG/生产后补不变；M04 仍 DO / in_progress / not_verified，未整体验收。
+- 服务已停止，5173/8000 无监听；未 commit/push。
+
+## 下一步
+
+按 progress.next_action：由用户显式触发本机真实 DeepSeek Web 测试（选择/测试/启用模型、隐藏输入 Key、发送问题、确认查询），观察真实工具循环/确认/QA/回执与 UI 状态。测试后保存新证据并做切片审计；不自动调用、收费、换模型、新增端点/供应商或读取宿主 Key/settings/hooks。
+
+## 复现命令
+
+```powershell
+services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root .
+services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py show --root .
+services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_web_agent.py -q
+services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser
+```
+
+浏览器检查需要本机 5173/8000 服务；本轮服务由本窗口启动并在完成后停止，下一轮先核对端口/归属，不继承旧 PID/exec。
+
+---
+
+以下仅历史。
+
+# 多模型目录/选择器首切片完成，下一步 SDK/Web 绑定（2026-11-04，revision180）
+
+用户要求开新窗口推进下一步；本轮只更新交接/进度/session，不重跑产品测试。当前 M04-C02-SDK 仍 DO/in_progress、not_verified；模型选择器首切片已实现并通过 606 后端/19 前端/44 浏览器/types/build/pip，证据 `project-control/modules/M04/evidence/20261103T101648Z/results.json` 与 `MODEL_PICKER_IMPLEMENTATION.md`。
+
+## 已完成的最近工作
+
+- **D075 多模型目录/选择器**：PRD/需求新增 R-U30/R-A07/R-P26，更新 M04-A/M04-B PRD、REQUIREMENTS/requirements.json/index/modules、M04 plan、ROADMAP、PRODUCT_UX_PRINCIPLES、CHANGELOG。
+- **后端**：同一连接多模型注册/移除；每模型独立测试/启用；catalog 多条目（来源/默认/验证/可用/未知价格上下文）；`resolve_catalog_model`/`resolve_bound_model` 支持主模型与附加模型；Agent 任务按 catalog 引用解析 provider，模型变化使旧计划/确认失效。
+- **前端**：可搜索/按来源分组的模型选择器；设置页模型目录添加/测试/启用/移除；AI Plan 预设预填 `deepseek-v4.1-flash`；选择不调用模型。
+- **测试**：606 后端、19 前端、44 浏览器、types/build/pip 全部通过；浏览器既有模型选择测试已改用新选择器 helper，未放宽断言。开发服务由本轮启动并已停止，5173/8000 无监听。
+
+## 必须保留的事实与边界
+
+- D070 SDK 主线、D071 固定离线安装、D072-D DeepSeek 非 Claude 实验、D075 多模型目录/选择器均不变。
+- `deepseek-v4.1-flash` 是唯一已确认可用的 DeepSeek 请求名；`deepseek-v4-1-flash-261017` 是网关返回版本别名，作为请求名返回 400，不可用。
+- D072-D 干净成功：8 模型步/7 工具/1 元数据/23080 tokens；查询 SUCCEEDED、质量 PASS、发布 11325（150 行全输入）；结果行未回传模型；Job 峰值 8≤10；Skill 1.0.1。第一次项目树内运行和 clean max-turns 运行保留为失败历史。
+- DeepSeek 成功仅是非 Claude/unsupported 实验；`sdk-real-gateway`（Claude 模型门禁）仍 not_run；官方不支持 Claude Code 经网关使用非 Claude 模型；不自动换端点/供应商/回退 LangGraph。
+- 当前 Web Agent 已按 catalog 引用解析选中模型；Claude Agent SDK runner/默认 Web 绑定仍 not_run。网关 `/v1/models` 自动发现、价格/上下文元数据、多连接 profile 未实现。
+- M01/M02/M04-A/M03 验收、D053 预算、PG/生产后补不变；MVP 未完成。
+
+## 下一步
+
+按 `next_action` 做 SDK/Web 模型绑定切片：将选中的 catalog 模型绑定到 SDK runner/默认 Web 问数路径；保持服务端 resolve、模型变更使旧计划/确认/回执失效、预算/确认/幂等/自动 QA/回执门禁。完成后由用户显式触发真实 DeepSeek Web 测试；不自动发现网关模型、不新增端点/供应商、不读宿主 Key/settings/hooks、不自动收费/扩大外发/commit/push。
+
+## 复现命令
+
+```powershell
+services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root .
+services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py show --root .
+services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser
+```
+
+浏览器检查需要本机 5173/8000 服务；本轮服务已停止，下一轮先核对端口/归属，不继承旧 PID/exec。
+
+---
+
+以下仅历史。
+
+# 新窗口首句prompt已整理（revision172，2026-11-03）
+
+用户明确要求写好交接并提供新窗口第一句prompt。已更新`project-control/NEW_WINDOW_PROMPT.md`、`STATUS.md`和本文件；新窗口应先validate/show并读取所列档案，再从只读确认AIPlan授权Claude模型及协议能力开始。revision172仅交接/session更新，未重跑产品或SDK测试，技术证据沿用下方S02实际结果。
+
+---
+以下仅历史。
+
+# M04-C02-SDK S02离线实现与全回归完成（2026-11-03）
+
+D071固定wheel项目venv离线安装完成：SDK 0.2.177＋CLI 2.1.317，无旧包替换。S02离线专项9项通过：受控`governed:data-query` plugin→指标优先/结构化受控SQL→明确确认→真实合成MCP→自动QA→QueryReceipt＋QualityReceipt发布；8模型步/7工具/2元数据，合成150行聚合11325，结果行未回传模型。原生Windows宿主CLAUDE.md已通过`setting_sources=[]`＋受控plugin隔离；外层Windows Job成功峰值8进程/上限10，内存约529MiB/2GiB。
+
+最终全量回归602后端、17前端、44浏览器及types/build/pip全部通过，证据`project-control/modules/M04/evidence/20261103T074400Z/results.json`。S02主证据`project-control/modules/M04/evidence/20261103T071717Z-sdk-s02/results.json`，实现说明`project-control/modules/M04/SDK_S02_OFFLINE_FIXTURE.md`。首轮浏览器43/44的capability fixture隔离失败已修复并保留，PRD 13模块/60需求、31 tests＋9 subtests及安装Skill副本一致性通过。
+
+真实AIPlan/Claude、真实收费、默认Web迁移、生产与MVP仍not_run；当前DeepSeek不属于官方支持的Claude Code网关模型路径。M04仍DO/not_verified，M01/M02/M04-A/M03验收、D053预算及PG/生产后补不变。未commit/push；本轮新建开发服务已停止，5173/8000无监听。
+
+下一步只读确认AIPlan是否存在账号授权Claude模型及base URL/auth和Messages/tool_use/Skill/stream/usage能力，再另列用户显式真实SDK最小测试许可，不自动换模型/端点/供应商或回退LangGraph。建议在检查点换窗口续接。
+
+---
+以下仅历史。
+
+# M04-C02-SDK S01完成，待D071安装许可（2026-11-03）
+
+S01只读调查已完成并保存包检查点revision166：候选Python SDK 0.2.177＋捆绑CLI 2.1.317，Windows wheel 149800822字节、SHA256=7997db488354a539c08b5b6b16717d99ae67903ae7351da43d51b68b80097fad；CRC、33条目、内嵌CLI版本吻合，Python3.12.14/AMD64匹配。完全离线pip dry-run仅新增SDK、无旧包替换，pip check通过。未安装/import/执行CLI或真实模型调用。
+
+完整报告`project-control/modules/M04/SDK_S01_INSTALL_PLAN.md`及证据`project-control/modules/M04/evidence/20261103T060255Z-sdk-install-plan/`记录CommercialTerms、官方协议、Windows runner、有限预算和治理工具合同。官方不支持Claude Code经网关路由非Claude模型；现有AIPlan/DeepSeek仅固定文本与固定流式成功，不是SDK兼容证据。真实SDK网关须先确认授权Claude模型及base URL/auth，不自动换模型/端点/供应商。原生Windows无官方沙箱，WSL status exit50；首切片只允许最小父环境、独立cwd/config、版本化Skills、Skill＋受治理MCP、默认拒绝回调及服务端执行/自动QA/发布回执门禁。
+
+当前待D-M04B-SDK-INSTALL-071：推荐仅固定wheel项目venv离线安装＋离线/合成fixture，建议每任务8模型步/10工具/100K tokens/300秒/2美元估算预留，D053不reset。不包括真实AIPlan或收费、生产SQL、新模型端点、结果行外发、WSL/container安装、部署或push。未回答前不安装。M04仍PLAN，M01/M02/M04-A/M03验收及PG/生产门禁不变，LangGraph基线92d0b03与593/17/44仅历史，MVP未完成。
+
+---
+以下仅历史。
+
 # 最终新窗口交接（2026-11-03，revision165）
 
 最新主线已批准Claude Agent SDK＋产品Skills＋治理Harness，M04-C02-SDK PLAN，SDK未安装/实现/网关验证。方案/PRD/项目Skill及安装副本/CHANGELOG已更新并push；main收尾6697c4e、LangGraph比较分支92d0b03已核GitHub，最终交接提交另push，续接核最新Git refs。

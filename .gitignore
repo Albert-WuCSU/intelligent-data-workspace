@@ -39,3 +39,6 @@ test-results/
 
 # User-authored semantic metadata is runtime content, not portfolio source or public fixtures
 /data/semantics/
+
+# Root-level ephemeral PDCA draft (current progress/checkpoints remain versioned)
+/progress.draft.json

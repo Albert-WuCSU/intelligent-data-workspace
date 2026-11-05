@@ -1,0 +1,146 @@
+{
+  "status": "completed_read_only",
+  "kind": "sdk_real_gateway_prerequisite_review",
+  "created_at": "2026-11-03T08:14:13.545841+00:00",
+  "module_id": "M04",
+  "cycle_id": "M04-C02-SDK",
+  "decision_ref": "D-M04B-SDK-REAL-072",
+  "scope": "Read-only review of existing non-secret project records only. No host Key/settings/hooks were read this round; no gateway/network call; no real model, SDK tool loop, or SQL execution; no cost.",
+  "sources": [
+    {
+      "path": "project-control/MODEL_PROVIDER_NOTES.md",
+      "sha256": "e526037d0651effa426938f744823ee882a1d13c93bdf77b82bed6e701f77f85"
+    },
+    {
+      "path": "project-control/modules/M04-A/evidence/20261029T083921031534Z-claude-preset/auth-contract-note.md",
+      "sha256": "27da1478afef8a9d77b79f61c5bf1b18fcc9cab164f65d63c00a070ad83bba17"
+    },
+    {
+      "path": "project-control/modules/M04-A/CLAUDE_ENGINE_PROPOSAL.md",
+      "sha256": "4a274a46ff3f4d1e716dd795d11c18174d5c2e13d2a9cd33493cd66fe552e8ae"
+    },
+    {
+      "path": "project-control/BACKLOG.md",
+      "sha256": "2d13e69b331016586bf94719cdcab4fd919ef9a43e551fa020ccc1ca27268f9c"
+    },
+    {
+      "path": "project-control/modules/M04/SDK_S01_INSTALL_PLAN.md",
+      "sha256": "f17dc6b383d07628a52fe27e7a3b280a0b8bc6e46499f415f9df3eb1f20f495e"
+    },
+    {
+      "path": "project-control/modules/M04/SDK_S02_OFFLINE_FIXTURE.md",
+      "sha256": "1bda429688f2acf9444a79147b5389651a4c1c1d8a3d272395917bce1adb8fe9"
+    },
+    {
+      "path": "project-control/modules/M04/evidence/20261103T071717Z-sdk-s02/results.json",
+      "sha256": "382f8505a10118ece050662fa480d00c51b58a2608003b2bdaebe78c5aa3fe5c"
+    },
+    {
+      "path": "project-control/modules/M04/evidence/20261103T074400Z/results.json",
+      "sha256": "4e1205567167bffbaced6f68eed2dbe7ed1c9e24e8a5075416dd096cf946df28"
+    },
+    {
+      "path": "project-control/prd/M04-B.md",
+      "sha256": "951e917c4d69df57845d08dc6a893ed495c4f1ee34240bd12081fe539560f8aa"
+    },
+    {
+      "path": "project-control/modules/M04/plan.md",
+      "sha256": "ebb44dd65f5dc7dadeecac06f22a448e00deb419304fc5b630d6b32c6b34d9af"
+    }
+  ],
+  "findings": {
+    "aiplan_claude_model_authorization": "unconfirmed",
+    "recorded_host_claude_code_non_secret_aliases": {
+      "source": "project-control/MODEL_PROVIDER_NOTES.md, 2026-10-28 observation",
+      "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+      "top_level_model_alias": "claude-kr-claude-opus-5.5[1M]",
+      "default_mappings": "claude-haiku-4-5",
+      "auth_field_present": true,
+      "auth_value_recorded": false,
+      "interpretation": "Host Claude Code configuration observed earlier. It is not proof that a product-dedicated AIPlan key is authorized for Claude models or that the gateway supports the SDK tool loop."
+    },
+    "user_provided_anthropic_style_candidate": {
+      "source": "project-control/MODEL_PROVIDER_NOTES.md, 2026-10-30 entry",
+      "base_url": "http://ada-cli-golang.ctripcorp.com",
+      "candidate_path": "/v1/messages",
+      "candidate_auth": "x-api-key",
+      "actual_test": "not_run",
+      "interpretation": "An alternative candidate contract supplied by the user. It was not verified and did not replace the product's approved AIPlan DeepSeek route."
+    },
+    "product_actual_model_evidence": {
+      "provider": "AIPlan",
+      "endpoint": "http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages",
+      "protocol": "anthropic_messages",
+      "auth": "bearer",
+      "model": "deepseek-v4.1-flash",
+      "verified_capabilities": [
+        "fixed non-sensitive text generation",
+        "fixed text streaming"
+      ],
+      "not_verified": [
+        "Claude model identity or authorization",
+        "SDK Messages/tool_use loop",
+        "SDK Skill loading",
+        "SDK stream event completeness",
+        "SDK usage/model_usage"
+      ]
+    },
+    "product_code_default_route": {
+      "path": "services/api/src/data_workspace/model_routes.py",
+      "observed_contract": "anthropic_messages + http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages + bearer"
+    },
+    "official_support": "Anthropic documentation states that routing Claude Code to non-Claude models through a gateway is not supported. Existing DeepSeek success is therefore not evidence of SDK compatibility.",
+    "sdk_capability_matrix_real_gateway": {
+      "messages": "not_run",
+      "tool_use": "not_run",
+      "skill": "not_run",
+      "stream": "not_run",
+      "usage": "not_run"
+    }
+  },
+  "conclusion": {
+    "authorized_claude_model_confirmed": false,
+    "real_sdk_gateway_status": "not_run",
+    "reason": "Existing non-secret records contain host Claude Code aliases and alternative base URL/auth candidates, but no product-dedicated-key Claude authorization, no actual Claude call, and no SDK tool/Skill/stream/usage evidence. The read-only review cannot establish an account-authorized Claude model for the product.",
+    "recommended_next_step": "Ask the user to confirm an exact authorized Claude model, base URL, and auth mode, or record that only DeepSeek is available and keep sdk-real-gateway=not_run. Do not auto-switch model, endpoint, vendor, or fall back to LangGraph."
+  },
+  "permission_proposal": {
+    "id": "D-M04B-SDK-REAL-072",
+    "scope": "One user-triggered minimal real SDK tool loop using the existing governed runner and the local synthetic MCP: fixed non-sensitive question, <=8 model steps, <=10 tool calls, <=3 metadata calls, <=1 execute, <=1 publish, <=100K total tokens, <=300 seconds, <=2 USD estimated reserve within D053 (no reset), no retries/fallback, synthetic data only, result rows not returned to the model, no production SQL, no default Web migration, no new endpoint/vendor, no deployment.",
+    "verifies": [
+      "authorized real Claude model identity and exact/observed alias binding",
+      "Anthropic Messages request/stream completion through the SDK",
+      "tool_use/tool_result round trip",
+      "governed Skill loading and route receipt",
+      "SDK usage/model_usage fields"
+    ],
+    "excludes": [
+      "host Key/settings/hooks read",
+      "chat-provided Key or credential copying",
+      "production/business data or SQL",
+      "result rows sent back to the model",
+      "new model endpoint/vendor or automatic fallback",
+      "default Web workspace migration",
+      "deployment, commit, or push"
+    ]
+  },
+  "not_run": [
+    "real AIPlan/Claude model call",
+    "real SDK Messages/tool_use/Skill/stream/usage",
+    "real SDK billing",
+    "production SQL",
+    "default Web migration",
+    "production/deployment"
+  ],
+  "safety": {
+    "host_key_settings_hooks_read": false,
+    "network_calls": 0,
+    "real_model_calls": 0,
+    "model_cost_usd": 0,
+    "production_sql_executed": false,
+    "files_modified": [
+      "project-control/modules/M04/evidence/20261103T081413Z-sdk-real-gateway-prereq/review.json",
+      "project-control/modules/M04/evidence/20261103T081413Z-sdk-real-gateway-prereq/review.md"
+    ]
+  }
+}

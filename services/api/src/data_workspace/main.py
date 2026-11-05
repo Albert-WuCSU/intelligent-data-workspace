@@ -57,9 +57,10 @@ def create_app(settings: Settings | None = None):
     app.include_router(semantic_router)
     app.state.semantics=SemanticStore()
     app.include_router(agent_router)
+    app.state.sdk_web_test_base_url = cfg.sdk_web_test_base_url
     if cfg.mode=='development' and cfg.dev_identity:
-        from .agent_service import AgentService
-        app.state.agent=AgentService(app)
+        from .agent_hybrid import HybridAgentService
+        app.state.agent=HybridAgentService(app)
     else:
         app.state.agent=None
     app.include_router(model_router)
@@ -69,6 +70,17 @@ def create_app(settings: Settings | None = None):
     app.state.model_enabled=False
     app.state.model_configuration_lock=__import__("asyncio").Lock()
     app.state.model_provider=MessagesProvider.from_env() if cfg.mode == "development" and cfg.dev_identity else MessagesProvider(ModelConfiguration(), "")
+    app.state.model_preset=None
+    app.state.model_registry=None
+    if app.state.model_provider.key and app.state.model_provider.configuration.valid():
+        from .model_routes import AdditionalModelRegistry
+        preset='ai_plan' if app.state.model_provider.configuration.endpoint=='http://ada-cli-golang.ctripcorp.com/coding-plan/v1/messages' else 'custom'
+        app.state.model_preset=preset
+        app.state.model_registry=AdditionalModelRegistry(
+            app.state.model_provider.key,preset,app.state.model_provider.configuration.endpoint,
+            app.state.model_provider.configuration.protocol,app.state.model_provider.configuration.authentication,
+            app.state.model_provider.configuration.access_policy,app.state.model_provider.budget,
+            app.state.model_provider.configuration.model_id,app.state.model_tests.generation)
     app.state.sources=SourceStore(remote_policy=RemoteAccessPolicy.from_env())
     app.state.identity_provider = DevelopmentIdentityProvider()
     app.state.repository = MemoryTaskRepository()

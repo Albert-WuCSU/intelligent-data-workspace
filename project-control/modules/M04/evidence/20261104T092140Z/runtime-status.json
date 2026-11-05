@@ -1,0 +1,16 @@
+{
+  "web_http_status": 200,
+  "api_http_status": 200,
+  "model_state": "unconfigured",
+  "task_count": 0,
+  "existing_launcher_pid": 20164,
+  "original_source_enabled": true,
+  "reserved_units_readonly": 49,
+  "maximum_units": 60,
+  "estimated_remaining_usd": "2.75",
+  "budget_reset": false,
+  "real_model_calls_this_turn": false,
+  "a21_default_api_restart": "not_run_execution_environment_rejected_command",
+  "new_api_dialogue_live": "not_verified_default_service_still_old_A2",
+  "note": "No alternate stop/restart workaround attempted. Final code and isolated test fixtures verified; Vite may hot reload UI but default API needs user manual restart. Key not inspected."
+}

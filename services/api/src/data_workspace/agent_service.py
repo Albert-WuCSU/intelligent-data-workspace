@@ -11,7 +11,7 @@ from .agent_contracts import AgentTask,ModelQueryPlan
 from .semantic_metadata import read_schema
 from .warehouse.aggregate_contract import AggregateRequest,AggregateTime,AggregateResult,compile_aggregate,schema_hash
 from .warehouse.aggregate_client import AggregateMCPClient
-from .model_routes import resolve_catalog_model
+from .model_routes import resolve_catalog_model, resolve_bound_model
 from .retention import storage_lease
 
 class GraphState(TypedDict):task_id:str
@@ -23,13 +23,17 @@ class AgentService:
         g.add_edge(START,'resolve');g.add_edge('resolve','model');g.add_edge('model','validate');g.add_conditional_edges('validate',lambda state:'end' if self.tasks[state['task_id']].phase=='NEEDS_CLARIFICATION' else 'approve',{'end':END,'approve':'approval'});g.add_edge('approval','execute');g.add_edge('execute',END)
         self.graph=g.compile(checkpointer=InMemorySaver())
     def auth(self,auth):self.app.state.semantics.authorize(auth)
+    def capabilities(self):return {'available':True,'implementation':'langgraph_governed_single_table_v1','sdk_web_binding':False,'engines':['langgraph_governed_single_table_v1']}
+    def list(self,auth):
+        self.auth(auth);owner=self.app.state.sources.owner(auth)
+        return [task for id,task in self.tasks.items() if self.records[id]['owner']==owner]
     def config(self,id):return {'configurable':{'thread_id':id},'callbacks':[],'recursion_limit':10}
     def event(self,id,value):self.tasks[id].events.append(value)
     def get(self,auth,id):
         self.auth(auth)
         if id not in self.tasks or self.records[id]['owner']!=self.app.state.sources.owner(auth):raise PublicError(404,'AGENT_TASK_NOT_FOUND','任务不在当前本机会话，请不要重提未知执行。')
         return self.tasks[id]
-    def start(self,auth,body):
+    async def start(self,auth,body):
         self.auth(auth)
         try:
             if body.conversation_id and str(UUID(body.conversation_id))!=body.conversation_id:raise ValueError()
@@ -71,9 +75,7 @@ class AgentService:
             if task.phase not in ('AWAITING_CONFIRMATION','PLANNING','VALIDATING','EXECUTING','CHECKING'):self.records[id].pop('prompt',None)
     async def verify_context(self,id,*,storage_locked=False):
         r=self.records[id];auth=r['auth'];t=self.tasks[id]
-        provider=self.app.state.model_provider
-        if t.model_ref!=f'{self.app.state.model_tests.generation}:{provider.configuration.version}' or not self.app.state.model_enabled or not provider._verified:
-            raise PublicError(409,'AGENT_PLAN_EXPIRED','当前模型已停用或更换，请重新规划。')
+        resolve_bound_model(self.app,t.model_ref)
         value=self.app.state.semantics.version(auth,t.semantic_version_id)
         if value.state!='published_recheck_required' or value.state_revision!=r['semantic'].state_revision:raise PublicError(409,'AGENT_PLAN_EXPIRED','语义版本或启禁状态改变，请重新规划。')
         schema_reader=read_schema.__wrapped__ if storage_locked else read_schema
@@ -103,10 +105,7 @@ class AgentService:
         lock=self.app.state.model_configuration_lock
         if lock.locked():raise PublicError(409,'MODEL_CONNECTION_BUSY','模型测试或配置处理中，请稍后重新规划。')
         async with lock:
-            provider=self.app.state.model_provider
-            # resolve_catalog_model reports busy under our lock; check the pre-bound identity independently.
-            ref=f'{self.app.state.model_tests.generation}:{provider.configuration.version}'
-            if ref!=t.model_ref or not self.app.state.model_enabled or not provider._verified:raise PublicError(409,'MODEL_SELECTION_EXPIRED','模型选择已变，不能调用。')
+            provider=resolve_bound_model(self.app,t.model_ref)
             if provider.key in r['prompt']:raise PublicError(422,'AGENT_INPUT_INVALID','上下文不能包含Key。')
             result=await provider.generate(r['prompt']);t.returned_model_id=result.returned_model_id or result.model_id
             try:plan=ModelQueryPlan.model_validate_json(result.text)
@@ -141,8 +140,7 @@ class AgentService:
     async def execute(self,state):
         id=state['task_id'];r=self.records[id];t=self.tasks[id];t.phase='VALIDATING'
         await self.verify_context(id)
-        provider=self.app.state.model_provider
-        if t.model_ref!=f'{self.app.state.model_tests.generation}:{provider.configuration.version}' or not self.app.state.model_enabled or not provider._verified:raise PublicError(409,'AGENT_PLAN_EXPIRED','模型已改变或停用，请重新规划。')
+        resolve_bound_model(self.app,t.model_ref)
         if r['submitted']:raise PublicError(409,'AGENT_ALREADY_SUBMITTED','查询已提交或结果不明，不重提。')
         # Hold storage lease through real MCP execution so retention cannot reclaim the saved snapshot.
         sources=self.app.state.sources

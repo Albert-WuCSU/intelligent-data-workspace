@@ -1,0 +1,112 @@
+.........F..............F                                                [100%]
+================================== FAILURES ===================================
+_______ test_full_sdk_cli_loop_with_fake_gateway_and_real_synthetic_mcp _______
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-201/test_full_sdk_cli_loop_with_fa0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000219FBB63F80>
+
+    def test_full_sdk_cli_loop_with_fake_gateway_and_real_synthetic_mcp(tmp_path, monkeypatch):
+        monkeypatch.setenv("SENTINEL_HOST_KEY", "must-not-leak")
+        monkeypatch.setenv("ANTHROPIC_API_KEY", "must-not-leak")
+        database = fixture(tmp_path)
+        server = FakeGateway()
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        task_id = str(uuid4())
+        runtime = tmp_path / "runtime"
+        config_path = tmp_path / "sdk-config.json"
+        output_path = tmp_path / "sdk-output.json"
+        config_path.write_text(json.dumps({
+            "database": str(database),
+            "question": QUESTION,
+            "base_url": f"http://127.0.0.1:{server.server_port}",
+            "runtime_root": str(runtime),
+            "task_id": task_id,
+            "model": "claude-sonnet-5-5",
+            "auto_confirm_fixture": True,
+            "wall_clock_seconds": 120,
+        }), encoding="utf-8")
+        env = minimal_runner_environment(tmp_path / "outer-home", tmp_path / "outer-config", tmp_path / "outer-temp")
+        env["SDK_FIXTURE_DEBUG"] = "1"
+        assert "SENTINEL_HOST_KEY" not in env and "ANTHROPIC_API_KEY" not in env
+        try:
+            completed = run_sdk_process(config_path, output_path, tmp_path / "runner-stdout.txt", tmp_path / "runner-stderr.txt", env)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(10)
+        (tmp_path / "gateway-requests.json").write_text(json.dumps(server.requests, ensure_ascii=False, indent=2), encoding="utf-8")
+        diagnostics = {
+            "process": {k: v for k, v in completed.items() if k != "result"},
+            "stdout": (tmp_path / "runner-stdout.txt").read_text(encoding="utf-8", errors="replace"),
+            "stderr": (tmp_path / "runner-stderr.txt").read_text(encoding="utf-8", errors="replace"),
+            "gateway_errors": server.errors,
+            "gateway_steps": server.step,
+        }
+        (tmp_path / "diagnostics.json").write_text(json.dumps(diagnostics, ensure_ascii=False, indent=2), encoding="utf-8")
+        assert completed["returncode"] == 0, diagnostics
+        result = completed["result"]
+        assert result["status"] == "SUCCEEDED", diagnostics
+        assert result["capability"]["implementation"] == "claude_agent_sdk_skills_v1"
+        assert result["capability"]["real_gateway_available"] is False
+>       assert result["skill"]["version"] == "1.0.3"
+E       AssertionError: assert '1.0.4' == '1.0.3'
+E         
+E         - 1.0.3
+E         ?     ^
+E         + 1.0.4
+E         ?     ^
+
+services\api\tests\test_sdk_agent.py:430: AssertionError
+_ test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding[schema_change] _
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-201/test_web_sdk_waiting_clarifica2')
+gateway = <test_sdk_agent.FakeGateway object at 0x000002198129C620>
+action = 'schema_change'
+
+    @pytest.mark.parametrize("action", ["cancel", "model_change", "schema_change"])
+    def test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding(tmp_path, gateway, action):
+        gateway.clarify = True
+        app, source_id, published, model_ref = build_app(tmp_path, gateway.server_port)
+        with TestClient(app, base_url=BASE, client=("127.0.0.1", 1)) as client:
+            task_id = client.post("/api/v1/agent/tasks", json=request_body(source_id, published, model_ref), headers=H).json()["id"]
+            waiting = wait_task(client, task_id, "NEEDS_CLARIFICATION")
+            if action == "cancel":
+                client.post(f"/api/v1/agent/tasks/{task_id}/cancel", json={}, headers=H)
+            elif action == "model_change":
+                app.state.model_enabled = False
+            else:
+                import duckdb
+>               with duckdb.connect(str(app.state.agent.sdk.records[task_id].database)) as db:
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_sdk_web_agent.py:375: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-201/test_web_sdk_waiting_clarifica2')
+gateway = <test_sdk_agent.FakeGateway object at 0x000002198129C620>
+action = 'schema_change'
+
+    @pytest.mark.parametrize("action", ["cancel", "model_change", "schema_change"])
+    def test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding(tmp_path, gateway, action):
+        gateway.clarify = True
+        app, source_id, published, model_ref = build_app(tmp_path, gateway.server_port)
+        with TestClient(app, base_url=BASE, client=("127.0.0.1", 1)) as client:
+            task_id = client.post("/api/v1/agent/tasks", json=request_body(source_id, published, model_ref), headers=H).json()["id"]
+            waiting = wait_task(client, task_id, "NEEDS_CLARIFICATION")
+            if action == "cancel":
+                client.post(f"/api/v1/agent/tasks/{task_id}/cancel", json={}, headers=H)
+            elif action == "model_change":
+                app.state.model_enabled = False
+            else:
+                import duckdb
+                with duckdb.connect(str(app.state.agent.sdk.records[task_id].database)) as db:
+>                   db.execute("ALTER TABLE t0 ADD COLUMN changed INTEGER")
+E                   _duckdb.CatalogException: Catalog Error: Table with name t0 does not exist!
+E                   Did you mean "pg_tables"?
+
+services\api\tests\test_sdk_web_agent.py:376: CatalogException
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_sdk_agent.py::test_full_sdk_cli_loop_with_fake_gateway_and_real_synthetic_mcp
+FAILED services\api\tests\test_sdk_web_agent.py::test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding[schema_change]
+2 failed, 23 passed in 87.87s (0:01:27)

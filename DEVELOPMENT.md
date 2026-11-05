@@ -1,4 +1,29 @@
-# 估算预算/最小模型测试（2026-10-29）
+# 2026-11-04 A3-M1本机检查范围
+新工具只检索任务绑定单表元数据、选择已批准metric派生L2模板；不可调用自由SQL或生成未批准口径。模板receipt绑定版本/route/source/schema/Skill，提案经原confirm/MCP/QA门禁。query_path显示实际L1/L2，非质量认证。Skill1.0.6。
+专项：`services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_topic.py services/api/tests/test_sdk_web_agent.py services/api/tests/test_sdk_dialogue.py -q`；最终完整仍`services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser`。模型与公司数据不自动调用，默认运行加载另验。
+
+# 2026-11-04 A2 同任务澄清（待完整回归）
+
+Agent澄清回答在同一运行任务中由服务端写入隔离回答通道；仅当前owner/generation/clarification_id有效。页面勾选本次回答外发同意后“继续同一任务”，重新核口径后仍需另点确认执行。最多2轮/1600字符，共享原有有限预算，不跨后端重启、不发结果行/全历史；独立新问题不自动继承旧筛选。
+
+专项：`services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py services/api/tests/test_sdk_web_agent.py -q`；完整：`services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser`。check的源指纹新增SDK依赖锁，UI-only SDK快照测试明确不代替真实SDK+合成MCP。Schema仍从`python -m data_workspace.export_contracts`和openapi-typescript生成，不手改。
+
+加载新API前验证8000/5173归属；完整检查后安全重启本项目开发启动器，不重置来源/语义/估算账本。Key只在设置页由用户重输，deepseek-v4.1-flash可用请求名，返回版本alias不可作为请求名。真实筛选/分组/同任务澄清复测、Claude官方/生产/MVP保持not_run直到真实证据与验收。
+
+# M04-C02-SDK 离线 fixture（2026-11-03）
+
+D-M04B-SDK-INSTALL-071已批准固定SHA wheel项目venv离线安装。当前依赖为`claude-agent-sdk==0.2.177`＋捆绑Claude Code CLI 2.1.317，增量锁`services/api/requirements.sdk.lock.txt`；wheel SHA256=7997db488354a539c08b5b6b16717d99ae67903ae7351da43d51b68b80097fad，CLI SHA256=26b01ec22df2c17ac7f5703aa547d36706e8d58412136ced0344a8ced4d86038。安装/版本证据在M04对应evidence。
+
+离线专项：`./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py -q`。完整回归：`./services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser`（需先核本机服务归属）。runner只用独立loopback假Messages网关和真实合成MCP，`setting_sources=[]`＋受控`governed:data-query` plugin、最小父环境、专属Windows Job；不读宿主Key/settings/hooks、不调用真实AIPlan/收费/生产SQL。真实Claude模型与AIPlan SDK协议仍未验证，不能用当前DeepSeek文本/流式结果替代。
+
+## 2026-11-04 SDK runner / 默认 Web 模型绑定
+- AI Plan catalog 模型经服务端 catalog 引用进入 SDK runner；本机开发默认启用 `sdk_web_agent`。个人 API / 非 AI Plan 模型仍走既有 LangGraph 路径。浏览器只传模型引用，端点、模型 ID 与 Key 由后端解析，不读宿主凭证。
+- 任务级估算预留 2 USD（8×0.25 单元，D053 不 reset）；真实用户确认桥、模型/语义/来源失效、执行/质量回执复核保留。SDK runner 仍只接受服务端生成的 `web_catalog` 绑定，不自动发现网关模型。
+- 专项：`./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_web_agent.py -q`。完整回归仍为 `scripts/check.py --module M04 --browser`。
+- 真实 DeepSeek Web、Claude 官方支持、生产与用户验收仍 `not_run`；真实测试需用户显式操作与本机隐藏 Key，不自动收费或扩大外发。
+
+---
+
 
 按用户D-MODEL-ESTIMATE-BUDGET-053近似预算，--model-key启动新增WORKSPACE_MODEL_ESTIMATED_BUDGET=1，仅后端继承；跨重启SQLite估算账本0.25USD/次、最多60、15USD目标，20USD为软预算参考。新增POST model-service/test，认证/CSRF/64KB请求体、当前配置与runtimegeneration、同UUID幂等回执、固定非敏感文本；浏览器不发送Key/问题/行。仅用户显式点击测试收费，不自动调用。前端合同由Pydantic导出。用户持Key旧进程必须本人重启隐输新版，不读取或迁移环境秘密。
 详细步骤MODEL_SERVICE.md；账本data/model-runtime不入Git，不删除/reset预留，未知结果/超时保留。单元在临时根/假Key/fixture运行，实际网关验证单独not_run直到用户实操。下面旧“无费用许可永远拒绝/no测试端点”文字为历史。

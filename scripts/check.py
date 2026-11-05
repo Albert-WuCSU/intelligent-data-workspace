@@ -19,6 +19,7 @@ def sources():
                  'apps/web/index.html','playwright.config.mjs','DEVELOPMENT.md','start-workspace.cmd'):
         files.append(ROOT/name)
     files.append(ROOT/'services/api/requirements.langgraph.lock.txt')
+    files.append(ROOT/'services/api/requirements.sdk.lock.txt')
     manifest={str(p.relative_to(ROOT)).replace('\\','/'):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(set(files))}
     fingerprint=hashlib.sha256(json.dumps(manifest,sort_keys=True).encode()).hexdigest()
     return manifest,fingerprint

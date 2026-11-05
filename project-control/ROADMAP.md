@@ -1,5 +1,8 @@
+# 2026-11-04 D078：常规Agent式交互是验收要求
+R-U31/M04-B-AC05要求问题后连续公开执行说明/真实工具标签/发现限制/原任务澄清问答/最终正文报告与内嵌表格，不以短句加大卡片算完成。A2.1在当前M04做此体验修正，不改变D070 SDK主线、L1–L4路线和A3→B RAG→C新公司数据授权的顺序。过程说明不等于原始思维链，截图不授权宿主Bash/Read/Write或公司数据；本机测试与真实体验验收分开。
+
 # 2026-11-03 当前主线：Claude Agent SDK＋Skills＋治理Harness
-D-M04B-CLAUDE-SDK-070明确替代D058/D069的LangGraph主线方向；顺序M02→M04-A→M03→M04（M04-B）不变。M01/M02/M04-A/M03有限本机验收保持，当前M04-C02-SDK PLAN、SDK运行not_run。先Skill路由/加载、动态探索/澄清，指标优先或SQL，取数必QA并校验回执；安全不是Prompt约定。LangGraph C01保留codex/langgraph-baseline-20261103（92d0b03），历史593/17/44测试不当SDK证据。具体迁移见M04 plan/PRD、SDK Skill reference。版本/安装/网关/新费用/数据外发尚需核验，不重问已批准总预算/PG延期。
+D-M04B-CLAUDE-SDK-070明确替代D058/D069的LangGraph主线方向；顺序M02→M04-A→M03→M04（M04-B）不变。M01/M02/M04-A/M03有限本机验收保持，当前M04-C02-SDK DO。S01已锁定SDK 0.2.177＋CLI 2.1.317及Windows wheel hash，D071固定离线安装已完成；S02离线fixture 9项及602后端/17前端/44浏览器全回归通过，受控plugin Skill→指标/受控SQL→确认→真实合成MCP→自动QA→回执发布，详见M04 SDK_S02_OFFLINE_FIXTURE。真实AIPlan/生产仍not_run。官方不支持Claude Code经网关使用非Claude模型，现有DeepSeek文本/流式不是SDK兼容证据。先Skill路由/加载、动态探索/澄清，指标优先或SQL，取数必QA并校验回执；安全不是Prompt约定。LangGraph C01保留codex/langgraph-baseline-20261103（92d0b03），历史593/17/44不当SDK证据。D053总预算与PG/生产延期不变。D-M04B-MODEL-PICKER-075新增：产品需兼容个人API/企业AI Plan网关，工作台提供多模型选择；研发按“服务端多模型目录→选择器→SDK/Agent绑定”分期，MVP开发测试默认deepseek-v4.1-flash；不复制宿主Token/截图模型或价格，不自动枚举网关模型。
 
 以下为历史路线与职责资料；旧“优先LangGraph/禁止SDK”选择仅历史，不能覆盖D070。
 
@@ -63,3 +66,9 @@ D-M02-DELIVERY-049用户“是，继续推进吧”明确验收M02有限本机�
 ## 2026-10-30 当前架构及AIPlan连接（覆盖旧引擎提案）
 用户明确保留原LangGraph＋项目治理Harness，D-CLAUDE-ENGINE-058已答，不实施ClaudeCodeCLI/AgentSDK引擎、不安装新Agent栈。M02已验收→M04-A真实模型接入→M03→原M04=M04-B LangGraph顺序不变。公司ClaudeCLI配置仅作模型API非秘密合同：coding-plan baseURL/AUTH_TOKEN风格Bearer，当前明确套餐coding-plan/v1/messages/anthropic_messages/bearer/deepseek-v4.1-flash。用户确认AIPlan支持DeepSeek，记录userconfirmed而非应用integrationpassed；不自动替换为claude-前缀别名、不安装CLI、不执行hooks或继承令牌/无限超时。
 start-workspace-claude.cmd只是历史命名的模型API启动器，不等于工作台底层ClaudeCode。用户本人重启隐藏Key并显式test才调用，预算不reset，旧拒绝failed保留；109模型专项过（14套餐+95原专项），本轮preset/tests仅改，provider/UI/ledger未改，不称全backend/browser再过。最新网关实测未运行，收到新回执继续排查，不自动遍历认证/协议。
+
+## 2026-11-04 R-U31 / AC05 A2.1本机CHECK完成，默认服务待手动加载
+631后端/23前端/45浏览器/types/build/pip及源稳定全通过，证据`project-control/modules/M04/evidence/20261104T092140Z/results.json`和`A21_CHECK_REPORT.md`，fingerprint `dcbf6753a9f16844c1eccf1baaa19ff595b77af682993b84f17f30303a8b9dfd`。治理事件公开执行说明/实际工具标签/澄清问答按序、正文报告/后端数值/内嵌表格/技术折叠、Skill1.0.5已实现；不展示原始思维链，模型中间公开消息流仍待受控实现。重启命令被执行环境拦截，旧默认API尚未加载新字段，需用户手动重启本项目；真实体验验收not_run。D053余额2.75USD/49单位不变，无真实调用/公司数据复制/宿主权限/安装/commit/push；A3/B/C后续，M04仍DO/not_verified。
+
+## 2026-11-04 A3-M1本机CHECK完成（非完整A3验收）
+642后端/23前端/45浏览器/types/build/pip/源稳定全部通过，证据`project-control/modules/M04/evidence/20261104T101013Z/results.json`与`A3_M1_CHECK_REPORT.md`，fingerprint `4d39b9b48bd499383292b6526d9bea41d009dc71025e85928b2371555f1a7f0d`。已实现任务绑定单表/字段metadata发现、L1未命中时canonical批准口径派生L2模板与参数提案、模板回执/版本/预算/确认/MCP/QA发布、完整metric定义比较与提交后禁再规划、实际L1/L2路径和工具标签。Skill1.0.6/工具1.0.1/模板1.0.0，不开放自由SQL/新metric/JOIN/公司数据/host工具。用户已重启A2.1（新8000/5173监听18:01:32），A3改动在其后默认API尚未重载；本轮不打断用户服务，真实A3/Claude/生产/MVP not_run。D05349/60/2.75USD不变，未真实调用/安装/commit/push。完整L2业务Skill/L3/RAG/context/模型中间公开流等后续，M04未验收。

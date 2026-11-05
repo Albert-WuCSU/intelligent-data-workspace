@@ -1,0 +1,5 @@
+{
+  "status": "FAILED",
+  "error": "SDK_RUN_FAILED",
+  "message": "SDK工具循环未成功完成，不发布结果。"
+}

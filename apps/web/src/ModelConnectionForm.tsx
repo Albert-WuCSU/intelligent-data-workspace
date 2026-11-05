@@ -21,7 +21,7 @@ export default function ModelConnectionForm({status,blocked,onChanged,onBusy}:{s
  useEffect(()=>{onBusy(busy);},[busy,onBusy]);
  const fixed=vendor==='ai_plan',disabled=blocked||busy;
  const legacyModelLock=fixed&&!status?.model_name_editable;
- function choose(v:keyof typeof presets){initialized.current=true;const p=presets[v];setVendor(v);setProtocol(p.protocol);setEndpoint(p.endpoint);setModel('');setAuth(p.auth);setKey('');setConsent(false);setNotice('');}
+ function choose(v:keyof typeof presets){initialized.current=true;const p=presets[v];setVendor(v);setProtocol(p.protocol);setEndpoint(p.endpoint);setModel(v==='ai_plan'?'deepseek-v4.1-flash':'');setAuth(p.auth);setKey('');setConsent(false);setNotice('');}
  async function save(e:React.FormEvent){e.preventDefault();if(!status||!key||!consent||legacyModelLock)return;setBusy(true);setNotice('');try{
   await request('/api/v1/model-service/connection',{preset:fixed?'ai_plan':'custom',protocol,endpoint,model_id:model,authentication:auth,api_key:key,execution_generation:status.execution_generation,accept_fixed_test_egress:true,accept_estimated_cost:true});
   setNotice('已保存到本次后端会话，未收费调用。请点击“测试模型连接”。');await onChanged();

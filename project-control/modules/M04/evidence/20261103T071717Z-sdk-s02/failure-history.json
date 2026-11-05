@@ -1,0 +1,37 @@
+[
+  {
+    "command": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py -q -k 'not full_sdk'",
+    "exit_code": 1,
+    "failure": "Initial test assumptions about physical table name and receipt-gate precedence failed; tests corrected without weakening backend gates."
+  },
+  {
+    "command": "same SDK backend test after first correction",
+    "exit_code": 1,
+    "failure": "Real MCP rejected non-UUID idempotency key; backend now validates UUID before submission and tests use valid UUIDs."
+  },
+  {
+    "command": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py::test_full_sdk_cli_loop_with_fake_gateway_and_real_synthetic_mcp -q",
+    "exit_code": 3,
+    "failure": "Entrypoint serialized a coroutine before awaiting; fixed with asyncio.run. Evidence: failure-async-entry.json."
+  },
+  {
+    "command": "same full SDK fixture",
+    "exit_code": 2,
+    "failure": "Hook duplicate delivery double-counted metadata and host global CLAUDE.md appeared. MCP calls now counted in backend and Skills load only through an audited plugin with setting_sources=[]. Evidence: failure-isolation-budget.json."
+  },
+  {
+    "command": "same full SDK fixture",
+    "exit_code": 2,
+    "failure": "WinError 1816 during execution; measured outer Job peak 6 > former limit 4. Nested aggregate Job removed in favor of inherited outer Job and process ceiling measured with headroom. Evidence: failure-quota.json."
+  },
+  {
+    "command": "./services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser",
+    "exit_code": 1,
+    "failure": "43 browser passed and one connector case failed because the running current API exposed Agent capability while the test expected the natural-language-unavailable fallback. The test now explicitly fixtures capability 404 for that purpose; product behavior and assertions were not weakened."
+  },
+  {
+    "command": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py -q",
+    "exit_code": 1,
+    "failure": "A new route-invalidation test expected the plan-expired label while the backend correctly used its existing execution-denied code; test aligned to the actual stable error contract without changing the denial."
+  }
+]

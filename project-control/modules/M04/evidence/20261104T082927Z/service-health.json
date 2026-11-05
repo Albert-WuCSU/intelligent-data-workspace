@@ -1,0 +1,20 @@
+{
+  "web_http_status": 200,
+  "api_http_status": 200,
+  "invalid_clarify_contract_http_status": 422,
+  "task_count": 0,
+  "original_source_present_enabled": true,
+  "profiles_preserved_count": 29,
+  "published_semantics": 1,
+  "model_state": "unconfigured",
+  "budget_readonly_sqlite": {
+    "reserved_units": 49,
+    "max_units": 60,
+    "estimated_reserved_usd": "12.25",
+    "estimated_remaining_usd": "2.75",
+    "reset": false,
+    "supplier_billing_verified": false
+  },
+  "real_model_calls_this_turn": false,
+  "launcher_pid": 20164
+}

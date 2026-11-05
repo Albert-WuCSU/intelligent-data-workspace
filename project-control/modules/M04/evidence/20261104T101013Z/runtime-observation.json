@@ -1,0 +1,16 @@
+{
+  "user_reported_restart": true,
+  "api_listener_pid": 32324,
+  "web_listener_pid": 30252,
+  "listener_creation_local": "2026-11-04T18:01:32+08:00",
+  "api_http200": true,
+  "model_state": "unconfigured",
+  "task_count": 0,
+  "reserved_units_readonly": 49,
+  "max_units": 60,
+  "estimated_remaining_usd": "2.75",
+  "budget_reset": false,
+  "real_calls_this_turn": false,
+  "live_a21": "user restarted; new listener creation observed, paid task not executed",
+  "live_a3": "not_run_source_changes_after_restart; do not stop user service or claim hot-reload API"
+}

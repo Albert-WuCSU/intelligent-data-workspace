@@ -1,0 +1,77 @@
+{
+  "kind": "sdk_package_and_offline_resolution_verification",
+  "observed_date": "2026-11-03",
+  "status": "passed",
+  "scope": "Official release metadata, Windows wheel integrity/content and fully offline pip dry-run only; no installation, executable launch, model call or SDK runtime validation.",
+  "release": {
+    "sdk_version": "0.2.177",
+    "bundled_cli_version": "2.1.317",
+    "github_published_at": "2026-11-03T02:17:57Z",
+    "github_release_url": "https://github.com/anthropics/claude-agent-sdk-python/releases/tag/v0.2.177",
+    "requires_python": ">=3.10",
+    "pypi_license": "MIT",
+    "use_terms": "Anthropic Commercial Terms of Service, except components with their own indicated license",
+    "sources": [
+      "https://pypi.org/pypi/claude-agent-sdk/json",
+      "https://api.github.com/repos/anthropics/claude-agent-sdk-python/releases/latest",
+      "https://code.claude.com/docs/en/legal-and-compliance"
+    ]
+  },
+  "artifacts": [
+    {"filename": "claude_agent_sdk-0.2.177-py3-none-win_amd64.whl", "size": 149800822, "sha256": "7997db488354a539c08b5b6b16717d99ae67903ae7351da43d51b68b80097fad", "upload_time": "2026-11-03T02:16:15.804744Z"},
+    {"filename": "claude_agent_sdk-0.2.177-py3-none-macosx_11_0_arm64.whl", "size": 135078063, "sha256": "72b98b5a1cd349ef217f03f7b15bc029680f67d2a84a46c3357726b4ee68d536"},
+    {"filename": "claude_agent_sdk-0.2.177-py3-none-macosx_11_0_x86_64.whl", "size": 142163205, "sha256": "675f7835c544b11b86cc4c5b5156c1e3b4fa64a08c75c3793cccdad9902697b7"},
+    {"filename": "claude_agent_sdk-0.2.177-py3-none-manylinux_2_17_aarch64.whl", "size": 145948635, "sha256": "f6ec367cc004fc0749f0573dc4d35bed2d8a22f217955b9a86eb42319c72b865"},
+    {"filename": "claude_agent_sdk-0.2.177-py3-none-manylinux_2_17_x86_64.whl", "size": 147208332, "sha256": "0307d8c234744b5d0c81e1b266fcce3b9bf7a0ccd19ace1d94292d6514d0ceec"},
+    {"filename": "claude_agent_sdk-0.2.177.tar.gz", "size": 400216, "sha256": "4202e9ca65243e11d3dd74f00b55af6c3995169d3e634dd3397c76fd325800e1"}
+  ],
+  "windows_wheel_inspection": {
+    "expected_sha256_matches_download": true,
+    "zip_crc_failure": null,
+    "file_count": 33,
+    "bundled_cli_entry": "claude_agent_sdk/_bundled/claude.exe",
+    "bundled_cli_uncompressed_size": 338187936,
+    "cli_version_file": "claude_agent_sdk/_cli_version.py",
+    "cli_version_line": "__cli_version__ = \"2.1.317\"",
+    "sdk_license_entry": "claude_agent_sdk-0.2.177.dist-info/licenses/LICENSE",
+    "separate_cli_license_entry_found": false,
+    "executed": false,
+    "installed": false,
+    "detail_ref": "project-control/modules/M04/evidence/20261103T060255Z-sdk-install-plan/wheel-inspection.json"
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "machine": "AMD64",
+    "sdk_installed": false,
+    "installed_direct_dependencies": {
+      "anyio": "4.15.1",
+      "jsonschema": "4.26.0",
+      "mcp": "1.30.0",
+      "sniffio": "1.3.1",
+      "typing-extensions": "4.16.0"
+    },
+    "wsl_status": {"command": "wsl.exe --status", "exit_code": 50, "usable_wsl2_verified": false, "note": "No successful WSL status; do not claim WSL2 sandbox availability."}
+  },
+  "offline_resolution": {
+    "command": "./services/api/.venv/Scripts/python.exe -I -m pip install --dry-run --no-index --no-cache-dir project-control/modules/M04/evidence/20261103T060255Z-sdk-install-plan/downloads/win-amd64/claude_agent_sdk-0.2.177-py3-none-win_amd64.whl",
+    "exit_code": 0,
+    "network_access": "disabled by --no-index",
+    "result": "Would install claude-agent-sdk-0.2.177",
+    "new_packages": ["claude-agent-sdk==0.2.177"],
+    "existing_packages_replaced": [],
+    "pip_check": {"command": "./services/api/.venv/Scripts/python.exe -I -m pip check", "exit_code": 0, "result": "No broken requirements found."}
+  },
+  "source_integrity": {
+    "downloads/pypi-metadata/claude-agent-sdk.json": "65c0db0a6f678c11de41d654b064eee1b11c90ad64305d89cbcd716609e8dda0",
+    "downloads/github-release/latest.json": "c554d89c28d6730adb71b7f9a158d7f97812bc59f40945b4ff10473012e3a0f8"
+  },
+  "not_run": [
+    "SDK installation",
+    "bundled CLI executable launch/version probe",
+    "SDK import and Windows runtime",
+    "AIPlan or any real model call",
+    "tool_use/Skill/stream/usage end-to-end",
+    "production/deployment"
+  ]
+}

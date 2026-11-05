@@ -1,0 +1,21 @@
+{
+  "kind": "official_public_document_archive",
+  "observed_date": "2026-11-03",
+  "execution": "Downloaded with curl --fail --location; no downloaded content executed; each source stored in its own new directory.",
+  "sources": [
+    {"name": "legal-and-compliance", "url": "https://code.claude.com/docs/en/legal-and-compliance.md", "path": "downloads/legal-and-compliance/source.md", "bytes": 7142, "sha256": "1a7c59468a71304f19e6ce74c8d23b7d71382b81daa5d1c7afe524cc644d6e16", "exit_code": 0},
+    {"name": "commercial-terms", "url": "https://www.anthropic.com/legal/commercial-terms", "path": "downloads/commercial-terms/source.md", "bytes": 212451, "sha256": "1d2705947d8a36d66683ef828ad5c25dc65ab184f1777315dd632258ab4b4177", "exit_code": 0},
+    {"name": "llm-gateway", "url": "https://code.claude.com/docs/en/llm-gateway.md", "path": "downloads/llm-gateway/source.md", "bytes": 7714, "sha256": "8dd7626286a658e2fa69903555f1e542f1719fc7506b4f892f0600a2b4fbd9c1", "exit_code": 0},
+    {"name": "llm-gateway-protocol", "url": "https://code.claude.com/docs/en/llm-gateway-protocol.md", "path": "downloads/llm-gateway-protocol/source.md", "bytes": 52739, "sha256": "140aad701e56ba6849383bd1c0c8b00d6c199502408d37f162c39036109f7f33", "exit_code": 0},
+    {"name": "sdk-hosting", "url": "https://code.claude.com/docs/en/agent-sdk/hosting.md", "path": "downloads/sdk-hosting/source.md", "bytes": 24489, "sha256": "6f8f7ce29c9034b06acb718b06d766789b3980500eb700da7ea302f3c19c0af4", "exit_code": 0},
+    {"name": "sdk-secure-deployment", "url": "https://code.claude.com/docs/en/agent-sdk/secure-deployment.md", "path": "downloads/sdk-secure-deployment/source.md", "bytes": 21619, "sha256": "e384fdd59a4ba17711478aa66d74fdb157deb1494d7d9b49bf1a5998aaf0879f", "exit_code": 0},
+    {"name": "sdk-permissions", "url": "https://code.claude.com/docs/en/agent-sdk/permissions.md", "path": "downloads/sdk-permissions/source.md", "bytes": 33327, "sha256": "cd80c876908e97488b102938922c947035a2c831c6417bb6bb3e36b45f2b2d8a", "exit_code": 0},
+    {"name": "sdk-skills", "url": "https://code.claude.com/docs/en/agent-sdk/skills.md", "path": "downloads/sdk-skills/source.md", "bytes": 28435, "sha256": "d7419fbd6d6ce9163e3245928529ac6725a4b689c1d2e5cf520580d65fb7f3a9", "exit_code": 0},
+    {"name": "sdk-cost-tracking", "url": "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md", "path": "downloads/sdk-cost-tracking/source.md", "bytes": 27364, "sha256": "0c4c84de2eaec4980d6ae66540984667cde68c7e3e9871aced02cc9f9ca507f6", "exit_code": 0},
+    {"name": "sdk-features", "url": "https://code.claude.com/docs/en/agent-sdk/claude-code-features.md", "path": "downloads/sdk-features/source.md", "bytes": 20979, "sha256": "22b811b894e989a1645a90d976c246662dea52e0d527fe21678148ce2b6bfaa2", "exit_code": 0},
+    {"name": "sdk-custom-tools", "url": "https://code.claude.com/docs/en/agent-sdk/custom-tools.md", "path": "downloads/sdk-custom-tools/source.md", "bytes": 41016, "sha256": "f6b169b9e022cc73fef4c079e6bef25aab0d3c003815fab80b9a3cc58518f5bc", "exit_code": 0},
+    {"name": "sdk-agent-loop", "url": "https://code.claude.com/docs/en/agent-sdk/agent-loop.md", "path": "downloads/sdk-agent-loop/source.md", "bytes": 41220, "sha256": "029cd5ef8a2d0c8ad2ead97f6bbfdc19bdcfe708102b3b76670679e5ea4d8fcd", "exit_code": 0},
+    {"name": "sandboxing", "url": "https://code.claude.com/docs/en/sandboxing.md", "path": "downloads/sandboxing/source.md", "bytes": 107874, "sha256": "75a0ec4a583c2e6009ee970c2925641ffe9e4d08c4cf3e714b26cf9b3135c5ef", "exit_code": 0},
+    {"name": "env-vars", "url": "https://code.claude.com/docs/en/env-vars.md", "path": "downloads/env-vars/source.md", "bytes": 187247, "sha256": "b9eca1b08f8ab647a553886627a52173acc93df8c695f1e023d58d9fbf56a0ce", "exit_code": 0}
+  ]
+}

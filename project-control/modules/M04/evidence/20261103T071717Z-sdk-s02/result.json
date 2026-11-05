@@ -1,0 +1,190 @@
+{
+  "status": "SUCCEEDED",
+  "capability": {
+    "implementation": "claude_agent_sdk_skills_v1",
+    "available_fixture_only": true,
+    "sdk_version": "0.2.177",
+    "cli_version": "2.1.317",
+    "real_gateway_available": false,
+    "production_available": false,
+    "durable_tasks": false,
+    "legacy_implementation": "langgraph_governed_single_table_v1"
+  },
+  "skill": {
+    "name": "data-query",
+    "version": "1.0.0",
+    "sha256": "857874eac1d2d98a01e3a4c4d6f644b845664d7e47de7d948f127cc81aa21319"
+  },
+  "route_receipt": {
+    "route_receipt": "route-e4e80f0e570d1b55d4083b8e70ff4626",
+    "skill": "governed:data-query",
+    "skill_sha256": "857874eac1d2d98a01e3a4c4d6f644b845664d7e47de7d948f127cc81aa21319",
+    "published_metric_match": true
+  },
+  "query_receipt": {
+    "query_receipt_id": "query-76ebc9a57da18cfc95dfce5560bd18c1",
+    "status": "SUCCEEDED",
+    "plan_hash": "76ebc9a57da18cfc95dfce5560bd18c186eb28680eafd6a0c3f400688254a67d",
+    "mcp_task_id": "9f4895ee-5b1e-404f-8f05-7b45686a7c8a"
+  },
+  "quality_receipt": {
+    "quality_receipt_id": "quality-76ebc9a57da18cfc95dfce5560bd18c1",
+    "status": "PASS",
+    "checks": [
+      "schema",
+      "unit",
+      "full_input",
+      "row_count",
+      "grain",
+      "limitations"
+    ],
+    "input_rows": 150,
+    "matched_rows": 150,
+    "limitations": []
+  },
+  "publication": {
+    "publication_id": "publication-76ebc9a57da18cfc95dfce5560bd18c1",
+    "source": "independent_synthetic_fixture",
+    "result": {
+      "source": "user_provided",
+      "columns": [
+        {
+          "name": "metric_value",
+          "type": "HUGEINT"
+        }
+      ],
+      "rows": [
+        [
+          11325
+        ]
+      ],
+      "input_rows": 150,
+      "matched_rows": 150,
+      "duplicate_grain_rows": 0,
+      "null_grain_rows": 0,
+      "null_metric_rows": 0,
+      "zero_denominator_groups": 0,
+      "null_denominator_groups": 0,
+      "returned_row_count": 1,
+      "truncated": false,
+      "full_input_aggregate": true,
+      "quality": "PASS",
+      "unit": "declared units",
+      "sql_executed": true,
+      "limitations": []
+    },
+    "query_receipt": {
+      "query_receipt_id": "query-76ebc9a57da18cfc95dfce5560bd18c1",
+      "status": "SUCCEEDED",
+      "plan_hash": "76ebc9a57da18cfc95dfce5560bd18c186eb28680eafd6a0c3f400688254a67d",
+      "mcp_task_id": "9f4895ee-5b1e-404f-8f05-7b45686a7c8a"
+    },
+    "quality_receipt": {
+      "quality_receipt_id": "quality-76ebc9a57da18cfc95dfce5560bd18c1",
+      "status": "PASS",
+      "checks": [
+        "schema",
+        "unit",
+        "full_input",
+        "row_count",
+        "grain",
+        "limitations"
+      ],
+      "input_rows": 150,
+      "matched_rows": 150,
+      "limitations": []
+    },
+    "model_generated_numbers": false
+  },
+  "model_text": "查询已完成，请查看经质量核验的结果卡。",
+  "events": [
+    {
+      "type": "SDK_INIT",
+      "skills": [
+        "deep-research",
+        "governed:data-query",
+        "dataviz",
+        "update-config",
+        "verify",
+        "debug",
+        "code-review",
+        "simplify",
+        "batch",
+        "fewer-permission-prompts",
+        "doctor",
+        "loop",
+        "claude-api",
+        "workflow-authoring",
+        "run",
+        "run-skill-generator",
+        "plugin-authoring"
+      ]
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "Skill"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__search_semantics"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__read_authorized_metadata"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__propose_metric_query"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__request_confirmation"
+    },
+    {
+      "type": "AWAITING_CONFIRMATION",
+      "confirmation_id": "confirm-43ea522a3be840996e7f917824aade7b"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__execute_approved_query"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__publish_result"
+    }
+  ],
+  "usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 400,
+      "outputTokens": 160,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0024,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "total_cost_usd_client_estimate": 0.0024,
+  "budget": {
+    "model_steps": 8,
+    "tool_calls": 7,
+    "metadata_calls": 2,
+    "total_tokens": 560,
+    "estimated_reserve_usd": 2.0,
+    "max_model_steps": 8,
+    "max_tool_calls": 10,
+    "max_total_tokens": 100000,
+    "wall_clock_seconds": 120
+  },
+  "stream_events": 48,
+  "result_rows_returned_to_model": false,
+  "real_gateway_called": false,
+  "production_sql_executed": false
+}

@@ -1,0 +1,52 @@
+{
+  "created_at": "2026-11-03T08:50:45.182595+00:00",
+  "decision_id": "D-M04B-SDK-REAL-072",
+  "selected_option": "D",
+  "files": [
+    {
+      "path": "services/api/src/data_workspace/sdk_agent_runner.py",
+      "sha256": "81d2f541a9a8b28f601a8ad7b7990c491600b725fa29e9e32be9a7cdb8a4191a",
+      "change": "Gated real_gateway_experiment; failure diagnostics; Skill 1.0.1; terminal-publish system prompt."
+    },
+    {
+      "path": "services/api/tests/test_sdk_agent.py",
+      "sha256": "07c08ddf7e72acb2bcf52e808aea261fafa20b577011a7ea964110fce56b7198",
+      "change": "Exact-gating tests, failure diagnostics, Skill 1.0.1 assertion."
+    },
+    {
+      "path": "scripts/run_sdk_deepseek_experiment.py",
+      "sha256": "00ab5abe22252efc6df751bac9323c831d9a71422f9e4306b09162a2d69857dd",
+      "change": "Hidden-input launcher; project-external temp runtime; failure diagnostics; key redaction."
+    },
+    {
+      "path": "run-sdk-deepseek-experiment.cmd",
+      "sha256": "1f9e1d925a3ddccda1451555cab1af599bd4a08169a14efc9cc6f8c967ec2a1e",
+      "change": "Windows double-click wrapper for the experiment."
+    },
+    {
+      "path": "services/api/src/data_workspace/sdk_agent_backend.py",
+      "sha256": "2e34d5acc8273add4e023f04c304c934501875a78d48ecec322b00bfe3e6edc7",
+      "change": "publish_result returns terminal instruction."
+    },
+    {
+      "path": "services/api/src/data_workspace/sdk_process.py",
+      "sha256": "7ea1b8cb027c13ded3500043d78d5154ce60587c3c68c5f3d6f431b421cc1c7a",
+      "change": "Unchanged Windows Job launcher reused by the experiment."
+    },
+    {
+      "path": "services/api/src/data_workspace/sdk_skills/data-query/SKILL.md",
+      "sha256": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580",
+      "change": "Skill 1.0.1: stop after PUBLISHED; no extra get_receipt."
+    }
+  ],
+  "commands": {
+    "targeted": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py -q",
+    "full_backend": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests -q",
+    "real_experiment": "run-sdk-deepseek-experiment.cmd"
+  },
+  "results": {
+    "targeted": "11 passed in 12.68s",
+    "full_backend": "604 passed in 252.45s (0:04:12)",
+    "real_experiment": "deepseek-v4.1-flash SUCCEEDED in clean single-model run; versioned name rejected 400; non-Claude unsupported experiment"
+  }
+}

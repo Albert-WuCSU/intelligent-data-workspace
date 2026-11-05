@@ -24,10 +24,13 @@ class StdioState:
     @property
     def healthy(self):return self.process is not None and self.failure is None and self.process.returncode is None
     def abort(self):
-        if self.job and self.job.handle:self.job.stop()
+        if self.job and self.job.handle:
+            self.job.stop()
+        elif self.process is not None and self.process.returncode is None:
+            self.process.kill()
 
 @asynccontextmanager
-async def governed_stdio(warehouse,database=None,*,limits=None,entry=ENTRY):
+async def governed_stdio(warehouse,database=None,*,limits=None,entry=ENTRY,inherit_job=False):
     limits=limits or WorkerLimits()
     if not SLOTS.acquire(blocking=False):raise WorkerFailure('WORKER_BUSY')
     state=StdioState();read_tx,read_rx=anyio.create_memory_object_stream(8);write_tx,write_rx=anyio.create_memory_object_stream(8)
@@ -40,9 +43,9 @@ async def governed_stdio(warehouse,database=None,*,limits=None,entry=ENTRY):
             try:await read_tx.send(WorkerFailure(code))
             except (anyio.BrokenResourceError,anyio.ClosedResourceError):pass
     try:
-        state.job=WindowsJob(limits)
+        if not inherit_job:state.job=WindowsJob(limits)
         state.process=await anyio.open_process([getattr(sys,'_base_executable',sys.executable),'-S',str(entry.resolve())],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,cwd=ROOT,env=worker_environment(),creationflags=subprocess.CREATE_NO_WINDOW)
-        state.job.assign(state.process)
+        if not inherit_job:state.job.assign(state.process)
         initial=json.dumps({'warehouse':str(warehouse),'database':str(database) if database else None}).encode()+b'\n'
         if len(initial)>65536:raise WorkerFailure('WORKER_INPUT_TOO_LARGE')
         await state.process.stdin.send(initial)
@@ -72,8 +75,8 @@ async def governed_stdio(warehouse,database=None,*,limits=None,entry=ENTRY):
             except Exception:await fault('WORKER_PIPE_FAILED')
         async def monitor():
             while not state.closing and state.failure is None:
-                info=state.job.job.QueryInformationJobObject(state.job.handle,state.job.job.JobObjectBasicAccountingInformation)
-                if info['TotalUserTime']+info['TotalKernelTime']>=limits.cpu_seconds*10000000:
+                info=state.job.job.QueryInformationJobObject(state.job.handle,state.job.job.JobObjectBasicAccountingInformation) if state.job else None
+                if info and info['TotalUserTime']+info['TotalKernelTime']>=limits.cpu_seconds*10000000:
                     await fault('WORKER_CPU_LIMIT');return
                 if state.process.returncode is not None:await fault('WORKER_CRASHED');return
                 await anyio.sleep(.05)

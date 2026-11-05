@@ -1,0 +1,37 @@
+import {test,expect} from '../apps/web/node_modules/@playwright/test/index.mjs';
+const EVIDENCE=process.env.WORKSPACE_BROWSER_EVIDENCE;
+// Explicit UI-only SDK snapshots. Real SDK+synthetic MCP is covered by Python E2E.
+test('A2 same-task clarification, interleaved reports, refresh and transient poll failure',async({page})=>{
+ const source='00000000-0000-4000-8000-000000000001',semantic='00000000-0000-4000-8000-000000000002',clarification='00000000-0000-4000-8000-000000000003';
+ const model='ui-fixture-model';let tasks=[],starts=0,answers=0,confirms=0,pollFailed=false;
+ await page.route('**/api/v1/agent/**',async route=>{
+  const req=route.request(),u=new URL(req.url()),path=u.pathname;
+  if(path.endsWith('/capabilities'))return route.fulfill({json:{available:true,sdk_web_binding:true,engines:['claude_agent_sdk_skills_v1']}});
+  if(path.endsWith('/tasks')&&req.method()==='GET')return route.fulfill(pollFailed?{status:503,json:{code:'FIXTURE_POLL_FAILURE'}}:{json:{tasks}});
+  if(path.endsWith('/tasks')&&req.method()==='POST'){
+   starts++;const body=req.postDataJSON();const task={id:`task-${starts}`,request_id:body.request_id,conversation_id:body.conversation_id,execution_generation:'ui-generation',model_ref:model,semantic_version_id:semantic,engine:'claude_agent_sdk_skills_v1',query_path:starts===1?'L1':'L2',phase:starts===1?'NEEDS_CLARIFICATION':'AWAITING_CONFIRMATION',dialogue:[{id:'meta-1',kind:'update',text:'已读取授权表 t0 的字段元数据，先核对范围。',tools:['read_authorized_metadata'],origin:'governed_event'},...(starts===1?[{id:'question-1',kind:'clarification',text:'需要使用哪段时间？',tools:[],origin:'governed_event'}]:[])],events:['已读取授权元数据：t0'],sql_executed:false,clarification:starts===1?'需要使用哪段时间？':null,clarification_id:starts===1?clarification:null,clarification_turns:starts===1?[{clarification_id:clarification,question:'需要使用哪段时间？',answer:null}]:[],plan_hash:starts===1?null:'a'.repeat(64),plan:starts===1?null:{table:'t0',metric:{name:'合成金额',operator:'sum',unit:'TEST'},dimensions:[],grain:['id']}};
+   tasks.push(task);return route.fulfill({json:task});
+  }
+  const task=tasks.find(t=>path.includes('/'+t.id+'/'));expect(task).toBeTruthy();
+  if(path.endsWith('/clarify')){answers++;const body=req.postDataJSON();expect(body.clarification_id).toBe(clarification);expect(body.accept_model_egress).toBe(true);task.clarification_turns[0].answer=body.answer;task.dialogue.push({id:'reply-1',kind:'user',text:body.answer,tools:[],origin:'user_answer'},{id:'continue-1',kind:'update',text:'已收到补充口径，继续同一任务。',tools:[],origin:'governed_event'});task.clarification=null;task.clarification_id=null;task.phase='AWAITING_CONFIRMATION';task.plan_hash='a'.repeat(64);task.plan={table:'t0',metric:{name:'合成金额',operator:'sum',unit:'TEST'},dimensions:[],grain:['id']};task.events.push('已收到补充口径，继续同一任务规划');return route.fulfill({json:task});}
+  if(path.endsWith('/confirm')){confirms++;task.phase='SUCCEEDED';task.answer=`第${confirms}次查询已完成，请核对合成结果与口径。`;task.sql_executed=true;task.result={quality:'PASS',input_rows:3,matched_rows:3,returned_row_count:1,columns:[{name:'metric_value'}],rows:[[12]],unit:'TEST',source:'independently_generated_synthetic',limitations:['仅UI合成快照，不是实网关验证'],duplicate_grain_rows:0,null_grain_rows:0,null_metric_rows:0,zero_denominator_groups:0};task.dialogue.push({id:'publication-1',kind:'update',text:'执行与质量回执已核验，结果已发布。',tools:['receipt-gated publication'],origin:'governed_event'});task.events.push('结果已通过执行与质量回执发布');return route.fulfill({json:task});}
+  return route.fulfill({json:task});
+ });
+ await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[{id:model,model_id:'synthetic-ui-model',label:'UI合成模型',available:true,enabled:true,default:true,source:'ai_plan',generation_verified:true}]}}));
+ await page.route('**/api/v1/semantics',route=>route.fulfill({json:{versions:[{id:semantic,state:'published_recheck_required',version:1,contract:{name:'UI合成口径',source_id:source}}]}}));
+ await page.route('**/api/v1/source-profiles',route=>route.fulfill({json:{profiles:[{id:source,name:'UI合成来源',kind:'local_file',enabled:true}]}}));
+ await page.goto('http://127.0.0.1:5173');await expect(page.getByLabel('业务问题')).toBeEnabled();
+ await page.getByRole('button',{name:'新建会话',exact:false}).click();
+ await page.getByLabel('业务问题').fill('第一个合成问题');await page.getByLabel('选择问数语义版本').selectOption(semantic);await page.getByLabel('包含来源 UI合成来源').check();await page.getByLabel('同意问数模型外发和估算').check();await page.getByRole('button',{name:'发送问题',exact:true}).click();
+ const card=page.getByRole('article',{name:'受控问数任务'}).first();await expect(card.getByLabel('回答当前澄清')).toBeVisible();expect(starts).toBe(1);
+ await card.getByLabel('澄清回答',{exact:true}).fill('全部时间');await expect(card.getByRole('button',{name:'继续同一任务'})).toBeDisabled();await card.getByLabel('同意发送本次澄清回答').check();await card.getByRole('button',{name:'继续同一任务'}).click();
+ await expect(card.getByLabel('Agent 执行对话')).toContainText('全部时间');await expect(card.getByLabel('Agent 执行对话')).toContainText('继续同一任务');expect(starts).toBe(1);expect(answers).toBe(1);expect(confirms).toBe(0);
+ await card.getByLabel('确认本次口径与查询执行').check();await card.getByRole('button',{name:'确认执行查询'}).click();await expect(card.getByLabel('Agent 对话回答')).toContainText('第1次查询');await expect(card.getByLabel('问数报告')).toContainText('仅UI合成快照');await expect(card.getByLabel('受控查询完整聚合结果')).toContainText('12');await expect(card.getByLabel('问数报告')).toContainText('合成金额：12 TEST');await expect(card.locator('.result-card')).toHaveCount(0);await expect(card.getByLabel('Agent 执行对话')).toContainText('read_authorized_metadata');
+ await page.getByLabel('业务问题').fill('第二个合成问题');await page.getByLabel('同意问数模型外发和估算').check();await page.getByRole('button',{name:'发送问题',exact:true}).click();const second=page.getByRole('article',{name:'受控问数任务'}).nth(1);await second.getByLabel('确认本次口径与查询执行').check();await second.getByRole('button',{name:'确认执行查询'}).click();await expect(second.getByLabel('Agent 对话回答')).toContainText('第2次查询');await expect(second.getByLabel('问数报告')).toContainText('L2 受控单表模板');await expect(second.getByLabel('问数报告')).toContainText('路径不是质量认证');
+ const turns=page.locator('.conversation-turn');await expect(turns).toHaveCount(2);await expect(turns.nth(0)).toContainText('第一个合成问题');await expect(turns.nth(0)).toContainText('第1次查询');await expect(turns.nth(0)).not.toContainText('第2次查询');
+ pollFailed=true;await expect(page.getByText('任务状态读取失败；保留已收到的回答和结果，请稍后读取，不自动重提。')).toBeVisible();await expect(page.getByLabel('受控查询完整聚合结果')).toHaveCount(2);pollFailed=false;
+ await page.reload();await page.getByRole('button',{name:'第一个合成问题',exact:false}).first().click();await expect(page.getByLabel('问数报告')).toHaveCount(2);expect(starts).toBe(2);expect(confirms).toBe(2);
+ await page.getByRole('button',{name:'黑色主题'}).click();await card.getByLabel('Agent 对话回答').scrollIntoViewIfNeeded();await page.screenshot({path:`${EVIDENCE}/a2-conversation-dark.png`,fullPage:true});await page.getByRole('button',{name:'白色主题'}).click();await expect(page.getByRole('button',{name:'白色主题'})).toHaveAttribute('aria-pressed','true');await page.screenshot({path:`${EVIDENCE}/a2-conversation-light.png`,fullPage:true});
+ await page.getByRole('button',{name:'收起会话摘要'}).click();await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`${EVIDENCE}/a2-conversation-mobile.png`,fullPage:true});
+ expect(await page.evaluate(()=>JSON.stringify({...localStorage}))).not.toContain('第1次查询');
+});

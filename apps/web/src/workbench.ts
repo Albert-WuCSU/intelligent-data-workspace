@@ -18,8 +18,24 @@ export function workbenchEvidence(messages:Message[],busy=false){
  ]};
 }
 
-export type SelectableModel={id:string;label:string;available:boolean;note?:string};
+export type SelectableModel={id:string;label:string;available:boolean;note?:string;modelId?:string;source?:'personal_api'|'ai_plan';default?:boolean;enabled?:boolean;generationVerified?:boolean;streamVerified?:boolean;contextWindow?:number|null;priceNote?:string};
 /** Downstream model catalog must supply actual availability, never aliases from host config. */
 export function resolveModel(models:SelectableModel[],id:string){
  return models.find(model=>model.id===id&&model.available)??null;
+}
+/** Prefer the server-declared default only when it is actually available. */
+export function defaultModel(models:SelectableModel[]){
+ return models.find(model=>model.default&&model.available)??models.find(model=>model.available)??null;
+}
+export type ModelSource='personal_api'|'ai_plan';
+/** Server-reported engine only; never infer an engine from a model name. */
+export function engineLabel(engine:string|undefined){
+ return engine==='claude_agent_sdk_skills_v1'?'Claude Agent SDK':'LangGraph';
+}
+export function filterModels(models:SelectableModel[],query:string){
+ const needle=query.trim().toLowerCase();
+ return models.filter(model=>!needle||`${model.label} ${model.modelId??''}`.toLowerCase().includes(needle));
+}
+export function groupModels(models:SelectableModel[]){
+ return (['personal_api','ai_plan'] as ModelSource[]).map(source=>({source,models:models.filter(model=>(model.source??'personal_api')===source)})).filter(group=>group.models.length);
 }

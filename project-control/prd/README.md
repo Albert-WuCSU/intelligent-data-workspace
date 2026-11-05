@@ -1,3 +1,6 @@
+# 2026-11-04 当前验收重点：R-U31 / M04-B-AC05
+M04仍SDK主线DO/not_verified；原PRD“连续对话”过于笼统，D078明确常规Agent式交互：按实际事件公开说明→工具标签→发现/限制→同任务澄清问答→正文报告/内嵌结果，不能以短句加大卡片算完成。详见[M04-B](M04-B.md)末节、requirements.json/index.json及当前M04 plan。A2.1在本机检查中，真实模型体验未验收；SDK已固定离线安装且合成运行有证据，下面2026-11-03及更早not_run表格仅历史，不覆盖progress。无公司数据/宿主权限/新增费用授权。
+
 # 2026-11-03 当前主线：Claude Agent SDK＋Skills＋治理Harness
 D-M04B-CLAUDE-SDK-070明确替代D058/D069的LangGraph主线方向；顺序M02→M04-A→M03→M04（M04-B）不变。M01/M02/M04-A/M03有限本机验收保持，当前M04-C02-SDK PLAN、SDK运行not_run。先Skill路由/加载、动态探索/澄清，指标优先或SQL，取数必QA并校验回执；安全不是Prompt约定。LangGraph C01保留codex/langgraph-baseline-20261103（92d0b03），历史593/17/44测试不当SDK证据。具体迁移见M04 plan/PRD、SDK Skill reference。版本/安装/网关/新费用/数据外发尚需核验，不重问已批准总预算/PG延期。
 

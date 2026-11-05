@@ -1,0 +1,113 @@
+{
+  "status": "passed",
+  "kind": "offline_claude_agent_sdk_s02_fixture",
+  "command": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py -q",
+  "exit_code": 0,
+  "tests_passed": 9,
+  "sdk_version": "0.2.177",
+  "cli_version": "2.1.317",
+  "source_fingerprint": "55ac27ed0c3db2caafd80ad7c3f07cdfe2ac93b36c35345c80704f098998f732",
+  "skill": {
+    "name": "data-query",
+    "version": "1.0.0",
+    "sha256": "857874eac1d2d98a01e3a4c4d6f644b845664d7e47de7d948f127cc81aa21319"
+  },
+  "route": {
+    "route_receipt": "route-e4e80f0e570d1b55d4083b8e70ff4626",
+    "skill": "governed:data-query",
+    "skill_sha256": "857874eac1d2d98a01e3a4c4d6f644b845664d7e47de7d948f127cc81aa21319",
+    "published_metric_match": true
+  },
+  "query_receipt": {
+    "query_receipt_id": "query-76ebc9a57da18cfc95dfce5560bd18c1",
+    "status": "SUCCEEDED",
+    "plan_hash": "76ebc9a57da18cfc95dfce5560bd18c186eb28680eafd6a0c3f400688254a67d",
+    "mcp_task_id": "9f4895ee-5b1e-404f-8f05-7b45686a7c8a"
+  },
+  "quality_receipt": {
+    "quality_receipt_id": "quality-76ebc9a57da18cfc95dfce5560bd18c1",
+    "status": "PASS",
+    "checks": [
+      "schema",
+      "unit",
+      "full_input",
+      "row_count",
+      "grain",
+      "limitations"
+    ],
+    "input_rows": 150,
+    "matched_rows": 150,
+    "limitations": []
+  },
+  "synthetic_result": {
+    "rows": [
+      [
+        11325
+      ]
+    ],
+    "input_rows": 150,
+    "model_generated_numbers": false
+  },
+  "budget": {
+    "model_steps": 8,
+    "tool_calls": 7,
+    "metadata_calls": 2,
+    "total_tokens": 560,
+    "estimated_reserve_usd": 2.0,
+    "max_model_steps": 8,
+    "max_tool_calls": 10,
+    "max_total_tokens": 100000,
+    "wall_clock_seconds": 120
+  },
+  "stream_events": 48,
+  "usage": {
+    "claude-sonnet-5-5": {
+      "inputTokens": 400,
+      "outputTokens": 160,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0024,
+      "contextWindow": 1000000,
+      "maxOutputTokens": 128000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "claude-sonnet-5-5",
+      "provider": "firstParty",
+      "costBasis": "list"
+    }
+  },
+  "client_cost_estimate_not_billing": 0.0024,
+  "process": {
+    "returncode": 0,
+    "timed_out": false,
+    "job_cpu_100ns": 56718750,
+    "job_process_limit": 10,
+    "job_active_processes": 1,
+    "job_peak_processes": 8,
+    "job_peak_memory_bytes": 554364928,
+    "process_peak_memory_bytes": 453046272,
+    "job_memory_limit": 2147483648,
+    "process_memory_limit": 1073741824,
+    "wall_seconds": 300
+  },
+  "security": {
+    "setting_sources": [],
+    "skill_loading": "audited local plugin only",
+    "host_global_claude_md_in_requests": false,
+    "result_rows_returned_to_model": false,
+    "built_in_shell_write_read_web_subagent_tools_exposed": false,
+    "real_gateway_called": false,
+    "production_sql_executed": false,
+    "historical_failures_preserved": true,
+    "route_change_invalidates_unexecuted_plan": true,
+    "raw_tool_errors_not_forwarded_to_model": true,
+    "valid_usage_required": true
+  },
+  "not_run": [
+    "real AIPlan/Claude model",
+    "real SDK gateway billing",
+    "production/deployment"
+  ]
+}

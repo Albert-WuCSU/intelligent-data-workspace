@@ -1,0 +1,914 @@
+{
+  "file": "claude_agent_sdk-0.2.177-py3-none-win_amd64.whl",
+  "size": 149800822,
+  "sha256": "7997db488354a539c08b5b6b16717d99ae67903ae7351da43d51b68b80097fad",
+  "executed": false,
+  "installed": false,
+  "crc_failure": null,
+  "file_count": 33,
+  "largest_files": [
+    {
+      "name": "claude_agent_sdk/_bundled/claude.exe",
+      "size": 338187936,
+      "compressed_size": 149642007
+    },
+    {
+      "name": "claude_agent_sdk/types.py",
+      "size": 110297,
+      "compressed_size": 30434
+    },
+    {
+      "name": "claude_agent_sdk/_internal/sessions.py",
+      "size": 83637,
+      "compressed_size": 18691
+    },
+    {
+      "name": "claude_agent_sdk/_internal/query.py",
+      "size": 59563,
+      "compressed_size": 15351
+    },
+    {
+      "name": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "size": 56771,
+      "compressed_size": 15557
+    },
+    {
+      "name": "claude_agent_sdk/_internal/session_mutations.py",
+      "size": 35442,
+      "compressed_size": 8149
+    },
+    {
+      "name": "claude_agent_sdk/__init__.py",
+      "size": 28929,
+      "compressed_size": 7398
+    },
+    {
+      "name": "claude_agent_sdk/client.py",
+      "size": 27579,
+      "compressed_size": 6985
+    },
+    {
+      "name": "claude_agent_sdk/_internal/session_resume.py",
+      "size": 24760,
+      "compressed_size": 7892
+    },
+    {
+      "name": "claude_agent_sdk/_internal/sdk_mcp_bridge.py",
+      "size": 17721,
+      "compressed_size": 5084
+    },
+    {
+      "name": "claude_agent_sdk/_internal/message_parser.py",
+      "size": 17192,
+      "compressed_size": 2926
+    },
+    {
+      "name": "claude_agent_sdk-0.2.177.dist-info/METADATA",
+      "size": 14989,
+      "compressed_size": 5309
+    },
+    {
+      "name": "claude_agent_sdk/testing/session_store_conformance.py",
+      "size": 14058,
+      "compressed_size": 3228
+    },
+    {
+      "name": "claude_agent_sdk/_internal/transcript_mirror_batcher.py",
+      "size": 9704,
+      "compressed_size": 3265
+    },
+    {
+      "name": "claude_agent_sdk/_internal/client.py",
+      "size": 8796,
+      "compressed_size": 2505
+    },
+    {
+      "name": "claude_agent_sdk/_internal/session_summary.py",
+      "size": 8554,
+      "compressed_size": 2963
+    },
+    {
+      "name": "claude_agent_sdk/_internal/session_store.py",
+      "size": 7695,
+      "compressed_size": 2394
+    },
+    {
+      "name": "claude_agent_sdk/_internal/_task_compat.py",
+      "size": 7021,
+      "compressed_size": 2293
+    },
+    {
+      "name": "claude_agent_sdk/_internal/session_import.py",
+      "size": 6871,
+      "compressed_size": 2558
+    },
+    {
+      "name": "claude_agent_sdk/_internal/_mcp_compat.py",
+      "size": 6797,
+      "compressed_size": 2635
+    }
+  ],
+  "cli_candidates": [
+    "claude_agent_sdk/_cli_version.py",
+    "claude_agent_sdk/_bundled/claude.exe"
+  ],
+  "metadata": {
+    "claude_agent_sdk-0.2.177.dist-info/METADATA": "Metadata-Version: 2.5\nName: claude-agent-sdk\nVersion: 0.2.177\nSummary: Python SDK for Claude Code\nProject-URL: Homepage, https://github.com/anthropics/claude-agent-sdk-python\nProject-URL: Documentation, https://docs.anthropic.com/en/docs/claude-code/sdk\nProject-URL: Issues, https://github.com/anthropics/claude-agent-sdk-python/issues\nAuthor-email: Anthropic <support@anthropic.com>\nLicense: MIT\nLicense-File: LICENSE\nKeywords: ai,anthropic,claude,sdk\nClassifier: Development Status :: 3 - Alpha\nClassifier: Intended Audience :: Developers\nClassifier: License :: OSI Approved :: MIT License\nClassifier: Programming Language :: Python :: 3\nClassifier: Programming Language :: Python :: 3.10\nClassifier: Programming Language :: Python :: 3.11\nClassifier: Programming Language :: Python :: 3.12\nClassifier: Programming Language :: Python :: 3.13\nClassifier: Typing :: Typed\nRequires-Python: >=3.10\nRequires-Dist: anyio>=4.0.0\nRequires-Dist: jsonschema>=4.20.0\nRequires-Dist: mcp<3.0.0,>=1.23.0\nRequires-Dist: sniffio>=1.0.0\nRequires-Dist: typing-extensions>=4.0.0; python_version < '3.11'\nProvides-Extra: dev\nRequires-Dist: anyio[trio]>=4.0.0; extra == 'dev'\nRequires-Dist: mypy>=1.0.0; extra == 'dev'\nRequires-Dist: pytest-cov>=4.0.0; extra == 'dev'\nRequires-Dist: pytest>=7.0.0; extra == 'dev'\nRequires-Dist: ruff>=0.1.0; extra == 'dev'\nProvides-Extra: examples\nRequires-Dist: asyncpg>=0.27.0; extra == 'examples'\nRequires-Dist: boto3>=1.28.0; extra == 'examples'\nRequires-Dist: fakeredis>=2.20.0; extra == 'examples'\nRequires-Dist: moto[s3]>=5.0.0; extra == 'examples'\nRequires-Dist: redis>=4.2.0; extra == 'examples'\nProvides-Extra: otel\nRequires-Dist: opentelemetry-api>=1.20.0; extra == 'otel'\nDescription-Content-Type: text/markdown\n\n# Claude Agent SDK for Python\n\nPython SDK for Claude Agent. See the [Claude Agent SDK documentation](https://platform.claude.com/docs/en/agent-sdk/python) for more information.\n\n## Installation\n\n```bash\npip install claude-agent-sdk\n```\n\n**Prerequisites:**\n\n- Python 3.10+\n\n**Note:** The Claude Code CLI is automatically bundled with the package - no separate installation required! The SDK will use the bundled CLI by default. If you prefer to use a system-wide installation or a specific version, you can:\n\n- Install Claude Code separately: `curl -fsSL https://claude.ai/install.sh | bash`\n- Specify a custom path: `ClaudeAgentOptions(cli_path=\"/path/to/claude\")`\n\n## Quick Start\n\n```python\nimport anyio\nfrom claude_agent_sdk import query\n\nasync def main():\n    async for message in query(prompt=\"What is 2 + 2?\"):\n        print(message)\n\nanyio.run(main)\n```\n\n## Basic Usage: query()\n\n`query()` is an async function for querying Claude Code. It returns an `AsyncIterator` of response messages. See [src/claude_agent_sdk/query.py](src/claude_agent_sdk/query.py).\n\n```python\nfrom claude_agent_sdk import query, ClaudeAgentOptions, AssistantMessage, TextBlock\n\n# Simple query\nasync for message in query(prompt=\"Hello Claude\"):\n    if isinstance(message, AssistantMessage):\n        for block in message.content:\n            if isinstance(block, TextBlock):\n                print(block.text)\n\n# With options\noptions = ClaudeAgentOptions(\n    system_prompt=\"You are a helpful assistant\",\n    max_turns=1\n)\n\nasync for message in query(prompt=\"Tell me a joke\", options=options):\n    print(message)\n```\n\n### Using Tools\n\nBy default, Claude has access to the full [Claude Code toolset](https://code.claude.com/docs/en/settings#tools-available-to-claude) (Read, Write, Edit, Bash, and others). `allowed_tools` is a permission allowlist: listed tools are auto-approved, and unlisted tools fall through to `permission_mode` and `can_use_tool` for a decision. It does not remove tools from Claude's toolset. To block specific tools, use `disallowed_tools`. See the [permissions guide](https://platform.claude.com/docs/en/agent-sdk/permissions) for the full evaluation order.\n\n```python\noptions = ClaudeAgentOptions(\n    allowed_tools=[\"Read\", \"Write\", \"Bash\"],  # auto-approve these tools\n    permission_mode='acceptEdits'  # auto-accept file edits\n)\n\nasync for message in query(\n    prompt=\"Create a hello.py file\",\n    options=options\n):\n    # Process tool use and results\n    pass\n```\n\n### Working Directory\n\n```python\nfrom pathlib import Path\n\noptions = ClaudeAgentOptions(\n    cwd=\"/path/to/project\"  # or Path(\"/path/to/project\")\n)\n```\n\n### System Prompt\n\nBy default, Claude Code builds the system prompt on a session's first request, records it, and reuses it on every later request, including after you resume the session. A changed custom prompt, or changed `append` text on the `claude_code` preset, then has no effect until the session is compacted or you start a new session. To rebuild the prompt on every request instead, for example while you iterate on its wording, set `snapshot` to `False` in the `{\"type\": \"preset\", ...}` or `{\"type\": \"custom\", ...}` dict:\n\n```python\noptions = ClaudeAgentOptions(\n    system_prompt={\"type\": \"custom\", \"prompt\": \"You are a release bot.\", \"snapshot\": False}\n)\n```\n\nRequires Claude Code CLI 2.1.257 or later. Before 2.1.265, a session with an `append` or custom prompt recorded it only when `snapshot` was True. See [Modifying system prompts](https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts#change-the-prompt-of-an-existing-session) for details.\n\n## ClaudeSDKClient\n\n`ClaudeSDKClient` supports bidirectional, interactive conversations with Claude\nCode. See [src/claude_agent_sdk/client.py](src/claude_agent_sdk/client.py).\n\nUnlike `query()`, `ClaudeSDKClient` additionally enables **custom tools** and **hooks**, both of which can be defined as Python functions.\n\n### Custom Tools (as In-Process SDK MCP Servers)\n\nA **custom tool** is a Python function that you can offer to Claude, for Claude to invoke as needed.\n\nCustom tools are implemented in-process MCP servers that run directly within your Python application, eliminating the need for separate processes that regular MCP servers require.\n\nFor an end-to-end example, see [MCP Calculator](examples/mcp_calculator.py).\n\n#### Creating a Simple Tool\n\n```python\nfrom claude_agent_sdk import tool, create_sdk_mcp_server, ClaudeAgentOptions, ClaudeSDKClient\n\n# Define a tool using the @tool decorator\n@tool(\"greet\", \"Greet a user\", {\"name\": str})\nasync def greet_user(args):\n    return {\n        \"content\": [\n            {\"type\": \"text\", \"text\": f\"Hello, {args['name']}!\"}\n        ]\n    }\n\n# Create an SDK MCP server\nserver = create_sdk_mcp_server(\n    name=\"my-tools\",\n    version=\"1.0.0\",\n    tools=[greet_user]\n)\n\n# Use it with Claude. allowed_tools pre-approves the tool so it runs\n# without a permission prompt; it does not control tool availability.\noptions = ClaudeAgentOptions(\n    mcp_servers={\"tools\": server},\n    allowed_tools=[\"mcp__tools__greet\"]\n)\n\nasync with ClaudeSDKClient(options=options) as client:\n    await client.query(\"Greet Alice\")\n\n    # Extract and print response\n    async for msg in client.receive_response():\n        print(msg)\n```\n\n#### Benefits Over External MCP Servers\n\n- **No subprocess management** - Runs in the same process as your application\n- **Better performance** - No IPC overhead for tool calls\n- **Simpler deployment** - Single Python process instead of multiple\n- **Easier debugging** - All code runs in the same process\n- **Type safety** - Direct Python function calls with type hints\n\n#### Migration from External Servers\n\n```python\n# BEFORE: External MCP server (separate process)\noptions = ClaudeAgentOptions(\n    mcp_servers={\n        \"calculator\": {\n            \"type\": \"stdio\",\n            \"command\": \"python\",\n            \"args\": [\"-m\", \"calculator_server\"]\n        }\n    }\n)\n\n# AFTER: SDK MCP server (in-process)\nfrom my_tools import add, subtract  # Your tool functions\n\ncalculator = create_sdk_mcp_server(\n    name=\"calculator\",\n    tools=[add, subtract]\n)\n\noptions = ClaudeAgentOptions(\n    mcp_servers={\"calculator\": calculator}\n)\n```\n\n#### Mixed Server Support\n\nYou can use both SDK and external MCP servers together:\n\n```python\noptions = ClaudeAgentOptions(\n    mcp_servers={\n        \"internal\": sdk_server,      # In-process SDK server\n        \"external\": {                # External subprocess server\n            \"type\": \"stdio\",\n            \"command\": \"external-server\"\n        }\n    }\n)\n```\n\n### Hooks\n\nA **hook** is a Python function that the Claude Code _application_ (_not_ Claude) invokes at specific points of the Claude agent loop. Hooks can provide deterministic processing and automated feedback for Claude. Read more in [Intercept and control agent behavior with hooks](https://platform.claude.com/docs/en/agent-sdk/hooks).\n\nFor more examples, see examples/hooks.py.\n\n#### Example\n\n```python\nfrom claude_agent_sdk import ClaudeAgentOptions, ClaudeSDKClient, HookMatcher\n\nasync def check_bash_command(input_data, tool_use_id, context):\n    tool_name = input_data[\"tool_name\"]\n    tool_input = input_data[\"tool_input\"]\n    if tool_name != \"Bash\":\n        return {}\n    command = tool_input.get(\"command\", \"\")\n    block_patterns = [\"foo.sh\"]\n    for pattern in block_patterns:\n        if pattern in command:\n            return {\n                \"hookSpecificOutput\": {\n                    \"hookEventName\": \"PreToolUse\",\n                    \"permissionDecision\": \"deny\",\n                    \"permissionDecisionReason\": f\"Command contains invalid pattern: {pattern}\",\n                }\n            }\n    return {}\n\noptions = ClaudeAgentOptions(\n    allowed_tools=[\"Bash\"],\n    hooks={\n        \"PreToolUse\": [\n            HookMatcher(matcher=\"Bash\", hooks=[check_bash_command]),\n        ],\n    }\n)\n\nasync with ClaudeSDKClient(options=options) as client:\n    # Test 1: Command with forbidden pattern (will be blocked)\n    await client.query(\"Run the bash command: ./foo.sh --help\")\n    async for msg in client.receive_response():\n        print(msg)\n\n    print(\"\\n\" + \"=\" * 50 + \"\\n\")\n\n    # Test 2: Safe command that should work\n    await client.query(\"Run the bash command: echo 'Hello from hooks example!'\")\n    async for msg in client.receive_response():\n        print(msg)\n```\n\n## Types\n\nSee [src/claude_agent_sdk/types.py](src/claude_agent_sdk/types.py) for complete type definitions:\n\n- `ClaudeAgentOptions` - Configuration options\n- `AssistantMessage`, `UserMessage`, `SystemMessage`, `ResultMessage` - Message types\n- `TextBlock`, `ToolUseBlock`, `ToolResultBlock` - Content blocks\n\n## Error Handling\n\n```python\nfrom claude_agent_sdk import (\n    ClaudeSDKError,      # Base error\n    CLINotFoundError,    # Claude Code not installed\n    CLIConnectionError,  # Connection issues\n    ProcessError,        # Process failed\n    ResultError,         # Run ended with an error result (subclass of ProcessError)\n    CLIJSONDecodeError,  # JSON parsing issues\n)\n\ntry:\n    async for message in query(prompt=\"Hello\"):\n        pass\nexcept CLINotFoundError:\n    print(\"Please install Claude Code\")\nexcept ResultError as e:\n    # The CLI reported a terminal error result (also yielded as the final\n    # ResultMessage) and exited. Structured fields are on the exception.\n    print(f\"Run failed: {e.subtype=} {e.terminal_reason=} {e.api_error_status=}\")\n    print(e.result or e.errors)\nexcept ProcessError as e:\n    print(f\"Process failed with exit code: {e.exit_code}\")\nexcept CLIJSONDecodeError as e:\n    print(f\"Failed to parse response: {e}\")\n```\n\nSee [src/claude_agent_sdk/\\_errors.py](src/claude_agent_sdk/_errors.py) for all error types.\n\n## Available Tools\n\nSee the [Claude Code documentation](https://code.claude.com/docs/en/settings#tools-available-to-claude) for a complete list of available tools.\n\n## Examples\n\nSee [examples/quick_start.py](examples/quick_start.py) for a complete working example.\n\nSee [examples/streaming_mode.py](examples/streaming_mode.py) for comprehensive examples involving `ClaudeSDKClient`. You can even run interactive examples in IPython from [examples/streaming_mode_ipython.py](examples/streaming_mode_ipython.py).\n\n## Migrating from Claude Code SDK\n\nIf you're upgrading from the Claude Code SDK (versions < 0.1.0), please see the [CHANGELOG.md](CHANGELOG.md#010) for details on breaking changes and new features, including:\n\n- `ClaudeCodeOptions` → `ClaudeAgentOptions` rename\n- Merged system prompt configuration\n- Settings isolation and explicit control\n- New programmatic subagents and session forking features\n\n## Development\n\nIf you're contributing to this project, run the initial setup script to install git hooks:\n\n```bash\n./scripts/initial-setup.sh\n```\n\nThis installs a pre-push hook that runs lint checks before pushing, matching the CI workflow. To skip the hook temporarily, use `git push --no-verify`.\n\n### Building Wheels Locally\n\nTo build wheels with the bundled Claude Code CLI:\n\n```bash\n# Install build dependencies\npip install build twine\n\n# Build wheel with bundled CLI\npython scripts/build_wheel.py\n\n# Build with specific version\npython scripts/build_wheel.py --version 0.1.4\n\n# Build with specific CLI version\npython scripts/build_wheel.py --cli-version 2.0.0\n\n# Clean bundled CLI after building\npython scripts/build_wheel.py --clean\n\n# Skip CLI download (use existing)\npython scripts/build_wheel.py --skip-download\n```\n\nThe build script:\n\n1. Downloads Claude Code CLI for your platform\n2. Bundles it in the wheel\n3. Builds both wheel and source distribution\n4. Checks the package with twine\n\nSee `python scripts/build_wheel.py --help` for all options.\n\n### Release Workflow\n\nThe package is published to PyPI via the GitHub Actions workflow in `.github/workflows/publish.yml`. To create a new release:\n\n1. **Trigger the workflow** manually from the Actions tab with two inputs:\n   - `version`: The package version to publish (e.g., `0.1.5`)\n   - `claude_code_version`: The Claude Code CLI version to bundle (e.g., `2.0.0` or `latest`)\n\n2. **The workflow will**:\n   - Build platform-specific wheels for macOS, Linux, and Windows\n   - Bundle the specified Claude Code CLI version in each wheel\n   - Build a source distribution\n   - Publish all artifacts to PyPI\n   - Create a release branch with version updates\n   - Open a PR to main with:\n     - Updated `pyproject.toml` version\n     - Updated `src/claude_agent_sdk/_version.py`\n     - Updated `src/claude_agent_sdk/_cli_version.py` with bundled CLI version\n     - Auto-generated `CHANGELOG.md` entry\n\n3. **Review and merge** the release PR to update main with the new version information\n\nThe workflow tracks both the package version and the bundled CLI version separately, allowing you to release a new package version with an updated CLI without code changes.\n\n## License and terms\n\nUse of this SDK is governed by Anthropic's [Commercial Terms of Service](https://www.anthropic.com/legal/commercial-terms), including when you use it to power products and services that you make available to your own customers and end users, except to the extent a specific component or dependency is covered by a different license as indicated in that component's LICENSE file.\n",
+    "claude_agent_sdk-0.2.177.dist-info/WHEEL": "Wheel-Version: 1.0\nGenerator: hatchling 1.32.4\nRoot-Is-Purelib: true\nTag: py3-none-win_amd64\n\n",
+    "claude_agent_sdk-0.2.177.dist-info/licenses/LICENSE": "MIT License\r\n\r\nCopyright (c) 2025 Anthropic, PBC\r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy\r\nof this software and associated documentation files (the \"Software\"), to deal\r\nin the Software without restriction, including without limitation the rights\r\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\r\ncopies of the Software, and to permit persons to whom the Software is\r\nfurnished to do so, subject to the following conditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in all\r\ncopies or substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\r\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\r\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\r\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\r\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\r\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\r\nSOFTWARE."
+  },
+  "source_matches": [
+    {
+      "file": "claude_agent_sdk/__init__.py",
+      "line": 563,
+      "text": "...     allowed_tools=[\"add\", \"multiply\"]"
+    },
+    {
+      "file": "claude_agent_sdk/_cli_version.py",
+      "line": 3,
+      "text": "__cli_version__ = \"2.1.317\""
+    },
+    {
+      "file": "claude_agent_sdk/_errors.py",
+      "line": 71,
+      "text": "elif e.subtype == \"error_max_turns\":"
+    },
+    {
+      "file": "claude_agent_sdk/_errors.py",
+      "line": 78,
+      "text": "subtype: The result subtype (``\"error_max_turns\"``,"
+    },
+    {
+      "file": "claude_agent_sdk/_errors.py",
+      "line": 86,
+      "text": "``\"max_turns\"``), if reported by the CLI."
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 21,
+      "text": "_configure_can_use_tool,"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 154,
+      "text": "options = _configure_can_use_tool(self.options)"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 211,
+      "text": "can_use_tool=self.options.can_use_tool,"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 220,
+      "text": "skills=self.options.skills,"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 236,
+      "text": "env=self.options.env,"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 314,
+      "text": "async def set_permission_mode(self, mode: PermissionMode) -> None:"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 333,
+      "text": "await client.set_permission_mode('acceptEdits')"
+    },
+    {
+      "file": "claude_agent_sdk/client.py",
+      "line": 339,
+      "text": "await self._query.set_permission_mode(mode)"
+    },
+    {
+      "file": "claude_agent_sdk/query.py",
+      "line": 55,
+      "text": "Set options.permission_mode to control tool execution:"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 35,
+      "text": "# The ClaudeAgentOptions.skills value meaning \"every discovered skill\"."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 113,
+      "text": "# Deprecated: passing \"Skill\" here is deprecated; use `skills` instead."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 118,
+      "text": "skills: list[str] | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 234,
+      "text": "Always a non-empty string when delivered to a ``can_use_tool`` callback (the"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 313,
+      "text": "permission_mode: NotRequired[str]"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 582,
+      "text": "complete, so skills the hook installed are available in the same"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 861,
+      "text": "# before can_use_tool answers. Unset or \"continue\" counts a failure as no"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 1090,
+      "text": "skills: NotRequired[dict[str, Any]]"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 1496,
+      "text": "\"\"\"Where the API credential came from: ``\"ANTHROPIC_API_KEY\"``,"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 1511,
+      "text": "skills: list[str]"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 1730,
+      "text": "\"\"\"Why the query loop terminated (e.g. ``\"completed\"``, ``\"max_turns\"``,"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2202,
+      "text": "\"\"\"can_use_tool is set but some tool calls are auto-approved before it runs."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2211,
+      "text": "\"\"\"Return the tool an ``allowed_tools`` entry allows outright, else None."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2229,
+      "text": "def _get_can_use_tool_shadowed_warning("
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2230,
+      "text": "permission_mode: PermissionMode | None,"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2231,
+      "text": "allowed_tools: list[str],"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2234,
+      "text": "if permission_mode == \"bypassPermissions\":"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2236,
+      "text": "\"can_use_tool will not be invoked: permission_mode \""
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2246,
+      "text": "for entry in allowed_tools"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2253,
+      "text": "f\"can_use_tool will not be invoked for: {', '.join(shadowed)}. \""
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2254,
+      "text": "\"An allowed_tools entry that allows a whole tool auto-approves it \""
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2257,
+      "text": "\"can_use_tool. Allow rules from settings files can also shadow the \""
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2262,
+      "text": "def _warn_if_can_use_tool_shadowed(options: \"ClaudeAgentOptions\") -> None:"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2263,
+      "text": "\"\"\"Warn if can_use_tool is shadowed. Called once per query construction."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2266,
+      "text": "used solely for tools outside allowed_tools."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2275,
+      "text": "if options.can_use_tool is None:"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2277,
+      "text": "# skills=\"all\" makes the transport append a bare \"Skill\" to the effective"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2278,
+      "text": "# allowed_tools, so it shadows the callback just like a hand-written entry."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2279,
+      "text": "# skills=[names] appends Skill(name) specifiers, which do not."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2280,
+      "text": "allowed_tools = options.allowed_tools"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2281,
+      "text": "if options.skills == _SKILLS_ALL and \"Skill\" not in allowed_tools:"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2282,
+      "text": "allowed_tools = [*allowed_tools, \"Skill\"]"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2283,
+      "text": "message = _get_can_use_tool_shadowed_warning(options.permission_mode, allowed_tools)"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2292,
+      "text": "def _configure_can_use_tool(options: \"ClaudeAgentOptions\") -> \"ClaudeAgentOptions\":"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2293,
+      "text": "\"\"\"Validate ``can_use_tool`` and route permission prompts over stdio."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2303,
+      "text": "ValueError: If both ``can_use_tool`` and ``permission_prompt_tool_name``"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2306,
+      "text": "if not options.can_use_tool:"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2311,
+      "text": "\"can_use_tool callback cannot be used with permission_prompt_tool_name. \""
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2314,
+      "text": "_warn_if_can_use_tool_shadowed(options)"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2350,
+      "text": "``allowed_tools`` instead."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2353,
+      "text": "allowed_tools: list[str] = field(default_factory=list)"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2359,
+      "text": "Passing ``\"Skill\"`` here is deprecated. Use the :attr:`skills` option"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2393,
+      "text": "permission_mode: PermissionMode | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2418,
+      "text": "max_turns: int | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2424,
+      "text": "max_budget_usd: float | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2428,
+      "text": "``error_max_budget_usd`` result."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2431,
+      "text": "disallowed_tools: list[str] = field(default_factory=list)"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2526,
+      "text": "can_use_tool: CanUseTool | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2531,
+      "text": "invoked for tool calls already permitted by ``allowed_tools``,"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2532,
+      "text": "``permission_mode`` (e.g. ``\"acceptEdits\"`` / ``\"bypassPermissions\"``), or"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2536,
+      "text": "visibly shadow it (``allowed_tools`` entries that allow a whole tool, such"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2538,
+      "text": "``permission_mode=\"bypassPermissions\"``)."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2666,
+      "text": "setting_sources: list[SettingSource] | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2678,
+      "text": "skills: list[str] | Literal[\"all\"] | None = None"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2681,
+      "text": "This is the single place to turn skills on; you do not need to add"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2682,
+      "text": "``\"Skill\"`` to ``allowed_tools`` or set ``setting_sources`` yourself — the"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2686,
+      "text": "still apply, so this is **not** \"skills off\" — to suppress every skill"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2689,
+      "text": "- ``list[str]``: enable only the listed skills. Names match the SKILL.md"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2690,
+      "text": "``name`` / directory name, or ``plugin:skill`` for plugin-qualified skills."
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2694,
+      "text": "This is a **context filter**, not a sandbox: unlisted skills are hidden"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2715,
+      "text": "Plugins provide custom commands, agents, skills, and hooks that extend"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2815,
+      "text": "subtype: Literal[\"can_use_tool\"]"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2834,
+      "text": "skills: NotRequired[list[str]]"
+    },
+    {
+      "file": "claude_agent_sdk/types.py",
+      "line": 2839,
+      "text": "subtype: Literal[\"set_permission_mode\"]"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/client.py",
+      "line": 12,
+      "text": "_configure_can_use_tool,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/client.py",
+      "line": 81,
+      "text": "configured_options = _configure_can_use_tool(options)"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/client.py",
+      "line": 143,
+      "text": "can_use_tool=configured_options.can_use_tool,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/client.py",
+      "line": 152,
+      "text": "skills=configured_options.skills,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/client.py",
+      "line": 167,
+      "text": "env=configured_options.env,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 93,
+      "text": "Terminal errors the CLI raises itself (``error_max_turns``,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 166,
+      "text": "can_use_tool: Callable["
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 177,
+      "text": "skills: list[str] | Literal[\"all\"] | None = None,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 187,
+      "text": "can_use_tool: Optional callback for tool permission requests"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 196,
+      "text": "skills: Optional skill allowlist to send via initialize so the CLI"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 197,
+      "text": "can filter which skills are loaded into the system prompt"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 211,
+      "text": "self.can_use_tool = can_use_tool"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 221,
+      "text": "self._skills = skills"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 362,
+      "text": "if isinstance(self._skills, list):"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 363,
+      "text": "request[\"skills\"] = self._skills"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 543,
+      "text": "# error_max_turns, error_during_execution, or an API failure) it"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 615,
+      "text": "if subtype == \"can_use_tool\":"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 619,
+      "text": "if not self.can_use_tool:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 639,
+      "text": "response = await self.can_use_tool("
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 825,
+      "text": "async def set_permission_mode(self, mode: PermissionMode) -> None:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 829,
+      "text": "\"subtype\": \"set_permission_mode\","
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 1073,
+      "text": "SDK MCP servers, hooks, and the ``can_use_tool`` permission callback"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 1080,
+      "text": "return bool(self.sdk_mcp_servers or self.hooks or self.can_use_tool)"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 1085,
+      "text": "If SDK MCP servers, hooks, or a ``can_use_tool`` callback require"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 1114,
+      "text": "f\"has_can_use_tool={self.can_use_tool is not None})\""
+    },
+    {
+      "file": "claude_agent_sdk/_internal/query.py",
+      "line": 1125,
+      "text": "If SDK MCP servers, hooks, or a ``can_use_tool`` callback are present,"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/session_resume.py",
+      "line": 88,
+      "text": "env={"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/session_resume.py",
+      "line": 356,
+      "text": "opt_env.get(\"ANTHROPIC_API_KEY\") or os.environ.get(\"ANTHROPIC_API_KEY\")"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 82,
+      "text": "def _reject_non_list_skills(skills: object) -> None:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 89,
+      "text": "if isinstance(skills, list) or skills == _SKILLS_ALL:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 91,
+      "text": "suggestion = f\" Did you mean [{skills!r}]?\" if isinstance(skills, str) else \"\""
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 93,
+      "text": "\"ClaudeAgentOptions.skills must be a list of skill names or\""
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 94,
+      "text": "f' \"all\", got {skills!r}.{suggestion}'"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 101,
+      "text": "Names from ``options.skills`` are formatted into the ``--allowedTools``"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 133,
+      "text": "\" plugin-qualified skills.\""
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 137,
+      "text": "\"Invalid skill name '*': use skills=\\\"all\\\" to enable every skill.\""
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 147,
+      "text": "\" '/'. The skills option takes the canonical name, not the\""
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 527,
+      "text": "def _apply_skills_defaults("
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 530,
+      "text": "\"\"\"Compute effective allowed_tools and setting_sources for skills."
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 532,
+      "text": "When ``options.skills`` is ``\"all\"``, injects the bare ``Skill`` tool;"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 534,
+      "text": "case ``setting_sources`` defaults to ``[\"user\", \"project\"]`` when"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 535,
+      "text": "unset so the CLI discovers installed skills without the caller having"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 543,
+      "text": "allowed_tools: list[str] = list(self._options.allowed_tools)"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 544,
+      "text": "setting_sources: list[str] | None = ("
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 545,
+      "text": "list(self._options.setting_sources)"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 546,
+      "text": "if self._options.setting_sources is not None"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 550,
+      "text": "skills = self._options.skills"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 551,
+      "text": "if skills is None:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 552,
+      "text": "return allowed_tools, setting_sources"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 553,
+      "text": "_reject_non_list_skills(skills)"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 555,
+      "text": "if skills == _SKILLS_ALL:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 556,
+      "text": "if \"Skill\" not in allowed_tools:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 557,
+      "text": "allowed_tools.append(\"Skill\")"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 559,
+      "text": "for name in skills:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 562,
+      "text": "if pattern not in allowed_tools:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 563,
+      "text": "allowed_tools.append(pattern)"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 565,
+      "text": "if setting_sources is None:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 566,
+      "text": "setting_sources = [\"user\", \"project\"]"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 568,
+      "text": "return allowed_tools, setting_sources"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 603,
+      "text": "effective_allowed_tools, effective_setting_sources = ("
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 604,
+      "text": "self._apply_skills_defaults()"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 607,
+      "text": "if effective_allowed_tools:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 608,
+      "text": "cmd.extend([\"--allowedTools\", \",\".join(effective_allowed_tools)])"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 610,
+      "text": "if self._options.max_turns:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 611,
+      "text": "cmd.extend([\"--max-turns\", str(self._options.max_turns)])"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 613,
+      "text": "if self._options.max_budget_usd is not None:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 614,
+      "text": "cmd.extend([\"--max-budget-usd\", str(self._options.max_budget_usd)])"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 616,
+      "text": "if self._options.disallowed_tools:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 617,
+      "text": "cmd.extend([\"--disallowedTools\", \",\".join(self._options.disallowed_tools)])"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 636,
+      "text": "if self._options.permission_mode:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 637,
+      "text": "cmd.extend([\"--permission-mode\", self._options.permission_mode])"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 729,
+      "text": "if effective_setting_sources is not None:"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 730,
+      "text": "cmd.append(f\"--setting-sources={','.join(effective_setting_sources)}\")"
+    },
+    {
+      "file": "claude_agent_sdk/_internal/transport/subprocess_cli.py",
+      "line": 879,
+      "text": "env=process_env,"
+    }
+  ],
+  "source_match_count": 152,
+  "source_excerpts": {
+    "claude_agent_sdk/types.py": [
+      {
+        "start": 2338,
+        "end": 2362,
+        "text": "2338: @dataclass\n2339: class ClaudeAgentOptions:\n2340:     \"\"\"Query options for Claude SDK.\"\"\"\n2341: \n2342:     tools: list[str] | ToolsPreset | None = None\n2343:     \"\"\"Specify the base set of available built-in tools.\n2344: \n2345:     - ``list[str]`` — Specific tool names (e.g. ``[\"Bash\", \"Read\", \"Edit\"]``).\n2346:     - ``[]`` (empty list) — Disable all built-in tools.\n2347:     - ``{\"type\": \"preset\", \"preset\": \"claude_code\"}`` — Use all default Claude Code tools.\n2348: \n2349:     To restrict which tools the model may call without being prompted, use\n2350:     ``allowed_tools`` instead.\n2351:     \"\"\"\n2352: \n2353:     allowed_tools: list[str] = field(default_factory=list)\n2354:     \"\"\"Tool names that are auto-allowed without prompting for permission.\n2355: \n2356:     These tools execute automatically without asking the user for approval.\n2357:     To restrict which tools are available at all, use ``tools``.\n2358: \n2359:     Passing ``\"Skill\"`` here is deprecated. Use the :attr:`skills` option\n2360:     instead, which configures everything needed (including allowing the\n2361:     ``Skill`` tool).\n2362:     \"\"\""
+      },
+      {
+        "start": 2660,
+        "end": 2710,
+        "text": "2660:     agents: dict[str, AgentDefinition] | None = None\n2661:     \"\"\"Programmatically define custom subagents invokable via the Agent tool.\n2662: \n2663:     Keys are agent names, values are agent definitions.\n2664:     \"\"\"\n2665: \n2666:     setting_sources: list[SettingSource] | None = None\n2667:     \"\"\"Control which filesystem settings to load.\n2668: \n2669:     - ``\"user\"`` — Global user settings (``~/.claude/settings.json``).\n2670:     - ``\"project\"`` — Project settings (``.claude/settings.json``).\n2671:     - ``\"local\"`` — Local settings (``.claude/settings.local.json``).\n2672: \n2673:     When ``None``, all sources are loaded (matches CLI defaults). Pass ``[]``\n2674:     to disable filesystem settings (SDK isolation mode). Must include\n2675:     ``\"project\"`` to load CLAUDE.md files.\n2676:     \"\"\"\n2677: \n2678:     skills: list[str] | Literal[\"all\"] | None = None\n2679:     \"\"\"Skills to enable for the main session.\n2680: \n2681:     This is the single place to turn skills on; you do not need to add\n2682:     ``\"Skill\"`` to ``allowed_tools`` or set ``setting_sources`` yourself — the\n2683:     SDK does both when this is set.\n2684: \n2685:     - ``None`` (default): no SDK auto-configuration. The CLI's own defaults\n2686:       still apply, so this is **not** \"skills off\" — to suppress every skill\n2687:       from the listing, use ``[]``.\n2688:     - ``\"all\"``: enable every discovered skill.\n2689:     - ``list[str]``: enable only the listed skills. Names match the SKILL.md\n2690:       ``name`` / directory name, or ``plugin:skill`` for plugin-qualified skills.\n2691:       Names must be exact: wildcards, delimiters, and surrounding whitespace\n2692:       raise at ``connect()``.\n2693: \n2694:     This is a **context filter**, not a sandbox: unlisted skills are hidden\n2695:     from the model's listing and rejected by the Skill tool, but their files\n2696:     remain on disk and are reachable via Read/Bash. Do not store secrets in\n2697:     skill files.\n2698:     \"\"\"\n2699: \n2700:     sandbox: SandboxSettings | None = None\n2701:     \"\"\"Sandbox settings for command execution isolation.\n2702: \n2703:     When enabled, commands execute in a sandboxed environment that restricts\n2704:     filesystem and network access. Tool-level filesystem and network\n2705:     restrictions are configured via permission rules (Read/Edit for\n2706:     filesystem, WebFetch for network); the ``network`` key here configures\n2707:     the sandbox's own network isolation. See :class:`SandboxSettings`.\n2708: \n2709:     See https://docs.anthropic.com/en/docs/claude-code/settings#sandbox-settings.\n2710:     \"\"\""
+      }
+    ],
+    "claude_agent_sdk/_internal/transport/subprocess_cli.py": [
+      {
+        "start": 527,
+        "end": 568,
+        "text": "527:     def _apply_skills_defaults(\n528:         self,\n529:     ) -> tuple[list[str], list[str] | None]:\n530:         \"\"\"Compute effective allowed_tools and setting_sources for skills.\n531: \n532:         When ``options.skills`` is ``\"all\"``, injects the bare ``Skill`` tool;\n533:         when it is a list, injects ``Skill(name)`` for each entry. In either\n534:         case ``setting_sources`` defaults to ``[\"user\", \"project\"]`` when\n535:         unset so the CLI discovers installed skills without the caller having\n536:         to wire up both options manually. ``None`` is a no-op.\n537: \n538:         Each listed skill name is validated before being formatted into a\n539:         rule; see :func:`_validate_skill_name`.\n540: \n541:         Does not mutate the original options object.\n542:         \"\"\"\n543:         allowed_tools: list[str] = list(self._options.allowed_tools)\n544:         setting_sources: list[str] | None = (\n545:             list(self._options.setting_sources)\n546:             if self._options.setting_sources is not None\n547:             else None\n548:         )\n549: \n550:         skills = self._options.skills\n551:         if skills is None:\n552:             return allowed_tools, setting_sources\n553:         _reject_non_list_skills(skills)\n554: \n555:         if skills == _SKILLS_ALL:\n556:             if \"Skill\" not in allowed_tools:\n557:                 allowed_tools.append(\"Skill\")\n558:         else:\n559:             for name in skills:\n560:                 _validate_skill_name(name)\n561:                 pattern = f\"Skill({name})\"\n562:                 if pattern not in allowed_tools:\n563:                     allowed_tools.append(pattern)\n564: \n565:         if setting_sources is None:\n566:             setting_sources = [\"user\", \"project\"]\n567: \n568:         return allowed_tools, setting_sources"
+      },
+      {
+        "start": 591,
+        "end": 637,
+        "text": "591:         # Handle tools option (base set of tools)\n592:         if self._options.tools is not None:\n593:             tools = self._options.tools\n594:             if isinstance(tools, list):\n595:                 if len(tools) == 0:\n596:                     cmd.extend([\"--tools\", \"\"])\n597:                 else:\n598:                     cmd.extend([\"--tools\", \",\".join(tools)])\n599:             else:\n600:                 # Preset object - 'claude_code' preset maps to 'default'\n601:                 cmd.extend([\"--tools\", \"default\"])\n602: \n603:         effective_allowed_tools, effective_setting_sources = (\n604:             self._apply_skills_defaults()\n605:         )\n606: \n607:         if effective_allowed_tools:\n608:             cmd.extend([\"--allowedTools\", \",\".join(effective_allowed_tools)])\n609: \n610:         if self._options.max_turns:\n611:             cmd.extend([\"--max-turns\", str(self._options.max_turns)])\n612: \n613:         if self._options.max_budget_usd is not None:\n614:             cmd.extend([\"--max-budget-usd\", str(self._options.max_budget_usd)])\n615: \n616:         if self._options.disallowed_tools:\n617:             cmd.extend([\"--disallowedTools\", \",\".join(self._options.disallowed_tools)])\n618: \n619:         if self._options.task_budget is not None:\n620:             cmd.extend([\"--task-budget\", str(self._options.task_budget[\"total\"])])\n621: \n622:         if self._options.model:\n623:             cmd.extend([\"--model\", self._options.model])\n624: \n625:         if self._options.fallback_model:\n626:             cmd.extend([\"--fallback-model\", self._options.fallback_model])\n627: \n628:         if self._options.betas:\n629:             cmd.extend([\"--betas\", \",\".join(self._options.betas)])\n630: \n631:         if self._options.permission_prompt_tool_name:\n632:             cmd.extend(\n633:                 [\"--permission-prompt-tool\", self._options.permission_prompt_tool_name]\n634:             )\n635: \n636:         if self._options.permission_mode:\n637:             cmd.extend([\"--permission-mode\", self._options.permission_mode])"
+      },
+      {
+        "start": 813,
+        "end": 881,
+        "text": "813:         try:\n814:             # Merge environment variables. CLAUDE_CODE_ENTRYPOINT defaults to\n815:             # sdk-py regardless of inherited process env; options.env can override\n816:             # it. CLAUDE_AGENT_SDK_VERSION is always set by the SDK.\n817:             # Filter out CLAUDECODE so SDK-spawned subprocesses don't think\n818:             # they're running inside a Claude Code parent (see #573).\n819:             inherited_env = {k: v for k, v in os.environ.items() if k != \"CLAUDECODE\"}\n820:             process_env = {\n821:                 **inherited_env,\n822:                 \"CLAUDE_CODE_ENTRYPOINT\": \"sdk-py\",\n823:                 **self._options.env,\n824:                 \"CLAUDE_AGENT_SDK_VERSION\": __version__,\n825:             }\n826: \n827:             # Propagate active OTEL trace context to the CLI so its spans\n828:             # parent under the caller's distributed trace. No-op if\n829:             # opentelemetry-api is not installed or there's no active span.\n830:             try:\n831:                 from opentelemetry import propagate\n832: \n833:                 carrier: dict[str, str] = {}\n834:                 propagate.inject(carrier)\n835:                 if \"traceparent\" in carrier:\n836:                     # Active span present: scrub stale inherited W3C context\n837:                     # (CI/k8s ambient env) before writing the fresh values, so\n838:                     # an inherited TRACESTATE isn't paired with a new\n839:                     # TRACEPARENT. Explicit ClaudeAgentOptions.env always wins.\n840:                     # Gate on the traceparent key (not carrier truthiness) so a\n841:                     # baggage-only / non-W3C carrier doesn't scrub a valid\n842:                     # inherited TRACEPARENT.\n843:                     for key in (\"TRACEPARENT\", \"TRACESTATE\"):\n844:                         if key not in self._options.env:\n845:                             process_env.pop(key, None)\n846:                     for k, v in carrier.items():\n847:                         key = k.upper()\n848:                         if key not in self._options.env:\n849:                             process_env[key] = v\n850:             except Exception:  # noqa: BLE001 - best-effort tracing must never break connect()\n851:                 logger.debug(\"OTEL trace context injection failed\", exc_info=True)\n852: \n853:             # Query waits for the CLI's session_state_changed \"idle\" before\n854:             # closing stdin on a run that serves control requests (#1190). Ask\n855:             # for the frames it drops (sdk_host_only) unless the caller chose\n856:             # a value, in any case; CLAUDE_CODE_EMIT_SESSION_STATE_EVENTS stays\n857:             # the caller's own opt-in to seeing them.\n858:             if not any(\n859:                 key.upper() == _SDK_READS_SESSION_STATE_ENV for key in process_env\n860:             ):\n861:                 process_env[_SDK_READS_SESSION_STATE_ENV] = \"1\"\n862: \n863:             # Enable file checkpointing if requested\n864:             if self._options.enable_file_checkpointing:\n865:                 process_env[\"CLAUDE_CODE_ENABLE_SDK_FILE_CHECKPOINTING\"] = \"true\"\n866: \n867:             if self._cwd:\n868:                 process_env[\"PWD\"] = self._cwd\n869: \n870:             # Pipe stderr only when the caller registered a callback.\n871:             stderr_dest = PIPE if self._options.stderr is not None else None\n872: \n873:             self._process = await anyio.open_process(\n874:                 cmd,\n875:                 stdin=PIPE,\n876:                 stdout=PIPE,\n877:                 stderr=stderr_dest,\n878:                 cwd=self._cwd,\n879:                 env=process_env,\n880:                 user=self._options.user,\n881:             )"
+      }
+    ]
+  }
+}

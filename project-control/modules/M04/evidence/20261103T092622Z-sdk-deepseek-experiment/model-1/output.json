@@ -1,0 +1,197 @@
+{
+  "status": "SUCCEEDED",
+  "capability": {
+    "implementation": "claude_agent_sdk_skills_v1",
+    "available_fixture_only": false,
+    "sdk_version": "0.2.177",
+    "cli_version": "2.1.317",
+    "real_gateway_available": false,
+    "non_claude_compatibility_experiment": true,
+    "production_available": false,
+    "durable_tasks": false,
+    "legacy_implementation": "langgraph_governed_single_table_v1"
+  },
+  "experiment": {
+    "mode": "real_gateway_experiment",
+    "model": "deepseek-v4.1-flash",
+    "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+    "official_support": "unsupported_non_claude_experiment"
+  },
+  "skill": {
+    "name": "data-query",
+    "version": "1.0.1",
+    "sha256": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580"
+  },
+  "route_receipt": {
+    "route_receipt": "route-f0ba7ff2d23f00d66a0aeb705c70717a",
+    "skill": "governed:data-query",
+    "skill_sha256": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580",
+    "published_metric_match": true
+  },
+  "query_receipt": {
+    "query_receipt_id": "query-106293c5588961f10c747ef7b37f2739",
+    "status": "SUCCEEDED",
+    "plan_hash": "106293c5588961f10c747ef7b37f273939447f2d35ad39f504c337bc654fefcf",
+    "mcp_task_id": "973135ab-cd4d-4418-87aa-9dda8b376090"
+  },
+  "quality_receipt": {
+    "quality_receipt_id": "quality-106293c5588961f10c747ef7b37f2739",
+    "status": "PASS",
+    "checks": [
+      "schema",
+      "unit",
+      "full_input",
+      "row_count",
+      "grain",
+      "limitations"
+    ],
+    "input_rows": 150,
+    "matched_rows": 150,
+    "limitations": []
+  },
+  "publication": {
+    "publication_id": "publication-106293c5588961f10c747ef7b37f2739",
+    "source": "independent_synthetic_fixture",
+    "result": {
+      "source": "user_provided",
+      "columns": [
+        {
+          "name": "metric_value",
+          "type": "HUGEINT"
+        }
+      ],
+      "rows": [
+        [
+          11325
+        ]
+      ],
+      "input_rows": 150,
+      "matched_rows": 150,
+      "duplicate_grain_rows": 0,
+      "null_grain_rows": 0,
+      "null_metric_rows": 0,
+      "zero_denominator_groups": 0,
+      "null_denominator_groups": 0,
+      "returned_row_count": 1,
+      "truncated": false,
+      "full_input_aggregate": true,
+      "quality": "PASS",
+      "unit": "declared units",
+      "sql_executed": true,
+      "limitations": []
+    },
+    "query_receipt": {
+      "query_receipt_id": "query-106293c5588961f10c747ef7b37f2739",
+      "status": "SUCCEEDED",
+      "plan_hash": "106293c5588961f10c747ef7b37f273939447f2d35ad39f504c337bc654fefcf",
+      "mcp_task_id": "973135ab-cd4d-4418-87aa-9dda8b376090"
+    },
+    "quality_receipt": {
+      "quality_receipt_id": "quality-106293c5588961f10c747ef7b37f2739",
+      "status": "PASS",
+      "checks": [
+        "schema",
+        "unit",
+        "full_input",
+        "row_count",
+        "grain",
+        "limitations"
+      ],
+      "input_rows": 150,
+      "matched_rows": 150,
+      "limitations": []
+    },
+    "model_generated_numbers": false
+  },
+  "model_text": "I'll start by loading the governed data query skill.I'll search the published semantics to see if there's an authorized metric for this.The only published metric matching this is **Total amount** (`sum(amount)`). I'll propose a scalar plan (no breakdown dimensions).Your query is published: **Total amount** = `sum(amount)`, with no breakdown dimensions.\n\n- Query status: SUCCEEDED\n- Quality status: PASS\n\nThe verified value is on the result card (publication `publication-106293c5588961f10c747ef7b37f2739`). Note this is scoped to the published \"Total amount\" metric only — if you need a total for a different table, time period, or grouped by a dimension, tell me and I'll propose a new plan.",
+  "events": [
+    {
+      "type": "SDK_INIT",
+      "skills": [
+        "deep-research",
+        "governed:data-query",
+        "dataviz",
+        "update-config",
+        "verify",
+        "debug",
+        "code-review",
+        "simplify",
+        "batch",
+        "fewer-permission-prompts",
+        "doctor",
+        "loop",
+        "claude-api",
+        "workflow-authoring",
+        "run",
+        "run-skill-generator",
+        "plugin-authoring"
+      ]
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "Skill"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__search_semantics"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__propose_metric_query"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__request_confirmation"
+    },
+    {
+      "type": "AWAITING_CONFIRMATION",
+      "confirmation_id": "confirm-c94457e54def31d148c14230cef67c70"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__execute_approved_query"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__execute_approved_query"
+    },
+    {
+      "type": "TOOL_USE",
+      "name": "mcp__governed__publish_result"
+    }
+  ],
+  "usage": {
+    "deepseek-v4.1-flash": {
+      "inputTokens": 4014,
+      "outputTokens": 1146,
+      "cacheReadInputTokens": 17920,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.04256,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000,
+      "thinkingTokens": 0,
+      "cacheCreationEphemeral5mInputTokens": 0,
+      "cacheCreationEphemeral1hInputTokens": 0,
+      "canonicalModel": "deepseek-v4.1-flash",
+      "provider": "firstParty",
+      "costBasis": "unknown"
+    }
+  },
+  "total_cost_usd_client_estimate": 0.04256,
+  "budget": {
+    "model_steps": 8,
+    "tool_calls": 7,
+    "metadata_calls": 1,
+    "total_tokens": 23080,
+    "estimated_reserve_usd": 2.0,
+    "max_model_steps": 8,
+    "max_tool_calls": 10,
+    "max_total_tokens": 100000,
+    "wall_clock_seconds": 300
+  },
+  "stream_events": 661,
+  "result_rows_returned_to_model": false,
+  "real_gateway_called": true,
+  "production_sql_executed": false
+}

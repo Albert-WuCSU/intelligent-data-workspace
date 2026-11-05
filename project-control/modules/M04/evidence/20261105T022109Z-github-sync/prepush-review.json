@@ -1,0 +1,21 @@
+{
+  "reviewer": "self_review",
+  "source_matches_previous642_23_45": true,
+  "secret_scan_files": 1120,
+  "regex_secret_hits": 0,
+  "excluded": [
+    "progress.draft.json",
+    "ignored data/connections",
+    "data/semantics",
+    "data/model-runtime",
+    "tmp",
+    "venv/node_modules",
+    "downloaded wheels"
+  ],
+  "binary_evidence": "existing independently generated synthetic SDK/MCP/browser fixtures, not user attachment screenshots",
+  "branch": "main",
+  "remote": "https://github.com/Albert-WuCSU/intelligent-data-workspace.git",
+  "force_push": false,
+  "release_or_deployment": false,
+  "real_integration_acceptance": false
+}

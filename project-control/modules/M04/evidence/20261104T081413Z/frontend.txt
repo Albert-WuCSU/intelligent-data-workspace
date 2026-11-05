@@ -1,0 +1,12 @@
+
+ RUN  v3.2.7 D:/Users/luqianwu/Desktop/智能问数/apps/web
+
+ ✓ src/workbench.test.ts (8 tests) 7ms
+ ✓ src/api.test.ts (4 tests) 10ms
+ ✓ src/conversations.test.ts (8 tests) 25ms
+
+ Test Files  3 passed (3)
+      Tests  20 passed (20)
+   Start at  16:19:32
+   Duration  939ms (transform 170ms, setup 0ms, collect 267ms, tests 42ms, environment 1ms, prepare 804ms)
+

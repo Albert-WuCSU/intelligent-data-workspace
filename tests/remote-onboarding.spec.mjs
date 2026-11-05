@@ -18,6 +18,15 @@ async function open(page){
  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
 }
+async function chooseModel(page,modelRef){
+ const catalog=await (await page.request.get(fixture.api_url+'/api/v1/model-service/catalog')).json();
+ const entry=catalog.models.find(model=>model.id===modelRef);
+ if(!entry)throw new Error('fixture model not in catalog: '+modelRef);
+ await page.getByLabel('切换模型').click();
+ const option=page.getByRole('option').filter({hasText:entry.model_id}).first();
+ await expect(option).toBeVisible();
+ await option.click();
+}
 test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
  const name=`HTTP连接-${Date.now()}`;await page.getByLabel('连接名称').fill(name);await page.getByLabel('MCP 服务地址').fill(fixture.mcp_url);await page.getByLabel('后台凭证引用').fill(fixture.secret_ref);
@@ -243,7 +252,7 @@ test('generic personal BYOK config saves session key without restart or browser 
  await page.getByRole('button',{name:'返回工作台',exact:true}).click();await expect(page.getByLabel('切换模型')).toBeEnabled();
  const catalog=await (await page.request.get(fixture.api_url+'/api/v1/model-service/catalog')).json();
  expect(catalog.models).toHaveLength(1);expect(catalog.models[0].query_available).toBe(false);
- await page.getByLabel('切换模型').selectOption(catalog.models[0].id);
+ await chooseModel(page,catalog.models[0].id);
  await expect(page.getByText('已选实测模型 · 问数尚未接入，不调用',{exact:true})).toBeVisible();
  expect((await (await page.request.get(fixture.api_url+'/api/v1/model-service/status')).json()).budget.reserved_requests).toBe(baseline+1);
  await page.reload();await expect(page.getByLabel('切换模型')).toBeEnabled();
@@ -265,7 +274,7 @@ test('left settings keeps conversation clean, model IDs are free for every prese
  const settings=page.getByLabel('设置页面');await expect(settings).toBeVisible();await expect(page.getByLabel('业务问题')).toHaveCount(0);await expect(summary).toHaveCount(0);
  const form=page.getByLabel('快捷模型接入');const model=form.getByLabel('模型名称',{exact:true});
  for(const preset of ['openai','deepseek','anthropic','ai_plan','custom']){
-  await form.getByLabel('模型服务厂商').selectOption(preset);await expect(model).toBeEnabled();await expect(model).toHaveValue('');await model.fill('my-account-model');await expect(model).toHaveValue('my-account-model');
+  await form.getByLabel('模型服务厂商').selectOption(preset);await expect(model).toBeEnabled();if(preset==='ai_plan')await expect(model).toHaveValue('deepseek-v4.1-flash');else await expect(model).toHaveValue('');await model.fill('my-account-model');await expect(model).toHaveValue('my-account-model');
  }
  await form.getByLabel('模型服务厂商').selectOption('ai_plan');await model.fill('claude-user-selected-model');
  await expect(form.getByLabel('模型 API 地址')).toBeDisabled();await expect(form.getByLabel('模型 API 协议')).toBeDisabled();
@@ -388,7 +397,7 @@ test('LangGraph workbench uses approved metric, human confirms full150rowMCP que
  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
  await page.getByRole('button',{name:'新建会话',exact:false}).click();await expect(page.getByLabel('选择问数语义版本')).toBeVisible();
  await page.getByLabel('业务问题').fill('尚未选定口径的问题');await page.getByRole('button',{name:'发送问题',exact:true}).click();await expect(page.getByText('请先选择已发布、启用的问数口径；可在知识库维护定义。未调用模型或执行SQL。',{exact:true})).toBeVisible();expect((await (await page.request.get(fixture.api_url+'/api/v1/agent/tasks')).json()).tasks).toHaveLength(0);
-await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_version_id);await page.getByLabel('切换模型').selectOption(ready.model_ref);
+await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_version_id);await chooseModel(page,ready.model_ref);
  await page.getByLabel(`包含来源 ${ready.source_name}`).check();await page.getByLabel('同意问数模型外发和估算').check();await page.getByLabel('业务问题').fill('请计算总金额，全部数据');await page.getByRole('button',{name:'发送问题',exact:true}).click();
  const card=page.getByLabel('受控问数任务');await expect(card).toContainText('等待确认执行');await expect(card).toContainText('全表，无时间筛选');await expect(card.getByRole('button',{name:'确认执行查询'})).toBeDisabled();
  let tasks=(await (await page.request.get(fixture.api_url+'/api/v1/agent/tasks')).json()).tasks;expect(tasks).toHaveLength(1);expect(tasks[0].sql_executed).toBe(false);
@@ -405,7 +414,7 @@ await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_ve
 test('Agent incomplete model output gives safe read-only diagnostic without SQL or extra retry',async({page})=>{
  const r=await page.request.post(fixture.api_url+'/fixture-only/agent-ready',{headers:{'X-Workspace-Request':'1'},data:{mode:'incomplete'}});expect(r.ok()).toBeTruthy();const ready=await r.json();
  for(const pattern of ['**/api/v1/agent/**','**/api/v1/model-service/**','**/api/v1/semantics**','**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
- await page.goto('http://127.0.0.1:5173/');await page.getByRole('button',{name:'新建会话',exact:false}).click();await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_version_id);await page.getByLabel('切换模型').selectOption(ready.model_ref);await page.getByLabel(`包含来源 ${ready.source_name}`).check();await page.getByLabel('同意问数模型外发和估算').check();await page.getByLabel('业务问题').fill('请统计总金额');
+ await page.goto('http://127.0.0.1:5173/');await page.getByRole('button',{name:'新建会话',exact:false}).click();await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_version_id);await chooseModel(page,ready.model_ref);await page.getByLabel(`包含来源 ${ready.source_name}`).check();await page.getByLabel('同意问数模型外发和估算').check();await page.getByLabel('业务问题').fill('请统计总金额');
  const before=(await (await page.request.get(fixture.api_url+'/api/v1/model-service/status')).json()).budget.reserved_requests;
  await page.getByRole('button',{name:'发送问题',exact:true}).click();const card=page.getByLabel('受控问数任务');await expect(card).toContainText('MODEL_RESPONSE_INVALID');await expect(card.getByLabel('问数模型安全诊断')).toContainText('incomplete_output');await expect(card).not.toContainText('fake-fixture-agent-key');await expect(card.getByRole('button',{name:'确认执行查询'})).toHaveCount(0);
  const tasks=(await (await page.request.get(fixture.api_url+'/api/v1/agent/tasks')).json()).tasks;const current=tasks.find(t=>t.model_ref===ready.model_ref&&t.phase==='FAILED');expect(current.sql_executed).toBe(false);expect(current.execution_receipt).toBeNull();expect(current.result).toBeNull();

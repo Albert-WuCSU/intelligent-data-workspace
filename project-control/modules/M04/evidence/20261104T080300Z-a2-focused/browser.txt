@@ -1,0 +1,31 @@
+
+Running 1 test using 1 worker
+
+(node:28088) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  x  1 tests\agent-conversation.spec.mjs:4:1 › A2 same-task clarification, interleaved reports, refresh and transient poll failure (2.0s)
+
+
+  1) tests\agent-conversation.spec.mjs:4:1 › A2 same-task clarification, interleaved reports, refresh and transient poll failure 
+
+    Error: locator.fill: Error: strict mode violation: getByRole('article', { name: '受控问数任务' }).first().getByLabel('澄清回答') resolved to 2 elements:
+        1) <textarea maxlength="1600" aria-label="澄清回答"></textarea> aka getByRole('textbox', { name: '澄清回答' })
+        2) <input type="checkbox" aria-label="同意发送本次澄清回答"/> aka getByRole('checkbox', { name: '同意发送本次澄清回答' })
+
+    Call log:
+      - waiting for getByRole('article', { name: '受控问数任务' }).first().getByLabel('澄清回答')
+
+
+      25 |  await page.getByLabel('业务问题').fill('第一个合成问题');await page.getByLabel('选择问数语义版本').selectOption(semantic);await page.getByLabel('包含来源 UI合成来源').check();await page.getByLabel('同意问数模型外发和估算').check();await page.getByRole('button',{name:'发送问题',exact:true}).click();
+      26 |  const card=page.getByRole('article',{name:'受控问数任务'}).first();await expect(card.getByLabel('回答当前澄清')).toBeVisible();expect(starts).toBe(1);
+    > 27 |  await card.getByLabel('澄清回答').fill('全部时间');await expect(card.getByRole('button',{name:'继续同一任务'})).toBeDisabled();await card.getByLabel('同意发送本次澄清回答').check();await card.getByRole('button',{name:'继续同一任务'}).click();
+         |                                ^
+      28 |  await expect(card).toContainText('你的补充：全部时间');expect(starts).toBe(1);expect(answers).toBe(1);expect(confirms).toBe(0);
+      29 |  await card.getByLabel('确认本次口径与查询执行').check();await card.getByRole('button',{name:'确认执行查询'}).click();await expect(card.getByLabel('Agent 对话回答')).toContainText('第1次查询');await expect(card.getByLabel('问数报告')).toContainText('仅UI合成快照');await expect(card.getByLabel('受控查询完整聚合结果')).toContainText('12');
+      30 |  await page.getByLabel('业务问题').fill('第二个合成问题');await page.getByLabel('同意问数模型外发和估算').check();await page.getByRole('button',{name:'发送问题',exact:true}).click();const second=page.getByRole('article',{name:'受控问数任务'}).nth(1);await second.getByLabel('确认本次口径与查询执行').check();await second.getByRole('button',{name:'确认执行查询'}).click();await expect(second.getByLabel('Agent 对话回答')).toContainText('第2次查询');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\agent-conversation.spec.mjs:27:32
+
+    Error Context: tmp\m01-browser-results\agent-conversation-A2-same-e600b--and-transient-poll-failure\error-context.md
+
+  1 failed
+    tests\agent-conversation.spec.mjs:4:1 › A2 same-task clarification, interleaved reports, refresh and transient poll failure 

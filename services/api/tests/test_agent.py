@@ -63,7 +63,7 @@ def test_actual_aggregate_mcp_distinct_contract_idempotent_single_submit(tmp_pat
  asyncio.run(scenario())
 
 def setup_app(tmp_path,model_plan=None):
- app=create_app(Settings(mode='development',dev_identity=True));store,database=fixture(tmp_path);app.state.sources=store;app.state.semantics=SemanticStore(tmp_path/'semantics')
+ app=create_app(Settings(mode='development',dev_identity=True,sdk_web_agent=False));store,database=fixture(tmp_path);app.state.sources=store;app.state.semantics=SemanticStore(tmp_path/'semantics')
  source=str(uuid4())
  with store.db() as db:db.execute('INSERT INTO profiles(id,owner,name,version,enabled,database_path,source_label,last_test_at) VALUES(?,?,?,?,?,?,?,?)',[source,store.owner(AUTH),'actual fixture',1,1,str(database),'independent fixture','2026-11-02'])
  body=SemanticDraftInput(domain='orders',name='Totals',owner_note='fixture only',source_id=source,table_id='t0',grain=['id'],grain_note='per record',metrics=[metric()])

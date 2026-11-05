@@ -3,6 +3,7 @@ const EVIDENCE=process.env.WORKSPACE_BROWSER_EVIDENCE||`project-control/modules/
 async function connect(page){await page.goto('http://127.0.0.1:5173');await expect(page.getByLabel('业务问题')).toBeEnabled();await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'连接器',exact:true}).click();await expect(page.getByRole('region',{name:'数据源连接管理'})).toBeVisible();}
 async function openPreview(page){await page.getByRole('button',{name:'使用内置合成示例'}).click();await page.getByRole('button',{name:'验证数据源连接'}).click();await expect(page.getByText('已从真实 MCP 读取：',{exact:false})).toBeVisible();await page.getByRole('button',{name:'浏览数据表'}).click();await expect(page.getByRole('heading',{name:'数据表导航'})).toBeVisible();await expect(page.locator('input[type=date]')).toHaveCount(0);await expect(page.getByRole('checkbox')).toHaveCount(0);}
 test('real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot',async({page})=>{
+ await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture natural-language unavailable'}}));
  const errors=[];page.on('pageerror',e=>errors.push(e.message));await connect(page);await openPreview(page);
  await page.getByRole('button',{name:'查看前 100 行'}).click();
  await expect(page.getByText('SQL 已执行 · SUCCEEDED',{exact:true})).toBeVisible();await expect(page.getByRole('table')).toContainText('syn_o');await expect(page.getByText('WARN · 预览，非口径认证',{exact:true})).toBeVisible();

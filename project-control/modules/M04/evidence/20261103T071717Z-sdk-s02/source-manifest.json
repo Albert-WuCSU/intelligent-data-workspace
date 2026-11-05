@@ -1,0 +1,16 @@
+{
+  "files": {
+    "services/api/src/data_workspace/sdk_agent_backend.py": "f6f8283707bd151ccb02e4f7e0d27b31299961871e811764afb979b92f6360a5",
+    "services/api/src/data_workspace/sdk_agent_runner.py": "973973b08c80a7af78c58eeb7e2e0cf01f1cf3fae52e29867c5feb8ee420b525",
+    "services/api/src/data_workspace/sdk_process.py": "7ea1b8cb027c13ded3500043d78d5154ce60587c3c68c5f3d6f431b421cc1c7a",
+    "services/api/src/data_workspace/sdk_runner_entry.py": "57ca25bf0ba83f89cb4fa92c542fc29614e652f66df444ac899de0e0e5e1ff6c",
+    "services/api/src/data_workspace/sdk_skills/data-query/SKILL.md": "857874eac1d2d98a01e3a4c4d6f644b845664d7e47de7d948f127cc81aa21319",
+    "services/api/src/data_workspace/warehouse/aggregate_client.py": "7b098d30dd9e49a3043b7a508476ef8a56d595f09fda1ab1a3630585bd031b73",
+    "services/api/src/data_workspace/warehouse/stdio_transport.py": "36453edce1b3a8a0a2742bf7c0cf3f1bf8a91b736be559e1f4aacc18b0792939",
+    "services/api/tests/test_sdk_agent.py": "70398458d68e389fae6f5200593801144c7e769cfa8540994da1eaeb5c72eb9c",
+    "services/api/requirements.sdk.lock.txt": "2b24bf6e2c87037717c66353e63ca9cfdfd252e2543dfac8a21af76ca576799a",
+    "tests/connector.spec.mjs": "973650886de7a69a44e4d30c38986a644e3be9e1f39edd6f736fa09261b6bb01",
+    "DEVELOPMENT.md": "9aa9489033083c60e3f87a71f802f5760cd3b459ae8d2d02bfb14060d7b27461"
+  },
+  "combined_fingerprint": "55ac27ed0c3db2caafd80ad7c3f07cdfe2ac93b36c35345c80704f098998f732"
+}

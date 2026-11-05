@@ -2,7 +2,7 @@
 from fastapi import APIRouter,Depends,Request
 from .auth import identity,PublicError
 from .contracts import AuthContext
-from .agent_contracts import AgentRequest,AgentConfirm,AgentTask,AgentTasks,AgentCapabilities
+from .agent_contracts import AgentRequest,AgentConfirm,AgentClarify,AgentTask,AgentTasks,AgentCapabilities
 router=APIRouter(prefix='/api/v1/agent',tags=['agent'])
 
 def service(request,auth):
@@ -14,22 +14,25 @@ def service(request,auth):
 
 @router.get('/capabilities',response_model=AgentCapabilities)
 def capabilities(request:Request,auth:AuthContext=Depends(identity)):
-    service(request,auth).auth(auth)
-    return AgentCapabilities(available=True)
+    agent=service(request,auth);agent.auth(auth)
+    return AgentCapabilities(**agent.capabilities())
 @router.post('/tasks',response_model=AgentTask)
 async def start(body:AgentRequest,request:Request,auth:AuthContext=Depends(identity)):
     # async task must be scheduled on the API event loop.
-    return service(request,auth).start(auth,body)
+    return await service(request,auth).start(auth,body)
 @router.get('/tasks',response_model=AgentTasks)
 def list_tasks(request:Request,auth:AuthContext=Depends(identity)):
-    agent=service(request,auth);agent.auth(auth);owner=request.app.state.sources.owner(auth)
-    return AgentTasks(tasks=[task for id,task in agent.tasks.items() if agent.records[id]['owner']==owner])
+    agent=service(request,auth);agent.auth(auth)
+    return AgentTasks(tasks=agent.list(auth))
 @router.get('/tasks/{id}',response_model=AgentTask)
 def read(id:str,request:Request,auth:AuthContext=Depends(identity)):
     return service(request,auth).get(auth,id)
 @router.post('/tasks/{id}/confirm',response_model=AgentTask)
 async def confirm(id:str,body:AgentConfirm,request:Request,auth:AuthContext=Depends(identity)):
     return await service(request,auth).confirm(auth,id,body)
+@router.post('/tasks/{id}/clarify',response_model=AgentTask)
+async def clarify(id:str,body:AgentClarify,request:Request,auth:AuthContext=Depends(identity)):
+    return await service(request,auth).clarify(auth,id,body)
 @router.post('/tasks/{id}/cancel',response_model=AgentTask)
 async def cancel(id:str,request:Request,auth:AuthContext=Depends(identity)):
     return await service(request,auth).cancel(auth,id)

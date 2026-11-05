@@ -1,0 +1,113 @@
+ M CHANGELOG.md
+ M DEVELOPMENT.md
+ M apps/web/src/AgentTaskCard.tsx
+ M apps/web/src/App.tsx
+ M apps/web/src/ModelConnectionForm.tsx
+ M apps/web/src/ModelSelector.tsx
+ M apps/web/src/ModelServiceReadiness.tsx
+ M apps/web/src/WorkbenchPanel.tsx
+ M apps/web/src/api.generated.ts
+ M apps/web/src/api.ts
+ M apps/web/src/styles.css
+ M apps/web/src/workbench.test.ts
+ M apps/web/src/workbench.ts
+ M contracts/openapi.json
+ M project-control/HANDOFF.md
+ M project-control/HANDOFF_DETAILS.md
+ M project-control/NEW_WINDOW_PROMPT.md
+ M project-control/PRODUCT_UX_PRINCIPLES.md
+ M project-control/ROADMAP.md
+ M project-control/STATUS.md
+ M project-control/modules/M04/plan.md
+ M project-control/prd/M04-A.md
+ M project-control/prd/M04-B.md
+ M project-control/prd/REQUIREMENTS.md
+ M project-control/prd/USER_REQUESTS.md
+ M project-control/prd/index.json
+ M project-control/prd/modules.json
+ M project-control/prd/requirements.json
+ M project-control/progress.json
+ M scripts/check.py
+ M scripts/remote_browser_fixture.py
+ M services/api/src/data_workspace/agent_contracts.py
+ M services/api/src/data_workspace/agent_routes.py
+ M services/api/src/data_workspace/agent_service.py
+ M services/api/src/data_workspace/config.py
+ M services/api/src/data_workspace/main.py
+ M services/api/src/data_workspace/model_budget.py
+ M services/api/src/data_workspace/model_routes.py
+ M services/api/src/data_workspace/warehouse/aggregate_client.py
+ M services/api/src/data_workspace/warehouse/aggregate_contract.py
+ M services/api/src/data_workspace/warehouse/stdio_transport.py
+ M services/api/tests/test_agent.py
+ M services/api/tests/test_model_connections.py
+ M tests/connector.spec.mjs
+ M tests/remote-onboarding.spec.mjs
+?? apps/web/src/ModelCatalogManager.tsx
+?? progress.draft.json
+?? project-control/checkpoints/revision-000165.json
+?? project-control/checkpoints/revision-000166.json
+?? project-control/checkpoints/revision-000167.json
+?? project-control/checkpoints/revision-000168.json
+?? project-control/checkpoints/revision-000169.json
+?? project-control/checkpoints/revision-000170.json
+?? project-control/checkpoints/revision-000171.json
+?? project-control/checkpoints/revision-000172.json
+?? project-control/checkpoints/revision-000173.json
+?? project-control/checkpoints/revision-000174.json
+?? project-control/checkpoints/revision-000175.json
+?? project-control/checkpoints/revision-000176.json
+?? project-control/checkpoints/revision-000177.json
+?? project-control/checkpoints/revision-000178.json
+?? project-control/checkpoints/revision-000179.json
+?? project-control/checkpoints/revision-000180.json
+?? project-control/checkpoints/revision-000181.json
+?? project-control/checkpoints/revision-000182.json
+?? project-control/checkpoints/revision-000183.json
+?? project-control/checkpoints/revision-000184.json
+?? project-control/checkpoints/revision-000185.json
+?? project-control/checkpoints/revision-000186.json
+?? project-control/checkpoints/revision-000187.json
+?? project-control/checkpoints/revision-000188.json
+?? project-control/modules/M04/AGENTIC_CONVERSATION_L1L4_PLAN.md
+?? project-control/modules/M04/SDK_S01_INSTALL_PLAN.md
+?? project-control/modules/M04/SDK_S02_OFFLINE_FIXTURE.md
+?? project-control/modules/M04/evidence/20261103T060255Z-sdk-install-plan/
+?? project-control/modules/M04/evidence/20261103T071717Z-sdk-s02/
+?? project-control/modules/M04/evidence/20261103T072251Z/
+?? project-control/modules/M04/evidence/20261103T073127Z/
+?? project-control/modules/M04/evidence/20261103T074400Z/
+?? project-control/modules/M04/evidence/20261103T081413Z-sdk-real-gateway-prereq/
+?? project-control/modules/M04/evidence/20261103T085045Z-sdk-deepseek-experiment-implementation/
+?? project-control/modules/M04/evidence/20261103T085755Z-sdk-deepseek-experiment/
+?? project-control/modules/M04/evidence/20261103T091204Z-sdk-deepseek-experiment/
+?? project-control/modules/M04/evidence/20261103T092622Z-sdk-deepseek-experiment/
+?? project-control/modules/M04/evidence/20261103T095853Z/
+?? project-control/modules/M04/evidence/20261103T100500Z-model-picker-browser/
+?? project-control/modules/M04/evidence/20261103T101500Z-model-picker-browser/
+?? project-control/modules/M04/evidence/20261103T101648Z/
+?? project-control/modules/M04/evidence/20261104T030003Z/
+?? project-control/modules/M04/evidence/20261104T030950Z/
+?? project-control/modules/M04/evidence/20261104T032252Z/
+?? project-control/modules/M04/evidence/20261104T062640Z/
+?? project-control/modules/M04/evidence/20261104T074457Z/
+?? project-control/modules/M04/evidence/20261104T075000Z-reliability-fix/
+?? project-control/modules/M04/evidence/20261104T080300Z-a2-focused/
+?? project-control/modules/M04/evidence/20261104T080400Z-a2-focused/
+?? project-control/modules/M04/evidence/20261104T080447Z/
+?? project-control/modules/M04/evidence/20261104T080600Z-a2-ui-final/
+?? project-control/modules/M04/evidence/20261104T081413Z/
+?? run-sdk-deepseek-experiment.cmd
+?? scripts/run_sdk_deepseek_experiment.py
+?? services/api/requirements.sdk.lock.txt
+?? services/api/src/data_workspace/agent_hybrid.py
+?? services/api/src/data_workspace/sdk_agent_backend.py
+?? services/api/src/data_workspace/sdk_agent_runner.py
+?? services/api/src/data_workspace/sdk_process.py
+?? services/api/src/data_workspace/sdk_runner_entry.py
+?? services/api/src/data_workspace/sdk_skills/
+?? services/api/src/data_workspace/sdk_web_service.py
+?? services/api/tests/test_aggregate_filters.py
+?? services/api/tests/test_sdk_agent.py
+?? services/api/tests/test_sdk_web_agent.py
+?? tests/agent-conversation.spec.mjs

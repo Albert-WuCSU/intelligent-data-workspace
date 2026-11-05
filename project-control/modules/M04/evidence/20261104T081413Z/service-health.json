@@ -1,0 +1,23 @@
+{
+  "web_http_status": 200,
+  "api_http_status": 200,
+  "invalid_clarify_contract_http_status": 422,
+  "task_count": 0,
+  "source_count": 29,
+  "published_semantics": 1,
+  "budget": null,
+  "model_readiness": {
+    "state": "unconfigured"
+  },
+  "real_model_calls_this_turn": false,
+  "notes": "OpenAPI public URL returned404 (not an enabled docs surface); contract-only invalid POST422 confirms new clarify route, no task/provider/model execution. Loopback startup verified; no Key or rows/SQL captured.",
+  "original_source_present_enabled": true,
+  "budget_readonly_sqlite": {
+    "reserved_units": 49,
+    "max_units": 60,
+    "estimated_reserved_usd": "12.25",
+    "estimated_remaining_usd": "2.75",
+    "reset": false,
+    "supplier_billing_verified": false
+  }
+}

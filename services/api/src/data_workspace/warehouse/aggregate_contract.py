@@ -2,7 +2,7 @@
 from datetime import date,datetime,time,timezone
 from typing import Literal
 import hashlib,json
-from pydantic import Field,model_validator
+from pydantic import Field,model_validator,StrictInt,StrictFloat
 from ..contracts import Contract
 from ..semantic_contracts import SemanticMetric,NUMERIC,TEMPORAL
 
@@ -14,6 +14,15 @@ class AggregateTime(Contract):
     def valid(self):
         if self.start>=self.end_exclusive:raise ValueError('invalid time range')
         return self
+class AggregateFilter(Contract):
+    column: str = Field(min_length=1,max_length=200)
+    operator: Literal['eq','in','gte','lt']
+    values: list[str|StrictInt|StrictFloat] = Field(min_length=1,max_length=200)
+    @model_validator(mode='after')
+    def valid(self):
+        if self.operator!='in' and len(self.values)!=1:raise ValueError('single value required')
+        if any(type(v) is bool for v in self.values):raise ValueError('boolean filter not supported')
+        return self
 class AggregateRequest(Contract):
     table: str = Field(min_length=1,max_length=100)
     schema_hash: str = Field(pattern=r'^[a-f0-9]{64}$')
@@ -21,6 +30,7 @@ class AggregateRequest(Contract):
     grain: list[str] = Field(min_length=1,max_length=4)
     dimensions: list[str] = Field(default_factory=list,max_length=3)
     time_filter: AggregateTime | None = None
+    filters: list[AggregateFilter] = Field(default_factory=list,max_length=5)
     @model_validator(mode='after')
     def unique(self):
         if len(set(self.grain))!=len(self.grain) or len(set(self.dimensions))!=len(self.dimensions):raise ValueError('duplicate fields')
@@ -56,14 +66,38 @@ def compile_aggregate(body,description):
     m=b.metric
     for c in [m.column,m.numerator,m.denominator]:
         if c is not None and (c not in fields or fields[c].split('(')[0].strip() not in NUMERIC):raise QueryDenied('numeric field denied')
-    params=[];where=''
+    conditions=[];params=[]
     if b.time_filter:
         t=b.time_filter
         if t.column not in fields or fields[t.column].split('(')[0].strip() not in TEMPORAL or fields[t.column].startswith('TIME') and not fields[t.column].startswith('TIMESTAMP'):raise QueryDenied('date range requires DATE/TIMESTAMP, not time-of-day')
-        where=f' WHERE {quote(t.column)} >= ? AND {quote(t.column)} < ?'
+        conditions.append(f'{quote(t.column)} >= ? AND {quote(t.column)} < ?')
         if fields[t.column] in ('TIMESTAMPTZ','TIMESTAMP WITH TIME ZONE'):
-            params=[datetime.combine(v,time.min,tzinfo=timezone.utc).isoformat() for v in (t.start,t.end_exclusive)]
-        else:params=[t.start.isoformat(),t.end_exclusive.isoformat()]
+            params.extend([datetime.combine(v,time.min,tzinfo=timezone.utc).isoformat() for v in (t.start,t.end_exclusive)])
+        else:params.extend([t.start.isoformat(),t.end_exclusive.isoformat()])
+    for f in b.filters:
+        if f.column not in fields:raise QueryDenied('filter field denied')
+        kind=fields[f.column].split('(')[0].strip()
+        if kind in NUMERIC:
+            if any(type(v) is bool or not isinstance(v,(int,float)) for v in f.values):raise QueryDenied('filter type denied')
+        elif kind in TEMPORAL:
+            if kind.startswith('TIME') and not kind.startswith('TIMESTAMP'):raise QueryDenied('filter value denied')
+            for value in f.values:
+                if not isinstance(value,str):raise QueryDenied('filter type denied')
+                try:
+                    if kind in ('TIMESTAMPTZ','TIMESTAMP WITH TIME ZONE'):
+                        parsed=datetime.fromisoformat(value)
+                        if parsed.tzinfo is None:raise ValueError()
+                    elif kind=='DATE':date.fromisoformat(value)
+                    else:datetime.fromisoformat(value)
+                except ValueError:raise QueryDenied('filter value denied') from None
+        else:
+            if any(not isinstance(v,str) or len(v)>200 for v in f.values):raise QueryDenied('filter type denied')
+        if f.operator=='eq':conditions.append(f'{quote(f.column)} = ?');params.extend(f.values)
+        elif f.operator=='in':
+            conditions.append(f'{quote(f.column)} IN ({",".join("?" for _ in f.values)})');params.extend(f.values)
+        elif f.operator=='gte':conditions.append(f'{quote(f.column)} >= ?');params.append(f.values[0])
+        else:conditions.append(f'{quote(f.column)} < ?');params.append(f.values[0])
+    where=' WHERE '+' AND '.join(conditions) if conditions else ''
     table=description['table'];pieces=table.split('.')
     if len(pieces)!=2 or any(not p for p in pieces):raise QueryDenied('table denied')
     target='.'.join(quote(p) for p in pieces)
@@ -80,7 +114,7 @@ def validate_aggregate(sql,expected_sql,description,body):
     from .policy import QueryDenied
     import sqlglot
     from sqlglot import exp
-    ALLOWED={exp.Select,exp.Column,exp.Identifier,exp.From,exp.Table,exp.Limit,exp.Literal,exp.Count,exp.Sum,exp.Star,exp.Alias,exp.Div,exp.Nullif,exp.Group,exp.Order,exp.Ordered,exp.Where,exp.And,exp.GTE,exp.LT,exp.Placeholder}
+    ALLOWED={exp.Select,exp.Column,exp.Identifier,exp.From,exp.Table,exp.Limit,exp.Literal,exp.Count,exp.Sum,exp.Star,exp.Alias,exp.Div,exp.Nullif,exp.Group,exp.Order,exp.Ordered,exp.Where,exp.And,exp.EQ,exp.GTE,exp.LT,exp.In,exp.Tuple,exp.Placeholder}
     if sql!=expected_sql or len(sql)>16000:raise QueryDenied('compiler hash mismatch')
     try:trees=sqlglot.parse(sql,read='duckdb')
     except sqlglot.errors.ParseError:raise QueryDenied('parse denied') from None

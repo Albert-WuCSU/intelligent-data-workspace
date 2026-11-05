@@ -1113,6 +1113,58 @@
         }
       }
     },
+    "/api/v1/agent/tasks/{id}/clarify": {
+      "post": {
+        "tags": [
+          "agent"
+        ],
+        "summary": "Clarify",
+        "operationId": "clarify_api_v1_agent_tasks__id__clarify_post",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentClarify"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentTask"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/agent/tasks/{id}/cancel": {
       "post": {
         "tags": [
@@ -1374,6 +1426,170 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/ModelEnableRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelConnectionAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/connection/models": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Add Catalog Model",
+        "operationId": "add_catalog_model_api_v1_model_service_connection_models_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelAddRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelCatalogEntry"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/connection/models/remove": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Remove Catalog Model",
+        "operationId": "remove_catalog_model_api_v1_model_service_connection_models_remove_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelRemoveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelConnectionAck"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/models/test": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Test Catalog Model",
+        "operationId": "test_catalog_model_api_v1_model_service_models_test_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelTargetTestRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelTestReceipt"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/model-service/models/enabled": {
+      "post": {
+        "tags": [
+          "model-service"
+        ],
+        "summary": "Enable Catalog Model",
+        "operationId": "enable_catalog_model_api_v1_model_service_models_enabled_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModelTargetEnableRequest"
               }
             }
           },
@@ -1778,13 +1994,31 @@
         "properties": {
           "implementation": {
             "type": "string",
-            "const": "langgraph_governed_single_table_v1",
+            "enum": [
+              "langgraph_governed_single_table_v1",
+              "claude_agent_sdk_skills_v1"
+            ],
             "title": "Implementation",
             "default": "langgraph_governed_single_table_v1"
           },
           "available": {
             "type": "boolean",
             "title": "Available"
+          },
+          "engines": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Engines",
+            "default": [
+              "langgraph_governed_single_table_v1"
+            ]
+          },
+          "sdk_web_binding": {
+            "type": "boolean",
+            "title": "Sdk Web Binding",
+            "default": false
           },
           "query_protocol": {
             "type": "string",
@@ -1822,6 +2056,75 @@
         ],
         "title": "AgentCapabilities"
       },
+      "AgentClarificationTurn": {
+        "properties": {
+          "clarification_id": {
+            "type": "string",
+            "title": "Clarification Id"
+          },
+          "question": {
+            "type": "string",
+            "title": "Question"
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "clarification_id",
+          "question"
+        ],
+        "title": "AgentClarificationTurn"
+      },
+      "AgentClarify": {
+        "properties": {
+          "clarification_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Clarification Id"
+          },
+          "request_id": {
+            "type": "string",
+            "pattern": "^[a-f0-9-]{36}$",
+            "title": "Request Id"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "answer": {
+            "type": "string",
+            "maxLength": 1600,
+            "minLength": 1,
+            "title": "Answer"
+          },
+          "accept_model_egress": {
+            "type": "boolean",
+            "const": true,
+            "title": "Accept Model Egress"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "clarification_id",
+          "request_id",
+          "execution_generation",
+          "answer",
+          "accept_model_egress"
+        ],
+        "title": "AgentClarify"
+      },
       "AgentConfirm": {
         "properties": {
           "plan_hash": {
@@ -1847,6 +2150,54 @@
           "confirm_execute"
         ],
         "title": "AgentConfirm"
+      },
+      "AgentDialogueEntry": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 80,
+            "title": "Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "update",
+              "clarification",
+              "user"
+            ],
+            "title": "Kind"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 1600,
+            "title": "Text"
+          },
+          "tools": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "title": "Tools"
+          },
+          "origin": {
+            "type": "string",
+            "enum": [
+              "governed_event",
+              "user_answer"
+            ],
+            "title": "Origin",
+            "default": "governed_event"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "text"
+        ],
+        "title": "AgentDialogueEntry"
       },
       "AgentRequest": {
         "properties": {
@@ -1949,12 +2300,37 @@
             "type": "string",
             "title": "Semantic Version Id"
           },
+          "engine": {
+            "type": "string",
+            "enum": [
+              "langgraph_governed_single_table_v1",
+              "claude_agent_sdk_skills_v1"
+            ],
+            "title": "Engine",
+            "default": "langgraph_governed_single_table_v1"
+          },
           "events": {
             "items": {
               "type": "string"
             },
             "type": "array",
             "title": "Events"
+          },
+          "query_path": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "L1",
+                  "L2",
+                  "L3"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query Path"
           },
           "plan_hash": {
             "anyOf": [
@@ -1998,6 +2374,44 @@
               }
             ],
             "title": "Clarification"
+          },
+          "clarification_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clarification Id"
+          },
+          "clarification_turns": {
+            "items": {
+              "$ref": "#/components/schemas/AgentClarificationTurn"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "title": "Clarification Turns"
+          },
+          "answer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Answer"
+          },
+          "dialogue": {
+            "items": {
+              "$ref": "#/components/schemas/AgentDialogueEntry"
+            },
+            "type": "array",
+            "maxItems": 50,
+            "title": "Dialogue"
           },
           "error_code": {
             "anyOf": [
@@ -2100,6 +2514,53 @@
         ],
         "title": "AgentTasks"
       },
+      "AggregateFilter": {
+        "properties": {
+          "column": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Column"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "eq",
+              "in",
+              "gte",
+              "lt"
+            ],
+            "title": "Operator"
+          },
+          "values": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                }
+              ]
+            },
+            "type": "array",
+            "maxItems": 200,
+            "minItems": 1,
+            "title": "Values"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "column",
+          "operator",
+          "values"
+        ],
+        "title": "AggregateFilter"
+      },
       "AggregateRequest": {
         "properties": {
           "table": {
@@ -2142,6 +2603,14 @@
                 "type": "null"
               }
             ]
+          },
+          "filters": {
+            "items": {
+              "$ref": "#/components/schemas/AggregateFilter"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "title": "Filters"
           }
         },
         "additionalProperties": false,
@@ -2903,6 +3372,38 @@
         ],
         "title": "MetricTarget"
       },
+      "ModelAddRequest": {
+        "properties": {
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "model_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Model Id"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 120,
+            "title": "Label",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_generation",
+          "config_version",
+          "model_id"
+        ],
+        "title": "ModelAddRequest"
+      },
       "ModelCatalog": {
         "properties": {
           "models": {
@@ -2911,6 +3412,17 @@
             },
             "type": "array",
             "title": "Models"
+          },
+          "default_model_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Model Id"
           },
           "storage": {
             "type": "string",
@@ -2987,6 +3499,55 @@
             "const": false,
             "title": "Query Available",
             "default": false
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "default": ""
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "personal_api",
+              "ai_plan"
+            ],
+            "title": "Source",
+            "default": "personal_api"
+          },
+          "default": {
+            "type": "boolean",
+            "title": "Default",
+            "default": false
+          },
+          "context_window": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context Window"
+          },
+          "price_status": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "configured"
+            ],
+            "title": "Price Status",
+            "default": "unknown"
+          },
+          "price_note": {
+            "type": "string",
+            "title": "Price Note",
+            "default": "价格未知"
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "default": ""
           }
         },
         "type": "object",
@@ -3390,6 +3951,32 @@
         ],
         "title": "ModelReadiness"
       },
+      "ModelRemoveRequest": {
+        "properties": {
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "model_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Model Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_generation",
+          "config_version",
+          "model_id"
+        ],
+        "title": "ModelRemoveRequest"
+      },
       "ModelResponseDiagnostics": {
         "properties": {
           "reason": {
@@ -3518,6 +4105,74 @@
           "reason"
         ],
         "title": "ModelResponseDiagnostics"
+      },
+      "ModelTargetEnableRequest": {
+        "properties": {
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "model_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Model Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_generation",
+          "config_version",
+          "enabled",
+          "model_id"
+        ],
+        "title": "ModelTargetEnableRequest"
+      },
+      "ModelTargetTestRequest": {
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "title": "Request Id"
+          },
+          "execution_generation": {
+            "type": "string",
+            "title": "Execution Generation"
+          },
+          "config_version": {
+            "type": "string",
+            "title": "Config Version"
+          },
+          "accept_estimated_cost": {
+            "type": "boolean",
+            "const": true,
+            "title": "Accept Estimated Cost"
+          },
+          "model_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Model Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "request_id",
+          "execution_generation",
+          "config_version",
+          "accept_estimated_cost",
+          "model_id"
+        ],
+        "title": "ModelTargetTestRequest"
       },
       "ModelTestDiagnostics": {
         "properties": {

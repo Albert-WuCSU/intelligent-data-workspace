@@ -34,7 +34,7 @@ if __name__=='__main__':
                 sock=socket.socket();sock.bind(('127.0.0.1',0));socks.append(sock)
             mcp_url=f'http://127.0.0.1:{socks[0].getsockname()[1]}/mcp'
             port=socks[1].getsockname()[1]
-            api=create_app(Settings(mode='development',dev_identity=True,port=port,owned_warehouse=True))
+            api=create_app(Settings(mode='development',dev_identity=True,port=port,owned_warehouse=True,sdk_web_agent=False))
             from data_workspace.semantic_store import SemanticStore
             api.state.semantics=SemanticStore(root/'semantics')
             @api.post('/fixture-only/inject-personal-chat-transport')

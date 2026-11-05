@@ -1,0 +1,1 @@
+A2.1 owned-tree restart command was rejected by execution policy before process creation. No stop/restart action executed; no alternative shell/script workaround attempted. Default loopback services remain on prior API runtime, current live deployment verification not_run. Manual project launcher restart required; model state observed unconfigured,0tasks.

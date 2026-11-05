@@ -1,0 +1,154 @@
+{
+  "status": "clean_non_claude_compatibility_success",
+  "kind": "sdk_deepseek_compatibility_experiment_implementation",
+  "created_at": "2026-11-03T08:50:45.182595+00:00",
+  "decision_id": "D-M04B-SDK-REAL-072",
+  "selected_option": "D",
+  "official_support": "unsupported_non_claude_experiment",
+  "scope": {
+    "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+    "auth": "bearer",
+    "models": [
+      "deepseek-v4.1-flash",
+      "deepseek-v4-1-flash-261017"
+    ],
+    "question": "What is total amount?",
+    "fixture": "independent synthetic 150 rows; full-input SUM(amount)=11325; result rows not returned to model",
+    "confirmation": "auto_confirm_fixture simulation; not a real user confirmation",
+    "budget_per_run": {
+      "model_steps": 8,
+      "tool_calls": 10,
+      "metadata_calls": 3,
+      "total_tokens": 100000,
+      "wall_clock_seconds": 300,
+      "estimated_reserve_usd": 2.0
+    },
+    "campaign": "D053, no reset; two runs reserve at most 4 USD estimate"
+  },
+  "implementation": {
+    "changed_files": [
+      "services/api/src/data_workspace/sdk_agent_runner.py",
+      "services/api/tests/test_sdk_agent.py",
+      "scripts/run_sdk_deepseek_experiment.py",
+      "run-sdk-deepseek-experiment.cmd"
+    ],
+    "default_fixture_behavior_unchanged": true,
+    "real_gateway_mode": "real_gateway_experiment",
+    "real_gateway_mode_default": false,
+    "allowed_models_exact": [
+      "deepseek-v4.1-flash",
+      "deepseek-v4-1-flash-261017"
+    ],
+    "allowed_base_url_exact": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+    "alias_as_claude_rejected": true
+  },
+  "tests": [
+    {
+      "id": "sdk-targeted",
+      "command": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_agent.py -q",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "11 passed in 12.68s",
+      "environment": "local",
+      "integration": "real"
+    },
+    {
+      "id": "backend-full",
+      "command": "./services/api/.venv/Scripts/python.exe -m pytest services/api/tests -q",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "604 passed in 252.45s (0:04:12)",
+      "environment": "local",
+      "integration": "unit/real fixture"
+    },
+    {
+      "id": "experiment-dry-run",
+      "command": "python - (fixture build + SdkRunnerConfig.validate + redact)",
+      "exit_code": 0,
+      "status": "passed",
+      "result": "fixture exists; config validate OK; token redaction OK",
+      "environment": "local",
+      "integration": "unit"
+    }
+  ],
+  "not_rerun": [
+    "frontend 17",
+    "browser 44",
+    "types",
+    "build"
+  ],
+  "not_rerun_reason": "No UI or API contract change; S02 602/17/44 full-regression evidence remains the current UI baseline.",
+  "real_gateway": {
+    "status": "clean_non_claude_compatibility_success",
+    "reason": "deepseek-v4.1-flash completed the governed Skill/tool/confirm/execute/QA/publish loop in the synthetic fixture with Skill 1.0.1. This is not an official Claude model validation.",
+    "does_not_close_sdk_real_gateway": true,
+    "next": "Await user decision on whether to use DeepSeek as a labeled non-Claude experiment for Web integration, or keep the fixture-only finding and wait for an authorized Claude model."
+  },
+  "safety": {
+    "host_key_settings_hooks_read": false,
+    "chat_key_requested_or_received": false,
+    "real_gateway_called": false,
+    "real_model_called": false,
+    "model_cost_usd": 0,
+    "production_sql_executed": false,
+    "default_web_changed": false,
+    "commit_or_push": false,
+    "key_persistence": "memory only; hidden TTY input; passed only through child env"
+  },
+  "source_hashes": {
+    "services/api/src/data_workspace/sdk_agent_runner.py": "81d2f541a9a8b28f601a8ad7b7990c491600b725fa29e9e32be9a7cdb8a4191a",
+    "services/api/tests/test_sdk_agent.py": "07c08ddf7e72acb2bcf52e808aea261fafa20b577011a7ea964110fce56b7198",
+    "scripts/run_sdk_deepseek_experiment.py": "00ab5abe22252efc6df751bac9323c831d9a71422f9e4306b09162a2d69857dd",
+    "run-sdk-deepseek-experiment.cmd": "1f9e1d925a3ddccda1451555cab1af599bd4a08169a14efc9cc6f8c967ec2a1e",
+    "services/api/src/data_workspace/sdk_agent_backend.py": "2e34d5acc8273add4e023f04c304c934501875a78d48ecec322b00bfe3e6edc7",
+    "services/api/src/data_workspace/sdk_skills/data-query/SKILL.md": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580"
+  },
+  "not_run": [
+    "authorized Claude model",
+    "official Claude SDK gateway compatibility",
+    "default Web migration",
+    "production/business data",
+    "deployment"
+  ],
+  "first_run": {
+    "evidence_ref": "project-control/modules/M04/evidence/20261103T085755Z-sdk-deepseek-experiment/results.json",
+    "diagnosis_ref": "project-control/modules/M04/evidence/20261103T085755Z-sdk-deepseek-experiment/diagnosis-first-run.md",
+    "validity": "invalid_diagnostic_only",
+    "reason": "runtime_root inside project tree; SDK init listed non-product skills; CLI plugin store showed CLAUDE.md/AGENTS.md scanning; job_peak_processes 16/15 exceeded configured limit 10.",
+    "model_results": {
+      "deepseek-v4.1-flash": "SUCCEEDED in contaminated run; 8 steps/7 tools/1 metadata/24752 tokens; publication 11325 PASS; not accepted as clean evidence.",
+      "deepseek-v4-1-flash-261017": "FAILED SDK_PUBLICATION_MISSING; no failure diagnostics in that run; clean rerun pending."
+    }
+  },
+  "skill_fix": {
+    "version": "1.0.1",
+    "sha256": "bcc683ea15044db85741f5fb27f79fcf2ef88bb415877cf717a13033e37bc580",
+    "change": "After publish_result returns PUBLISHED, stop calling tools; do not call get_receipt again or re-execute. system prompt and publish_result instruction aligned."
+  },
+  "clean_rerun": {
+    "evidence_ref": "project-control/modules/M04/evidence/20261103T091204Z-sdk-deepseek-experiment/results.json",
+    "diagnosis_ref": "project-control/modules/M04/evidence/20261103T091204Z-sdk-deepseek-experiment/diagnosis-clean-rerun.md",
+    "clean_project_tree_isolation": true,
+    "job_peak_processes": "8/7 within limit 10",
+    "deepseek-v4.1-flash": "FAILED error_max_turns after 8 steps/8 tools; full governed chain including publish_result then extra get_receipt; 22702 tokens; no clean success yet.",
+    "deepseek-v4-1-flash-261017": "Gateway 400: This model is not currently supported; name is a returned version alias, not a valid request model."
+  },
+  "clean_success": {
+    "evidence_ref": "project-control/modules/M04/evidence/20261103T092622Z-sdk-deepseek-experiment/results.json",
+    "success_report_ref": "project-control/modules/M04/evidence/20261103T092622Z-sdk-deepseek-experiment/success-report.md",
+    "model": "deepseek-v4.1-flash",
+    "result": "SUCCEEDED",
+    "skill_version": "1.0.1",
+    "model_steps": 8,
+    "tool_calls": 7,
+    "metadata_calls": 1,
+    "total_tokens": 23080,
+    "publication": "11325 (150 input rows, quality PASS)",
+    "result_rows_returned_to_model": false,
+    "model_generated_numbers": false,
+    "job_peak_processes": 8,
+    "job_process_limit": 10,
+    "official_support": "unsupported_non_claude_experiment",
+    "does_not_close_sdk_real_gateway": true
+  }
+}

@@ -17,6 +17,10 @@ UNIT = Decimal('0.25')
 TARGET = Decimal('15')
 CEILING = Decimal('20')
 MAX_REQUESTS = 60
+# One SDK task reserves the approved 2 USD estimate as eight 0.25 USD units.
+# The ledger is an estimate campaign, not a provider bill; units are never refunded.
+SDK_TASK_RESERVE_UNITS = 8
+SDK_TASK_RESERVE_USD = '2.00'
 
 class EstimatedBudgetSummary(BaseModel):
     mode: str = 'estimated_soft_budget'
@@ -93,6 +97,57 @@ class EstimatedBudget:
                 raise PublicError(409,'MODEL_ESTIMATED_BUDGET_EXHAUSTED','估算预算已到15美元或60次请求，请复核实际费用后再决定；不会自动继续。')
             db.execute('INSERT INTO reservations VALUES (?,?,?,NULL,NULL)',(id,datetime.now(timezone.utc).isoformat(),'reserved_unknown'))
         return id
+
+    async def reserve_sdk_task(self):
+        """Reserve the approved 2 USD estimate before any SDK model call.
+
+        The fixed ledger unit is 0.25 USD; one SDK task therefore occupies eight
+        units. This keeps the existing ledger schema and the 15 USD / 60 unit
+        campaign unchanged. No refund on failure or cancellation.
+        """
+        ids = [str(uuid4()) for _ in range(SDK_TASK_RESERVE_UNITS)]
+        with self._database() as db:
+            count = db.execute('SELECT count(*) FROM reservations').fetchone()[0]
+            if count + len(ids) > MAX_REQUESTS:
+                raise PublicError(
+                    409,
+                    'MODEL_ESTIMATED_BUDGET_EXHAUSTED',
+                    '估算预算不足以为本任务预留2美元（15美元/60次单元）；不会自动继续，请复核实际费用。',
+                )
+            for reservation_id in ids:
+                db.execute(
+                    'INSERT INTO reservations VALUES (?,?,?,NULL,NULL)',
+                    (reservation_id, datetime.now(timezone.utc).isoformat(), 'reserved_unknown'),
+                )
+        return ids
+
+    def finish_sdk_task(self, ids, input_tokens=None, output_tokens=None):
+        """Close all units of one SDK task; only one unit records usage."""
+        if not isinstance(ids, (list, tuple)) or not 1 <= len(ids) <= SDK_TASK_RESERVE_UNITS:
+            raise ValueError('invalid sdk reservation set')
+        if len(set(ids)) != len(ids) or any(not isinstance(item, str) for item in ids):
+            raise ValueError('invalid sdk reservation set')
+        if input_tokens is not None and (type(input_tokens) is not int or input_tokens < 0):
+            input_tokens = None
+        if output_tokens is not None and (type(output_tokens) is not int or output_tokens < 0):
+            output_tokens = None
+        with self._database() as db:
+            for index, reservation_id in enumerate(ids):
+                if input_tokens is None or output_tokens is None:
+                    db.execute(
+                        "UPDATE reservations SET outcome='failed_or_unknown' WHERE id=? AND outcome='reserved_unknown'",
+                        (reservation_id,),
+                    )
+                elif index == 0:
+                    db.execute(
+                        "UPDATE reservations SET outcome='completed',input_tokens=?,output_tokens=? WHERE id=? AND outcome='reserved_unknown'",
+                        (input_tokens, output_tokens, reservation_id),
+                    )
+                else:
+                    db.execute(
+                        "UPDATE reservations SET outcome='completed' WHERE id=? AND outcome='reserved_unknown'",
+                        (reservation_id,),
+                    )
 
     def finish(self, id, generation=None):
         # Only safe usage/outcome is persisted; no output/prompt/model Key in DB.

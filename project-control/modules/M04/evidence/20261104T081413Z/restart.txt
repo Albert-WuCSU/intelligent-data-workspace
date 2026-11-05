@@ -1,0 +1,3 @@
+Initial guard refused runtime33624 without absolute workspace path; no stop performed. Rechecked venv bootstrap4956 exact project executable/script and ancestry of both listeners.
+Owned tree root=4956; count=11; current creation times checked before stopping.
+New launcher PID=27956, default dev startup; no Key prompt/model call.

@@ -1,0 +1,8 @@
+{
+  "user_reported_restart": true,
+  "default_http200": true,
+  "model_state": "unconfigured",
+  "task_count": 0,
+  "real_calls_this_turn": false,
+  "default_dialogue_in_tasks": "no task to inspect; new PID/start time verified separately, not real model execution"
+}

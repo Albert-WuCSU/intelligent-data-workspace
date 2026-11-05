@@ -61,6 +61,7 @@ export type ModelServiceStatus = components['schemas']['ModelReadiness'];
 export type ModelTestReceipt = components['schemas']['ModelTestReceipt'];
 
 export type ModelCatalog = components['schemas']['ModelCatalog'];
+export type ModelCatalogEntry = components['schemas']['ModelCatalogEntry'];
 
 export type StreamTestReceipt = components['schemas']['StreamTestReceipt'];
 

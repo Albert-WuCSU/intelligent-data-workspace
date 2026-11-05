@@ -1,0 +1,969 @@
+
+Running 44 tests using 1 worker
+
+  x   1 tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot (2.4s)
+  x   2 tests\connector.spec.mjs:15:1 › table navigation has no filters, shows all headers and mobile preview (2.4s)
+  x   3 tests\connector.spec.mjs:18:1 › unconfigured source and recoverable permission failure do not claim success (2.4s)
+  x   4 tests\remote-onboarding.spec.mjs:21:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials (2.4s)
+  x   5 tests\remote-onboarding.spec.mjs:36:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes (2.4s)
+  x   6 tests\remote-onboarding.spec.mjs:45:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect (2.5s)
+  x   7 tests\remote-onboarding.spec.mjs:59:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds (2.4s)
+  x   8 tests\remote-onboarding.spec.mjs:74:1 › storage inventory is read-only, protects disabled saved data and has no delete action (2.4s)
+  x   9 tests\remote-onboarding.spec.mjs:82:1 › real isolated cleanup receipt appears without enabling automatic cleanup (2.4s)
+  x  10 tests\remote-onboarding.spec.mjs:94:1 › expired draft refuses save, keeps fields and explicitly requires retest (2.4s)
+  x  11 tests\remote-onboarding.spec.mjs:108:1 › legacy API expiry metadata omission is not advertised as active expiry support (2.4s)
+  x  12 tests\remote-onboarding.spec.mjs:122:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected (7.6s)
+  x  13 tests\remote-onboarding.spec.mjs:133:1 › model readiness comes from actual isolated API with empty password and no automatic generation (2.4s)
+  x  14 tests\remote-onboarding.spec.mjs:146:1 › Responses candidate is disclosed from real isolated status without enabling generation (2.4s)
+  x  15 tests\remote-onboarding.spec.mjs:159:1 › estimated model test uses real product route and preserves same receipt without a second reservation (2.5s)
+  x  16 tests\remote-onboarding.spec.mjs:174:1 › explicit Claude preset shows bearer Haiku and safe 401 refusal without protocol fallback (2.5s)
+  x  17 tests\remote-onboarding.spec.mjs:189:1 › invalid model response shows safe categories without exposing partial output or retrying (2.5s)
+  x  18 tests\remote-onboarding.spec.mjs:206:1 › observed gateway alias preserves both model identities and never exposes reasoning (2.5s)
+  x  19 tests\remote-onboarding.spec.mjs:222:1 › generic personal BYOK config saves session key without restart or browser persistence and tests explicitly (2.5s)
+  x  20 tests\remote-onboarding.spec.mjs:258:1 › left settings keeps conversation clean, model IDs are free for every preset and secrets are cleared on leave (2.5s)
+  x  21 tests\remote-onboarding.spec.mjs:288:1 › settings refuses silent legacy model lock and prevents leaving an in-flight save (2.5s)
+  x  22 tests\remote-onboarding.spec.mjs:308:1 › real Messages stream snapshots complete or cancel without retrying, thought leakage or fake SQL (2.4s)
+  x  23 tests\remote-onboarding.spec.mjs:330:1 › stream auth refusal shows safe category and same receipt read never bills again (2.5s)
+  x  24 tests\remote-onboarding.spec.mjs:343:1 › semantic metadata draft conflict repair human publish immutable version and restart use real MCP without row query (2.5s)
+  x  25 tests\remote-onboarding.spec.mjs:368:1 › semantic JSON import remains draft, typed ratio aliases edit correctly and disabled source rejects resolve (2.5s)
+  x  26 tests\remote-onboarding.spec.mjs:385:1 › LangGraph workbench uses approved metric, human confirms full150rowMCP query and refresh never repeats (3.5s)
+  x  27 tests\remote-onboarding.spec.mjs:405:1 › Agent incomplete model output gives safe read-only diagnostic without SQL or extra retry (3.5s)
+  x  28 tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection (2.4s)
+  x  29 tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets (2.4s)
+  x  30 tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain (2.4s)
+  x  31 tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters (2.4s)
+  x  32 tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support (5.0s)
+  x  33 tests\workspace.spec.mjs:10:1 › business-first layout, real output cards and preserved API checks (2.4s)
+  x  34 tests\workspace.spec.mjs:57:1 › black and white themes persist through reload (2.4s)
+  x  35 tests\workspace.spec.mjs:66:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion (2.4s)
+  x  36 tests\workspace.spec.mjs:81:1 › API validation snapshots are not persisted as authentic results on reload (2.4s)
+  x  37 tests\workspace.spec.mjs:88:1 › mobile themes, history access and tools have no overflow (2.4s)
+  x  38 tests\workspace.spec.mjs:99:1 › unavailable API shows failure and disables input (2.4s)
+  x  39 tests\workspace.spec.mjs:105:1 › loading state is visible before API responds (2.4s)
+  x  40 tests\workspace.spec.mjs:110:1 › stored text is escaped rather than executed as HTML (2.4s)
+  x  41 tests\workspace.spec.mjs:118:1 › reference-style context panel shows only real state and model entry remains honest (2.4s)
+  x  42 tests\workspace.spec.mjs:135:1 › mobile context summary is opt-in and source/model controls do not overflow (2.4s)
+  x  43 tests\workspace.spec.mjs:147:1 › settings browser history and keyboard return preserve the unsent conversation (2.4s)
+  x  44 tests\workspace.spec.mjs:157:1 › knowledge missing backend route explains safe reload and never submits or alters saved sources (2.4s)
+
+
+  1) tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      1 | import {test,expect} from '../apps/web/node_modules/@playwright/test/index.mjs';
+      2 | const EVIDENCE=process.env.WORKSPACE_BROWSER_EVIDENCE||`project-control/modules/M02/evidence/manual-browser-${Date.now()}`;
+    > 3 | async function connect(page){await page.goto('http://127.0.0.1:5173');await expect(page.getByLabel('业务问题')).toBeEnabled();await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'连接器',exact:true}).click();await expect(page.getByRole('region',{name:'数据源连接管理'})).toBeVisible();}
+        |                                         ^
+      4 | async function openPreview(page){await page.getByRole('button',{name:'使用内置合成示例'}).click();await page.getByRole('button',{name:'验证数据源连接'}).click();await expect(page.getByText('已从真实 MCP 读取：',{exact:false})).toBeVisible();await page.getByRole('button',{name:'浏览数据表'}).click();await expect(page.getByRole('heading',{name:'数据表导航'})).toBeVisible();await expect(page.locator('input[type=date]')).toHaveCount(0);await expect(page.getByRole('checkbox')).toHaveCount(0);}
+      5 | test('real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot',async({page})=>{
+      6 |  await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture natural-language unavailable'}}));
+        at connect (D:\Users\luqianwu\Desktop\智能问数\tests\connector.spec.mjs:3:41)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\connector.spec.mjs:7:71
+
+    Error Context: tmp\m01-browser-results\connector-real-Web---API---5c760--no-persisted-data-snapshot\error-context.md
+
+  2) tests\connector.spec.mjs:15:1 › table navigation has no filters, shows all headers and mobile preview 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      14 | });
+      15 | test('table navigation has no filters, shows all headers and mobile preview',async({page})=>{
+    > 16 |  await page.setViewportSize({width:390,height:844});await page.goto('http://127.0.0.1:5173');await expect(page.getByLabel('业务问题')).toBeEnabled();await page.getByRole('button',{name:'打开侧栏'}).click();await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'连接器',exact:true}).click();await openPreview(page);await page.getByRole('button',{name:'查看前 100 行'}).click();await expect(page.getByRole('table').getByRole('columnheader')).toHaveCount(11);await expect(page.getByText('返回 100 行',{exact:false})).toBeVisible();expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);await page.screenshot({path:`${EVIDENCE}/table-navigation-mobile.png`,fullPage:true});
+         |                                                                ^
+      17 | });
+      18 | test('unconfigured source and recoverable permission failure do not claim success',async({page})=>{
+      19 |  await page.route('**/api/v1/connectors/owned-synthetic',route=>route.fulfill({json:{connector_id:'owned-synthetic',configured:false,verified:false,state:'NOT_CONFIGURED',source:'independently_generated_synthetic',sql_dialect:'duckdb',note:'尚未启用；按本地运行说明配置。'}}));await connect(page);await page.getByRole('button',{name:'使用内置合成示例'}).click();await expect(page.getByRole('button',{name:'验证数据源连接'})).toBeDisabled();await expect(page.getByText('管理员下一步：', {exact:false})).toBeVisible();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\connector.spec.mjs:16:64
+
+    Error Context: tmp\m01-browser-results\connector-table-navigation-cdbfe--headers-and-mobile-preview\error-context.md
+
+  3) tests\connector.spec.mjs:18:1 › unconfigured source and recoverable permission failure do not claim success 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      1 | import {test,expect} from '../apps/web/node_modules/@playwright/test/index.mjs';
+      2 | const EVIDENCE=process.env.WORKSPACE_BROWSER_EVIDENCE||`project-control/modules/M02/evidence/manual-browser-${Date.now()}`;
+    > 3 | async function connect(page){await page.goto('http://127.0.0.1:5173');await expect(page.getByLabel('业务问题')).toBeEnabled();await page.getByRole('navigation',{name:'主导航'}).getByRole('button',{name:'连接器',exact:true}).click();await expect(page.getByRole('region',{name:'数据源连接管理'})).toBeVisible();}
+        |                                         ^
+      4 | async function openPreview(page){await page.getByRole('button',{name:'使用内置合成示例'}).click();await page.getByRole('button',{name:'验证数据源连接'}).click();await expect(page.getByText('已从真实 MCP 读取：',{exact:false})).toBeVisible();await page.getByRole('button',{name:'浏览数据表'}).click();await expect(page.getByRole('heading',{name:'数据表导航'})).toBeVisible();await expect(page.locator('input[type=date]')).toHaveCount(0);await expect(page.getByRole('checkbox')).toHaveCount(0);}
+      5 | test('real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot',async({page})=>{
+      6 |  await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture natural-language unavailable'}}));
+        at connect (D:\Users\luqianwu\Desktop\智能问数\tests\connector.spec.mjs:3:41)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\connector.spec.mjs:19:269
+
+    Error Context: tmp\m01-browser-results\connector-unconfigured-sou-ecb7a-ailure-do-not-claim-success\error-context.md
+
+  4) tests\remote-onboarding.spec.mjs:21:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:22:2
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-aut-c227d-without-browser-credentials\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-aut-c227d-without-browser-credentials\error-context.md
+
+  5) tests\remote-onboarding.spec.mjs:36:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:37:53
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-PG-confi-8818f-s-and-visible-mobile-themes\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-PG-confi-8818f-s-and-visible-mobile-themes\error-context.md
+
+  6) tests\remote-onboarding.spec.mjs:45:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:46:2
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-cre-931a0-s-only-after-manual-connect\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-cre-931a0-s-only-after-manual-connect\error-context.md
+
+  7) tests\remote-onboarding.spec.mjs:59:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:60:2
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-std-d5c3d-ds-and-new-preview-succeeds\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-std-d5c3d-ds-and-new-preview-succeeds\error-context.md
+
+  8) tests\remote-onboarding.spec.mjs:74:1 › storage inventory is read-only, protects disabled saved data and has no delete action 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:75:53
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-storage--39fb3-ta-and-has-no-delete-action\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-storage--39fb3-ta-and-has-no-delete-action\error-context.md
+
+  9) tests\remote-onboarding.spec.mjs:82:1 › real isolated cleanup receipt appears without enabling automatic cleanup 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:83:2
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-iso-9164d--enabling-automatic-cleanup\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-iso-9164d--enabling-automatic-cleanup\error-context.md
+
+  10) tests\remote-onboarding.spec.mjs:94:1 › expired draft refuses save, keeps fields and explicitly requires retest 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:95:2
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-expired--5911b--explicitly-requires-retest\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-expired--5911b--explicitly-requires-retest\error-context.md
+
+  11) tests\remote-onboarding.spec.mjs:108:1 › legacy API expiry metadata omission is not advertised as active expiry support 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      17 |  // Routing only changes the network address; every response comes from real product API.
+      18 |  await page.route('**/api/v1/source-profiles**',async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+url.pathname+url.search});await route.fulfill({response});});
+    > 19 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('button',{name:'配置 MCP',exact:true})).toBeEnabled();
+         |             ^
+      20 | }
+      21 | test('real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials',async({page})=>{
+      22 |  await open(page);await page.getByRole('button',{name:'配置 MCP',exact:true}).click();
+        at open (D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:19:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:109:2
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-legacy-A-ebdf5-ed-as-active-expiry-support\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-legacy-A-ebdf5-ed-as-active-expiry-support\error-context.md
+
+  12) tests\remote-onboarding.spec.mjs:122:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      123 |  for(const pattern of ['**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const url=new URL(route.request().url());const response=await route.fetch({url:fixture.automatic_api_url+url.pathname+url.search});await route.fulfill({response});});
+      124 |  await expect.poll(async()=>{const value=await page.request.get(fixture.automatic_api_url+'/api/v1/source-profiles/retention');return (await value.json()).cycle_state;},{timeout:15000}).toBe('SUCCEEDED');
+    > 125 |  await page.goto('http://127.0.0.1:5173/#connectors');await page.getByRole('button',{name:'存储与清理',exact:true}).click();
+          |             ^
+      126 |  const panel=page.getByRole('region',{name:'存储与清理盘点'});await expect(panel).toContainText('自动回收已启用');await expect(panel).toContainText('最近自动周期：SUCCEEDED');await expect(panel).toContainText('间隔 600 秒');await expect(panel).toContainText('本周期回收 1 个目录');
+      127 |  const status=await page.request.get(fixture.automatic_api_url+'/api/v1/source-profiles/storage');const value=await status.json();expect(value.saved_profiles).toBe(1);expect(value.uploads.referenced_folders).toBe(1);expect(value.snapshots.referenced_folders).toBe(1);expect(value.retention.completed_cleanup_folders).toBe(1);
+      128 |  await expect(panel.getByRole('button',{name:/删除|立即清理/})).toHaveCount(0);await page.getByText(/历史本地来源.*保留已有配置/).click();await expect(page.getByRole('article').filter({hasText:'protected isolated source'})).toContainText('已禁用');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:125:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-def-1e291--saved-data-stays-protected\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-def-1e291--saved-data-stays-protected\error-context.md
+
+  13) tests\remote-onboarding.spec.mjs:133:1 › model readiness comes from actual isolated API with empty password and no automatic generation 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      133 | test('model readiness comes from actual isolated API with empty password and no automatic generation',async({page})=>{
+      134 |  await page.route('**/api/v1/model-service/status',async route=>{const response=await route.fetch({url:fixture.api_url+'/api/v1/model-service/status'});await route.fulfill({response});});
+    > 135 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByText('API 已连接',{exact:true})).toBeVisible();
+          |             ^
+      136 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();
+      137 |  const status=page.getByLabel('模型服务实际状态');await expect(status).toContainText('尚未配置');
+      138 |  await expect(status).toContainText('未验证');await expect(status).toContainText('在模型服务中填写专用Key并保存');await expect(page.getByLabel('设置页面')).toContainText('保存配置不会调用模型');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:135:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-model-re-13fc5-and-no-automatic-generation\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-model-re-13fc5-and-no-automatic-generation\error-context.md
+
+  14) tests\remote-onboarding.spec.mjs:146:1 › Responses candidate is disclosed from real isolated status without enabling generation 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      146 | test('Responses candidate is disclosed from real isolated status without enabling generation',async({page})=>{
+      147 |  await page.route('**/api/v1/model-service/status',async route=>{const response=await route.fetch({url:fixture.automatic_api_url+'/api/v1/model-service/status'});await route.fulfill({response});});
+    > 148 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      149 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();
+      150 |  const status=page.getByLabel('模型服务实际状态');await expect(status).toContainText('缺少专用Key');
+      151 |  await expect(status).toContainText('openai_responses');await expect(status).toContainText('gpt-6.1-sol[1M]');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:148:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-Response-3e469-without-enabling-generation\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-Response-3e469-without-enabling-generation\error-context.md
+
+  15) tests\remote-onboarding.spec.mjs:159:1 › estimated model test uses real product route and preserves same receipt without a second reservation 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      160 |  const enabled=await page.request.post(fixture.api_url+'/fixture-only/enable-model-budget-test',{headers:{'X-Workspace-Request':'1'}});expect(enabled.ok()).toBeTruthy();
+      161 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 162 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      163 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();const panel=page.getByLabel('模型服务实际状态');
+      164 |  await expect(panel).toContainText('目标 $15');const button=panel.getByRole('button',{name:'测试模型连接（估算 $0.25）',exact:true});
+      165 |  await expect(button).toBeDisabled();await panel.getByLabel('接受估算费用进行最小模型测试').check();await button.click();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:162:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-estimate-e0060-ithout-a-second-reservation\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-estimate-e0060-ithout-a-second-reservation\error-context.md
+
+  16) tests\remote-onboarding.spec.mjs:174:1 › explicit Claude preset shows bearer Haiku and safe 401 refusal without protocol fallback 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      175 |  const enabled=await page.request.post(fixture.api_url+'/fixture-only/enable-claude-test',{headers:{'X-Workspace-Request':'1'}});expect(enabled.ok()).toBeTruthy();
+      176 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 177 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      178 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();const panel=page.getByLabel('模型服务实际状态');
+      179 |  await expect(panel).toContainText('anthropic_messages');await expect(panel).toContainText('bearer');await expect(panel).toContainText('claude-haiku-4-5');
+      180 |  await panel.getByLabel('接受估算费用进行最小模型测试').check();await panel.getByRole('button',{name:'测试模型连接（估算 $0.25）',exact:true}).click();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:177:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-explicit-d5b73-l-without-protocol-fallback\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-explicit-d5b73-l-without-protocol-fallback\error-context.md
+
+  17) tests\remote-onboarding.spec.mjs:189:1 › invalid model response shows safe categories without exposing partial output or retrying 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      190 |  const enabled=await page.request.post(fixture.api_url+'/fixture-only/enable-model-diagnostics',{headers:{'X-Workspace-Request':'1'}});expect(enabled.ok()).toBeTruthy();
+      191 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 192 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      193 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();const panel=page.getByLabel('模型服务实际状态');
+      194 |  await panel.getByLabel('接受估算费用进行最小模型测试').check();await panel.getByRole('button',{name:'测试模型连接（估算 $0.25）',exact:true}).click();
+      195 |  const diagnostic=panel.getByLabel('模型响应安全诊断');await expect(diagnostic).toContainText('incomplete_output');await expect(diagnostic).toContainText('max_tokens');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:192:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-invalid--84f20--partial-output-or-retrying\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-invalid--84f20--partial-output-or-retrying\error-context.md
+
+  18) tests\remote-onboarding.spec.mjs:206:1 › observed gateway alias preserves both model identities and never exposes reasoning 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      207 |  const enabled=await page.request.post(fixture.api_url+'/fixture-only/enable-observed-model-alias',{headers:{'X-Workspace-Request':'1'}});expect(enabled.ok()).toBeTruthy();
+      208 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 209 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      210 |  await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();const panel=page.getByLabel('模型服务实际状态');
+      211 |  await panel.getByLabel('接受估算费用进行最小模型测试').check();await panel.getByRole('button',{name:'测试模型连接（估算 $0.25）',exact:true}).click();
+      212 |  const receipt=panel.getByLabel('模型测试回执');await expect(receipt).toContainText('最小模型生成已成功');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:209:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-observed-926bf-and-never-exposes-reasoning\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-observed-926bf-and-never-exposes-reasoning\error-context.md
+
+  19) tests\remote-onboarding.spec.mjs:222:1 › generic personal BYOK config saves session key without restart or browser persistence and tests explicitly 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      225 |  let rejectEnableOnce=true;
+      226 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const options={url:fixture.api_url+u.pathname+u.search};if(u.pathname.endsWith('/connection/enabled')&&rejectEnableOnce){rejectEnableOnce=false;options.postData=JSON.stringify({...route.request().postDataJSON(),config_version:'expired-fixture-version'});}const response=await route.fetch(options);await route.fulfill({response});});
+    > 227 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();await page.getByRole('button',{name:'模型服务',exact:true}).click();await expect(page.getByLabel('设置页面')).toBeVisible();await page.getByText('协议、能力与会话限制',{exact:true}).click();
+          |             ^
+      228 |  const baseline=(await (await page.request.get(fixture.api_url+'/api/v1/model-service/status')).json()).budget.reserved_requests;
+      229 |  const form=page.getByLabel('快捷模型接入');await form.getByLabel('模型服务厂商').selectOption('custom');
+      230 |  await form.getByLabel('模型 API 协议').selectOption('openai_chat_completions');await form.getByLabel('模型 API 地址').fill('https://api.example.com/v1/chat/completions');await form.getByLabel('模型名称',{exact:true}).fill('fixture-model');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:227:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-generic--3ff3c-stence-and-tests-explicitly\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-generic--3ff3c-stence-and-tests-explicitly\error-context.md
+
+  20) tests\remote-onboarding.spec.mjs:258:1 › left settings keeps conversation clean, model IDs are free for every preset and secrets are cleared on leave 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      259 |  const initialized=await page.request.post(fixture.api_url+'/fixture-only/enable-model-budget-test',{headers:{'X-Workspace-Request':'1'}});expect(initialized.ok()).toBeTruthy();
+      260 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 261 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      262 |  const summary=page.getByRole('complementary',{name:'会话摘要'});await expect(summary.locator('input[type=password]')).toHaveCount(0);await expect(summary).not.toContainText('模型服务与连接测试');
+      263 |  await page.getByLabel('业务问题').fill('保留这段未发送问题');
+      264 |  const sidebar=page.getByRole('complementary',{name:'工作空间侧栏'});await sidebar.getByRole('button',{name:'设置',exact:true}).click();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:261:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-left-set-1be2a-ecrets-are-cleared-on-leave\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-left-set-1be2a-ecrets-are-cleared-on-leave\error-context.md
+
+  21) tests\remote-onboarding.spec.mjs:288:1 › settings refuses silent legacy model lock and prevents leaving an in-flight save 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      294 |   if(u.pathname.endsWith('/status')&&legacy){const value=await response.json();delete value.model_name_editable;await route.fulfill({response,json:value});}else await route.fulfill({response});
+      295 |  });
+    > 296 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();await page.getByRole('button',{name:'设置',exact:true}).click();const form=page.getByLabel('快捷模型接入');
+          |             ^
+      297 |  await expect(form.getByLabel('模型服务厂商')).toBeEnabled();await form.getByLabel('模型服务厂商').selectOption('ai_plan');await form.getByLabel('模型名称',{exact:true}).fill('a-user-chosen-model');
+      298 |  await expect(form).toContainText('当前后端仍是固定模型版本');
+      299 |  await form.getByLabel('专用模型 API Key').fill('fixture-only-legacy-key');await form.getByLabel('同意模型测试外发和估算').check();await expect(form.getByRole('button',{name:'保存连接（不调用模型）'})).toBeDisabled();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:296:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-settings-257d0-s-leaving-an-in-flight-save\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-settings-257d0-s-leaving-an-in-flight-save\error-context.md
+
+  22) tests\remote-onboarding.spec.mjs:308:1 › real Messages stream snapshots complete or cancel without retrying, thought leakage or fake SQL 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#settings
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#settings", waiting until "load"
+
+
+      310 |  await enable('complete');
+      311 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 312 |  await page.goto('http://127.0.0.1:5173/#settings');const panel=page.getByLabel('真实流式连接测试');
+          |             ^
+      313 |  await expect(panel.getByRole('button',{name:'开始流式测试（估算 $0.25）',exact:true})).toBeDisabled();
+      314 |  const baseline=(await (await page.request.get(fixture.api_url+'/api/v1/model-service/status')).json()).budget.reserved_requests;
+      315 |  await panel.getByLabel('同意固定文本流式测试').check();await panel.getByRole('button',{name:'开始流式测试（估算 $0.25）',exact:true}).click();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:312:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-Mes-752bf-thought-leakage-or-fake-SQL\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-real-Mes-752bf-thought-leakage-or-fake-SQL\error-context.md
+
+  23) tests\remote-onboarding.spec.mjs:330:1 › stream auth refusal shows safe category and same receipt read never bills again 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#settings
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#settings", waiting until "load"
+
+
+      331 |  const enabled=await page.request.post(fixture.api_url+'/fixture-only/enable-stream-test',{headers:{'X-Workspace-Request':'1'},data:{mode:'denied'}});expect(enabled.ok()).toBeTruthy();
+      332 |  await page.route('**/api/v1/model-service/**',async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 333 |  await page.goto('http://127.0.0.1:5173/#settings');const panel=page.getByLabel('真实流式连接测试');
+          |             ^
+      334 |  const before=(await (await page.request.get(fixture.api_url+'/api/v1/model-service/status')).json()).budget.reserved_requests;
+      335 |  await panel.getByLabel('同意固定文本流式测试').check();await panel.getByRole('button',{name:'开始流式测试（估算 $0.25）',exact:true}).click();
+      336 |  await expect(panel.getByLabel('流式测试回执')).toContainText('MODEL_ACCESS_DENIED');await expect(panel.getByLabel('流式安全诊断')).toContainText('upstream_refused · HTTP 403');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:333:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-stream-a-a41e3-eipt-read-never-bills-again\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-stream-a-a41e3-eipt-read-never-bills-again\error-context.md
+
+  24) tests\remote-onboarding.spec.mjs:343:1 › semantic metadata draft conflict repair human publish immutable version and restart use real MCP without row query 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#knowledge
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#knowledge", waiting until "load"
+
+
+      345 |  for(const pattern of ['**/api/v1/semantics**','**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+      346 |  const rowCalls=[];page.on('request',r=>{if(r.url().includes('/preview')||r.url().includes('/execution-previews'))rowCalls.push(r.url());});
+    > 347 |  await page.goto('http://127.0.0.1:5173/#knowledge');const panel=page.getByLabel('企业语义知识库');await expect(panel).toBeVisible();
+          |             ^
+      348 |  await panel.getByLabel('语义数据源').selectOption(source);await panel.getByLabel('语义数据表').selectOption('t0');await expect(panel).toContainText('真实字段（仅元数据，未读取行）');await expect(panel).toContainText('created_at');
+      349 |  await panel.getByLabel('语义包名称').fill('测试订单口径');await panel.getByLabel('业务域代号').fill('fixture_orders');await panel.getByLabel('口径负责人说明').fill('开发走查，不是用户研究');await panel.getByLabel('粒度字段 id',{exact:true}).check();await panel.getByLabel('粒度含义').fill('每条记录为一个声明ID，唯一性未统计验证');
+      350 |  const first=panel.getByLabel('指标定义 1',{exact:true});await first.getByLabel('指标名称',{exact:true}).fill('记录数量');await first.getByLabel('指标代号',{exact:true}).fill('row_count');await first.getByLabel('指标单位',{exact:true}).fill('条');await first.getByLabel('指标别名',{exact:true}).fill('数量');
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:347:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-semantic-704dc--real-MCP-without-row-query\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-semantic-704dc--real-MCP-without-row-query\error-context.md
+
+  25) tests\remote-onboarding.spec.mjs:368:1 › semantic JSON import remains draft, typed ratio aliases edit correctly and disabled source rejects resolve 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#knowledge
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#knowledge", waiting until "load"
+
+
+      369 |  const r=await page.request.post(fixture.api_url+'/fixture-only/semantic-source',{headers:{'X-Workspace-Request':'1'},data:{}});expect(r.ok()).toBeTruthy();const source=(await r.json()).id;
+      370 |  for(const pattern of ['**/api/v1/semantics**','**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 371 |  await page.goto('http://127.0.0.1:5173/#knowledge');const panel=page.getByLabel('企业语义知识库');await panel.getByText('导入结构化定义（可选）',{exact:true}).click();
+          |             ^
+      372 |  const body={domain:'import_fixture',name:'导入成本占比',owner_note:'fixture local review',source_id:source,table_id:'t0',grain:['id'],grain_note:'declared order id, uniqueness not inferred',metrics:[{id:'cost_ratio',name:'成本占比',operator:'ratio',numerator:'cost',denominator:'amount',unit:'比率',additive:false}]};
+      373 |  const importFile=async value=>{await panel.getByLabel('导入语义定义JSON').setInputFiles({name:'definition.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(value))});};
+      374 |  await importFile({...body,api_key:'never-store-fixture-key'});await expect(panel.getByRole('alert')).toContainText('INVALID_REQUEST');expect((await (await page.request.get(fixture.api_url+'/api/v1/semantics')).json()).versions.some(v=>v.contract.domain==='import_fixture')).toBe(false);
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:371:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-semantic-6af0a-bled-source-rejects-resolve\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-semantic-6af0a-bled-source-rejects-resolve\error-context.md
+
+  26) tests\remote-onboarding.spec.mjs:385:1 › LangGraph workbench uses approved metric, human confirms full150rowMCP query and refresh never repeats 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      386 |  const r=await page.request.post(fixture.api_url+'/fixture-only/agent-ready',{headers:{'X-Workspace-Request':'1'},data:{}});expect(r.ok()).toBeTruthy();const ready=await r.json();
+      387 |  for(const pattern of ['**/api/v1/agent/**','**/api/v1/model-service/**','**/api/v1/semantics**','**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 388 |  await page.goto('http://127.0.0.1:5173/');await expect(page.getByLabel('业务问题')).toBeEnabled();
+          |             ^
+      389 |  await page.getByRole('button',{name:'新建会话',exact:false}).click();await expect(page.getByLabel('选择问数语义版本')).toBeVisible();
+      390 |  await page.getByLabel('业务问题').fill('尚未选定口径的问题');await page.getByRole('button',{name:'发送问题',exact:true}).click();await expect(page.getByText('请先选择已发布、启用的问数口径；可在知识库维护定义。未调用模型或执行SQL。',{exact:true})).toBeVisible();expect((await (await page.request.get(fixture.api_url+'/api/v1/agent/tasks')).json()).tasks).toHaveLength(0);
+      391 | await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_version_id);await page.getByLabel('切换模型').selectOption(ready.model_ref);
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:388:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-LangGrap-e17b7-y-and-refresh-never-repeats\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-LangGrap-e17b7-y-and-refresh-never-repeats\error-context.md
+
+  27) tests\remote-onboarding.spec.mjs:405:1 › Agent incomplete model output gives safe read-only diagnostic without SQL or extra retry 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      406 |  const r=await page.request.post(fixture.api_url+'/fixture-only/agent-ready',{headers:{'X-Workspace-Request':'1'},data:{mode:'incomplete'}});expect(r.ok()).toBeTruthy();const ready=await r.json();
+      407 |  for(const pattern of ['**/api/v1/agent/**','**/api/v1/model-service/**','**/api/v1/semantics**','**/api/v1/source-profiles**'])await page.route(pattern,async route=>{const u=new URL(route.request().url());const response=await route.fetch({url:fixture.api_url+u.pathname+u.search});await route.fulfill({response});});
+    > 408 |  await page.goto('http://127.0.0.1:5173/');await page.getByRole('button',{name:'新建会话',exact:false}).click();await page.getByLabel('选择问数语义版本').selectOption(ready.semantic_version_id);await page.getByLabel('切换模型').selectOption(ready.model_ref);await page.getByLabel(`包含来源 ${ready.source_name}`).check();await page.getByLabel('同意问数模型外发和估算').check();await page.getByLabel('业务问题').fill('请统计总金额');
+          |             ^
+      409 |  const before=(await (await page.request.get(fixture.api_url+'/api/v1/model-service/status')).json()).budget.reserved_requests;
+      410 |  await page.getByRole('button',{name:'发送问题',exact:true}).click();const card=page.getByLabel('受控问数任务');await expect(card).toContainText('MODEL_RESPONSE_INVALID');await expect(card.getByLabel('问数模型安全诊断')).toContainText('incomplete_output');await expect(card).not.toContainText('fake-fixture-agent-key');await expect(card.getByRole('button',{name:'确认执行查询'})).toHaveCount(0);
+      411 |  const tasks=(await (await page.request.get(fixture.api_url+'/api/v1/agent/tasks')).json()).tasks;const current=tasks.find(t=>t.model_ref===ready.model_ref&&t.phase==='FAILED');expect(current.sql_executed).toBe(false);expect(current.execution_receipt).toBeNull();expect(current.result).toBeNull();
+        at D:\Users\luqianwu\Desktop\智能问数\tests\remote-onboarding.spec.mjs:408:13
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-Agent-in-27e85--without-SQL-or-extra-retry\error-context.md
+
+    Error Context: tmp\m01-browser-results\remote-onboarding-Agent-in-27e85--without-SQL-or-extra-retry\error-context.md
+
+  28) tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#query
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#query", waiting until "load"
+
+
+      32 |   const response=await route.fetch({url:fixture.api_url+url.pathname+url.search,postData:bytes??undefined,headers});await route.fulfill({response});
+      33 |  });
+    > 34 |  await page.goto('http://127.0.0.1:5173/#query');await expect(page.getByLabel('业务问题')).toBeEnabled();
+         |             ^
+      35 | }
+      36 | async function addFile(page,name,buffer){
+      37 |  await page.getByLabel('聊天数据文件').setInputFiles({name,mimeType:name.endsWith('.xlsx')?'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':'text/csv',buffer});
+        at openChat (D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:34:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:45:2
+
+    Error Context: tmp\m01-browser-results\source-onboarding-chat-CSV-16bd9--creates-a-saved-connection\error-context.md
+
+    Error Context: tmp\m01-browser-results\source-onboarding-chat-CSV-16bd9--creates-a-saved-connection\error-context.md
+
+  29) tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#connectors
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#connectors", waiting until "load"
+
+
+      25 |   await route.fulfill({response});
+      26 |  });
+    > 27 |  await page.goto('http://127.0.0.1:5173/#connectors');await expect(page.getByRole('region',{name:'数据源连接管理'})).toBeVisible();await expect(page.getByRole('button',{name:'新增数据源'})).toBeEnabled();}
+         |             ^
+      28 | async function openChat(page){
+      29 |  await page.route('**/api/v1/source-profiles**',async route=>{
+      30 |   const request=route.request(),url=new URL(request.url()),bytes=request.postDataBuffer(),headers={...request.headers()};
+        at openSources (D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:27:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:57:2
+
+    Error Context: tmp\m01-browser-results\source-onboarding-connecto-818c4-led-imports-without-secrets\error-context.md
+
+    Error Context: tmp\m01-browser-results\source-onboarding-connecto-818c4-led-imports-without-secrets\error-context.md
+
+  30) tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#query
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#query", waiting until "load"
+
+
+      32 |   const response=await route.fetch({url:fixture.api_url+url.pathname+url.search,postData:bytes??undefined,headers});await route.fulfill({response});
+      33 |  });
+    > 34 |  await page.goto('http://127.0.0.1:5173/#query');await expect(page.getByLabel('业务问题')).toBeEnabled();
+         |             ^
+      35 | }
+      36 | async function addFile(page,name,buffer){
+      37 |  await page.getByLabel('聊天数据文件').setInputFiles({name,mimeType:name.endsWith('.xlsx')?'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':'text/csv',buffer});
+        at openChat (D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:34:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:65:53
+
+    Error Context: tmp\m01-browser-results\source-onboarding-mobile-c-d0842-rflow-visible-themes-remain\error-context.md
+
+    Error Context: tmp\m01-browser-results\source-onboarding-mobile-c-d0842-rflow-visible-themes-remain\error-context.md
+
+  31) tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#query
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#query", waiting until "load"
+
+
+      32 |   const response=await route.fetch({url:fixture.api_url+url.pathname+url.search,postData:bytes??undefined,headers});await route.fulfill({response});
+      33 |  });
+    > 34 |  await page.goto('http://127.0.0.1:5173/#query');await expect(page.getByLabel('业务问题')).toBeEnabled();
+         |             ^
+      35 | }
+      36 | async function addFile(page,name,buffer){
+      37 |  await page.getByLabel('聊天数据文件').setInputFiles({name,mimeType:name.endsWith('.xlsx')?'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':'text/csv',buffer});
+        at openChat (D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:34:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:72:2
+
+    Error Context: tmp\m01-browser-results\source-onboarding-chat-xls-22294-s-and-dates-with-no-filters\error-context.md
+
+    Error Context: tmp\m01-browser-results\source-onboarding-chat-xls-22294-s-and-dates-with-no-filters\error-context.md
+
+  32) tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/#query
+    Call log:
+      - navigating to "http://127.0.0.1:5173/#query", waiting until "load"
+
+
+      32 |   const response=await route.fetch({url:fixture.api_url+url.pathname+url.search,postData:bytes??undefined,headers});await route.fulfill({response});
+      33 |  });
+    > 34 |  await page.goto('http://127.0.0.1:5173/#query');await expect(page.getByLabel('业务问题')).toBeEnabled();
+         |             ^
+      35 | }
+      36 | async function addFile(page,name,buffer){
+      37 |  await page.getByLabel('聊天数据文件').setInputFiles({name,mimeType:name.endsWith('.xlsx')?'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet':'text/csv',buffer});
+        at openChat (D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:34:13)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\source-onboarding.spec.mjs:83:2
+
+    Error Context: tmp\m01-browser-results\source-onboarding-multiple-d6a1d-rate-from-real-JOIN-support\error-context.md
+
+    Error Context: tmp\m01-browser-results\source-onboarding-multiple-d6a1d-rate-from-real-JOIN-support\error-context.md
+
+  33) tests\workspace.spec.mjs:10:1 › business-first layout, real output cards and preserved API checks 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:11:71
+
+    Error Context: tmp\m01-browser-results\workspace-business-first-l-a1bbd-ds-and-preserved-API-checks\error-context.md
+
+  34) tests\workspace.spec.mjs:57:1 › black and white themes persist through reload ────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:58:8
+
+    Error Context: tmp\m01-browser-results\workspace-black-and-white-themes-persist-through-reload\error-context.md
+
+  35) tests\workspace.spec.mjs:66:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:67:8
+
+    Error Context: tmp\m01-browser-results\workspace-history-supports-d8edc-oad-and-deliberate-deletion\error-context.md
+
+  36) tests\workspace.spec.mjs:81:1 › API validation snapshots are not persisted as authentic results on reload 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:82:8
+
+    Error Context: tmp\m01-browser-results\workspace-API-validation-s-97e3f-authentic-results-on-reload\error-context.md
+
+  37) tests\workspace.spec.mjs:88:1 › mobile themes, history access and tools have no overflow ─────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:89:59
+
+    Error Context: tmp\m01-browser-results\workspace-mobile-themes-hi-5494a--and-tools-have-no-overflow\error-context.md
+
+  38) tests\workspace.spec.mjs:99:1 › unavailable API shows failure and disables input ─────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       98 |
+       99 | test('unavailable API shows failure and disables input',async({page})=>{
+    > 100 |  await page.route('**/api/v1/**',route=>route.abort('failed'));await page.goto(URL);
+          |                                                                           ^
+      101 |  await expect(page.getByRole('alert')).toContainText('无法连接后端服务');await expect(page.getByLabel('业务问题')).toBeDisabled();await expect(page.getByRole('button',{name:'开发工具'})).toBeDisabled();
+      102 |  await page.screenshot({path:`${EVIDENCE}/offline.png`,fullPage:true,animations:'disabled'});
+      103 | });
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:100:75
+
+    Error Context: tmp\m01-browser-results\workspace-unavailable-API-shows-failure-and-disables-input\error-context.md
+
+  39) tests\workspace.spec.mjs:105:1 › loading state is visible before API responds ────────────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+      104 |
+      105 | test('loading state is visible before API responds',async({page})=>{
+    > 106 |  await page.route('**/api/v1/session',async route=>{await new Promise(r=>setTimeout(r,700));await route.continue();});await page.goto(URL);
+          |                                                                                                                                  ^
+      107 |  await expect(page.getByText('正在连接 API',{exact:true})).toBeVisible();await expect(page.getByLabel('业务问题')).toBeDisabled();await expect(page.getByText('API 已连接',{exact:true})).toBeVisible();
+      108 | });
+      109 |
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:106:130
+
+    Error Context: tmp\m01-browser-results\workspace-loading-state-is-visible-before-API-responds\error-context.md
+
+  40) tests\workspace.spec.mjs:110:1 › stored text is escaped rather than executed as HTML ─────────
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:111:71
+
+    Error Context: tmp\m01-browser-results\workspace-stored-text-is-e-e81f4-ather-than-executed-as-HTML\error-context.md
+
+  41) tests\workspace.spec.mjs:118:1 › reference-style context panel shows only real state and model entry remains honest 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:119:8
+
+    Error Context: tmp\m01-browser-results\workspace-reference-style--fdcc0--model-entry-remains-honest\error-context.md
+
+  42) tests\workspace.spec.mjs:135:1 › mobile context summary is opt-in and source/model controls do not overflow 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:136:59
+
+    Error Context: tmp\m01-browser-results\workspace-mobile-context-s-42fd4-el-controls-do-not-overflow\error-context.md
+
+  43) tests\workspace.spec.mjs:147:1 › settings browser history and keyboard return preserve the unsent conversation 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:148:8
+
+    Error Context: tmp\m01-browser-results\workspace-settings-browser-d471d-rve-the-unsent-conversation\error-context.md
+
+  44) tests\workspace.spec.mjs:157:1 › knowledge missing backend route explains safe reload and never submits or alters saved sources 
+
+    Error: page.goto: net::ERR_CONNECTION_REFUSED at http://127.0.0.1:5173/
+    Call log:
+      - navigating to "http://127.0.0.1:5173/", waiting until "load"
+
+
+       5 | // Real catalog/enable/selection behavior is covered by the isolated product API in remote-onboarding.spec.mjs.
+       6 | test.beforeEach(async({page})=>{await page.route('**/api/v1/agent/capabilities',route=>route.fulfill({status:404,json:{code:'HTTP_ERROR',safe_message:'fixture intentionally unconfigured agent'}}));await page.route('**/api/v1/model-service/catalog',route=>route.fulfill({json:{models:[],storage:'backend_session_memory',query_available:false}}));});
+    >  7 | async function online(page){await page.goto(URL);await expect(page.getByLabel('业务问题')).toBeEnabled();}
+         |                                        ^
+       8 | async function openTools(page){await page.getByRole('button',{name:'开发工具',exact:true}).click();await expect(page.getByRole('dialog',{name:'接口与契约验证'})).toBeVisible();}
+       9 |
+      10 | test('business-first layout, real output cards and preserved API checks',async({page})=>{
+        at online (D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:7:40)
+        at D:\Users\luqianwu\Desktop\智能问数\tests\workspace.spec.mjs:160:8
+
+    Error Context: tmp\m01-browser-results\workspace-knowledge-missin-de8f6-its-or-alters-saved-sources\error-context.md
+
+  44 failed
+    tests\connector.spec.mjs:5:1 › real Web -> API -> MCP -> DuckDB preview, truthful pipeline and no persisted data snapshot 
+    tests\connector.spec.mjs:15:1 › table navigation has no filters, shows all headers and mobile preview 
+    tests\connector.spec.mjs:18:1 › unconfigured source and recoverable permission failure do not claim success 
+    tests\remote-onboarding.spec.mjs:21:1 › real authenticated HTTP MCP form, save, reload, dates and disable without browser credentials 
+    tests\remote-onboarding.spec.mjs:36:1 › PG configuration and unapproved HTTP fail actionably with preserved fields and visible mobile themes 
+    tests\remote-onboarding.spec.mjs:45:1 › real credential-loss failure preserves profile, exposes retest state and recovers only after manual connect 
+    tests\remote-onboarding.spec.mjs:59:1 › real stdio job loss expires old results, manual verify rebuilds and new preview succeeds 
+    tests\remote-onboarding.spec.mjs:74:1 › storage inventory is read-only, protects disabled saved data and has no delete action 
+    tests\remote-onboarding.spec.mjs:82:1 › real isolated cleanup receipt appears without enabling automatic cleanup 
+    tests\remote-onboarding.spec.mjs:94:1 › expired draft refuses save, keeps fields and explicitly requires retest 
+    tests\remote-onboarding.spec.mjs:108:1 › legacy API expiry metadata omission is not advertised as active expiry support 
+    tests\remote-onboarding.spec.mjs:122:1 › real default-cadence automatic worker cycle reports success while disabled saved data stays protected 
+    tests\remote-onboarding.spec.mjs:133:1 › model readiness comes from actual isolated API with empty password and no automatic generation 
+    tests\remote-onboarding.spec.mjs:146:1 › Responses candidate is disclosed from real isolated status without enabling generation 
+    tests\remote-onboarding.spec.mjs:159:1 › estimated model test uses real product route and preserves same receipt without a second reservation 
+    tests\remote-onboarding.spec.mjs:174:1 › explicit Claude preset shows bearer Haiku and safe 401 refusal without protocol fallback 
+    tests\remote-onboarding.spec.mjs:189:1 › invalid model response shows safe categories without exposing partial output or retrying 
+    tests\remote-onboarding.spec.mjs:206:1 › observed gateway alias preserves both model identities and never exposes reasoning 
+    tests\remote-onboarding.spec.mjs:222:1 › generic personal BYOK config saves session key without restart or browser persistence and tests explicitly 
+    tests\remote-onboarding.spec.mjs:258:1 › left settings keeps conversation clean, model IDs are free for every preset and secrets are cleared on leave 
+    tests\remote-onboarding.spec.mjs:288:1 › settings refuses silent legacy model lock and prevents leaving an in-flight save 
+    tests\remote-onboarding.spec.mjs:308:1 › real Messages stream snapshots complete or cancel without retrying, thought leakage or fake SQL 
+    tests\remote-onboarding.spec.mjs:330:1 › stream auth refusal shows safe category and same receipt read never bills again 
+    tests\remote-onboarding.spec.mjs:343:1 › semantic metadata draft conflict repair human publish immutable version and restart use real MCP without row query 
+    tests\remote-onboarding.spec.mjs:368:1 › semantic JSON import remains draft, typed ratio aliases edit correctly and disabled source rejects resolve 
+    tests\remote-onboarding.spec.mjs:385:1 › LangGraph workbench uses approved metric, human confirms full150rowMCP query and refresh never repeats 
+    tests\remote-onboarding.spec.mjs:405:1 › Agent incomplete model output gives safe read-only diagnostic without SQL or extra retry 
+    tests\source-onboarding.spec.mjs:44:1 › chat CSV import uses actual MCP, preserves dates100 rows and never creates a saved connection 
+    tests\source-onboarding.spec.mjs:56:1 › connector only offers remote configuration and preserves failed imports without secrets 
+    tests\source-onboarding.spec.mjs:64:1 › mobile chat upload confirmation and right context do not overflow; visible themes remain 
+    tests\source-onboarding.spec.mjs:71:1 › chat xlsx real multi-sheet navigation preserves original headers and dates with no filters 
+    tests\source-onboarding.spec.mjs:77:1 › multiple conversation attachments and right multiple sources remain separate from real JOIN support 
+    tests\workspace.spec.mjs:10:1 › business-first layout, real output cards and preserved API checks 
+    tests\workspace.spec.mjs:57:1 › black and white themes persist through reload ──────────────────
+    tests\workspace.spec.mjs:66:1 › history supports multi-turn, new conversations, switching, reload and deliberate deletion 
+    tests\workspace.spec.mjs:81:1 › API validation snapshots are not persisted as authentic results on reload 
+    tests\workspace.spec.mjs:88:1 › mobile themes, history access and tools have no overflow ───────
+    tests\workspace.spec.mjs:99:1 › unavailable API shows failure and disables input ───────────────
+    tests\workspace.spec.mjs:105:1 › loading state is visible before API responds ──────────────────
+    tests\workspace.spec.mjs:110:1 › stored text is escaped rather than executed as HTML ───────────
+    tests\workspace.spec.mjs:118:1 › reference-style context panel shows only real state and model entry remains honest 
+    tests\workspace.spec.mjs:135:1 › mobile context summary is opt-in and source/model controls do not overflow 
+    tests\workspace.spec.mjs:147:1 › settings browser history and keyboard return preserve the unsent conversation 
+    tests\workspace.spec.mjs:157:1 › knowledge missing backend route explains safe reload and never submits or alters saved sources 

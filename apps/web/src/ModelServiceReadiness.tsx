@@ -1,12 +1,13 @@
 import ModelStreamTest from './ModelStreamTest';
 import ModelConnectionForm from './ModelConnectionForm';
+import ModelCatalogManager from './ModelCatalogManager';
 import {useEffect,useRef,useState} from 'react';
 import {ApiError,request} from './api';
 import type {ModelServiceStatus,ModelTestReceipt} from './api';
 export default function ModelServiceReadiness({onBusy}:{onBusy:(busy:boolean)=>void}){
- const [status,setStatus]=useState<ModelServiceStatus|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[testing,setTesting]=useState(false),[saving,setSaving]=useState(false),[changing,setChanging]=useState(false),[streaming,setStreaming]=useState(false),[accepted,setAccepted]=useState(false),[receipt,setReceipt]=useState<ModelTestReceipt|null>(null);
+ const [status,setStatus]=useState<ModelServiceStatus|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(false),[testing,setTesting]=useState(false),[saving,setSaving]=useState(false),[changing,setChanging]=useState(false),[streaming,setStreaming]=useState(false),[catalogBusy,setCatalogBusy]=useState(false),[accepted,setAccepted]=useState(false),[receipt,setReceipt]=useState<ModelTestReceipt|null>(null);
  const pending=useRef<{request_id:string;execution_generation:string;config_version:string;accept_estimated_cost:true}|null>(null);
- useEffect(()=>{onBusy(testing||saving||changing||streaming);},[testing,saving,changing,streaming,onBusy]);
+ useEffect(()=>{onBusy(testing||saving||changing||streaming||catalogBusy);},[testing,saving,changing,streaming,catalogBusy,onBusy]);
  async function refresh(){setBusy(true);setError('');try{const next=await request<ModelServiceStatus>('/api/v1/model-service/status');if(pending.current&&pending.current.execution_generation!==next.execution_generation){pending.current=null;setReceipt(null);setAccepted(false);}setStatus(next);window.dispatchEvent(new Event('model-catalog-changed'));}catch{setStatus(null);setError('模型状态读取失败，请检查本机 API 后刷新；未自动调用模型。');}finally{setBusy(false);}}
  async function test(){if(!status?.test_available||!accepted||testing||streaming)return;setTesting(true);setError('');let failure='';if(!pending.current)pending.current={request_id:crypto.randomUUID(),execution_generation:status.execution_generation,config_version:status.config_version,accept_estimated_cost:true};try{setReceipt(await request<ModelTestReceipt>('/api/v1/model-service/test',pending.current,25000));}catch{failure='测试通信失败，费用或结果可能已产生；保留同一请求编号，不自动重试。';}finally{await refresh();if(failure)setError(failure);setTesting(false);}}
  useEffect(()=>{void refresh();},[]);
@@ -32,5 +33,6 @@ export default function ModelServiceReadiness({onBusy}:{onBusy:(busy:boolean)=>v
    <details className="settings-details"><summary>测试追踪</summary><code>{receipt.request_id}</code><p><a href={`/api/v1/model-service/tests/${receipt.request_id}/diagnostics`} target="_blank" rel="noreferrer">查看只读安全诊断（不再次调用）</a></p></details>
   </section>}
   </div>
+  <div className="model-catalog-full"><ModelCatalogManager status={status} blocked={busy||testing||saving||changing||streaming} onBusy={setCatalogBusy} onChanged={refresh}/></div>
  </div>;
 }

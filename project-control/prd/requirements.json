@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-03",
+  "updated_on": "2026-11-04",
   "coverage_basis": "当前聊天、人类决策ledger、PRODUCT_UX_PRINCIPLES、现存产品方案和交接；不能声称恢复了项目外不可访问聊天。",
   "requirements": [
     {
@@ -1145,6 +1145,89 @@
         "D-MVP-FAST-034"
       ],
       "current_evidence_boundary": "聊天临时附件/多来源实施中，真实模型生成与JOINnot_run，不把界面当执行证据。"
+    },
+    {
+      "id": "R-U30",
+      "title": "多供应商与多模型工作台选择",
+      "requirement": "产品兼容用户自己的个人API或企业AI Plan网关；取数工作台提供类似Claude Code的模型选择器；同一授权连接可维护多个模型；只展示服务端已测试并启用的模型；MVP开发/测试默认deepseek-v4.1-flash，但不写死为唯一模型。",
+      "modules": [
+        "M04-A",
+        "M04"
+      ],
+      "source": "D-M04B-MODEL-PICKER-075（用户2026-11-03明确要求）",
+      "origin": "user_request",
+      "approval_boundary": "记录产品能力/交互要求与研发分期方案；具体实现、真实模型/网关/供应商、价格/上下文元数据、数据外发、生产与部署仍需模块PLAN、实测与用户授权。不得复制截图中的第三方模型/价格/Effort/Ultracode或宿主Token。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/prd/M04-A.md",
+        "project-control/prd/M04-B.md",
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [
+        "D-M04B-MODEL-PICKER-075"
+      ],
+      "current_evidence_boundary": "M04-A已有单模型连接/测试/启用与简单选择入口；多模型目录、富选择器与SDK/Agent绑定待实现；DeepSeek仅在合成fixture验证，非官方Claude支持，不冒充可用模型目录。"
+    },
+    {
+      "id": "R-A07",
+      "title": "模型目录与选择治理",
+      "requirement": "模型目录由服务端维护：同一连接可注册多个model ID；每个模型独立测试/验证/启用；catalog条目绑定execution generation、config version、model ID与验证状态；模型变化使旧计划/确认/回执失效；不自动枚举或猜测网关模型，不显示未验证价格/上下文；Key只在后端内存，不复制宿主认证。",
+      "modules": [
+        "M04-A",
+        "M04"
+      ],
+      "source": "D-M04B-MODEL-PICKER-075 + 既有M04-A安全合同",
+      "origin": "approved_direction",
+      "approval_boundary": "服务端目录/选择治理方向；自动发现接口、价格来源、上下文窗口、生产权限和真实SDK绑定仍需PLAN/实测/授权。",
+      "source_refs": [
+        "project-control/prd/M04-A.md",
+        "project-control/prd/M04-B.md",
+        "services/api/src/data_workspace/model_routes.py",
+        "skills/project-pdca/references/claude-sdk-routing.md"
+      ],
+      "decision_ids": [
+        "D-M04B-MODEL-PICKER-075"
+      ],
+      "current_evidence_boundary": "单模型catalog/resolve已有实现；多模型registry、独立测试/启用与Agent/SDK按catalog引用解析未实现；自动发现not_run。"
+    },
+    {
+      "id": "R-P26",
+      "title": "模型选择器UX",
+      "requirement": "模型选择器支持搜索/按来源分组，显示模型ID、来源、可用/验证状态；价格与上下文仅在真实来源存在时显示；键盘、窄屏、黑白主题可用；选择本身不调用模型；未验证、预算耗尽、失效与无模型有可行动状态。",
+      "modules": [
+        "M04-A",
+        "M04"
+      ],
+      "source": "D-M04B-MODEL-PICKER-075（用户参照Claude Code选择器）",
+      "origin": "user_request",
+      "approval_boundary": "交互/信息层级要求；不复制Claude Code截图中的模型、价格、Effort或Ultracode；具体视觉与实现由研发在模块PLAN决定。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/PRODUCT_UX_PRINCIPLES.md"
+      ],
+      "decision_ids": [
+        "D-M04B-MODEL-PICKER-075"
+      ],
+      "current_evidence_boundary": "当前为简单select单模型；富选择器、多模型搜索/分组/状态未实现；用户路径未验收。"
+    },
+    {
+      "id": "R-U31",
+      "title": "常规Agent式连续执行对话与正文报告",
+      "requirement": "收到问题后按实际事件连续说明处理/发现/限制，工具标签与澄清问答穿插，最终正文报告与内嵌表格为主，卡片仅辅助；不把短句加大卡片算完成。",
+      "modules": [
+        "M04"
+      ],
+      "source": "D-M04B-CONVERSATIONAL-UX-078",
+      "origin": "user_decision",
+      "approval_boundary": "交互与PRD细化及低风险实现；不新增模型费用/权限/公司数据/宿主工具/结果外发/commit/push授权。",
+      "source_refs": [
+        "project-control/prd/USER_REQUESTS.md",
+        "project-control/prd/M04-B.md"
+      ],
+      "decision_ids": [
+        "D-M04B-CONVERSATIONAL-UX-078"
+      ],
+      "current_evidence_boundary": "A2.1当前本机631后端/23前端/45浏览器/types/build/pip与源稳定通过（092140Z）；过程为公开治理事实而非模型thinking。默认API重启被环境拦截、真实体验/模型中间消息流/生产尚未验证，M04未验收。"
     }
   ],
   "sources": {

@@ -1,0 +1,21 @@
+{
+  "kind": "s02_document_and_workflow_validation",
+  "audited_revision": 170,
+  "reviewer": "self_review",
+  "status": "passed",
+  "results": [
+    {
+      "command": "./services/api/.venv/Scripts/python.exe project-control/prd/validate.py --root . --installed-skill D:/Users/luqianwu/.codex/skills/project-pdca",
+      "exit_code": 0,
+      "result": "13 module PRDs, 60 requirements, M04 identity/dependency and installed Skill byte consistency passed",
+      "installed_skill_synced": true
+    },
+    {
+      "command": "./services/api/.venv/Scripts/python.exe -m pytest skills/project-pdca/scripts/test_progress.py project-control/prd/test_validate.py -q",
+      "exit_code": 0,
+      "result": "31 passed, 9 subtests passed"
+    }
+  ],
+  "scope": "S02 planning/PRD/roadmap and workflow guards only; separate actual SDK fixture and full regression evidence applies.",
+  "not_run": ["real AIPlan/Claude gateway", "production and MVP acceptance"]
+}

@@ -29,9 +29,9 @@ class AggregateMCPClient:
             raise PublicError(403, "CONNECTOR_DENIED", "自有测试仓仅允许已配置的本机开发身份。")
 
     @asynccontextmanager
-    async def connected(self):
+    async def connected(self, inherit_job=False):
         self._authorize()
-        async with governed_stdio(self.directory,self.database,entry=Path(__file__).with_name('aggregate_entry.py')) as (reader,writer,state):
+        async with governed_stdio(self.directory,self.database,entry=Path(__file__).with_name('aggregate_entry.py'),inherit_job=inherit_job) as (reader,writer,state):
             self.transport=state
             async with ClientSession(reader, writer, read_timeout_seconds=timedelta(seconds=15)) as session:
                 self.session = session

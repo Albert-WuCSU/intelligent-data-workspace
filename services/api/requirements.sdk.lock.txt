@@ -1,0 +1,5 @@
+# Incremental SDK-only lock for the existing project environment (D071).
+# Install offline with --no-deps after verifying all base dependencies and the wheel SHA256 below.
+# Bundled Claude Code CLI: 2.1.317; binary SHA256: 26b01ec22df2c17ac7f5703aa547d36706e8d58412136ced0344a8ced4d86038
+# SDK use is governed by Anthropic Commercial Terms; component licenses are reviewed in M04 S01 evidence.
+claude-agent-sdk==0.2.177 --hash=sha256:7997db488354a539c08b5b6b16717d99ae67903ae7351da43d51b68b80097fad

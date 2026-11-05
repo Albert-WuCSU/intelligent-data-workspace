@@ -1,0 +1,19 @@
+{
+  "process": {
+    "returncode": 0,
+    "timed_out": false,
+    "job_cpu_100ns": 56718750,
+    "job_process_limit": 10,
+    "job_active_processes": 1,
+    "job_peak_processes": 8,
+    "job_peak_memory_bytes": 554364928,
+    "process_peak_memory_bytes": 453046272,
+    "job_memory_limit": 2147483648,
+    "process_memory_limit": 1073741824,
+    "wall_seconds": 300
+  },
+  "stdout": "{\"status\": \"SUCCEEDED\", \"output\": \"D:\\\\Users\\\\luqianwu\\\\AppData\\\\Local\\\\Temp\\\\pytest-of-luqianwu\\\\pytest-167\\\\test_full_sdk_cli_loop_with_fa0\\\\sdk-output.json\"}\n",
+  "stderr": "D:\\Users\\luqianwu\\Desktop\\��������\\services\\api\\.venv\\Lib\\site-packages\\claude_agent_sdk\\types.py:2314: CanUseToolShadowedWarning: can_use_tool will not be invoked for: mcp__governed__search_semantics, mcp__governed__resolve_route, mcp__governed__read_authorized_metadata, mcp__governed__propose_metric_query, mcp__governed__propose_sql_query, mcp__governed__request_confirmation, mcp__governed__get_receipt. An allowed_tools entry that allows a whole tool auto-approves it before the callback is consulted. To gate every tool call, use a PreToolUse hook; or narrow the entry so calls fall through to can_use_tool. Allow rules from settings files can also shadow the callback but are not visible here.\n  _warn_if_can_use_tool_shadowed(options)\n",
+  "gateway_errors": [],
+  "gateway_steps": 8
+}

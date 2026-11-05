@@ -1,0 +1,11 @@
+{
+  "database": "D:\\Users\\luqianwu\\Desktop\\智能问数\\project-control\\modules\\M04\\evidence\\20261103T091204Z-sdk-deepseek-experiment\\fixture\\connections\\snapshots\\c1b96416-90ea-4974-be4b-03487f49dbb1\\source.duckdb",
+  "question": "What is total amount?",
+  "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+  "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-1-bvr17qu7",
+  "task_id": "d161f11f-f5ad-4d8e-8ec9-5d9b66982581",
+  "model": "deepseek-v4.1-flash",
+  "mode": "real_gateway_experiment",
+  "auto_confirm_fixture": true,
+  "wall_clock_seconds": 300
+}

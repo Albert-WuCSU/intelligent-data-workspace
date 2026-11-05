@@ -1,0 +1,263 @@
+{
+  "decision_id": "D-M04B-SDK-REAL-072",
+  "selected_option": "D",
+  "kind": "non_claude_sdk_compatibility_experiment",
+  "created_at": "2026-11-03T09:12:23.210890+00:00",
+  "official_support": "unsupported_non_claude_experiment",
+  "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+  "question": "What is total amount?",
+  "models": [
+    "deepseek-v4.1-flash",
+    "deepseek-v4-1-flash-261017"
+  ],
+  "auto_confirm_fixture": true,
+  "fixture": "D:\\Users\\luqianwu\\Desktop\\智能问数\\project-control\\modules\\M04\\evidence\\20261103T091204Z-sdk-deepseek-experiment\\fixture\\connections\\snapshots\\c1b96416-90ea-4974-be4b-03487f49dbb1\\source.duckdb",
+  "budget_contract": {
+    "model_steps": 8,
+    "tool_calls": 10,
+    "metadata_calls": 3,
+    "total_tokens": 100000,
+    "wall_clock_seconds": 300,
+    "estimated_reserve_usd": 2.0,
+    "campaign": "D053, no reset; two runs reserve at most 4 USD estimate"
+  },
+  "results": [
+    {
+      "model": "deepseek-v4.1-flash",
+      "task_id": "d161f11f-f5ad-4d8e-8ec9-5d9b66982581",
+      "config": {
+        "database": "D:\\Users\\luqianwu\\Desktop\\智能问数\\project-control\\modules\\M04\\evidence\\20261103T091204Z-sdk-deepseek-experiment\\fixture\\connections\\snapshots\\c1b96416-90ea-4974-be4b-03487f49dbb1\\source.duckdb",
+        "question": "What is total amount?",
+        "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+        "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-1-bvr17qu7",
+        "task_id": "d161f11f-f5ad-4d8e-8ec9-5d9b66982581",
+        "model": "deepseek-v4.1-flash",
+        "mode": "real_gateway_experiment",
+        "auto_confirm_fixture": true,
+        "wall_clock_seconds": 300
+      },
+      "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-1-bvr17qu7",
+      "runtime_cleaned": true,
+      "process": {
+        "returncode": 2,
+        "timed_out": false,
+        "job_cpu_100ns": 66250000,
+        "job_process_limit": 10,
+        "job_active_processes": 1,
+        "job_peak_processes": 8,
+        "job_peak_memory_bytes": 574930944,
+        "process_peak_memory_bytes": 439689216,
+        "job_memory_limit": 2147483648,
+        "process_memory_limit": 1073741824,
+        "wall_seconds": 300
+      },
+      "child_output": {
+        "status": "FAILED",
+        "error": "SDK_RUN_FAILED",
+        "message": "SDK工具循环未成功完成，不发布结果。"
+      },
+      "failure_diagnostics": {
+        "status": "FAILED",
+        "error": "SDK_RUN_FAILED",
+        "message": "SDK工具循环未成功完成，不发布结果。",
+        "events": [
+          {
+            "type": "SDK_INIT",
+            "skills": [
+              "deep-research",
+              "governed:data-query",
+              "dataviz",
+              "update-config",
+              "verify",
+              "debug",
+              "code-review",
+              "simplify",
+              "batch",
+              "fewer-permission-prompts",
+              "doctor",
+              "loop",
+              "claude-api",
+              "workflow-authoring",
+              "run",
+              "run-skill-generator",
+              "plugin-authoring"
+            ]
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "Skill"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__search_semantics"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__propose_metric_query"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__request_confirmation"
+          },
+          {
+            "type": "AWAITING_CONFIRMATION",
+            "confirmation_id": "confirm-43ea522a3be840996e7f917824aade7b"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__execute_approved_query"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__execute_approved_query"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__publish_result"
+          },
+          {
+            "type": "TOOL_USE",
+            "name": "mcp__governed__get_receipt"
+          }
+        ],
+        "model_text": "I'll start by loading the governed data-query skill to follow the correct procedure.",
+        "usage": {
+          "deepseek-v4.1-flash": {
+            "inputTokens": 4022,
+            "outputTokens": 1144,
+            "cacheReadInputTokens": 17536,
+            "cacheCreationInputTokens": 0,
+            "webSearchRequests": 0,
+            "costUSD": 0.0424752,
+            "contextWindow": 200000,
+            "maxOutputTokens": 32000,
+            "thinkingTokens": 0,
+            "cacheCreationEphemeral5mInputTokens": 0,
+            "cacheCreationEphemeral1hInputTokens": 0,
+            "canonicalModel": "deepseek-v4.1-flash",
+            "provider": "firstParty",
+            "costBasis": "unknown"
+          }
+        },
+        "total_cost_usd_client_estimate": 0.0424752,
+        "budget": {
+          "model_steps": 8,
+          "tool_calls": 8,
+          "metadata_calls": 1,
+          "total_tokens": 22702,
+          "estimated_reserve_usd": 2.0,
+          "max_model_steps": 8,
+          "max_tool_calls": 10,
+          "max_total_tokens": 100000,
+          "wall_clock_seconds": 300
+        },
+        "stream_events": 634,
+        "result_status": "error_max_turns"
+      },
+      "stdout": "{\"status\": \"FAILED\", \"error\": \"SDK_RUN_FAILED\", \"message\": \"SDK����ѭ��δ�ɹ���ɣ������������\"}\n",
+      "stderr": "D:\\Users\\luqianwu\\Desktop\\��������\\services\\api\\.venv\\Lib\\site-packages\\claude_agent_sdk\\types.py:2314: CanUseToolShadowedWarning: can_use_tool will not be invoked for: mcp__governed__search_semantics, mcp__governed__resolve_route, mcp__governed__read_authorized_metadata, mcp__governed__propose_metric_query, mcp__governed__propose_sql_query, mcp__governed__request_confirmation, mcp__governed__get_receipt. An allowed_tools entry that allows a whole tool auto-approves it before the callback is consulted. To gate every tool call, use a PreToolUse hook; or narrow the entry so calls fall through to can_use_tool. Allow rules from settings files can also shadow the callback but are not visible here.\n  _warn_if_can_use_tool_shadowed(options)\n[claude-code:unrecognized_model] {\"model\":\"deepseek-v4.1-flash\",\"query_source\":\"sdk\"}\n",
+      "error": null,
+      "status": "FAILED"
+    },
+    {
+      "model": "deepseek-v4-1-flash-261017",
+      "task_id": "c1e11c61-f24b-4cee-823b-2fb7ec71b81b",
+      "config": {
+        "database": "D:\\Users\\luqianwu\\Desktop\\智能问数\\project-control\\modules\\M04\\evidence\\20261103T091204Z-sdk-deepseek-experiment\\fixture\\connections\\snapshots\\c1b96416-90ea-4974-be4b-03487f49dbb1\\source.duckdb",
+        "question": "What is total amount?",
+        "base_url": "http://ada-cli-golang.ctripcorp.com/coding-plan",
+        "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-2-tefzsypw",
+        "task_id": "c1e11c61-f24b-4cee-823b-2fb7ec71b81b",
+        "model": "deepseek-v4-1-flash-261017",
+        "mode": "real_gateway_experiment",
+        "auto_confirm_fixture": true,
+        "wall_clock_seconds": 300
+      },
+      "runtime_root": "D:\\Users\\luqianwu\\AppData\\Local\\Temp\\sdk-d072-2-tefzsypw",
+      "runtime_cleaned": true,
+      "process": {
+        "returncode": 2,
+        "timed_out": false,
+        "job_cpu_100ns": 35937500,
+        "job_process_limit": 10,
+        "job_active_processes": 1,
+        "job_peak_processes": 7,
+        "job_peak_memory_bytes": 434868224,
+        "process_peak_memory_bytes": 355418112,
+        "job_memory_limit": 2147483648,
+        "process_memory_limit": 1073741824,
+        "wall_seconds": 300
+      },
+      "child_output": {
+        "status": "FAILED",
+        "error": "SDK_PUBLICATION_MISSING",
+        "message": "缺少经回执核验的发布结果。"
+      },
+      "failure_diagnostics": {
+        "status": "FAILED",
+        "error": "SDK_PUBLICATION_MISSING",
+        "message": "缺少经回执核验的发布结果。",
+        "events": [
+          {
+            "type": "SDK_INIT",
+            "skills": [
+              "deep-research",
+              "governed:data-query",
+              "dataviz",
+              "update-config",
+              "verify",
+              "debug",
+              "code-review",
+              "simplify",
+              "batch",
+              "fewer-permission-prompts",
+              "doctor",
+              "loop",
+              "claude-api",
+              "workflow-authoring",
+              "run",
+              "run-skill-generator",
+              "plugin-authoring"
+            ]
+          }
+        ],
+        "model_text": "API Error: 400 event: error\ndata: {\"error\":{\"message\":\"This model is not currently supported (deepseek-v4-1-flash-261017). Please check the recommended models at: http://aicoding.console.ctripcorp.com/admin/modelList\",\"status\":400,\"trace_id\":\"cp_trace_TR063610_1793697142845582773\",\"type\":\"invalid_request_error\"},\"type\":\"error\"}",
+        "usage": {},
+        "total_cost_usd_client_estimate": 0,
+        "budget": {
+          "model_steps": 1,
+          "tool_calls": 0,
+          "metadata_calls": 0,
+          "total_tokens": 0,
+          "estimated_reserve_usd": 2.0,
+          "max_model_steps": 8,
+          "max_tool_calls": 10,
+          "max_total_tokens": 100000,
+          "wall_clock_seconds": 300
+        },
+        "stream_events": 0,
+        "result_status": "success"
+      },
+      "stdout": "{\"status\": \"FAILED\", \"error\": \"SDK_PUBLICATION_MISSING\", \"message\": \"ȱ�پ���ִ����ķ��������\"}\n",
+      "stderr": "D:\\Users\\luqianwu\\Desktop\\��������\\services\\api\\.venv\\Lib\\site-packages\\claude_agent_sdk\\types.py:2314: CanUseToolShadowedWarning: can_use_tool will not be invoked for: mcp__governed__search_semantics, mcp__governed__resolve_route, mcp__governed__read_authorized_metadata, mcp__governed__propose_metric_query, mcp__governed__propose_sql_query, mcp__governed__request_confirmation, mcp__governed__get_receipt. An allowed_tools entry that allows a whole tool auto-approves it before the callback is consulted. To gate every tool call, use a PreToolUse hook; or narrow the entry so calls fall through to can_use_tool. Allow rules from settings files can also shadow the callback but are not visible here.\n  _warn_if_can_use_tool_shadowed(options)\n[claude-code:unrecognized_model] {\"model\":\"deepseek-v4-1-flash-261017\",\"query_source\":\"sdk\"}\n",
+      "error": null,
+      "status": "FAILED"
+    }
+  ],
+  "not_run": [
+    "authorized Claude model",
+    "official Claude SDK gateway compatibility",
+    "production/business data",
+    "default Web migration",
+    "deployment"
+  ],
+  "validity": {
+    "clean_project_tree_isolation": true,
+    "job_peak_within_limit": true,
+    "residual_init_skill_list": true,
+    "clean_success": false,
+    "reason": "Runtime outside project; Job peak 8/7 <=10. deepseek-v4.1-flash hit error_max_turns after an extra get_receipt; deepseek-v4-1-flash-261017 returned gateway 400 unsupported model name.",
+    "diagnosis_ref": "project-control/modules/M04/evidence/20261103T091204Z-sdk-deepseek-experiment/diagnosis-clean-rerun.md"
+  },
+  "diagnosis_ref": "project-control/modules/M04/evidence/20261103T091204Z-sdk-deepseek-experiment/diagnosis-clean-rerun.md"
+}

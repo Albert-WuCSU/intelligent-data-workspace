@@ -1,0 +1,37 @@
+{
+  "kind": "s01_document_and_workflow_validation",
+  "audited_revision": 166,
+  "reviewer": "self_review",
+  "status": "passed",
+  "results": [
+    {
+      "command": "./services/api/.venv/Scripts/python.exe -I project-control/modules/M04/evidence/20261103T060255Z-sdk-install-plan/scripts/verify_s01.py .",
+      "exit_code": 0,
+      "result": "45 evidence/source/legal/protocol/plan checks passed",
+      "evidence": "project-control/modules/M04/evidence/20261103T060255Z-sdk-install-plan/validation-summary.json"
+    },
+    {
+      "command": "./services/api/.venv/Scripts/python.exe project-control/prd/validate.py --root . --installed-skill D:/Users/luqianwu/.codex/skills/project-pdca",
+      "exit_code": 0,
+      "result": "13 module PRDs, 60 requirements, M04 identity/dependency and installed Skill byte consistency passed",
+      "installed_skill_synced": true
+    },
+    {
+      "command": "./services/api/.venv/Scripts/python.exe -m pytest skills/project-pdca/scripts/test_progress.py -q",
+      "exit_code": 0,
+      "result": "26 passed, 9 subtests passed"
+    },
+    {
+      "command": "./services/api/.venv/Scripts/python.exe -m pytest project-control/prd/test_validate.py -q",
+      "exit_code": 0,
+      "result": "5 passed"
+    }
+  ],
+  "scope": "S01 documents, official public source integrity and workflow guards only; no SDK install/runtime, real gateway or old LangGraph regression rerun.",
+  "not_run": [
+    "SDK installation and executable",
+    "SDK tool_use/Skill/stream/usage",
+    "real AIPlan/Claude gateway",
+    "production and MVP"
+  ]
+}

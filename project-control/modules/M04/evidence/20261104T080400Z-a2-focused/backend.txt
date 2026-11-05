@@ -1,0 +1,40 @@
+........................F..                                              [100%]
+================================== FAILURES ===================================
+_ test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding[cancel] _
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-202/test_web_sdk_waiting_clarifica0')
+gateway = <test_sdk_agent.FakeGateway object at 0x000001B480DCBF50>
+action = 'cancel'
+
+    @pytest.mark.parametrize("action", ["cancel", "model_change", "schema_change"])
+    def test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding(tmp_path, gateway, action):
+        gateway.clarify = True
+        app, source_id, published, model_ref = build_app(tmp_path, gateway.server_port)
+        with TestClient(app, base_url=BASE, client=("127.0.0.1", 1)) as client:
+            task_id = client.post("/api/v1/agent/tasks", json=request_body(source_id, published, model_ref), headers=H).json()["id"]
+            waiting = wait_task(client, task_id, "NEEDS_CLARIFICATION")
+            if action == "cancel":
+                client.post(f"/api/v1/agent/tasks/{task_id}/cancel", json={}, headers=H)
+            elif action == "model_change":
+                app.state.model_enabled = False
+            else:
+                import duckdb
+                import hashlib
+                database = app.state.agent.sdk.records[task_id].database
+                manifest_path = database.with_suffix('.manifest.json')
+                manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+                physical = manifest['tables']['t0']
+                with duckdb.connect(str(database)) as db:
+                    db.execute(f'ALTER TABLE "{physical["schema"]}"."{physical["name"]}" ADD COLUMN changed INTEGER')
+                physical['columns'].append({'name':'changed','type':'INTEGER'})
+                manifest['database_sha256'] = hashlib.sha256(database.read_bytes()).hexdigest()
+                manifest_path.write_text(json.dumps(manifest),encoding='utf-8')
+            response = client.post(f"/api/v1/agent/tasks/{task_id}/clarify", json=clarification_body(waiting), headers=H)
+>           assert response.status_code in (200,409)
+E           assert 422 in (200, 409)
+E            +  where 422 = <Response [422 Unprocessable Content]>.status_code
+
+services\api\tests\test_sdk_web_agent.py:386: AssertionError
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_sdk_web_agent.py::test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding[cancel]
+1 failed, 26 passed in 74.42s (0:01:14)

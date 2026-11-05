@@ -1,0 +1,12 @@
+
+[1m[46m RUN [49m[22m [36mv3.2.7 [39m[90mD:/Users/luqianwu/Desktop/智能问数/apps/web[39m
+
+ [32m✓[39m src/workbench.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/api.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/conversations.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m      Tests [22m [1m[32m19 passed[39m[22m[90m (19)[39m
+[2m   Start at [22m 18:20:41
+[2m   Duration [22m 946ms[2m (transform 191ms, setup 0ms, collect 270ms, tests 44ms, environment 1ms, prepare 819ms)[22m
+

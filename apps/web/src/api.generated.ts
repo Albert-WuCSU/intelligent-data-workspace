@@ -498,6 +498,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/agent/tasks/{id}/clarify": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Clarify */
+        post: operations["clarify_api_v1_agent_tasks__id__clarify_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/agent/tasks/{id}/cancel": {
         parameters: {
             query?: never;
@@ -628,6 +645,74 @@ export interface paths {
         put?: never;
         /** Enable Connection */
         post: operations["enable_connection_api_v1_model_service_connection_enabled_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/connection/models": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Add Catalog Model */
+        post: operations["add_catalog_model_api_v1_model_service_connection_models_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/connection/models/remove": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Remove Catalog Model */
+        post: operations["remove_catalog_model_api_v1_model_service_connection_models_remove_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/models/test": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Test Catalog Model */
+        post: operations["test_catalog_model_api_v1_model_service_models_test_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/model-service/models/enabled": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Enable Catalog Model */
+        post: operations["enable_catalog_model_api_v1_model_service_models_enabled_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -830,11 +915,23 @@ export interface components {
             /**
              * Implementation
              * @default langgraph_governed_single_table_v1
-             * @constant
+             * @enum {string}
              */
-            implementation: "langgraph_governed_single_table_v1";
+            implementation: "langgraph_governed_single_table_v1" | "claude_agent_sdk_skills_v1";
             /** Available */
             available: boolean;
+            /**
+             * Engines
+             * @default [
+             *       "langgraph_governed_single_table_v1"
+             *     ]
+             */
+            engines: string[];
+            /**
+             * Sdk Web Binding
+             * @default false
+             */
+            sdk_web_binding: boolean;
             /**
              * Query Protocol
              * @default workspace_aggregate_v1
@@ -861,6 +958,31 @@ export interface components {
              */
             durable_tasks: false;
         };
+        /** AgentClarificationTurn */
+        AgentClarificationTurn: {
+            /** Clarification Id */
+            clarification_id: string;
+            /** Question */
+            question: string;
+            /** Answer */
+            answer?: string | null;
+        };
+        /** AgentClarify */
+        AgentClarify: {
+            /** Clarification Id */
+            clarification_id: string;
+            /** Request Id */
+            request_id: string;
+            /** Execution Generation */
+            execution_generation: string;
+            /** Answer */
+            answer: string;
+            /**
+             * Accept Model Egress
+             * @constant
+             */
+            accept_model_egress: true;
+        };
         /** AgentConfirm */
         AgentConfirm: {
             /** Plan Hash */
@@ -872,6 +994,26 @@ export interface components {
              * @constant
              */
             confirm_execute: true;
+        };
+        /** AgentDialogueEntry */
+        AgentDialogueEntry: {
+            /** Id */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "update" | "clarification" | "user";
+            /** Text */
+            text: string;
+            /** Tools */
+            tools?: string[];
+            /**
+             * Origin
+             * @default governed_event
+             * @enum {string}
+             */
+            origin: "governed_event" | "user_answer";
         };
         /** AgentRequest */
         AgentRequest: {
@@ -918,8 +1060,16 @@ export interface components {
             model_ref: string;
             /** Semantic Version Id */
             semantic_version_id: string;
+            /**
+             * Engine
+             * @default langgraph_governed_single_table_v1
+             * @enum {string}
+             */
+            engine: "langgraph_governed_single_table_v1" | "claude_agent_sdk_skills_v1";
             /** Events */
             events?: string[];
+            /** Query Path */
+            query_path?: ("L1" | "L2" | "L3") | null;
             /** Plan Hash */
             plan_hash?: string | null;
             plan?: components["schemas"]["AggregateRequest"] | null;
@@ -927,6 +1077,14 @@ export interface components {
             sql?: string | null;
             /** Clarification */
             clarification?: string | null;
+            /** Clarification Id */
+            clarification_id?: string | null;
+            /** Clarification Turns */
+            clarification_turns?: components["schemas"]["AgentClarificationTurn"][];
+            /** Answer */
+            answer?: string | null;
+            /** Dialogue */
+            dialogue?: components["schemas"]["AgentDialogueEntry"][];
             /** Error Code */
             error_code?: string | null;
             model_diagnostics?: components["schemas"]["ModelResponseDiagnostics"] | null;
@@ -960,6 +1118,18 @@ export interface components {
             /** Tasks */
             tasks: components["schemas"]["AgentTask"][];
         };
+        /** AggregateFilter */
+        AggregateFilter: {
+            /** Column */
+            column: string;
+            /**
+             * Operator
+             * @enum {string}
+             */
+            operator: "eq" | "in" | "gte" | "lt";
+            /** Values */
+            values: (string | number)[];
+        };
         /** AggregateRequest */
         AggregateRequest: {
             /** Table */
@@ -972,6 +1142,8 @@ export interface components {
             /** Dimensions */
             dimensions?: string[];
             time_filter?: components["schemas"]["AggregateTime"] | null;
+            /** Filters */
+            filters?: components["schemas"]["AggregateFilter"][];
         };
         /** AggregateResult */
         AggregateResult: {
@@ -1314,10 +1486,26 @@ export interface components {
             /** Metric Refs */
             metric_refs: components["schemas"]["MetricRef"][];
         };
+        /** ModelAddRequest */
+        ModelAddRequest: {
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /** Model Id */
+            model_id: string;
+            /**
+             * Label
+             * @default
+             */
+            label: string;
+        };
         /** ModelCatalog */
         ModelCatalog: {
             /** Models */
             models: components["schemas"]["ModelCatalogEntry"][];
+            /** Default Model Id */
+            default_model_id?: string | null;
             /**
              * Storage
              * @default backend_session_memory
@@ -1372,6 +1560,40 @@ export interface components {
              * @constant
              */
             query_available: false;
+            /**
+             * Label
+             * @default
+             */
+            label: string;
+            /**
+             * Source
+             * @default personal_api
+             * @enum {string}
+             */
+            source: "personal_api" | "ai_plan";
+            /**
+             * Default
+             * @default false
+             */
+            default: boolean;
+            /** Context Window */
+            context_window?: number | null;
+            /**
+             * Price Status
+             * @default unknown
+             * @enum {string}
+             */
+            price_status: "unknown" | "configured";
+            /**
+             * Price Note
+             * @default 价格未知
+             */
+            price_note: string;
+            /**
+             * Note
+             * @default
+             */
+            note: string;
         };
         /** ModelClearRequest */
         ModelClearRequest: {
@@ -1566,6 +1788,15 @@ export interface components {
              */
             catalog_enabled: boolean;
         };
+        /** ModelRemoveRequest */
+        ModelRemoveRequest: {
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /** Model Id */
+            model_id: string;
+        };
         /** ModelResponseDiagnostics */
         ModelResponseDiagnostics: {
             /**
@@ -1607,6 +1838,33 @@ export interface components {
             input_tokens?: number | null;
             /** Output Tokens */
             output_tokens?: number | null;
+        };
+        /** ModelTargetEnableRequest */
+        ModelTargetEnableRequest: {
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /** Enabled */
+            enabled: boolean;
+            /** Model Id */
+            model_id: string;
+        };
+        /** ModelTargetTestRequest */
+        ModelTargetTestRequest: {
+            /** Request Id */
+            request_id: string;
+            /** Execution Generation */
+            execution_generation: string;
+            /** Config Version */
+            config_version: string;
+            /**
+             * Accept Estimated Cost
+             * @constant
+             */
+            accept_estimated_cost: true;
+            /** Model Id */
+            model_id: string;
         };
         /** ModelTestDiagnostics */
         ModelTestDiagnostics: {
@@ -3323,6 +3581,41 @@ export interface operations {
             };
         };
     };
+    clarify_api_v1_agent_tasks__id__clarify_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["AgentClarify"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AgentTask"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     cancel_api_v1_agent_tasks__id__cancel_post: {
         parameters: {
             query?: never;
@@ -3534,6 +3827,138 @@ export interface operations {
         requestBody: {
             content: {
                 "application/json": components["schemas"]["ModelEnableRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelConnectionAck"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_catalog_model_api_v1_model_service_connection_models_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelAddRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelCatalogEntry"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    remove_catalog_model_api_v1_model_service_connection_models_remove_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelRemoveRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelConnectionAck"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    test_catalog_model_api_v1_model_service_models_test_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelTargetTestRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ModelTestReceipt"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    enable_catalog_model_api_v1_model_service_models_enabled_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ModelTargetEnableRequest"];
             };
         };
         responses: {

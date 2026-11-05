@@ -9,6 +9,8 @@ class Settings:
     port: int = 8000
     owned_warehouse: bool = False
     retention_cleanup: bool = False
+    sdk_web_agent: bool = True
+    sdk_web_test_base_url: str | None = None
 
     def __post_init__(self):
         if self.mode not in {"development", "production"}:
@@ -21,6 +23,8 @@ class Settings:
             raise ValueError('retention cleanup requires loopback development identity')
         if not 1 <= self.port <= 65535:
             raise ValueError("invalid port")
+        if self.sdk_web_test_base_url is not None and not (self.mode == "development" and self.dev_identity):
+            raise ValueError("sdk web test gateway requires development identity")
 
     @classmethod
     def from_env(cls):
