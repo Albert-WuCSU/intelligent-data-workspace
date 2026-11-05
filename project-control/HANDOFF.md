@@ -1,20 +1,21 @@
 # 项目续接档案
 
-状态版本 revision 204，更新时间 2026-11-05T02:55:41.149549+00:00 UTC。
+状态版本 revision 207，更新时间 2026-11-05T05:40:23.491532+00:00 UTC。
 
 先校验 progress.json 并核对实际文件；本档案由脚本生成，主进度为唯一状态真源。
 
 - 项目：通用企业智能数据分析平台
 - 当前：M04 取数Agent与Harness（M04-B Claude Agent SDK＋Skills主线） / do
 - 状态：in_progress
-- 下一步：GitHub基线与A2.2完整通过增量已更新；在无需实Key范围按D077/D078继续最小会话上下文的owner/来源/版本/明确外发/不含结果行历史合同及合成评估，再具体业务主题L2/L3/RAG按批准数据/口径逐片推进。默认最新API未加载，实模型需用户重载/Key/明确动作，2.75USD估算只够一次SDK复测、更多需补授权不reset。M04未验收、Claude/生产/MVP not_run；D079不授权自动部署/新增费用/公司数据或宿主工具。
+- 下一步：新窗口按D080通用ARCHITECTURE_V2实施M04-S1 RequestIntent/ContextEnvelope/TaskPlan最小兼容合同与合成金标准，核owner/来源/语义/模型版本、明确同意和预算/依赖/结果行隔离。D081只限定此次脱敏文档GitHub同步，机密源及私有定位不公开；新费用/数据/模型/依赖/权限/后续Git动作另核。V2实现/真实Claude/默认latest加载/生产/MVP not_run，M04未验收。
 
 ## 优先读取
-- project-control/modules/M04/evidence/20261105T024331Z/A22_CHECK_REPORT.md
-- project-control/modules/M04/evidence/20261105T023206Z/A22_RETEST_RUNBOOK.md
+- project-control/HANDOFF_DETAILS.md
+- project-control/ARCHITECTURE_V2.md
 - project-control/modules/M04/plan.md
 - project-control/prd/M04-B.md
-- project-control/HANDOFF_DETAILS.md
+- skills/project-pdca/references/governed-agent-design.md
+- skills/project-pdca/references/claude-sdk-routing.md
 
 ## 工作状态
 - 2026-11-03用户要求新窗口：已整理最终HANDOFF_DETAILS/STATUS/NEW_WINDOW_PROMPT；revision172仅交接和session更新，未重跑测试。S02 9项专项及602/17/44证据不变，真实AIPlan/Claude/生产/MVP仍not_run。
@@ -70,6 +71,9 @@
 - 2026-11-05 A2.2首次全量667pass/2fail（原失败diagnostic要求rawmodeltext与新隐私合同冲突；L2 CLI60s启动未到等待状态）；23前端/45browser/types/build/pip通过，manifest因修复测试source变化失败保留。现failure断言必须model_textNone且无原文/Key，保留结构usage/events；不放宽SQL/QA或timeout。L2与新公开notes/diagnostic三项复跑passed；添加safe启动超时counts诊断，无敏感原文。最新当前source完整复跑中，未实模型/费用/权限/服务重启，GitHub702cabe已确认。
 - 2026-11-05 D079基线702cabe已非forcepush GitHubmain/lsremoteSHA同，LangGraphbaseline92d0b03不变。继续A2.2最新669后端/23前端/45browser/types/build/pip/source-stability全部pass，fingerprint 5affed8ff4be07d2e1e5086a81be2233cd41060ec98399140554458213495543，024331Z。公开模型完整意图/双层门禁/同ID拆块/unsafe后块毒化/4条500字/非回执来源与失败rawtext省略已实现。初始SDK拆块缺note/旧隐私断言及CLI启动等待失败保留，未放宽budget/timeout/QA，根因间歇风险未完全证实。无实模型/费用/公司数据/host权限/安装/服务重启，default200/modelunconfigured/0task/账本49/60估算2.75USD不变。完整主题L2/L3/context/RAG/C/Claude/生产/MVP与用户验收not_run；下一步同步该完整通过增量并记录实际SHA。
 - 2026-11-05 D079当前A2.2已验证源码/文档/合成证据非forcepush GitHubmain712c415f6aa2675f8529769c3d85fcd78dee2703，lsremote同SHA；baseline702cabe与LangGraph92d0b03保留，当前源码669/23/45完整passed fingerprint不变。此次只同步repo，不生产部署/模型调用/费用/权限变更；后续状态checkpoint另提交推送，最新SHA以Gitrefs为准。
+- 2026-11-05 D080用户要求受限共同IP资料独立private归档和脱敏通用架构/Skill调整。独立private归档24页PDF（20原图+4编辑页）已渲染/检查/上传并核private可见性和远端commit，不含在公共workspace/源模型调用。新ARCHITECTURE_V2/R-U32/AC06与3相关Skillfiles对应安装副本同步，只含通用职责/合同，未推公共仓库；不主张脱敏取得IP许可。源代码/默认服务/预算/收费/安装/安全边界不变，V2合同实现/集成not_run，M04未验收。
+- 2026-11-05 D080归档/通用规划自审完成：受限24页PDF/20原图在独立private仓库，水印/像素一致、远端private/文件与commit一致、无Pages，定位和源细节未写公共项目。ARCHITECTURE_V2/R-U32/AC06与3相关Skill/copy仅行业无关重新表达，PRD13/65/26+5tests/SkillvalidatorUTF8复跑/diff/同步通过。新写作脱敏检查通过（旧历史backup不作新素材），新文件未公共commit/push、HEAD不变/staged为空，脱敏非IP公开许可。产品源匹配669/23/45原基线，不重跑或伪称新V2能力；合同/集成not_run，无模型/收费/数据/Key/安装/生产变更。
+- 2026-11-05 D081用户明确批准本次脱敏架构/PRD/规划Skill/交接进度同步GitHub；已编写新窗口M04-S1续接指令，保密原始资料/PDF/内部信息与私有定位不纳入public。当前V2仅规划，旧669/23/45运行证据不作新增能力，未实模型/费用/依赖/数据/生产变更；本轮推送前复核隐私与文档一致，实际SHA另记录。
 
 ## 阻碍
 

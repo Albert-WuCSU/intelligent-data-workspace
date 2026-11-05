@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "revision": 204,
-  "updated_at": "2026-11-05T02:55:41.149549+00:00",
+  "revision": 207,
+  "updated_at": "2026-11-05T05:40:23.491532+00:00",
   "project": {
     "id": "universal-data-agent",
     "name": "通用企业智能数据分析平台",
@@ -7805,6 +7805,17 @@
             "services/api/tests/test_sdk_web_agent.py",
             "tests/agent-conversation.spec.mjs"
           ]
+        },
+        {
+          "id": "M04B-D080-ARCHITECTURE-PLANNING",
+          "status": "done",
+          "description": "行业无关ARCHITECTURE_V2/AC06/R-U32规划修订与对应project-pdca reference/copy；不是V2实现。受限源PDF独立private归档并核可见性/远端SHA，不进公共项目，新衍生文档本地未推送。",
+          "paths": [
+            "project-control/ARCHITECTURE_V2.md",
+            "skills/project-pdca/references/governed-agent-design.md",
+            "project-control/modules/M04/plan.md",
+            "project-control/prd/M04-B.md"
+          ]
         }
       ],
       "tests": [
@@ -8401,6 +8412,14 @@
           "environment": "local",
           "integration": "real",
           "note": "Current source not reloaded into default service, modelunconfigured/0tasks; no actual model fees or calls. User real consent/key/finite budget needed."
+        },
+        {
+          "id": "architecture-v2-contract-and-integration",
+          "required": true,
+          "status": "not_run",
+          "environment": "local",
+          "integration": "unit",
+          "note": "D080 adds planning only; RequestIntent/TemporalResolver/TaskPlan/ContextEnvelope/capability contracts not implemented by docs."
         }
       ],
       "evidence": [
@@ -9039,6 +9058,62 @@
           "kind": "implementation",
           "path": "project-control/modules/M04/evidence/20261105T024331Z/push-receipt.json",
           "sha256": "c565c7d737e8730d568df148e08ae339d9decee13e588e5ea8c904c4201d062b",
+          "stale": false
+        },
+        {
+          "id": "M04B-D080-PRIVACY",
+          "kind": "audit",
+          "path": "project-control/modules/M04/evidence/20261105T052638Z-d080-architecture/privacy-and-design-review.json",
+          "sha256": "6124868e1f22bea57b0a3d03f2fd7937073d12e2bedfba6d0f536ca78acc1ac1",
+          "stale": false
+        },
+        {
+          "id": "M04B-D080-GENERALIZED-DESIGN",
+          "kind": "implementation",
+          "path": "project-control/ARCHITECTURE_V2.md",
+          "sha256": "e060aaf78aed261d19c9a49e83d5b74679cded17f9d4368838dbef9719e334b8",
+          "stale": true
+        },
+        {
+          "id": "M04B-D080-ADOPTION",
+          "kind": "audit",
+          "path": "project-control/modules/M04/evidence/20261105T052638Z-d080-architecture/ADOPTION_AND_BOUNDARIES.md",
+          "sha256": "2ae49fcb51e28b9e5918cb72e6fbc8c6e855dfd0395cf3d53df3ac41ae216e4b",
+          "stale": false
+        },
+        {
+          "id": "M04B-D080-FINAL-REVIEW",
+          "kind": "audit",
+          "path": "project-control/modules/M04/evidence/20261105T052638Z-d080-architecture/D080_CHECK_REPORT.md",
+          "sha256": "6585af9e933827d93929281fae99d4c62ea5bdcbd14542cf3d34a18359dc4a72",
+          "stale": false
+        },
+        {
+          "id": "M04B-D080-DOC-CHECK",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261105T052638Z-d080-architecture/prd-validation.txt",
+          "sha256": "fac3dedec7ad89857739ac1dd8fb38dfbbb7706f075c22849194e49b69e88c2d",
+          "stale": false
+        },
+        {
+          "id": "M04B-D080-PUBLIC-CONTENT-CHECK",
+          "kind": "audit",
+          "path": "project-control/modules/M04/evidence/20261105T052638Z-d080-architecture/public-sanitization-review.json",
+          "sha256": "1795f72c5141aac28d9826994ae5f74010f65f6393f9b0068707c8e1dcb7489d",
+          "stale": false
+        },
+        {
+          "id": "M04B-D080-SKILL-CHECK",
+          "kind": "test",
+          "path": "project-control/modules/M04/evidence/20261105T052638Z-d080-architecture/skill-validation.txt",
+          "sha256": "6cf9e7f0d34ccd36dbd28f270cd28dd04277b2e1516bd4333ce7bb501d7b18d4",
+          "stale": false
+        },
+        {
+          "id": "M04B-D081-CURRENT-ARCHITECTURE",
+          "kind": "implementation",
+          "path": "project-control/ARCHITECTURE_V2.md",
+          "sha256": "0e1414023e488b7ba1c823b1495ab0fc9115258cb549473f55b7e6745e436ffd",
           "stale": false
         }
       ],
@@ -9926,22 +10001,46 @@
       "selected_option": "push-latest-reviewed-main-and-continue",
       "rationale": "显式批准当前源码/文档/合成证据更新既有GitHub仓库；不包含production deployment、新模型费用/公司数据/宿主工具授权或模块验收。",
       "recorded_at": "2026-11-05T02:21:09.916868+00:00"
+    },
+    {
+      "id": "D-ARCHITECTURE-GENERALIZATION-080",
+      "kind": "change",
+      "module_id": "M04",
+      "cycle_id": "M04-C02-SDK",
+      "source": "user",
+      "user_statement": "用户要求将共同知识产权的原始设计资料整合PDF并独立私有归档；主项目仅学习行业无关范式，修订脱敏架构、设计及对应规划Skill，不包含具体组织业务信息。",
+      "selected_option": "private-source-archive-and-generalized-local-design",
+      "rationale": "采用通用职责/确定性合同/适用性路由/状态知识分离；保持SDK主线与已批准安全验收门禁。不复制业务材料、不授权公开衍生资料或新增依赖/模型费用/数据查询/执行能力。",
+      "recorded_at": "2026-11-05T05:26:38.538671+00:00"
+    },
+    {
+      "id": "D-ARCHITECTURE-PUBLIC-SYNC-081",
+      "kind": "permission",
+      "module_id": "M04",
+      "cycle_id": "M04-C02-SDK",
+      "source": "user",
+      "user_statement": "新架构调整的相关信息，更新至github上，然后写好交接和进度文档，给我新窗口的第一句prompt",
+      "selected_option": "publish-sanitized-general-architecture-and-handoff",
+      "rationale": "仅本次脱敏通用架构/PRD/规划Skill/进度交接同步现有主项目；不公开机密PDF/原图/组织业务细节或私有定位，不含额外收费/数据授权/安装/部署或模块验收。",
+      "recorded_at": "2026-11-05T05:39:04.962135+00:00"
     }
   ],
   "pending_decision": null,
   "next_action": {
     "kind": "do",
-    "description": "GitHub基线与A2.2完整通过增量已更新；在无需实Key范围按D077/D078继续最小会话上下文的owner/来源/版本/明确外发/不含结果行历史合同及合成评估，再具体业务主题L2/L3/RAG按批准数据/口径逐片推进。默认最新API未加载，实模型需用户重载/Key/明确动作，2.75USD估算只够一次SDK复测、更多需补授权不reset。M04未验收、Claude/生产/MVP not_run；D079不授权自动部署/新增费用/公司数据或宿主工具。",
+    "description": "新窗口按D080通用ARCHITECTURE_V2实施M04-S1 RequestIntent/ContextEnvelope/TaskPlan最小兼容合同与合成金标准，核owner/来源/语义/模型版本、明确同意和预算/依赖/结果行隔离。D081只限定此次脱敏文档GitHub同步，机密源及私有定位不公开；新费用/数据/模型/依赖/权限/后续Git动作另核。V2实现/真实Claude/默认latest加载/生产/MVP not_run，M04未验收。",
     "read_refs": [
-      "project-control/modules/M04/evidence/20261105T024331Z/A22_CHECK_REPORT.md",
-      "project-control/modules/M04/evidence/20261105T023206Z/A22_RETEST_RUNBOOK.md",
+      "project-control/HANDOFF_DETAILS.md",
+      "project-control/ARCHITECTURE_V2.md",
       "project-control/modules/M04/plan.md",
       "project-control/prd/M04-B.md",
-      "project-control/HANDOFF_DETAILS.md"
+      "skills/project-pdca/references/governed-agent-design.md",
+      "skills/project-pdca/references/claude-sdk-routing.md"
     ],
     "commands": [
-      "services/api/.venv/Scripts/python.exe skills/project-pdca/scripts/progress.py validate --root .",
-      "services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser"
+      "python skills/project-pdca/scripts/progress.py validate --root .",
+      "python skills/project-pdca/scripts/progress.py show --root .",
+      "services/api/.venv/Scripts/python.exe project-control/prd/validate.py --root ."
     ]
   },
   "release_gates": [
@@ -10926,6 +11025,24 @@
       ],
       "reason": "Conventional-Agent experience adds conservative model-authored public intent notes at complete assistant-message boundary.",
       "handling": "Never consume thinking/raw deltas, double-check key/numbers/claims/paths and bounded scope, separate label from governed receipts. No new model calls/tools/budget/data-egress/persistence/permissions. Full contract/UI/SDK/mcp checks required; default/real not_run."
+    },
+    {
+      "id": "CI-D080-GENERAL-DESIGN",
+      "decision_id": "D-ARCHITECTURE-GENERALIZATION-080",
+      "modules": [
+        "M03",
+        "M04",
+        "M05",
+        "M08"
+      ],
+      "affected_modules": [
+        "M03",
+        "M04",
+        "M05",
+        "M08"
+      ],
+      "reason": "Explicit generalized architecture planning, deterministic semantic grounding, suitability routing, bounded task/context contracts and knowledge/memory/asset separation.",
+      "handling": "No source schema/runtime changes, accepted modules preserved, plan newly tracked with real testsnot_run. Reuse approved stack/SDK; deps/fees/production/data authorization separate. Confidential archive outside public repo; new derivative docs held local pending publication scope confirmation."
     }
   ],
   "blockers": [],
@@ -10982,11 +11099,14 @@
     "2026-11-05 A2.2SDK专项首轮2failed/15pass（公开note缺失因CLI把完整text/tool拆为同ID AssistantMessages；另旧modelchange等待失败未独立证明原因）。已加有界同ID完整块buffer/unsafe后块毒化/诊断不存unsafe，31逻辑专项和4受影响SDK专项复跑通过，无放宽等待/断言。当前全量检查进行中，GitHub702cabe基线已更新，新片验证后再同步；未调用真实模型/扩费用。",
     "2026-11-05 A2.2首次全量667pass/2fail（原失败diagnostic要求rawmodeltext与新隐私合同冲突；L2 CLI60s启动未到等待状态）；23前端/45browser/types/build/pip通过，manifest因修复测试source变化失败保留。现failure断言必须model_textNone且无原文/Key，保留结构usage/events；不放宽SQL/QA或timeout。L2与新公开notes/diagnostic三项复跑passed；添加safe启动超时counts诊断，无敏感原文。最新当前source完整复跑中，未实模型/费用/权限/服务重启，GitHub702cabe已确认。",
     "2026-11-05 D079基线702cabe已非forcepush GitHubmain/lsremoteSHA同，LangGraphbaseline92d0b03不变。继续A2.2最新669后端/23前端/45browser/types/build/pip/source-stability全部pass，fingerprint 5affed8ff4be07d2e1e5086a81be2233cd41060ec98399140554458213495543，024331Z。公开模型完整意图/双层门禁/同ID拆块/unsafe后块毒化/4条500字/非回执来源与失败rawtext省略已实现。初始SDK拆块缺note/旧隐私断言及CLI启动等待失败保留，未放宽budget/timeout/QA，根因间歇风险未完全证实。无实模型/费用/公司数据/host权限/安装/服务重启，default200/modelunconfigured/0task/账本49/60估算2.75USD不变。完整主题L2/L3/context/RAG/C/Claude/生产/MVP与用户验收not_run；下一步同步该完整通过增量并记录实际SHA。",
-    "2026-11-05 D079当前A2.2已验证源码/文档/合成证据非forcepush GitHubmain712c415f6aa2675f8529769c3d85fcd78dee2703，lsremote同SHA；baseline702cabe与LangGraph92d0b03保留，当前源码669/23/45完整passed fingerprint不变。此次只同步repo，不生产部署/模型调用/费用/权限变更；后续状态checkpoint另提交推送，最新SHA以Gitrefs为准。"
+    "2026-11-05 D079当前A2.2已验证源码/文档/合成证据非forcepush GitHubmain712c415f6aa2675f8529769c3d85fcd78dee2703，lsremote同SHA；baseline702cabe与LangGraph92d0b03保留，当前源码669/23/45完整passed fingerprint不变。此次只同步repo，不生产部署/模型调用/费用/权限变更；后续状态checkpoint另提交推送，最新SHA以Gitrefs为准。",
+    "2026-11-05 D080用户要求受限共同IP资料独立private归档和脱敏通用架构/Skill调整。独立private归档24页PDF（20原图+4编辑页）已渲染/检查/上传并核private可见性和远端commit，不含在公共workspace/源模型调用。新ARCHITECTURE_V2/R-U32/AC06与3相关Skillfiles对应安装副本同步，只含通用职责/合同，未推公共仓库；不主张脱敏取得IP许可。源代码/默认服务/预算/收费/安装/安全边界不变，V2合同实现/集成not_run，M04未验收。",
+    "2026-11-05 D080归档/通用规划自审完成：受限24页PDF/20原图在独立private仓库，水印/像素一致、远端private/文件与commit一致、无Pages，定位和源细节未写公共项目。ARCHITECTURE_V2/R-U32/AC06与3相关Skill/copy仅行业无关重新表达，PRD13/65/26+5tests/SkillvalidatorUTF8复跑/diff/同步通过。新写作脱敏检查通过（旧历史backup不作新素材），新文件未公共commit/push、HEAD不变/staged为空，脱敏非IP公开许可。产品源匹配669/23/45原基线，不重跑或伪称新V2能力；合同/集成not_run，无模型/收费/数据/Key/安装/生产变更。",
+    "2026-11-05 D081用户明确批准本次脱敏架构/PRD/规划Skill/交接进度同步GitHub；已编写新窗口M04-S1续接指令，保密原始资料/PDF/内部信息与私有定位不纳入public。当前V2仅规划，旧669/23/45运行证据不作新增能力，未实模型/费用/依赖/数据/生产变更；本轮推送前复核隐私与文档一致，实际SHA另记录。"
   ],
   "session": {
-    "recommend_new_chat": false,
-    "reason": "GitHub同步与A2.2实质检查点将保存，可同目录继续；不承诺未调度的后台未来运行。"
+    "recommend_new_chat": true,
+    "reason": "用户要求新窗口交接；本轮通用架构规划已检查与限定同步，下一窗口转M04-S1合同实施，不自动创建聊天。"
   },
   "tooling_delivery": {
     "skill_name": "project-pdca",

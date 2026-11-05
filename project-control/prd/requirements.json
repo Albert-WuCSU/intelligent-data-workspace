@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-04",
+  "updated_on": "2026-11-05",
   "coverage_basis": "当前聊天、人类决策ledger、PRODUCT_UX_PRINCIPLES、现存产品方案和交接；不能声称恢复了项目外不可访问聊天。",
   "requirements": [
     {
@@ -1228,6 +1228,25 @@
         "D-M04B-CONVERSATIONAL-UX-078"
       ],
       "current_evidence_boundary": "A2.2当前669/23/45/types/build/pip/源稳定通过（20261105T024331Z），完整模型公开意图与治理事件来源区分，非任意token流/思维链；default/live真实体验与生产未验证，M04未验收。"
+    },
+    {
+      "id": "R-U32",
+      "title": "可泛化的语义、能力路由与状态分离架构",
+      "requirement": "结构化请求和确定性时间/目录槽位落地、适用性优先L1-L4路线/失败分型、有界任务依赖、能力/Skill版本审核、上下文/偏好/知识/资产分离、多轴来源质量与方法证据。行业无关设计，不使用机密业务细节。",
+      "modules": [
+        "M04"
+      ],
+      "source": "D-ARCHITECTURE-GENERALIZATION-080",
+      "origin": "user_decision",
+      "approval_boundary": "仅通用架构/设计/规划Skill修订和独立受限PDF归档；不自动安装/收费/生产/新增数据或执行权限，不授权衍生资料公开发布。",
+      "source_refs": [
+        "project-control/ARCHITECTURE_V2.md",
+        "project-control/prd/M04-B.md"
+      ],
+      "decision_ids": [
+        "D-ARCHITECTURE-GENERALIZATION-080"
+      ],
+      "current_evidence_boundary": "V2是已指示的规划修订，合同/实现测试未运行；669/23/45是现有运行基线，不作V2能力证据。"
     }
   ],
   "sources": {

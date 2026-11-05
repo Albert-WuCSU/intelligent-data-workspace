@@ -18,3 +18,6 @@
 
 ## 检查与分支
 主线main按SDK计划推进；codex/langgraph-baseline-20261103保留C01 baseline/历史证据。SDK未实现前旧代码仅迁移基线，不冒称SDK运行。比较时用同一合成数据、问题/授权/工具/质检预算，记录完成/正确/澄清/成本/延迟/违规调用，不能虚构比较结果。保留原required/not_run、失败记录、已验收模块与回滚，SDK失败不暗换回图或其他供应商。
+
+## 通用架构补充
+本项目D080之后规划结合[governed-agent-design.md](governed-agent-design.md)及ARCHITECTURE_V2：适用性路由/结构化语义落地/有界任务依赖/记忆知识分离，保持SDK动态编排与Harness执行门禁。机密资料不写Skill或公开项目，泛化不授予公开许可。

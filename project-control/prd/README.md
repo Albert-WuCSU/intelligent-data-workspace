@@ -45,3 +45,6 @@ D-M04B-CLAUDE-SDK-070明确替代D058/D069的LangGraph主线方向；顺序M02�
 - 本轮可维护项目Skill仅`skills/project-pdca`；它和安装副本同步时不修改其他无关数学/文档/系统Skill，不设置全局应用框架。
 
 近期模型/PRD原话来源见 [USER_REQUESTS.md](USER_REQUESTS.md)。历史用户选择以原progress ledger为准，不据资料中的候选技术推导新批准。
+
+## R-U32 / D080 通用架构设计与受限资料隔离
+用户明确要求原始资料独立私有归档、主项目只保留不含具体组织业务信息的通用设计；新增ARCHITECTURE_V2与M04-B-AC06，保持现有SDK和安全门禁。受限原文、逐页提炼、内部案例/术语/字段/系统信息不得进入本项目或规划Skill；本地泛化文件不自动获得公开许可。

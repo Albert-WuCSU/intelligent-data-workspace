@@ -1,0 +1,23 @@
+{
+  "reviewer": "self_review",
+  "scope": "new authored additions; automatic old-progress checkpoint excluded as existing history",
+  "changed_file_count": 27,
+  "new_confidential_business_marker_hits": 0,
+  "raw_source_images_or_pdf_added": false,
+  "private_repository_locator_in_new_authored_content": false,
+  "archived_old_progress_checkpoint_count": 1,
+  "public_head_unchanged": true,
+  "staged_files": 0,
+  "product_sources_equal_last669_test_manifest": true,
+  "installed_skill_matching_files": [
+    "SKILL.md",
+    "references/claude-sdk-routing.md",
+    "references/governed-agent-design.md"
+  ],
+  "not_run": [
+    "V2 new contract implementation",
+    "V2 real integration",
+    "public publication of new derived docs"
+  ],
+  "limitations": "Marker scan/editorial self-review is not universal anonymization or IP licensing. New derived docs held local; historical evidence not silently rewritten."
+}

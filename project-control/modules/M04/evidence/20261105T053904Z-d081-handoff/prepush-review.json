@@ -1,0 +1,12 @@
+{
+  "reviewer": "self_review",
+  "staged_files": 38,
+  "raw_private_assets": 0,
+  "new_private_locator_or_business_markers": 0,
+  "secret_pattern_hits": 0,
+  "historical_checkpoints_preserved_not_used_as_new_material": true,
+  "product_code_unchanged_669_test_fingerprint_matches": true,
+  "scope": "D081 this generalized architecture/PRD/Skill/handoff set only",
+  "private_repository_not_changed": true,
+  "not_production_or_new_implementation_evidence": true
+}

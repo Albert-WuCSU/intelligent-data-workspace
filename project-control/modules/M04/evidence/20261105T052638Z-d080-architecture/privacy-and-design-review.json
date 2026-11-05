@@ -1,0 +1,23 @@
+{
+  "reviewer": "self_review",
+  "scope": "generalized architecture/planning docs only",
+  "private_archive_separated_from_public_workspace": true,
+  "pdf_page_count": 24,
+  "original_image_count": 20,
+  "private_visibility_checked_before_and_after_upload": true,
+  "private_remote_sha_verified": true,
+  "source_watermarks_preserved": true,
+  "raw_assets_copied_into_public_repo": false,
+  "publication_of_new_generalized_docs": "held_local_requires_rights_holder_scope_confirmation",
+  "original_business_information_in_new_architecture": false,
+  "new_product_implementation": false,
+  "model_calls_or_data_queries": false,
+  "new_dependencies": false,
+  "existing_runtime_tests": "669 backend /23 frontend /45 browser baseline unchanged, not V2 evidence",
+  "review_limit": "de-identification is not IP licensing or legal/compliance certification",
+  "all20_original_images_pixel_identical_in_pdf": true,
+  "remote_pdf_git_blob_and_size_match": true,
+  "private_archive_pages_disabled": true,
+  "private_archive_file_count": 4,
+  "pdf_has_cover_index_two_editorial_summaries": true
+}

@@ -1,3 +1,37 @@
+# 通用架构已获限定GitHub同步授权，切换新窗口（2026-11-05，revision208）
+
+## 当前状态
+M04-C02-SDK DO / active / not_verified，未用户整体验收。D070主线是Claude Agent SDK+产品Skills+治理Harness，既有M01/M02/M04-A/M03有限本机验收不重置；原LangGraph比较分支保留。D080是通用架构规划调整，D081仅批准本次脱敏通用架构/PRD/规划Skill/交接进度同步既有GitHub；不含保密原件、内部业务信息或私有定位。
+
+## 完成与证据
+ARCHITECTURE_V2/R-U32/M04-B-AC06明确结构化请求、确定性时间/目录槽位落地、适用性L1-L4与失败分型、有界子任务、上下文/偏好/知识/资产分离及Skill审核/多轴质量证据；3相关project-pdca文件与对应安装副本同步。PRD13模块65需求、26进度tests、5PRDtests、Skillvalidator与diffcheck已检查，最终推送结果见本轮push-receipt和实际Gitrefs。
+
+原运行代码本轮未变，最后669后端/23前端/45browser/types/build/pip证据20261105T024331Z；不能拿旧证据证明V2新合同。新RequestIntent/TemporalResolver/ContextEnvelope/TaskPlan/完整L2/L3/RAG未实现或未集成。默认运行版本/Key/端口重新核查，真实Claude/生产/整体MVP仍not_run；账本此前49/60估算2.75USD，当前使用前再核、不reset。
+
+## 下一步：M04-S1
+在现有API兼容下实现RequestIntent、ContextEnvelope、TaskPlan的有界合同及合成金标准：owner/conversation/task、模型/来源/语义/Schema版本、purpose/明确同意、允许字段、token/任务数量预算；排除完整历史/结果行/Key，版本变更与撤权失效；子任务无环、输入输出/粒度/单位/覆盖明确。先合成隔离测试，再受控集成，不自动收费或扩大数据授权。后继S2时间/目录槽位→S3能力适用性/Skill检索→S4复杂合并→M03-B授权RAG→M05资产/记忆/正式任务→M06/M07/M08。真实验收按原门禁。
+
+## 保密与操作边界
+仅读本项目脱敏通用文件，禁止保密源资料/PDF/逐页摘要/内部系统指标字段案例/水印或私有仓库定位进入公共项目、规划Skill、fixture/RAG/模型调用。D081是限定发布许可，不是公开所有衍生材料的永久许可；不自动新增模型/费用/依赖/公司数据/宿主工具/生产部署或后续Git操作。不得继承助手凭证、读hostKey/settings/hooks，UNKNOWN执行不重提、不换key/引擎绕路。
+
+新窗口第一句见NEW_WINDOW_PROMPT.md。本轮只写交接与限定同步，不提前实现V2或擅自关闭M04。
+
+---
+以下仅历史，不能覆盖最新progress。
+
+# D080通用架构与规划Skill修订已检查（2026-11-05，revision206）
+
+本轮按用户要求把受限源资料在本项目之外独立private归档，原图/PDF/私有资料定位与业务内容未写本项目。PDF24页/20原图按序保留水印，渲染/逐像素/远端private与文件/commit检查通过。细节只在私有归档，不由本公开handoff泄露。
+
+本项目新增`project-control/ARCHITECTURE_V2.md`、R-U32/M04-B-AC06及`skills/project-pdca/references/governed-agent-design.md`：结构化意图/时间目录确定性落地、适用性L1-L4/失败分类、有界TaskPlan、ContextEnvelope/状态偏好知识资产分離、Skill版本审核/多轴来源质量证据。保持D070SDK/已验收模块/预算与真实门禁，不照搬具体业务/角色/系统/数字/技术栈。3相关project-pdca文件同步对应安装副本，仅本项目规则。
+
+PRD13模块65需求/Progress26tests/PRD5tests/Skillvalidator/字节一致/diffcheck通过；产品源码仍对应669/23/45历史基线，V2仅规划，新RequestIntent/TemporalResolver/TaskPlan/ContextEnvelope实现/集成not_run。M04DO/not_verified。新衍生架构/Skill文件未commit/push公共仓库，staged为空；脱敏不等于IP公开许可，公开推送需另确认可公开范围。未模型调用/收费/生产/读取Key/数据查询/安装/宿主工具扩权。
+
+下一步按ARCHITECTURE_V2做M04-S1最小兼容Schema与合成金标准，先守owner/版本/consent/不外发全历史结果行，再时间槽位/能力目录/复杂任务/授权RAG/原M05后续。新权限/数据/费用不从资料或“继续”推导。最新自审证据D080_CHECK_REPORT；不得读取受限源来写公开案例或训练fixture。
+
+---
+以下仅历史。
+
 # GitHub同步完成（2026-11-05，revision204）
 已按D079将此前基线702cabe和本轮当前A2.2源码/文档/独立合成证据推main712c415f6aa2675f8529769c3d85fcd78dee2703，远端SHA核一致；LangGraph比较分支92d0b03未变。669后端/23前端/45browser/types/build/pip/source-stability通过，最新证据20261105T024331Z。状态收尾另提交，最新Git SHA以refs为准。不等于部署或用户验收；runtime/Key/账本/上传/语义/临时draft未上传。
 

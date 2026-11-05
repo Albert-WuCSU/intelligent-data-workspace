@@ -42,3 +42,9 @@ test-results/
 
 # Root-level ephemeral PDCA draft (current progress/checkpoints remain versioned)
 /progress.draft.json
+
+# Restricted source archives must stay outside this public project
+/restricted/
+/confidential/
+/private-design/
+*restricted-design-compendium*.pdf

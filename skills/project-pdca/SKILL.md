@@ -81,6 +81,10 @@ CHECK/ACT 失败 → DO 修复 → 重跑 CHECK → 再审计；需改变方案 
 
 M04-A已验收模型API不等于SDK兼容：SDK内置CLI、工具协议、模型、网关、许可、Windows资源隔离、环境/目录/设置来源、遥测及预算须实核。SDK env覆盖可能仍继承父环境；allowed_tools可能自动批准工具，不能当唯一白名单。不得读取宿主Claude/Codex登录、加载用户settings/hooks、自动fallback或把旧128token/单次预算当SDK工具循环能力。方向与文档/Git推送已批准，未知版本安装、模型实际费用、新端点/数据外发/生产仍按原授权边界。只更新本项目Skill和它的对应安装副本，不改无关Skill。
 
+## 本项目通用架构与受限资料（条件适用）
+
+仅本项目在D-ARCHITECTURE-GENERALIZATION-080后，M04规划/审计/续接读取[通用Agent规划约束](references/governed-agent-design.md)与`project-control/ARCHITECTURE_V2.md`。优先职责/合同、适用性路由、语义确定性落地和记忆/知识分离；机密原始资料只在独立私有归档，不加载到公开源码/Skill/模型调用。泛化不等于IP公开许可，不照搬行业默认值/技术栈/准确率，不撤销D070或现有安全/验收门禁。
+
 ## 进度与每轮收尾
 
 任何关键选择、实现切片、测试结果、阻碍和阶段变化后都 checkpoint；较长任务中每完成一个可复现步骤写一次，不等上下文耗尽。使用工具生成 `progress.draft.json`，调用 `progress.py checkpoint --root <root> --draft <draft> --expected-revision <旧revision>`。脚本生成 HANDOFF 并校验 revision、决策及证据，不能凭脚本通过代替审计。不要直接覆盖主进度；证据用唯一文件名以便保留历史。状态和备份不存令牌、敏感样例或大段工具输出。
