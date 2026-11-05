@@ -1,6 +1,6 @@
 # 项目续接档案
 
-状态版本 revision 207，更新时间 2026-11-05T05:40:23.491532+00:00 UTC。
+状态版本 revision 208，更新时间 2026-11-05T05:42:23.160914+00:00 UTC。
 
 先校验 progress.json 并核对实际文件；本档案由脚本生成，主进度为唯一状态真源。
 
@@ -74,6 +74,7 @@
 - 2026-11-05 D080用户要求受限共同IP资料独立private归档和脱敏通用架构/Skill调整。独立private归档24页PDF（20原图+4编辑页）已渲染/检查/上传并核private可见性和远端commit，不含在公共workspace/源模型调用。新ARCHITECTURE_V2/R-U32/AC06与3相关Skillfiles对应安装副本同步，只含通用职责/合同，未推公共仓库；不主张脱敏取得IP许可。源代码/默认服务/预算/收费/安装/安全边界不变，V2合同实现/集成not_run，M04未验收。
 - 2026-11-05 D080归档/通用规划自审完成：受限24页PDF/20原图在独立private仓库，水印/像素一致、远端private/文件与commit一致、无Pages，定位和源细节未写公共项目。ARCHITECTURE_V2/R-U32/AC06与3相关Skill/copy仅行业无关重新表达，PRD13/65/26+5tests/SkillvalidatorUTF8复跑/diff/同步通过。新写作脱敏检查通过（旧历史backup不作新素材），新文件未公共commit/push、HEAD不变/staged为空，脱敏非IP公开许可。产品源匹配669/23/45原基线，不重跑或伪称新V2能力；合同/集成not_run，无模型/收费/数据/Key/安装/生产变更。
 - 2026-11-05 D081用户明确批准本次脱敏架构/PRD/规划Skill/交接进度同步GitHub；已编写新窗口M04-S1续接指令，保密原始资料/PDF/内部信息与私有定位不纳入public。当前V2仅规划，旧669/23/45运行证据不作新增能力，未实模型/费用/依赖/数据/生产变更；本轮推送前复核隐私与文档一致，实际SHA另记录。
+- 2026-11-05 D081通用架构/PRD/规划Skill/交接已非forcepush既有GitHubmain ae86167ef1416c19bca1dc3d7d09b49d3ddf63ad，lsremoteSHA一致，LangGraphbaseline92d0b03未变。原受限PDF/原图/私有定位未public提交，源运行代码未改、仍匹配669/23/45指纹；PRD13/65、26进度/5PRDtests和脱敏规则复核通过。revision208收尾receipt另提交，最新SHA以实际refs为准；用户要求新窗口，NEW_WINDOW_PROMPT/HANDOFF_DETAILS/STATUS已写明M04-S1合同合成测试及权限/费用/保密门禁。V2仅规划，M04DO/not_verified，真实/生产/MVPnot_run。
 
 ## 阻碍
 
