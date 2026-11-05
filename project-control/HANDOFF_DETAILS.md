@@ -1,3 +1,11 @@
+# GitHub同步完成（2026-11-05，revision204）
+已按D079将此前基线702cabe和本轮当前A2.2源码/文档/独立合成证据推main712c415f6aa2675f8529769c3d85fcd78dee2703，远端SHA核一致；LangGraph比较分支92d0b03未变。669后端/23前端/45browser/types/build/pip/source-stability通过，最新证据20261105T024331Z。状态收尾另提交，最新Git SHA以refs为准。不等于部署或用户验收；runtime/Key/账本/上传/语义/临时draft未上传。
+
+下一步最小会话context安全合同/合成评估；default最新运行/实模型需用户重载/Key/明确动作与有限预算，49/60/2.75USD不reset。M04DO/not_verified；完整L2/L3/RAG/C/Claude/生产/MVP后续，不能据PRD或Gitpush推导授权。
+
+---
+以下仅历史。
+
 # GitHub已更新基线，继续A2.2公开模型意图本机CHECK完成（2026-11-05，revision203）
 
 D079用户明确“最新推GitHub后继续”。此前642/23/45源码指纹核一致、规则扫描未见secret匹配、当前evidencehash核一致，源码/文档/独立合成证据已非forcepush main702cabe并lsremote核SHA；LangGraphbaseline92d0b03未变，未部署/真实费用/数据授权或模块验收。runtime/Key/上传/语义/账本/venv/tmp/draft忽略。

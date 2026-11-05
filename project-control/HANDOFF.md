@@ -1,13 +1,13 @@
 # 项目续接档案
 
-状态版本 revision 203，更新时间 2026-11-05T02:54:08.543667+00:00 UTC。
+状态版本 revision 204，更新时间 2026-11-05T02:55:41.149549+00:00 UTC。
 
 先校验 progress.json 并核对实际文件；本档案由脚本生成，主进度为唯一状态真源。
 
 - 项目：通用企业智能数据分析平台
 - 当前：M04 取数Agent与Harness（M04-B Claude Agent SDK＋Skills主线） / do
 - 状态：in_progress
-- 下一步：按D079将此次669/23/45完整通过的A2.2增量同步GitHub并核远端SHA；然后按D077/D078在无需实Key范围继续最小会话上下文/版本失效/owner/来源与数据外发合同和合成评估，完整业务主题L2/L3/RAG另按具体口径授权。默认最新API未加载，实模型须用户重载/Key/明确动作，估算余额2.75USD只够一次SDK复测、更多需授权不reset。保留Claude/生产/MVP not_run/M04未验收；不自动新增费用/公司数据/host权限/安装。
+- 下一步：GitHub基线与A2.2完整通过增量已更新；在无需实Key范围按D077/D078继续最小会话上下文的owner/来源/版本/明确外发/不含结果行历史合同及合成评估，再具体业务主题L2/L3/RAG按批准数据/口径逐片推进。默认最新API未加载，实模型需用户重载/Key/明确动作，2.75USD估算只够一次SDK复测、更多需补授权不reset。M04未验收、Claude/生产/MVP not_run；D079不授权自动部署/新增费用/公司数据或宿主工具。
 
 ## 优先读取
 - project-control/modules/M04/evidence/20261105T024331Z/A22_CHECK_REPORT.md
@@ -69,6 +69,7 @@
 - 2026-11-05 A2.2SDK专项首轮2failed/15pass（公开note缺失因CLI把完整text/tool拆为同ID AssistantMessages；另旧modelchange等待失败未独立证明原因）。已加有界同ID完整块buffer/unsafe后块毒化/诊断不存unsafe，31逻辑专项和4受影响SDK专项复跑通过，无放宽等待/断言。当前全量检查进行中，GitHub702cabe基线已更新，新片验证后再同步；未调用真实模型/扩费用。
 - 2026-11-05 A2.2首次全量667pass/2fail（原失败diagnostic要求rawmodeltext与新隐私合同冲突；L2 CLI60s启动未到等待状态）；23前端/45browser/types/build/pip通过，manifest因修复测试source变化失败保留。现failure断言必须model_textNone且无原文/Key，保留结构usage/events；不放宽SQL/QA或timeout。L2与新公开notes/diagnostic三项复跑passed；添加safe启动超时counts诊断，无敏感原文。最新当前source完整复跑中，未实模型/费用/权限/服务重启，GitHub702cabe已确认。
 - 2026-11-05 D079基线702cabe已非forcepush GitHubmain/lsremoteSHA同，LangGraphbaseline92d0b03不变。继续A2.2最新669后端/23前端/45browser/types/build/pip/source-stability全部pass，fingerprint 5affed8ff4be07d2e1e5086a81be2233cd41060ec98399140554458213495543，024331Z。公开模型完整意图/双层门禁/同ID拆块/unsafe后块毒化/4条500字/非回执来源与失败rawtext省略已实现。初始SDK拆块缺note/旧隐私断言及CLI启动等待失败保留，未放宽budget/timeout/QA，根因间歇风险未完全证实。无实模型/费用/公司数据/host权限/安装/服务重启，default200/modelunconfigured/0task/账本49/60估算2.75USD不变。完整主题L2/L3/context/RAG/C/Claude/生产/MVP与用户验收not_run；下一步同步该完整通过增量并记录实际SHA。
+- 2026-11-05 D079当前A2.2已验证源码/文档/合成证据非forcepush GitHubmain712c415f6aa2675f8529769c3d85fcd78dee2703，lsremote同SHA；baseline702cabe与LangGraph92d0b03保留，当前源码669/23/45完整passed fingerprint不变。此次只同步repo，不生产部署/模型调用/费用/权限变更；后续状态checkpoint另提交推送，最新SHA以Gitrefs为准。
 
 ## 阻碍
 
