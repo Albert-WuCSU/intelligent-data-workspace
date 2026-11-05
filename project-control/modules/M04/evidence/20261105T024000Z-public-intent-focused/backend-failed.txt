@@ -1,0 +1,62 @@
+...........F....F                                                        [100%]
+================================== FAILURES ===================================
+_ test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding[model_change] _
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-213/test_web_sdk_waiting_clarifica1')
+gateway = <test_sdk_agent.FakeGateway object at 0x0000022595538110>
+action = 'model_change'
+
+    @pytest.mark.parametrize("action", ["cancel", "model_change", "schema_change"])
+    def test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding(tmp_path, gateway, action):
+        gateway.clarify = True
+        app, source_id, published, model_ref = build_app(tmp_path, gateway.server_port)
+        with TestClient(app, base_url=BASE, client=("127.0.0.1", 1)) as client:
+            task_id = client.post("/api/v1/agent/tasks", json=request_body(source_id, published, model_ref), headers=H).json()["id"]
+>           waiting = wait_task(client, task_id, "NEEDS_CLARIFICATION")
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_sdk_web_agent.py:375: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+client = <starlette.testclient.TestClient object at 0x00000225955E0AD0>
+task_id = 'b540fd59-b0b9-4b3f-a972-2fd23f5ba4bd', phase = 'NEEDS_CLARIFICATION'
+timeout = 60
+
+    def wait_task(client, task_id, phase=None, timeout=60):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            response = client.get(f"/api/v1/agent/tasks/{task_id}")
+            assert response.status_code == 200, response.text
+            task = response.json()
+            if phase is not None:
+                if task["phase"] == phase:
+                    return task
+            elif task["phase"] not in ("PLANNING", "VALIDATING", "EXECUTING", "CHECKING"):
+                return task
+            time.sleep(0.1)
+>       raise AssertionError(f"task {task_id} did not reach {phase or 'terminal'}")
+E       AssertionError: task b540fd59-b0b9-4b3f-a972-2fd23f5ba4bd did not reach NEEDS_CLARIFICATION
+
+services\api\tests\test_sdk_web_agent.py:107: AssertionError
+_ test_web_sdk_public_intent_between_tools_no_extra_call_or_unverified_values _
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-213/test_web_sdk_public_intent_bet0')
+gateway = <test_sdk_agent.FakeGateway object at 0x00000225953C3D70>
+
+    def test_web_sdk_public_intent_between_tools_no_extra_call_or_unverified_values(tmp_path,gateway):
+        gateway.public_intent_notes=True
+        app,source_id,published,model_ref=build_app(tmp_path,gateway.server_port)
+        with TestClient(app,base_url=BASE,client=("127.0.0.1",1)) as client:
+            response=client.post('/api/v1/agent/tasks',json=request_body(source_id,published,model_ref),headers=H)
+            assert response.status_code==200,response.text
+            task=wait_task(client,response.json()['id'],'AWAITING_CONFIRMATION')
+            intents=[d for d in task['dialogue'] if d['origin']=='model_public_intent']
+>           assert 1<=len(intents)<=4 and all(not d['tools'] and '�һ��Ⱥ˶�' in d['text'] for d in intents)
+E           assert (1 <= 0)
+E            +  where 0 = len([])
+
+services\api\tests\test_sdk_web_agent.py:470: AssertionError
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_sdk_web_agent.py::test_web_sdk_waiting_clarification_rejects_cancelled_or_changed_binding[model_change]
+FAILED services\api\tests\test_sdk_web_agent.py::test_web_sdk_public_intent_between_tools_no_extra_call_or_unverified_values
+2 failed, 15 passed in 140.75s (0:02:20)

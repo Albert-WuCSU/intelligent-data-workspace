@@ -1227,7 +1227,7 @@
       "decision_ids": [
         "D-M04B-CONVERSATIONAL-UX-078"
       ],
-      "current_evidence_boundary": "A2.1当前本机631后端/23前端/45浏览器/types/build/pip与源稳定通过（092140Z）；过程为公开治理事实而非模型thinking。默认API重启被环境拦截、真实体验/模型中间消息流/生产尚未验证，M04未验收。"
+      "current_evidence_boundary": "A2.2当前669/23/45/types/build/pip/源稳定通过（20261105T024331Z），完整模型公开意图与治理事件来源区分，非任意token流/思维链；default/live真实体验与生产未验证，M04未验收。"
     }
   ],
   "sources": {

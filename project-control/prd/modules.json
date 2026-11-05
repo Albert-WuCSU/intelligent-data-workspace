@@ -203,7 +203,7 @@
     {
       "id": "M04",
       "title": "M04-B Claude Agent SDK＋Skills的受治理问数",
-      "state": "M04-C02-SDK DO/not_verified；A3-M1有限metadata/L2派生模板本机CHECK通过，完整L2/L3/真实体验/生产未验收",
+      "state": "M04-C02-SDK DO/not_verified；A2.2有界公开模型意图当前本机CHECK通过，真实模型/默认最新运行/生产未验收",
       "phase": "MVP：M02→M04-A→M03之后",
       "deps": [
         "M02",
@@ -260,7 +260,7 @@
         "M04-B-AC05/R-U31：执行说明、实际工具和澄清问答按时间顺序留在主聊天，最终正文报告为主、技术证据折叠，不展示原始思维链或伪造步骤。"
       ],
       "risk": "SDK网关/模型协议和费用、内置CLI/许可、父环境与settings/hook隔离、工具自动批准、会话恢复和结果外发待核。",
-      "evidence": "当前A3-M1 642后端/23前端/45浏览器/types/build/pip/源稳定通过（101013Z）。单源单表canonical语义派生L2模板，非企业主题库/自由SQL；默认A3加载与真实模型not_run；历史A2/A2.1/LangGraph证据保留。"
+      "evidence": "当前A2.2 669后端/23前端/45浏览器/types/build/pip/源稳定通过（20261105T024331Z）。SDK假网关/真实合成MCP、UI-only截图各自标注；A3-M1仍为单表canonical模板/metadata，非完整L2/L3/RAG，默认/真实/生产not_run。"
     },
     {
       "id": "M05",

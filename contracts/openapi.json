@@ -2184,7 +2184,8 @@
             "type": "string",
             "enum": [
               "governed_event",
-              "user_answer"
+              "user_answer",
+              "model_public_intent"
             ],
             "title": "Origin",
             "default": "governed_event"

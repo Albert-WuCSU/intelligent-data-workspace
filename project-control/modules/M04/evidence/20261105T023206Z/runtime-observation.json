@@ -1,0 +1,12 @@
+{
+  "real_model_calls_this_turn": false,
+  "default_latest_runtime": "not_verified_no_restart_attempt",
+  "notes": "SDK fixture tests are isolated; no automatic provider call or service restart.",
+  "model_http_status": 200,
+  "model_state": "unconfigured",
+  "tasks_http_status": 200,
+  "task_count": 0,
+  "read_only_reserved_units": 49,
+  "estimated_remaining_usd": "2.75",
+  "budget_reset": false
+}

@@ -1013,7 +1013,7 @@ export interface components {
              * @default governed_event
              * @enum {string}
              */
-            origin: "governed_event" | "user_answer";
+            origin: "governed_event" | "user_answer" | "model_public_intent";
         };
         /** AgentRequest */
         AgentRequest: {

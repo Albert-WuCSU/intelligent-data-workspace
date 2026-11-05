@@ -15,6 +15,7 @@ from typing import Any
 from claude_agent_sdk import create_sdk_mcp_server, tool
 
 from .auth import PublicError
+from .sdk_public_notes import safe_public_note, MAX_PUBLIC_NOTES
 from .contracts import AuthContext
 from .semantic_contracts import SemanticMetric
 from .warehouse.aggregate_client import AggregateMCPClient
@@ -145,6 +146,7 @@ class GovernedQueryBackend:
         self.clarification_error: str | None = None
         self.topic_template: dict[str, Any] | None = None
         self.metadata_read = False
+        self.public_note_ids: set[str] = set()
         self.query_path = None
         self.clarification_path = self.confirmation_path.with_name("clarification.json") if self.confirmation_path else None
         self.events: list[dict[str, Any]] = []
@@ -181,6 +183,19 @@ class GovernedQueryBackend:
         if len(self.events) > 100:
             del self.events[:-100]
         self._state(self.current_phase)
+
+    def record_public_intent(self, message_id, text, secret=''):
+        # Called only for complete public text accompanying an Assistant tool call.
+        # Never consumes thinking/partial events or changes execution authorization.
+        if (self.publication is not None or self.submitted or self.clarification_error
+            or not isinstance(message_id,str) or not message_id or len(message_id)>120
+            or message_id in self.public_note_ids or len(self.public_note_ids)>=MAX_PUBLIC_NOTES):
+            return False
+        note=safe_public_note(text,secret)
+        if note is None: return False
+        self.public_note_ids.add(message_id)
+        self._event("MODEL_PUBLIC_INTENT", text=note)
+        return True
 
     # -- routing ---------------------------------------------------------------
     def record_skill(self, name: str, sha256: str) -> None:

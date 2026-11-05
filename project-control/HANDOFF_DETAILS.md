@@ -1,3 +1,16 @@
+# GitHub已更新基线，继续A2.2公开模型意图本机CHECK完成（2026-11-05，revision203）
+
+D079用户明确“最新推GitHub后继续”。此前642/23/45源码指纹核一致、规则扫描未见secret匹配、当前evidencehash核一致，源码/文档/独立合成证据已非forcepush main702cabe并lsremote核SHA；LangGraphbaseline92d0b03未变，未部署/真实费用/数据授权或模块验收。runtime/Key/上传/语义/账本/venv/tmp/draft忽略。
+
+- 继续A2.2：模型工具间完整TextBlock公开未来意图，4条/500字符/16待处理ID，按锁定CLI同ID拆块组合，unsafe后块毒化整个消息、无原文失败diagnostic。ThinkingBlock/StreamEvent碎片不转发；runner/API双层拒绝数字/成功声明/Key/URL/path/SQL/code，来源标“模型公开意图，非执行回执”。提交/发布后不接收，不新增model请求/工具/费用，原授权/路由/确认/MCP/QA/usage/receipt不变。
+- 最终669后端/23前端/45browser/types/build/pip/源稳定全部通过（024331Z results/A22_CHECK_REPORT）；第一次SDK拆块缺notes、旧diagnostic隐私断言与两次本机CLI等待超时失败保留，受影响复跑与最终全量通过，未放宽timeout或QA/SQL。间歇启动风险根因未独立证实。
+- SDK假网关+真实合成MCP/CLI测试，UI-only快照非实模型/用户研究。模型notes不合门禁就省略，事实/结果仍可用；并非任意token流/思维链/全模型语义真值认证。
+- 当前服务未重启；API200/modelunconfigured/0task，最新A3/A2.2加载与真实体验not_run。账本49/60/估算2.75USD不变，仅够模型重测0.25+SDK2USD一任务；更多需补授权、不reset。
+- 下一步：推送此次完整通过增量并核真实SHA，之后最小会话上下文/完整业务L2/L3合同与合成评估按已批准路线继续。新业务口径/公司数据/结果历史外发/费用/host工具需新边界；B RAG/C多源导出/PythonQA/Claude/生产/MVP后续not_run。M04仍DO/not_verified，不自动验收。
+
+---
+以下仅历史。
+
 # 下班后自主推进：A3-M1本机CHECK完成（2026-11-04，revision198）
 
 用户报告已手动重启A2.1并明确要求继续无需人工的工作。本轮未重新初始化、未请求Key/真实调用、未commit/push。D070/071/072-D/075/076/077/078、已验收模块及真实门禁不变。

@@ -262,6 +262,7 @@ class FakeGateway(ThreadingHTTPServer):
         self.host_context_leaked = False
         self.text_only = False
         self.topic_path = False
+        self.public_intent_notes = False
         self.response_model = "claude-sonnet-5-5"
         self.clarify = False
         self.clarify_continue = False
@@ -367,13 +368,18 @@ class FakeHandler(BaseHTTPRequestHandler):
     def events(self, step, block, stop_reason):
         message = {"id": f"msg_sdk_fixture_{step}", "type": "message", "role": "assistant", "model": self.server.response_model, "content": [], "stop_reason": None, "stop_sequence": None, "usage": {"input_tokens": 50, "output_tokens": 1, "cache_creation_input_tokens": 0, "cache_read_input_tokens": 0}}
         yield "message_start", {"type": "message_start", "message": message}
-        yield "content_block_start", {"type": "content_block_start", "index": 0, "content_block": block}
-        if block["type"] == "tool_use":
-            delta = {"type": "input_json_delta", "partial_json": json.dumps(block["input"], separators=(",", ":"))}
-        else:
-            delta = {"type": "text_delta", "text": block["text"]}
-        yield "content_block_delta", {"type": "content_block_delta", "index": 0, "delta": delta}
-        yield "content_block_stop", {"type": "content_block_stop", "index": 0}
+        blocks = [block]
+        if self.server.public_intent_notes and block["type"] == "tool_use":
+            note = ("我会先核对授权字段，再请你确认范围。" if step <= 4 else "我会报告总计100万元。")
+            blocks = [{"type": "text", "text": note}, block]
+        for index, item in enumerate(blocks):
+            yield "content_block_start", {"type": "content_block_start", "index": index, "content_block": item}
+            if item["type"] == "tool_use":
+                delta = {"type": "input_json_delta", "partial_json": json.dumps(item["input"], separators=(",", ":"))}
+            else:
+                delta = {"type": "text_delta", "text": item["text"]}
+            yield "content_block_delta", {"type": "content_block_delta", "index": index, "delta": delta}
+            yield "content_block_stop", {"type": "content_block_stop", "index": index}
         yield "message_delta", {"type": "message_delta", "delta": {"stop_reason": stop_reason, "stop_sequence": None}, "usage": {"output_tokens": 20}}
         yield "message_stop", {"type": "message_stop"}
 
@@ -534,7 +540,11 @@ def test_failure_diagnostics_written_for_missing_publication(tmp_path):
     diagnostic = json.loads(diagnostic_path.read_text(encoding="utf-8"))
     assert diagnostic["status"] == "FAILED"
     assert diagnostic["error"] == "SDK_PUBLICATION_MISSING"
-    assert diagnostic["model_text"] == "No tool needed."
+    # New privacy contract: failure diagnostics retain receipts/events/usage,
+    # not unchecked or intermediate model prose.
+    assert diagnostic["model_text"] is None
+    assert "No tool needed." not in diagnostic_path.read_text(encoding="utf-8")
+    assert FIXTURE_TOKEN not in diagnostic_path.read_text(encoding="utf-8")
     assert diagnostic["usage"]
     assert diagnostic["events"] and diagnostic["budget"]["model_steps"] == 1
     assert not server.errors

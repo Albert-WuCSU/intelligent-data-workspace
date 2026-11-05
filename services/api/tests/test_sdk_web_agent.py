@@ -104,7 +104,21 @@ def wait_task(client, task_id, phase=None, timeout=60):
         elif task["phase"] not in ("PLANNING", "VALIDATING", "EXECUTING", "CHECKING"):
             return task
         time.sleep(0.1)
-    raise AssertionError(f"task {task_id} did not reach {phase or 'terminal'}")
+    # Preserve safe fixture startup diagnostics for intermittent CLI startup
+    # timeouts. No Key/prompt/rows/SQL/raw model text are included.
+    try:
+        sdk=client.app.state.agent.sdk
+        record=sdk.records[task_id]
+        snapshot={"task_phase":task["phase"], "error_code":task.get("error_code"),
+                  "worker_done":record.worker.done(), "terminal":record.terminal,
+                  "state_exists":record.state_path.is_file(),
+                  "stdout_bytes":record.stdout_path.stat().st_size if record.stdout_path.is_file() else 0,
+                  "stderr_bytes":record.stderr_path.stat().st_size if record.stderr_path.is_file() else 0}
+        target=record.budget.root.parent/'sdk-wait-timeout-diagnostic.json'
+        target.write_text(json.dumps(snapshot,indent=2),encoding="utf-8")
+    except (AttributeError,KeyError,OSError):
+        pass
+    raise AssertionError(f"task {task_id} did not reach {phase or 'terminal'}; phase={task['phase']}; code={task.get('error_code')}")
 
 
 @pytest.fixture
@@ -457,3 +471,25 @@ def test_web_sdk_l2_template_discovery_plan_confirmation_and_real_qa(tmp_path, g
         assert gateway.step==9 and not gateway.errors and not gateway.rows_leaked and not gateway.host_context_leaked
         assert app.state.model_provider.budget.summary().reserved_requests==8
         assert any('主题' in d['text'] for d in result['dialogue'])
+
+
+def test_web_sdk_public_intent_between_tools_no_extra_call_or_unverified_values(tmp_path,gateway):
+    gateway.public_intent_notes=True
+    app,source_id,published,model_ref=build_app(tmp_path,gateway.server_port)
+    with TestClient(app,base_url=BASE,client=("127.0.0.1",1)) as client:
+        response=client.post('/api/v1/agent/tasks',json=request_body(source_id,published,model_ref),headers=H)
+        assert response.status_code==200,response.text
+        task=wait_task(client,response.json()['id'],'AWAITING_CONFIRMATION')
+        intents=[d for d in task['dialogue'] if d['origin']=='model_public_intent']
+        assert 1<=len(intents)<=4 and all(not d['tools'] and '我会先核对' in d['text'] for d in intents)
+        assert not any('100万元' in d['text'] for d in task['dialogue'])
+        assert gateway.step==5 and not task['sql_executed']
+        response=client.post(f"/api/v1/agent/tasks/{task['id']}/confirm",json={'plan_hash':task['plan_hash'],'execution_generation':task['execution_generation'],'confirm_execute':True},headers=H)
+        assert response.status_code==200,response.text
+        result=wait_task(client,task['id'],'SUCCEEDED')
+        assert result['result']['rows']==[[11325]] and result['execution_receipt']['quality_receipt']['status']=='PASS'
+        assert '100万元' not in (result['answer'] or '')
+        assert not any('100万元' in d['text'] or FIXTURE_TOKEN in d['text'] for d in result['dialogue'])
+        assert len([d for d in result['dialogue'] if d['origin']=='model_public_intent'])<=4
+        assert gateway.step==8 and not gateway.errors and not gateway.rows_leaked
+        assert app.state.model_provider.budget.summary().reserved_requests==8

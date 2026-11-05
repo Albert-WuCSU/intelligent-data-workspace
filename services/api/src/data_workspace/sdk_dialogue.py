@@ -1,5 +1,6 @@
 """Public execution summaries derived from allowlisted facts, never model thinking."""
 from .agent_contracts import AgentDialogueEntry
+from .sdk_public_notes import safe_public_note, MAX_PUBLIC_NOTES
 
 FACTS = {
     'TABLES_DISCOVERED': ('已列出本次授权绑定的表；这里只包含当前单表，不代表整个数仓目录已接入。', ['list_authorized_tables']),
@@ -19,11 +20,18 @@ FACTS = {
 def public_dialogue(events, turns, secret=''):
     result=[]
     asked=answered=0
+    public_notes=0
     for index, event in enumerate(events[-100:]):
         if not isinstance(event,dict): continue
         kind=event.get('type')
         text=None;tools=[];role='update';origin='governed_event'
-        if kind=='PLAN_READY' and event.get('engine')=='topic_sql':
+        if kind=='MODEL_PUBLIC_INTENT':
+            if public_notes>=MAX_PUBLIC_NOTES: continue
+            text=safe_public_note(event.get('text'),secret)
+            if text is None: continue
+            public_notes+=1
+            origin='model_public_intent'
+        elif kind=='PLAN_READY' and event.get('engine')=='topic_sql':
             text='单表主题模板的参数计划已通过字段、指标和粒度检查；请核对口径，确认前不会取数。'
             tools=['propose_topic_query']
         elif kind in FACTS: text,tools=FACTS[kind]

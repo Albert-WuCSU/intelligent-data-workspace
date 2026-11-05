@@ -64,7 +64,7 @@ class AgentDialogueEntry(Contract):
     kind: Literal['update','clarification','user']
     text: str = Field(max_length=1600)
     tools: list[str] = Field(default_factory=list,max_length=3)
-    origin: Literal['governed_event','user_answer'] = 'governed_event'
+    origin: Literal['governed_event','user_answer','model_public_intent'] = 'governed_event'
 class AgentTask(Contract):
     conversation_id: str = ''
     id: str

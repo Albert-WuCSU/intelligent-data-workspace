@@ -1,3 +1,7 @@
+# 2026-11-05 有界公开模型意图说明
+工具调用间的完整TextBlock经双层门禁显示，最多4条/500字符；ThinkingBlock/StreamEvent碎片不显示。数字/凭证/路径/代码/成功声明/非未来意图省略且不入诊断，正文标注非执行回执。不是任意token流，拒绝不影响后端查询/QA/发布，不新增模型调用或费用。
+专项：`services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_public_notes.py services/api/tests/test_sdk_web_agent.py -q`；完整仍`services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser`。默认运行尚需用户加载，真实模型需要用户显式输入Key/授权复测，D053不reset。
+
 # 2026-11-04 A3-M1本机检查范围
 新工具只检索任务绑定单表元数据、选择已批准metric派生L2模板；不可调用自由SQL或生成未批准口径。模板receipt绑定版本/route/source/schema/Skill，提案经原confirm/MCP/QA门禁。query_path显示实际L1/L2，非质量认证。Skill1.0.6。
 专项：`services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_sdk_topic.py services/api/tests/test_sdk_web_agent.py services/api/tests/test_sdk_dialogue.py -q`；最终完整仍`services/api/.venv/Scripts/python.exe scripts/check.py --module M04 --browser`。模型与公司数据不自动调用，默认运行加载另验。

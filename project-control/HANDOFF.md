@@ -1,21 +1,20 @@
 # 项目续接档案
 
-状态版本 revision 199，更新时间 2026-11-05T02:21:10.151261+00:00 UTC。
+状态版本 revision 203，更新时间 2026-11-05T02:54:08.543667+00:00 UTC。
 
 先校验 progress.json 并核对实际文件；本档案由脚本生成，主进度为唯一状态真源。
 
 - 项目：通用企业智能数据分析平台
 - 当前：M04 取数Agent与Harness（M04-B Claude Agent SDK＋Skills主线） / do
 - 状态：in_progress
-- 下一步：将D079批准的当前main源码/文档/合成测试证据提交并非force推既有origin；核远端SHA与baseline未变。完成后按D077/D078推进公开模型消息安全生命周期合同/实现与合成测试，不调用真实模型或扩大预算/外发/权限。
+- 下一步：按D079将此次669/23/45完整通过的A2.2增量同步GitHub并核远端SHA；然后按D077/D078在无需实Key范围继续最小会话上下文/版本失效/owner/来源与数据外发合同和合成评估，完整业务主题L2/L3/RAG另按具体口径授权。默认最新API未加载，实模型须用户重载/Key/明确动作，估算余额2.75USD只够一次SDK复测、更多需授权不reset。保留Claude/生产/MVP not_run/M04未验收；不自动新增费用/公司数据/host权限/安装。
 
 ## 优先读取
-- project-control/modules/M04/evidence/20261104T101013Z/A3_M1_CHECK_REPORT.md
-- project-control/modules/M04/evidence/20261104T101013Z/NEXT_LOCAL_WORK.md
-- project-control/HANDOFF_DETAILS.md
-- project-control/modules/M04/AGENTIC_CONVERSATION_L1L4_PLAN.md
+- project-control/modules/M04/evidence/20261105T024331Z/A22_CHECK_REPORT.md
+- project-control/modules/M04/evidence/20261105T023206Z/A22_RETEST_RUNBOOK.md
 - project-control/modules/M04/plan.md
 - project-control/prd/M04-B.md
+- project-control/HANDOFF_DETAILS.md
 
 ## 工作状态
 - 2026-11-03用户要求新窗口：已整理最终HANDOFF_DETAILS/STATUS/NEW_WINDOW_PROMPT；revision172仅交接和session更新，未重跑测试。S02 9项专项及602/17/44证据不变，真实AIPlan/Claude/生产/MVP仍not_run。
@@ -66,6 +65,10 @@
 - 2026-11-04 A3-M1代码已实现，26初始专项passed/浏览器1与types通过；末审增加绑定/schema/unloaded/freeSQL拒绝与L2工具标签测试后，全量当前源检查进行中。L2仅已有批准口径派生单表模板，L3仅metadata基础，不开放自由SQL/新metric/多表/公司数据，原预算/确认/QA/receipt不变，未真实模型/commit/push。用户已重启A2.1且监听PID已变化；A3当前运行尚未加载。
 - 2026-11-04 下班后自主A3-M1当前642后端/23前端/45浏览器/types/build/pip/源稳定全通过，fingerprint 4d39b9b48bd499383292b6526d9bea41d009dc71025e85928b2371555f1a7f0d，101013Z。单源单表metadata+批准canonical口径派生L2模板/参数提案、完整metric比对/提交后禁改计划、实际路径UI与Skill1.0.6完成。真实合成SDK/MCP9步/150输入/51匹配/2组/6375为独立测试金标准，无企业数据。用户重启A2.1新监听32324/30252于18:01:32，200/模型unconfigured/0任务；A3在其后修改default未加载，本轮不打断用户服务/不绕之前环境拒绝。账本49/60余额2.75USD不变，无Key/真实收费/公司截图SQL/host权限/安装/子Agent/commit/push。完整L2/L3/公开模型消息/context/RAG/多源/导出/QA及Claude/生产/MVP门禁保留，M04未验收。
 - 2026-11-05 D079用户批准当前最新main更新GitHub后继续；当前源匹配642/23/45最终证据。预推检查1120候选文件未见规则匹配秘密，忽略runtime/key/上传/语义/账本/venv/临时draft；保留独立合成fixture/失败证据。无部署workflow确认后非force推既有main，baseline保留；推送结果待记录。
+- 2026-11-05 D079 latestbaseline702cabe非force推origin/main成功并lsremote同SHA；LangGraphbaseline92d0b03不变，source642pass指纹核一致。继续A2.2完整工具伴随公开模型意图门禁/双层过滤/4条500字/无数值成功声明/路径Key/Thinking或原始流，标注modelpublicintent，不新增调用/费用/权限。37逻辑/metadata/QA专项通过，SDK/browser和全量检查准备；当前未额外推新代码，真实模型not_run。
+- 2026-11-05 A2.2SDK专项首轮2failed/15pass（公开note缺失因CLI把完整text/tool拆为同ID AssistantMessages；另旧modelchange等待失败未独立证明原因）。已加有界同ID完整块buffer/unsafe后块毒化/诊断不存unsafe，31逻辑专项和4受影响SDK专项复跑通过，无放宽等待/断言。当前全量检查进行中，GitHub702cabe基线已更新，新片验证后再同步；未调用真实模型/扩费用。
+- 2026-11-05 A2.2首次全量667pass/2fail（原失败diagnostic要求rawmodeltext与新隐私合同冲突；L2 CLI60s启动未到等待状态）；23前端/45browser/types/build/pip通过，manifest因修复测试source变化失败保留。现failure断言必须model_textNone且无原文/Key，保留结构usage/events；不放宽SQL/QA或timeout。L2与新公开notes/diagnostic三项复跑passed；添加safe启动超时counts诊断，无敏感原文。最新当前source完整复跑中，未实模型/费用/权限/服务重启，GitHub702cabe已确认。
+- 2026-11-05 D079基线702cabe已非forcepush GitHubmain/lsremoteSHA同，LangGraphbaseline92d0b03不变。继续A2.2最新669后端/23前端/45browser/types/build/pip/source-stability全部pass，fingerprint 5affed8ff4be07d2e1e5086a81be2233cd41060ec98399140554458213495543，024331Z。公开模型完整意图/双层门禁/同ID拆块/unsafe后块毒化/4条500字/非回执来源与失败rawtext省略已实现。初始SDK拆块缺note/旧隐私断言及CLI启动等待失败保留，未放宽budget/timeout/QA，根因间歇风险未完全证实。无实模型/费用/公司数据/host权限/安装/服务重启，default200/modelunconfigured/0task/账本49/60估算2.75USD不变。完整主题L2/L3/context/RAG/C/Claude/生产/MVP与用户验收not_run；下一步同步该完整通过增量并记录实际SHA。
 
 ## 阻碍
 

@@ -72,3 +72,6 @@ start-workspace-claude.cmd只是历史命名的模型API启动器，不等于工
 
 ## 2026-11-04 A3-M1本机CHECK完成（非完整A3验收）
 642后端/23前端/45浏览器/types/build/pip/源稳定全部通过，证据`project-control/modules/M04/evidence/20261104T101013Z/results.json`与`A3_M1_CHECK_REPORT.md`，fingerprint `4d39b9b48bd499383292b6526d9bea41d009dc71025e85928b2371555f1a7f0d`。已实现任务绑定单表/字段metadata发现、L1未命中时canonical批准口径派生L2模板与参数提案、模板回执/版本/预算/确认/MCP/QA发布、完整metric定义比较与提交后禁再规划、实际L1/L2路径和工具标签。Skill1.0.6/工具1.0.1/模板1.0.0，不开放自由SQL/新metric/JOIN/公司数据/host工具。用户已重启A2.1（新8000/5173监听18:01:32），A3改动在其后默认API尚未重载；本轮不打断用户服务，真实A3/Claude/生产/MVP not_run。D05349/60/2.75USD不变，未真实调用/安装/commit/push。完整L2业务Skill/L3/RAG/context/模型中间公开流等后续，M04未验收。
+
+## 2026-11-05 A2.2当前本机CHECK完成，GitHub同步
+669后端/23前端/45浏览器/types/build/pip/源稳定全通过，证据`project-control/modules/M04/evidence/20261105T024331Z/results.json`/`A22_CHECK_REPORT.md`，fingerprint `5affed8ff4be07d2e1e5086a81be2233cd41060ec98399140554458213495543`。完整工具伴随TextBlock有界未来意图、同ID拆块组合/unsafe消息毒化、双层门禁/4条500字、modelpublicintent来源标注已实现；不展示thinking/原始token流，unsafe中间原文不进失败diagnostic，无新请求/工具/费用或结果行历史外发。原MCP/QA/receipt/预算确认门禁不变。首次失败/重跑保留；默认服务与实模型尚未加载/验证，账本49/60估算2.75USD不变。此前基线702cabe已按D079非forcepush，最新增量推送另记真实receipt，未生产/未模块验收。

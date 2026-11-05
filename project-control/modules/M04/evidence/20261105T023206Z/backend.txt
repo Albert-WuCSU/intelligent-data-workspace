@@ -1,0 +1,98 @@
+........................................................................ [ 10%]
+........................................................................ [ 21%]
+........................................................................ [ 32%]
+........................................................................ [ 43%]
+........................................................................ [ 53%]
+........................................................................ [ 64%]
+.........................................................F.............. [ 75%]
+............................................F........................... [ 86%]
+........................................................................ [ 96%]
+.....................                                                    [100%]
+================================== FAILURES ===================================
+__________ test_failure_diagnostics_written_for_missing_publication ___________
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-216/test_failure_diagnostics_writt0')
+
+    def test_failure_diagnostics_written_for_missing_publication(tmp_path):
+        database = fixture(tmp_path)
+        server = FakeGateway()
+        server.text_only = True
+        thread = threading.Thread(target=server.serve_forever, daemon=True)
+        thread.start()
+        task_id = str(uuid4())
+        runtime = tmp_path / "runtime"
+        config_path = tmp_path / "sdk-config.json"
+        output_path = tmp_path / "sdk-output.json"
+        config_path.write_text(json.dumps({
+            "database": str(database),
+            "question": QUESTION,
+            "base_url": f"http://127.0.0.1:{server.server_port}",
+            "runtime_root": str(runtime),
+            "task_id": task_id,
+            "model": "claude-sonnet-5-5",
+            "auto_confirm_fixture": True,
+            "wall_clock_seconds": 60,
+        }), encoding="utf-8")
+        env = minimal_runner_environment(tmp_path / "outer-home", tmp_path / "outer-config", tmp_path / "outer-temp")
+        env["SDK_FIXTURE_DEBUG"] = "1"
+        try:
+            completed = run_sdk_process(config_path, output_path, tmp_path / "runner-stdout.txt", tmp_path / "runner-stderr.txt", env)
+        finally:
+            server.shutdown()
+            server.server_close()
+            thread.join(10)
+        assert completed["returncode"] == 2
+        assert completed["result"]["status"] == "FAILED"
+        assert completed["result"]["error"] == "SDK_PUBLICATION_MISSING"
+        diagnostic_path = runtime / task_id / "failure-diagnostics.json"
+        assert diagnostic_path.is_file()
+        diagnostic = json.loads(diagnostic_path.read_text(encoding="utf-8"))
+        assert diagnostic["status"] == "FAILED"
+        assert diagnostic["error"] == "SDK_PUBLICATION_MISSING"
+>       assert diagnostic["model_text"] == "No tool needed."
+E       AssertionError: assert None == 'No tool needed.'
+
+services\api\tests\test_sdk_agent.py:543: AssertionError
+______ test_web_sdk_l2_template_discovery_plan_confirmation_and_real_qa _______
+
+tmp_path = WindowsPath('D:/Users/luqianwu/AppData/Local/Temp/pytest-of-luqianwu/pytest-216/test_web_sdk_l2_template_disco0')
+gateway = <test_sdk_agent.FakeGateway object at 0x000001DA9D6794C0>
+
+    def test_web_sdk_l2_template_discovery_plan_confirmation_and_real_qa(tmp_path, gateway):
+        gateway.topic_path = True
+        app, source_id, published, model_ref = build_app(tmp_path, gateway.server_port)
+        body = request_body(source_id, published, model_ref, question="unmapped custom request")
+        with TestClient(app, base_url=BASE, client=("127.0.0.1",1)) as client:
+            response=client.post('/api/v1/agent/tasks',json=body,headers=H)
+            assert response.status_code==200, response.text
+            task_id=response.json()['id']
+>           task=wait_task(client,task_id,'AWAITING_CONFIRMATION')
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+services\api\tests\test_sdk_web_agent.py:445: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+client = <starlette.testclient.TestClient object at 0x000001DA9D471F40>
+task_id = '132b6d48-3a59-4b2e-85e8-f617bec2a249'
+phase = 'AWAITING_CONFIRMATION', timeout = 60
+
+    def wait_task(client, task_id, phase=None, timeout=60):
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            response = client.get(f"/api/v1/agent/tasks/{task_id}")
+            assert response.status_code == 200, response.text
+            task = response.json()
+            if phase is not None:
+                if task["phase"] == phase:
+                    return task
+            elif task["phase"] not in ("PLANNING", "VALIDATING", "EXECUTING", "CHECKING"):
+                return task
+            time.sleep(0.1)
+>       raise AssertionError(f"task {task_id} did not reach {phase or 'terminal'}; phase={task['phase']}; code={task.get('error_code')}")
+E       AssertionError: task 132b6d48-3a59-4b2e-85e8-f617bec2a249 did not reach AWAITING_CONFIRMATION; phase=PLANNING; code=None
+
+services\api\tests\test_sdk_web_agent.py:107: AssertionError
+=========================== short test summary info ===========================
+FAILED services\api\tests\test_sdk_agent.py::test_failure_diagnostics_written_for_missing_publication
+FAILED services\api\tests\test_sdk_web_agent.py::test_web_sdk_l2_template_discovery_plan_confirmation_and_real_qa
+2 failed, 667 passed in 439.88s (0:07:19)

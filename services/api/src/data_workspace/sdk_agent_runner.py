@@ -35,6 +35,8 @@ from .sdk_agent_backend import (
 )
 
 FIXTURE_TOKEN = "fixture-only-not-a-credential"
+from .sdk_public_notes import PublicIntentMessageBuffer
+
 SKILL_VERSION = "1.0.6"
 APPROVED_SDK_BASE_URL = "http://ada-cli-golang.ctripcorp.com/coding-plan"
 REJECTED_MODEL_ALIAS = "deepseek-v4-1-flash-261017"
@@ -364,6 +366,8 @@ async def run_sdk_fixture(config: SdkRunnerConfig) -> dict:
         auth_token = os.environ["SDK_WEB_AUTH_TOKEN"]
     backend = _build_backend(config, installation.sha256)
     text_parts = []
+    public_buffer = PublicIntentMessageBuffer(auth_token, config.budget.max_model_steps)
+    text_message_id = None
     events = []
     result_status = None
     result_usage = None
@@ -471,7 +475,17 @@ async def run_sdk_fixture(config: SdkRunnerConfig) -> dict:
                     events.append({"type": "SDK_INIT", "skills": skills})
                 elif isinstance(message, AssistantMessage):
                     config.budget.model_step(message.message_id)
-                    if any(isinstance(block, TextBlock) for block in message.content):
+                    has_tool_call = any(isinstance(block, ToolUseBlock) for block in message.content)
+                    public_text = "\n".join(block.text for block in message.content if isinstance(block, TextBlock))
+                    if public_text:
+                        if text_message_id != message.message_id:
+                            text_parts.clear()
+                            text_message_id = message.message_id
+                        # CLI can emit complete text and tool blocks as separate
+                        # AssistantMessages with the same upstream message_id.
+                        public_buffer.add_text(message.message_id, public_text)
+                    if has_tool_call:
+                        backend.record_public_intent(message.message_id, public_buffer.for_tool(message.message_id), auth_token)
                         text_parts.clear()
                     for block in message.content:
                         if isinstance(block, ToolUseBlock):
@@ -479,7 +493,9 @@ async def run_sdk_fixture(config: SdkRunnerConfig) -> dict:
                             if block.name == "Skill":
                                 name = block.input.get("skill") or block.input.get("name")
                                 backend.record_skill(name, installation.sha256)
-                        elif isinstance(block, TextBlock):
+                        elif isinstance(block, TextBlock) and not has_tool_call:
+                            # Intermediate notes are retained only through the safe
+                            # gate above; never copy rejected notes into diagnostics.
                             text_parts.append(block.text)
                 elif isinstance(message, ResultMessage):
                     result_status = message.subtype
@@ -515,7 +531,7 @@ async def run_sdk_fixture(config: SdkRunnerConfig) -> dict:
             "events": events,
             "backend_events": backend.events,
             "clarification": backend.clarification,
-            "model_text": "".join(text_parts),
+            "model_text": None,  # failed/intermediate model prose is not a diagnostic authority
             "usage": result_usage,
             "total_cost_usd_client_estimate": total_cost_usd,
             "budget": budget_state(),
