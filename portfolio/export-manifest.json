@@ -1,0 +1,9 @@
+{
+  "kind": "portfolio_export",
+  "revision": 256,
+  "accepted_local_modules": 4,
+  "checked_steps": 16,
+  "listed_steps": 21,
+  "scope": "authored generic visuals + sanitized progress + visually reviewed synthetic UI; no hosting or model calls",
+  "screenshot_source_sha256": "00cf56f640aa0c6157ce7b73d869c3a0fc6d60ece51b54e5d7f612aecd44b227"
+}
