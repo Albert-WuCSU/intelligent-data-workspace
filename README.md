@@ -1,179 +1,148 @@
-# 通用个人模型 API 接入（2026-10-30）
+<p align="center"><strong>智能问数 · Intelligent Data Workspace</strong></p>
+<h3 align="center">让业务直接提问，让 Agent 查清口径，让结果带着证据。</h3>
 
-工作台的“模型服务”新增网页 BYOK 接入：选择OpenAI/DeepSeek/Anthropic预设或自定义标准协议，填写完整API地址、model ID和passwordKey→保存连接（不调用模型）→显式最小测试。公司AIPlan只是可选已授权内网预设。Key仅本次后台memory，提交后字段清空，不进storage/history/log；换Key与清除不重启、不reset估算账本。
+<p align="center">
+  <a href="#产品预览"><strong>▶ 看产品预览</strong></a> &nbsp;·&nbsp;
+  <a href="#产品架构"><strong>查看架构</strong></a> &nbsp;·&nbsp;
+  <a href="#开发进度"><strong>荧光进度图</strong></a> &nbsp;·&nbsp;
+  <a href="docs/DEMO_OPTIONS.md"><strong>在线 Demo 方案</strong></a>
+</p>
 
-支持Responses/OpenAI-compatibleChatCompletions/AnthropicMessages标准文本合同，不保证任意私有API或model别名兼容。自定义公网只允许HTTPS，服务端DNS/IP固定连接/SSRF保护；内部AIPlan路径单独受治理。正式身份/TLS秘密仓库和持久用户模型配置未交付，当前只loopback开发实例，不能当生产多人BYOK认证。
+![智能问数：从业务问题到证据结果](docs/portfolio/assets/hero.png)
 
-公司AIPlan最小文本已由用户实际验证成功；通用公网厂商与新网页Key路径真实账号集成仍待实际测试。模型目录/流式/SQL/JOIN尚未完成，原主题/历史/附件/多源与真实状态保持。步骤见 [MODEL_SERVICE.md](MODEL_SERVICE.md)，进度证据以project-control/progress.json为准。
+> **这是一个以真实 Web 应用交付的 AI 产品经理作品，正在持续开发。** 静态合成 Demo 已制作，公开地址正在发布验证；下面提供界面预览与可下载的交互进度图，不需要配置模型 Key。真实产品目前在本机运行，不能把本机链接当作面试官可访问的网站。
 
-# 模型接入首切片（2026-10-28）
+## 为什么做这个产品
 
-M02有限本机已验收，现进入M04-A。模型薄适配和本机隐藏Key启动器已编写：双击 `start-workspace-model.cmd`，Key只在本机后台内存，不在聊天或网页输入、不复制Claude/Codex认证。具体步骤与边界见 [MODEL_SERVICE.md](MODEL_SERVICE.md)。
+业务用户常常知道自己要解决什么问题，却不知道“指标如何定义、数据在哪张表、应该找谁取数”。传统报表适合固定问题，长尾问题仍可能经历反复解释、口径核对、写 SQL 和结果复核。
 
-**真实网关生成仍未验证**，精确协议/model和可核实计价或供应商硬限额需落实；无费用治理时调用拒绝，不将输入Key、文件预览或多源选择冒充模型/SQL/JOIN闭环。PG/生产后补门禁保留。
+**智能问数希望把这个过程收进一个连续会话。** 用户直接表达目标，Agent 在授权范围内探索语义、知识和元数据，在关键歧义处确认，再选择数据来源并执行；结果不仅有数字，还能说明采用了什么口径、来自哪里、检查了什么、有哪些限制。
 
-# 当前交互更新（2026-10-28）
+这是产品假设与设计目标，不是已经验证的客户收益或用户研究结论。
 
-本地文件在聊天输入区直接添加，经安全预检/真实MCP后成为24h临时会话附件，可预览原表头/类型/日期和100行；不自动保存连接、不向模型发送数据行。右侧可纳入多个已授权来源和附件，取消底部单来源选择。连接器仅新建数据库/MCP，旧本地配置与原安全API保留，不删用户数据。多表JOIN和自然语言查询仍待真实实现，多选UI不是JOIN成功。
+| 谁在使用 | 要完成的任务 | 产品如何分工 |
+| --- | --- | --- |
+| 业务用户 | 提问、补充附件、确认关键含义、查看结果 | 不要求预知指标 ID、表名或先选数据源 |
+| 分析师 | 核对口径、质量、SQL 与数据证据 | 技术细节按需展开，不占据业务默认路径 |
+| 管理员 | 配置连接、模型、权限与批准口径 | 管理入口与业务问答分开，授权由服务端执行 |
 
-网关调用及只问题/必要字段外发已获用户确认，PG/生产明确后补；专用Key/有效model协议及15USD可靠计价或供应商限额尚未配置，模型生成仍not_run，不复用宿主Token。最新287后端/16前端/27浏览器通过，界面修复后后端按字节不变复用原fp，详细见项目进度。本輪未push到远端。
+## 产品架构
 
-![聊天文件 · 实际MCP只读预览](project-control/modules/M02/evidence/20261028T0638082423751Z-chat-final/browser/chat-csv-light.png)
+![智能问数产品架构：SDK、Skills 与治理 Harness](docs/portfolio/assets/architecture.png)
 
----
+**模型负责探索与规划，Skills 提供能力知识，Harness 守住执行边界。**
 
-# 智能问数 · Intelligent Data Workspace
+- **L1–L4 按适用性路由**：标准指标 → 已审核主题能力 → 授权元数据与受控查询；知识咨询独立适配。不是每次都机械跑完四层。
+- **服务端治理 MCP / adapters**：取数要经过授权、版本、确认、SQL 与预算检查；Prompt 或 Skill 不等于执行权限。
+- **真实结果先质检、后发布**：用执行与质量回执约束数字输出；失败、空结果与未知状态必须清楚说明，未知执行不自动重提。
+- **任务附件与知识分别治理**：附件可能是过滤集合，知识用于支持口径理解；统一临时表、完整 RAG 与正式资产生命周期仍有后续实施范围。
 
-面向业务用户的智能数据分析工作台，也是一个以**真实 Web 应用**交付的 AI 产品经理作品项目。
+主线采用 **Claude Agent SDK + 产品 Skills + 服务端治理 Harness**。前端为 React / TypeScript / Vite，后端为 FastAPI / Pydantic；OpenAPI 生成前端合同，受控本地执行使用 DuckDB / MCP 与隔离 Worker。
 
-项目将「提出问题 → 明确口径 → 授权取数 → 查看证据 → 复用结果」作为产品主线，强调用户任务、渐进披露、可行动的失败状态和可核验的测试证据，而非用模拟结果包装尚未接入的能力。
+<details>
+<summary>设计决策与当前边界</summary>
 
-> **当前是持续开发中的本机版本，不是完整智能问数产品或生产系统。** M01 已验收；M02 数据接入正在收尾，尚未验收。自然语言 Agent 和模型 API 尚未接入；真实 PostgreSQL 实例、正式认证与生产部署仍未验证。2026-10-28 本机A保留周期已启用并验证；这不是生产验收。
+- 不把所有问题强制转成取数：咨询、分析与归因要先检查目标和能力，未实现的能力不冒充成功。
+- D086 已明确取消默认口径下拉和右栏来源勾选；Agent 探索、澄清后自主选源，右栏只展示实际来源与附件。这一默认路径改造**尚待实施**。
+- 现有单表口径、有限 SDK 路由与本机执行，不等于完整企业语义、自由 SQL、跨源 JOIN 或业务 RAG。
+- Windows 隔离与本机开发身份已有对应测试范围；正式身份、跨租户、生产部署和官方 Claude 最新真实集成仍需补验。
 
-## 当前可以做什么
+[通用架构设计](project-control/ARCHITECTURE_V2.md) · [M04 产品 PRD](project-control/prd/M04-B.md) · [自然语言优先与附件规划](project-control/modules/M04/QUESTION_FIRST_ATTACHMENTS_PLAN.md)
 
-- **业务会话工作台**：显式黑色/白色主题、浏览器本地历史、多轮消息、顶部实际状态、结构化结果卡；SQL/Schema 验证放在开发工具中。
-- **本地数据接入**：DuckDB、CSV、Parquet、`.xlsx` 文件上传或受控后端路径；真实测试 → 保存 → 刷新复用 → 编辑重测 → 启用/禁用。
-- **表导航**：展示原始列头、数据类型和最多前 100 行；**不增加时间或其他筛选，不删除日期列，不猜测业务含义**。
-- **受治理 MCP/SQL 底座**：真实 stdio MCP 与只读 DuckDB；HTTP MCP 仅支持受审定的适配合同和后端授权目标，已通过独立本机认证服务验证。
-- **安全与恢复**：Windows Job Object 资源限额、固定 Worker 入口、上传安全预检、代际失效、未知结果不自动重提、显式重新连接。
-- **保留安全底座**：24 小时测试草稿失效、来源标记、引用保护、原生句柄逐项回收及跨重启幂等恢复、只读清理回执。**本机A自动回收已启用（启动5秒、完成后600秒）；只回收超过24小时、完整归属且无引用的临时副本。原文件、保存/禁用数据与未知历史保留。**
+</details>
 
-### 能力边界
+## 产品预览
 
-| 能力 | 当前状态 |
-| --- | --- |
-| 本机 Web 工作台、主题和开发历史 | 已验收；历史不是正式服务器持久化 |
-| 本地文件 / Excel → API → MCP → 只读预览 | 本机真实链路已测 |
-| 授权 HTTP MCP 配置、测试、保存和导航 | 独立本机真实服务已测；不代表任意服务兼容 |
-| PostgreSQL | 适配器和配置流程已有；真实实例验证 `not_run` |
-| 临时副本安全回收 | 本机周期与恢复通过；生产/自然24小时长期驻留仍未认证 |
-| 模型 API / 自然语言受控问数 | 规划待实施，不会伪造经营数字或执行成功 |
-| 企业登录、跨租户权限、持久任务、生产部署 | 未交付 / `not_run` |
+### 免凭证的合成引导 Demo
 
-## 2026-10-28 工作台交互更新
+![合成 Demo 首页：直接提问，按需确认，Agent 自主选源](docs/portfolio/assets/demo-home.png)
 
-左侧历史、中间对话、右侧可收起的任务/来源摘要，输入区新增真实已保存数据源上下文选择及模型入口。**当前模型服务未接入，模型目录为空，不能实际切换或调用模型**；摘要只从已有回执展示状态，选择数据源不会触发SQL。截图只显示本机开发路径，不是企业经营结果。
+*独立静态演示，采用预置场景；不连接真实模型或数仓，不读取本机文件。支持口径澄清、6000-ID 示例附件、指标咨询、失败边界和黑白主题。这是 D086 目标交互展示，不表示真实应用默认路径已实施。公开体验链接正在验证。*
 
-本项目模型测试预算上限为15USD；供应商协议/专用认证/价格与外发许可需独立核实，不复用宿主工具凭证。前端15单元与26网页检查已过，CSS移动标题修正后10工作台复跑过；后台未改按原证据复用。
+<details>
+<summary>展开合成 Demo 的确认与结果样式</summary>
 
-![工作台 · 真实状态与待接模型入口](project-control/modules/M02/evidence/20261028T0535066023533Z-workbench-sticky/browser/workbench-context-light.png)
+![合成 Demo 连续问答与本地结果计算](docs/portfolio/assets/demo-result.png)
 
-## 界面预览
+</details>
 
-以下为本机开发自测截图，**不是用户研究或真实企业经营数据**。回执截图中的维护计数来自独立测试实例，不代表默认存储状态。
+### 连续会话与可核验的结果
 
-![白色主题与只读保留回执](project-control/modules/M02/evidence/20261027T071957Z/browser/retention-receipt-light.png)
+![现有合成联调界面局部：多查询计划、确认与质量证据](docs/portfolio/assets/workspace-synthetic.png)
 
-![黑色主题与明确的草稿重测反馈](project-control/modules/M02/evidence/20261027T071957Z/browser/retention-draft-retested-dark.png)
+*现有本机合成联调的局部截图，展示查询计划、确认及质量证据；不是公开在线服务，也不是 D086 新版界面。截图中的数据来自独立合成测试，不代表企业经营数据；单个界面阶段不等于整个任务或模块验收。*
 
-## 技术架构
+### 正在落实的默认用户路径
 
 ```text
-React + TypeScript + Vite
-          │  本机 HTTP / 服务端身份与输入校验
-          ▼
-FastAPI + Pydantic ── OpenAPI ── 自动生成前端类型
-          │
-          ├─ 来源配置 / SQLite 非秘密配置与引用
-          ├─ 固定 Worker + Windows Job Object
-          └─ 受治理 MCP / 只读执行适配
-                    ├─ 本地 DuckDB 快照
-                    ├─ 审定 HTTP MCP
-                    └─ PostgreSQL（待真实实例补验）
+直接描述目标 + 可选附件
+          ↓
+判断取数 / 咨询 / 分析等任务意图
+          ↓
+探索授权知识与元数据 → 关键歧义才确认
+          ↓
+Agent 选择来源与计划 → 必要执行确认
+          ↓
+受控执行 → 自动质量检查 → 正文 + 结果证据
 ```
 
-模型服务与数据源连接分别授权；模型、编排框架和提示词不能代替服务端的权限、SQL、资源及文件网络安全门禁。
+**目标是让业务用户不写 SQL，也不用先选择标准口径或数据表。** 如上传大批实体 ID，附件应成为服务端的完整过滤集合，而不是把所有行粘进模型上下文；这部分统一临时表能力仍在规划中。
 
-## 本机运行
+## 开发进度
 
-当前主要验证环境为 **Windows + Python 3.12 + Node.js 22.12 以上**。Worker/存储保护使用 Windows 原生机制；不承诺其他平台已验证。需要预先安装 Python、Node.js 和 pnpm，依赖安装会联网，请先审阅锁文件与相关许可。
+[![证据驱动的荧光架构与项目进度快照](docs/portfolio/assets/progress-dark.png)](docs/portfolio/progress.html)
 
-在项目根目录打开 PowerShell：
+- **荧光模块**：仅表示该模块已获用户验收的有限本机交付范围，不代表所有远期能力完成。
+- **绿色步骤**：实现、检查与证据一致；新需求不能继承旧测试变绿。
+- **蓝色 / 未点亮部分**：正在推进或仍待实施、真实验证和验收。
+
+**当前四个底座模块已验收本机范围：工作台、数据接入、模型服务、单表语义。M04 Agent 仍在开发与补验。** 新增自然语言首问、自主选源、知识端口与任务附件四项保持待实现；真实用户反馈中的失败仍待诊断。完整 RAG、正式资产与历史、图表报告、归因分析、生产 / MVP 交付不能由该图推断已完成。
+
+<details>
+<summary>展开步骤进度快照</summary>
+
+![步骤进度：旧检查与新需求分开](docs/portfolio/assets/steps-dark.png)
+
+</details>
+
+[交互进度图 HTML](docs/portfolio/progress.html) · [脱敏状态快照](docs/portfolio/progress-snapshot.json) · [完整路线](project-control/ROADMAP.md)
+
+> GitHub README 支持图片，但不能执行 JavaScript 或嵌入可运行的 iframe。上图是静态预览；HTML 链接在 GitHub 中显示源码，需下载 `progress.html` 后用浏览器打开，或以后通过静态托管提供在线入口。公开图是发布快照，不会实时读取开发者电脑。
+
+## 如何体验
+
+| 方式 | 当前可用性 | 适合谁 |
+| --- | --- | --- |
+| README 图片与产品设计 | 现在可读；本次改版正在发布 | 面试官快速了解产品与决策 |
+| 下载交互进度图 | 本次已生成，浏览器离线可开；尚未托管 | 查看模块、步骤、黑白主题与证据边界 |
+| 本机真实 Web 应用 | 开发者本机可运行，需环境与授权配置 | 技术走查与有限真实验证 |
+| 免配置在线交互 Demo | 独立合成引导模式已制作，正在发布验证 | 面试官点击链接即体验 |
+
+**推荐发布路线：先做零凭证的合成引导 Demo + 在线进度图，再单独规划有权限与预算保护的真实后端演示。** [查看方案及取舍 →](docs/DEMO_OPTIONS.md)
+
+<details>
+<summary>开发者：本机启动、测试与工程文档</summary>
+
+主要验证环境为 Windows、Python 3.12、Node.js 22.12+；依赖、安装、固定版本和合同生成见 [DEVELOPMENT.md](DEVELOPMENT.md)。SDK 与执行隔离有环境约束，不承诺任意平台直接运行。
+
+已有项目环境中，双击 `start-workspace.cmd`，或运行：
 
 ```powershell
-py -3.12 -m venv services/api/.venv
-
-./services/api/.venv/Scripts/python.exe -m pip install -r services/api/requirements.lock.txt -r services/api/requirements.warehouse.lock.txt -r services/api/requirements.excel.lock.txt
-./services/api/.venv/Scripts/python.exe -m pip install --no-deps --no-build-isolation -e services/api
-./services/api/.venv/Scripts/python.exe -m pip check
-
-pnpm --dir apps/web install --frozen-lockfile
 ./services/api/.venv/Scripts/python.exe scripts/dev.py
 ```
 
-`scripts/dev.py` 在本机开发模式按已批准A默认启用保留周期；停用可先设置 `$env:WORKSPACE_RETENTION_CLEANUP='0'`。生产 `Settings` 默认关闭，非loopback开发身份不能启用；页面只读状态不会触发删除。
+启动器输出地址后，在**同一台电脑**打开 `http://127.0.0.1:5173`。不要将开发身份绑定公网；不要在前端、README 或演示站点放模型 Key。
 
-打开 [http://127.0.0.1:5173](http://127.0.0.1:5173)，API 为 [http://127.0.0.1:8000](http://127.0.0.1:8000)，健康检查为 `/health/live`。也可双击 `start-workspace.cmd`。启动器检查端口占用，**不会替你终止其他服务**；Ctrl+C 仅停止本次启动器拥有的进程。
+- [数据源接入](CONNECTORS.md) · [模型服务](MODEL_SERVICE.md) · [合成数仓](WAREHOUSE.md)
+- [模块 PRD](project-control/prd/README.md) · [用户体验原则](project-control/PRODUCT_UX_PRINCIPLES.md)
+- [更新日志](CHANGELOG.md) · [本机进度](project-control/progress.json) · [交接记录](project-control/HANDOFF.md)
 
-此模式仅用于隔离本机开发，**不要绑定 `0.0.0.0` 或公开部署开发身份**。程序不会自动读取 `.env.example`，它仅说明变量；实际授权配置由管理员安全提供。
+本机进度与 GitHub 发布范围可能不同，当前状态以验证过的本机账本及相应发布快照为准；README 不是测试或验收证明。
 
-仓库附带 `data/demo/synthetic-v1` 和 `data/warehouse/synthetic-v1`：数据由项目独立合成，使用 `TEST` 单位，不包含真实公司数据。已有仓库目录不要重复初始化或覆盖。可核验：
+</details>
 
-```powershell
-./services/api/.venv/Scripts/python.exe -m data_workspace.warehouse.verify
-```
+## 数据与展示边界
 
-PostgreSQL 可选驱动另见 `services/api/requirements.postgres.lock.txt` 与 [接入说明](CONNECTORS.md)。安装驱动不代表数据库已连通；不要把公司数据库或宿主工具凭证当作演示资源。
+只展示自编通用内容和独立合成测试。真实公司资料、用户文件、私有路径与凭证不得进入公开素材；数据行不默认回传模型。没有真实结果就不生成成功数字、下载或因果结论。
 
-## 测试与合同生成
-
-```powershell
-# 修改后端合同后重新导出，不手改生成的 TypeScript
-./services/api/.venv/Scripts/python.exe -m data_workspace.export_contracts
-pnpm --dir apps/web run contracts
-
-# 后端、依赖、类型、构建、前端检查
-./services/api/.venv/Scripts/python.exe scripts/check.py --module M02
-
-# 先启动本机服务，再运行浏览器检查；使用已安装 Chrome
-./services/api/.venv/Scripts/python.exe scripts/check.py --module M02 --browser
-
-# 保留 / 原生执行专项：仅独立临时测试副本
-./services/api/.venv/Scripts/python.exe -m pytest services/api/tests/test_retention.py services/api/tests/test_retention_execution.py -q
-```
-
-截至2026-10-28，本机最终 **75 项保留/周期专项、281 项后端、10 项前端、24 项浏览器**及类型/构建/依赖检查实际通过，源码103文件指纹稳定。默认修复版周期已实际启用并首轮成功：回收0个旧目录，启用前99份运行文件和29个保存连接全部保留（维护计数，不是业务数字）。独立25小时反事实时钟测试验证真实回收/恢复与保存禁用保护，不冒充自然等待24小时或生产认证。
-
-- [最终完整检查](project-control/modules/M02/evidence/20261028T024336Z/results.json)
-- [专项、运行验证及文档门禁](project-control/modules/M02/evidence/20261028T0241214857041Z-cycle-close-final/results-final.json)
-- [局部自审与失败记录](project-control/modules/M02/evidence/20261028T0241214857041Z-cycle-close-final/automatic-retention-review.md)
-- [默认周期与原文件完整性](project-control/modules/M02/evidence/20261028T024435348429Z-fixed-default-runtime/runtime.json)
-
-![白色主题 · 独立真实自动周期及已保存禁用数据保护](project-control/modules/M02/evidence/20261028T024336Z/browser/automatic-retention-light.png)
-
-
-## 项目结构
-
-```text
-apps/web/         Web 会话与连接器界面
-services/api/     API、合同、安全边界、Worker、MCP 和测试
-contracts/        后端导出的 JSON Schema / OpenAPI
-scripts/          本机启动、检查及独立测试服务
-tests/           浏览器端到端测试
-data/demo/       明确标注的独立合成种子
-data/warehouse/  对应合成数仓与 Parquet 快照
-project-control/  PRD、路线、PDCA 进度、决策和测试证据
-output/           产品策划材料；早期图示不是实现证明
-skills/           本项目维护的 project-pdca 工作流
-```
-
-## 路线与产品决策
-
-**M02 收尾验收 → M04-A 模型 API 接入 → M03 语义知识库 → M04-B LangGraph 受控问数**。原进度 ID `M04` 保留为 M04-B。之后推进资产/任务、可视化、报告和 MVP 验收。
-
-- [模块 PRD 入口](project-control/prd/README.md)
-- [批准路线](project-control/ROADMAP.md)
-- [用户体验原则](project-control/PRODUCT_UX_PRINCIPLES.md)
-- [当前交接](project-control/HANDOFF.md)
-- [开发说明](DEVELOPMENT.md) · [数据源接入](CONNECTORS.md) · [合成数仓](WAREHOUSE.md)
-
-新依赖、模型供应商/端点、费用、数据外发及生产部署需要独立确认；推送代码**不等于部署、模块验收或新能力授权**。
-
-## 数据与仓库安全
-
-本仓库只提交源码、规划、合成测试数据与证据。`.gitignore` 排除用户上传和配置副本 `data/connections/`、凭证/本地工具配置、依赖、构建输出、临时目录和下载的依赖轮子；没有删除这些本地文件。历史证据中的本机路径和时点是可复现开发记录，不是运行配置。
-
-请勿提交密码、令牌、真实企业数据或浏览器私有历史；凭证仅通过专用后端安全配置提供，不写在 URL、聊天、README 或进度中。查看只读候选不会执行清理，禁用连接不会删除数据。已启用的后台周期独立遵守引用/时间/归属/路径与资源门禁；损坏或归属不明历史保守保留。本轮更改尚未推送远端，磁盘进度为当前真源。
-
-本项目尚未指定开源许可证；第三方依赖遵循各自许可证。
+本项目尚未指定开源许可证，第三方依赖按各自条款使用。本页的“产品介绍 → 架构 → 预览 → 进度”编排参考 [Archify](https://github.com/tt-a1i/archify)，未复用其图片、代码、宣传数据或品牌素材。

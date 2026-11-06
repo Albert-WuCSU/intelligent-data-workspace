@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "revision": 256,
+  "updated_at": "2026-11-06T10:24:28.026317+00:00",
+  "active_module": "M04",
+  "modules": [
+    {
+      "id": "M01",
+      "label": "对话工作台",
+      "status": "accepted",
+      "maturity": "local_ready",
+      "pending_items": 0
+    },
+    {
+      "id": "M02",
+      "label": "治理数据接入",
+      "status": "accepted",
+      "maturity": "local_ready",
+      "pending_items": 2
+    },
+    {
+      "id": "M04-A",
+      "label": "模型服务",
+      "status": "accepted",
+      "maturity": "local_ready",
+      "pending_items": 0
+    },
+    {
+      "id": "M03",
+      "label": "语义与知识目录",
+      "status": "accepted",
+      "maturity": "local_ready",
+      "pending_items": 0
+    },
+    {
+      "id": "M04",
+      "label": "SDK · Skills · Harness",
+      "status": "active",
+      "maturity": "not_verified",
+      "pending_items": 4
+    },
+    {
+      "id": "M05",
+      "label": "状态、记忆与数据资产",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M06",
+      "label": "可视化工作台",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M07",
+      "label": "证据报告",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M08",
+      "label": "MVP 端到端验收",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M09",
+      "label": "归因分析",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M10",
+      "label": "建模预测",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M11",
+      "label": "实验评估",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    },
+    {
+      "id": "M12",
+      "label": "企业化与部署",
+      "status": "pending",
+      "maturity": "not_verified",
+      "pending_items": 0
+    }
+  ],
+  "steps": [
+    {
+      "id": "S1-A",
+      "label": "请求、上下文与计划合同",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S1-B",
+      "label": "服务端绑定与旧确认隔离",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S2-A",
+      "label": "确定性时间解析 · 离线",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S2-B",
+      "label": "批准目录与枚举落地 · 离线",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S2-C1",
+      "label": "任务绑定解析与确认门禁",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S2-C",
+      "label": "SDK 槽位工具桥与可恢复澄清",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S3-A1",
+      "label": "能力合同与失败分型",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S3-A",
+      "label": "SDK 能力选择与路由门禁",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S3-B",
+      "label": "版本化 Skill 目录与加载",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-A1",
+      "label": "已发布工件绑定与有界合并任务",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-A2",
+      "label": "SDK选择已有工件与合并确认桥",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-A3",
+      "label": "新查询计划、共享预算与MCP协调器",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-A",
+      "label": "SDK模型多查询预算桥与完整用户路径",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-B1",
+      "label": "合并算术、权限与覆盖金标准",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-B2",
+      "label": "已有结果复用、合并QA与报告入口",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "S4-B",
+      "label": "SDK 自主多工件合并与发布桥",
+      "kind": "implementation",
+      "status": "done"
+    },
+    {
+      "id": "QF-UI",
+      "label": "自然语言首问 · 无预选项",
+      "kind": "implementation",
+      "status": "pending"
+    },
+    {
+      "id": "QF-ROUTE",
+      "label": "自主选源与任务分流",
+      "kind": "implementation",
+      "status": "pending"
+    },
+    {
+      "id": "QF-KNOWLEDGE",
+      "label": "知识证据兼容端口",
+      "kind": "implementation",
+      "status": "pending"
+    },
+    {
+      "id": "QF-ATTACH",
+      "label": "任务附件与临时关系",
+      "kind": "implementation",
+      "status": "pending"
+    },
+    {
+      "id": "LIVE",
+      "label": "真实模型与业务体验验收",
+      "kind": "acceptance",
+      "status": "pending"
+    }
+  ],
+  "baseline_steps": {
+    "M01": [
+      {
+        "id": "M01-I01",
+        "label": "API 与基础合同",
+        "status": "done"
+      },
+      {
+        "id": "M01-I02",
+        "label": "Schema 与生成类型",
+        "status": "done"
+      },
+      {
+        "id": "M01-I03",
+        "label": "双主题业务工作台",
+        "status": "done"
+      },
+      {
+        "id": "M01-I04",
+        "label": "启动、测试与开发说明",
+        "status": "done"
+      },
+      {
+        "id": "M01-I05",
+        "label": "开发身份的本地历史",
+        "status": "done"
+      },
+      {
+        "id": "M01-I06",
+        "label": "实际状态与结果层级",
+        "status": "done"
+      }
+    ],
+    "M02": [
+      {
+        "id": "M02-I-DATA-SEED",
+        "label": "自有合成测试材料",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-WAREHOUSE",
+        "label": "本机数据面",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-MCP-BACKEND",
+        "label": "治理 MCP 适配",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-API-WEB",
+        "label": "接入 API 与界面",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-USER-CONFIGURATION",
+        "label": "完整自助配置 · 原历史待办",
+        "status": "pending"
+      },
+      {
+        "id": "M02-I-LOCAL-ONBOARDING",
+        "label": "本机来源接入",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-XLSX-IMPORT",
+        "label": "Excel 安全导入",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-HTTP-TRANSPORT-BOUNDARY",
+        "label": "HTTP 传输治理边界",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-REMOTE-ONBOARDING",
+        "label": "完整远端接入 · 原历史待办",
+        "status": "pending"
+      },
+      {
+        "id": "M02-I-REMOTE-CONFIG-A",
+        "label": "受限远端配置合同",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-WORKER-W1",
+        "label": "Worker 操作隔离",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-STDIO-W2",
+        "label": "长驻 MCP 故障与恢复",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-UPLOAD-PREFLIGHT",
+        "label": "安全上传预检",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-STORAGE-INVENTORY",
+        "label": "只读存储盘点",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-RETENTION-EXECUTION",
+        "label": "保留策略受控执行",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-RETENTION-FOUNDATION",
+        "label": "保留策略安全底座",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-RETENTION-EXECUTOR-R2",
+        "label": "保留执行器与回执",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-RETENTION-AUTOMATIC-R3",
+        "label": "受限自动保留周期",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-WORKBENCH-UI-PREPARATION",
+        "label": "会话接入路径准备",
+        "status": "done"
+      },
+      {
+        "id": "M02-I-CHAT-FILES-MULTISOURCE",
+        "label": "聊天附件与多来源选择",
+        "status": "done"
+      }
+    ],
+    "M04-A": [
+      {
+        "id": "M04A-I-THIN-KEY-STATUS",
+        "label": "专用凭证状态隔离",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-RESPONSES-CANDIDATE",
+        "label": "受支持协议候选",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-ESTIMATED-BUDGET-TEST",
+        "label": "估算预算与显式测试",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-CLAUDE-STYLE-PRESET",
+        "label": "协议套餐配置 · 非 SDK 验证",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-RESPONSE-DIAGNOSTICS",
+        "label": "脱敏错误诊断",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-OBSERVED-ALIAS",
+        "label": "模型别名与请求名分离",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-GATEWAY-OPAQUE-THINKING",
+        "label": "不透明 thinking 隔离",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-GENERIC-WEB-BYOK",
+        "label": "用户自带模型 API 接入",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-SESSION-CATALOG",
+        "label": "服务端授权模型目录",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-SETTINGS-MODEL-CHOICE",
+        "label": "设置与工作台模型选择",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-MESSAGES-STREAM",
+        "label": "协议流式路径检查",
+        "status": "done"
+      },
+      {
+        "id": "M04A-I-STREAM-SAFE-DIAGNOSTICS",
+        "label": "流式失败安全诊断",
+        "status": "done"
+      }
+    ],
+    "M03": [
+      {
+        "id": "M03-I-SEMANTIC-VERTICAL",
+        "label": "单表结构化语义与批准",
+        "status": "done"
+      },
+      {
+        "id": "M03-I-SOFT-PACK-LIFECYCLE",
+        "label": "口径版本与停用生命周期",
+        "status": "done"
+      }
+    ]
+  },
+  "architecture": [
+    {
+      "id": "M01",
+      "area": "entry",
+      "caption": "连续会话 / 显式主题 / 开发身份历史"
+    },
+    {
+      "id": "M04",
+      "area": "coordinator",
+      "caption": "S1 合同 → S2 落地 → S3 路由 → S4 协调"
+    },
+    {
+      "id": "M04-A",
+      "area": "model",
+      "caption": "授权模型目录 / API 接入本机范围"
+    },
+    {
+      "id": "M03",
+      "area": "semantic",
+      "caption": "已验收单表口径；业务 RAG 后续"
+    },
+    {
+      "id": "M02",
+      "area": "data",
+      "caption": "授权元数据 / 治理 MCP / 受控数据适配"
+    },
+    {
+      "id": "M05",
+      "area": "assets",
+      "caption": "正式状态 / 偏好 / 知识 / 资产分离"
+    },
+    {
+      "id": "M06",
+      "area": "viz",
+      "caption": "授权资产驱动的图表与交互"
+    },
+    {
+      "id": "M07",
+      "area": "report",
+      "caption": "权威数字 / 来源 / 质量 / 限制"
+    },
+    {
+      "id": "M08",
+      "area": "acceptance",
+      "caption": "全链路任务成功 / 发布门禁"
+    }
+  ],
+  "title": "智能问数 · 工程航图",
+  "accepted_modules": 4,
+  "done_steps": 16,
+  "unverified_gates": 13,
+  "scope_label": "荧光仅表示已验收的本机交付范围；不代表完整 V2、企业生产或所有远期能力。"
+}
