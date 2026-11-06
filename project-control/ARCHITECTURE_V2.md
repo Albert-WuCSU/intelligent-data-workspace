@@ -1,3 +1,5 @@
+> **当前产品约束（2026-11-06，D086）：自然语言首问，无预选口径/来源；Agent探索与澄清后自主选源，右栏只投影实际来源/任务附件/产物。聊天附件与统一临时表、RAG兼容端口为规划，尚未实现。详见 `project-control/modules/M04/QUESTION_FIRST_ATTACHMENTS_PLAN.md`。旧手选来源要求已被覆盖，不删除历史验收证据。
+
 # 通用受治理数据 Agent 架构 V2
 2026-11-05 · D-ARCHITECTURE-GENERALIZATION-080 · 行业无关规划，不是新增实现证据
 
