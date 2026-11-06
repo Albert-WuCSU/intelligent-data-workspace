@@ -2,15 +2,15 @@
 <h3 align="center">让业务直接提问，让 Agent 查清口径，让结果带着证据。</h3>
 
 <p align="center">
-  <a href="#产品预览"><strong>▶ 看产品预览</strong></a> &nbsp;·&nbsp;
+  <a href="https://albert-wucsu.github.io/intelligent-data-workspace/demo/"><strong>▶ 立即体验合成 Demo · 无需登录 / Key</strong></a> &nbsp;·&nbsp;
   <a href="#产品架构"><strong>查看架构</strong></a> &nbsp;·&nbsp;
-  <a href="#开发进度"><strong>荧光进度图</strong></a> &nbsp;·&nbsp;
+  <a href="https://albert-wucsu.github.io/intelligent-data-workspace/portfolio/progress.html"><strong>交互荧光进度图 ↗</strong></a> &nbsp;·&nbsp;
   <a href="docs/DEMO_OPTIONS.md"><strong>在线 Demo 方案</strong></a>
 </p>
 
 ![智能问数：从业务问题到证据结果](docs/portfolio/assets/hero.png)
 
-> **这是一个以真实 Web 应用交付的 AI 产品经理作品，正在持续开发。** 静态合成 Demo 已制作，公开地址正在发布验证；下面提供界面预览与可下载的交互进度图，不需要配置模型 Key。真实产品目前在本机运行，不能把本机链接当作面试官可访问的网站。
+> **这是一个以真实 Web 应用交付的 AI 产品经理作品，正在持续开发。** **静态合成 Demo 已上线，点击顶部入口即可体验，无需登录或配置模型 Key。** 演示不调用真实模型或数仓；真实产品与公开合成演示分别标识。真实产品目前在本机运行，不能把本机链接当作面试官可访问的网站。
 
 ## 为什么做这个产品
 
@@ -55,9 +55,9 @@
 
 ### 免凭证的合成引导 Demo
 
-![合成 Demo 首页：直接提问，按需确认，Agent 自主选源](docs/portfolio/assets/demo-home.png)
+[![合成 Demo 首页：直接提问，按需确认，Agent 自主选源](docs/portfolio/assets/demo-home.png)](https://albert-wucsu.github.io/intelligent-data-workspace/demo/)
 
-*独立静态演示，采用预置场景；不连接真实模型或数仓，不读取本机文件。支持口径澄清、6000-ID 示例附件、指标咨询、失败边界和黑白主题。这是 D086 目标交互展示，不表示真实应用默认路径已实施。公开体验链接正在验证。*
+*独立静态演示，采用预置场景；不连接真实模型或数仓，不读取本机文件。支持口径澄清、6000-ID 示例附件、指标咨询、失败边界和黑白主题。这是 D086 目标交互展示，不表示真实应用默认路径已实施。[立即体验合成 Demo →](https://albert-wucsu.github.io/intelligent-data-workspace/demo/)*
 
 <details>
 <summary>展开合成 Demo 的确认与结果样式</summary>
@@ -90,7 +90,7 @@ Agent 选择来源与计划 → 必要执行确认
 
 ## 开发进度
 
-[![证据驱动的荧光架构与项目进度快照](docs/portfolio/assets/progress-dark.png)](docs/portfolio/progress.html)
+[![证据驱动的荧光架构与项目进度快照](docs/portfolio/assets/progress-dark.png)](https://albert-wucsu.github.io/intelligent-data-workspace/portfolio/progress.html)
 
 - **荧光模块**：仅表示该模块已获用户验收的有限本机交付范围，不代表所有远期能力完成。
 - **绿色步骤**：实现、检查与证据一致；新需求不能继承旧测试变绿。
@@ -105,20 +105,20 @@ Agent 选择来源与计划 → 必要执行确认
 
 </details>
 
-[交互进度图 HTML](docs/portfolio/progress.html) · [脱敏状态快照](docs/portfolio/progress-snapshot.json) · [完整路线](project-control/ROADMAP.md)
+[交互进度图 HTML](https://albert-wucsu.github.io/intelligent-data-workspace/portfolio/progress.html) · [脱敏状态快照](docs/portfolio/progress-snapshot.json) · [完整路线](project-control/ROADMAP.md)
 
-> GitHub README 支持图片，但不能执行 JavaScript 或嵌入可运行的 iframe。上图是静态预览；HTML 链接在 GitHub 中显示源码，需下载 `progress.html` 后用浏览器打开，或以后通过静态托管提供在线入口。公开图是发布快照，不会实时读取开发者电脑。
+> GitHub README 支持图片，但不能执行 JavaScript 或嵌入可运行的 iframe。上图是静态预览；仓库内的 HTML 文件页显示源码，可直接打开[已托管的交互页](https://albert-wucsu.github.io/intelligent-data-workspace/portfolio/progress.html)，也可从仓库下载 `docs/portfolio/progress.html` 离线打开。公开图是发布快照，不会实时读取开发者电脑。
 
 ## 如何体验
 
 | 方式 | 当前可用性 | 适合谁 |
 | --- | --- | --- |
-| README 图片与产品设计 | 现在可读；本次改版正在发布 | 面试官快速了解产品与决策 |
-| 下载交互进度图 | 本次已生成，浏览器离线可开；尚未托管 | 查看模块、步骤、黑白主题与证据边界 |
+| README 图片与产品设计 | 已发布到当前仓库首页 | 面试官快速了解产品与决策 |
+| 下载交互进度图 | 已托管，亦可下载单文件离线打开 | 查看模块、步骤、黑白主题与证据边界 |
 | 本机真实 Web 应用 | 开发者本机可运行，需环境与授权配置 | 技术走查与有限真实验证 |
-| 免配置在线交互 Demo | 独立合成引导模式已制作，正在发布验证 | 面试官点击链接即体验 |
+| 免配置在线交互 Demo | 已上线，无需 Key 或登录；预置合成场景 | 面试官点击链接即体验 |
 
-**推荐发布路线：先做零凭证的合成引导 Demo + 在线进度图，再单独规划有权限与预算保护的真实后端演示。** [查看方案及取舍 →](docs/DEMO_OPTIONS.md)
+**已提供零凭证的合成引导 Demo + 在线进度图；真实后端演示仍需独立规划与安全验收。** [查看方案及取舍 →](docs/DEMO_OPTIONS.md)
 
 <details>
 <summary>开发者：本机启动、测试与工程文档</summary>

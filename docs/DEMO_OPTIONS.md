@@ -2,7 +2,12 @@
 
 独立静态演示已实现并通过18项离线检查。页面不调用模型、API或数仓，不读取访客文件，所有来源/探索/SQL/数字显式标记为预置合成演示；真实产品QF改造、RAG及临时表仍待实施。
 
-当前正通过既有公开仓库的 GitHub Pages 发布静态产物，不托管真实应用或上传本机运行状态。发布地址待外部验证后写入 README，不把 GitHub 文件源码页当在线 Demo。
+已通过既有公开仓库的 GitHub Pages 发布静态产物，不托管真实应用或上传本机运行状态。
+
+- [体验合成 Demo](https://albert-wucsu.github.io/intelligent-data-workspace/demo/)
+- [打开交互进度图](https://albert-wucsu.github.io/intelligent-data-workspace/portfolio/progress.html)
+
+全新、未登录浏览器公开路径检查7项通过，包含直接进入、确认计算、6000-ID附件、主题、手机与进度链接；不调用业务API/模型。现有真实应用的QF改造和模块验收不因此通过。
 
 下面是选择前的方案记录；D089仅覆盖当前静态演示发布，不批准真实后端部署或费用。
 
